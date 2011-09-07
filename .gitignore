@@ -3,3 +3,8 @@
 #
 *.pro.user
 
+#
+# Emacs files
+#
+*.*~
+
