@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-TARGET = mailx
+TARGET = maily
 TEMPLATE = app
 
 
