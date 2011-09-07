@@ -1,0 +1,5 @@
+#
+# Qt Creator files
+#
+*.pro.user
+
