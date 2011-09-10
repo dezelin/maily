@@ -1,4 +1,6 @@
-/*
+/* -*- mode: C++; c-file-style: "k&r"; tab-width: 2; -*-
+ *
+
  *   This file is part of Maily.
  *
  *   Maily is free software: you can redistribute it and/or modify
