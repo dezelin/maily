@@ -39,8 +39,8 @@ public:
 	//
 
 private:
-	AccountModelPrivate *m_d;
-}
+	details::AccountModelPrivate *m_d;
+};
 
 } // namespace models
 } // namespace maily

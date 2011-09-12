@@ -15,9 +15,6 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ACCOUNTMODEL_H
-#define ACCOUNTMODEL_H
-
 #include "accountmodel.h"
 
 namespace maily {
@@ -28,7 +25,7 @@ namespace details {
 class AccountModelPrivate {
 public:
 
-}
+};
 
 } // namespace details
 
@@ -42,5 +39,3 @@ AccountModel::~AccountModel() {
 
 } // namespace models
 } // namespace maily
-
-#endif // ACCOUNTMODEL_H
