@@ -1,5 +1,4 @@
-/* -*- mode: C++; c-file-style: "k&r"; tab-width: 2; -*-
- *
+/*
  *   This file is part of Maily.
  *
  *   Maily is free software: you can redistribute it and/or modify
@@ -22,28 +21,28 @@
 #include <QAbstractItemModel>
 
 namespace maily {
-	namespace models {
-		
-		namespace details {
-			class AccountModelPrivate;
-		} // namespace details
+namespace models {
 
-		class AccountModel : public QAbstractItemModel {
-			Q_OBJECT
+namespace details {
+class AccountModelPrivate;
+} // namespace details
 
-		public:
-			AccountModel(QObject *parent = 0);
-			virtual ~AccountModel();
+class AccountModel : public QAbstractItemModel {
+	Q_OBJECT
 
-			//
-			// Getters and setters
-			//
+public:
+	AccountModel(QObject *parent = 0);
+	virtual ~AccountModel();
 
-		private:
-			AccountModelPrivate *m_d;
-		}
+	//
+	// Getters and setters
+	//
 
-	} // namespace models
+private:
+	AccountModelPrivate *m_d;
+}
+
+} // namespace models
 } // namespace maily
 
 #endif // ACCOUNTMODEL_h

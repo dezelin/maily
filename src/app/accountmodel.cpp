@@ -1,5 +1,4 @@
-/* -*- mode: C++; c-file-style: "k&r" tab-width: 2; -*-
- *
+/*
  *   This file is part of Maily.
  *
  *   Maily is free software: you can redistribute it and/or modify
@@ -22,24 +21,26 @@
 #include "accountmodel.h"
 
 namespace maily {
-	namespace models {
-		
-		namespace details {
-			class AccountModelPrivate {
-			public:
+namespace models {
 
-			}
-		} // namespace details
+namespace details {
 
-		AccountModel::AccountModel(QObject *parent) : QAbstractItemModel(parent),
-			m_d(new details::AccountModelPrivate()) {
-		}
+class AccountModelPrivate {
+public:
 
-		AccountModel::~AccountModel() {
-			delete m_d;
-		}
+}
 
-	} // namespace models
+} // namespace details
+
+AccountModel::AccountModel(QObject *parent) : QAbstractItemModel(parent),
+    m_d(new details::AccountModelPrivate()) {
+}
+
+AccountModel::~AccountModel() {
+    delete m_d;
+}
+
+} // namespace models
 } // namespace maily
 
 #endif // ACCOUNTMODEL_H
