@@ -22,9 +22,9 @@ namespace models {
 
 namespace details {
 
-class AccountModelPrivate {
-public:
-
+struct AccountModelPrivate {
+    QString name;
+    QString filePath;
 };
 
 } // namespace details
@@ -35,6 +35,22 @@ AccountModel::AccountModel(QObject *parent) : QAbstractItemModel(parent),
 
 AccountModel::~AccountModel() {
     delete m_d;
+}
+
+const QString& AccountModel::name() const {
+    return m_d->name;
+}
+
+void AccountModel::setName(const QString &name) {
+    m_d->name = name;
+}
+
+const QString& AccountModel::filePath() const {
+    return m_d->filePath;
+}
+
+void AccountModel::setFilePath(const QString &filePath) {
+    m_d->filePath = filePath;
 }
 
 } // namespace models

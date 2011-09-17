@@ -19,12 +19,13 @@
 #define ACCOUNTMODEL_H
 
 #include <QAbstractItemModel>
+#include <QString>
 
 namespace maily {
 namespace models {
 
 namespace details {
-class AccountModelPrivate;
+struct AccountModelPrivate;
 } // namespace details
 
 class AccountModel : public QAbstractItemModel {
@@ -37,6 +38,26 @@ public:
 	//
 	// Getters and setters
 	//
+
+	const QString& name() const;
+	void setName(const QString& name);
+
+	const QString& filePath() const;
+	void setFilePath(const QString& filePath);
+
+	//
+	// Overrides
+	//
+
+	virtual bool load(const QString& filePath) = 0;
+	virtual bool save() = 0;
+
+protected:
+	//
+	// Overrides
+	//
+
+	virtual bool createTables() = 0;
 
 private:
 	details::AccountModelPrivate *m_d;
