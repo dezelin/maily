@@ -12,8 +12,10 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-        accountmodel.cpp
+        accountmodel.cpp \
+    emailaccountmodel.cpp
 
-HEADERS  += mainwindow.h accountmodel.h
+HEADERS  += mainwindow.h accountmodel.h \
+    emailaccountmodel.h
 
 FORMS    += mainwindow.ui
