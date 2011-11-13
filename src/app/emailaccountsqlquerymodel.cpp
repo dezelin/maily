@@ -15,55 +15,28 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ACCOUNTMODEL_H
-#define ACCOUNTMODEL_H
-
-#include <QAbstractItemModel>
-#include <QString>
+#include "emailaccountsqlquerymodel.h"
 
 namespace maily {
 namespace models {
 
-namespace details {
-struct AccountModelPrivate;
-} // namespace details
+EmailAccountSqlQueryModel::EmailAccountSqlQueryModel(QObject *parent) :
+    QSqlQueryModel(parent)
+{
+}
 
-class AccountModel : public QAbstractItemModel {
-	Q_OBJECT
+Qt::ItemFlags EmailAccountSqlQueryModel::flags(const QModelIndex &index) const
+{
+  Qt::ItemFlags flags = QSqlQueryModel::flags(index);
+  return flags | Qt::ItemIsEditable;
+}
 
-public:
-	AccountModel(QObject *parent = 0);
-	virtual ~AccountModel();
-
-	//
-	// Getters and setters
-	//
-
-	const QString& name() const;
-	void setName(const QString& name);
-
-	const QString& filePath() const;
-	void setFilePath(const QString& filePath);
-
-	//
-	// Overrides
-	//
-
-	virtual bool load(const QString& filePath) = 0;
-	virtual bool save() = 0;
-
-protected:
-	//
-	// Overrides
-	//
-
-	virtual bool createTables() = 0;
-
-private:
-	details::AccountModelPrivate *m_d;
-};
+bool EmailAccountSqlQueryModel::setData(const QModelIndex &index,
+                                        const QVariant &value, int role)
+{
+  return true;
+}
 
 } // namespace models
 } // namespace maily
 
-#endif // ACCOUNTMODEL_h
