@@ -15,31 +15,9 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EMAILACCOUNTSQLQUERYMODEL_H
-#define EMAILACCOUNTSQLQUERYMODEL_H
+#include "accountssqlquerymodel.h"
 
-#include <QSqlQueryModel>
-
-namespace maily {
-namespace models {
-
-
-class EmailAccountSqlQueryModel : public QSqlQueryModel
+AccountsSqlQueryModel::AccountsSqlQueryModel(QObject *parent) :
+    QSqlQueryModel(parent)
 {
-    Q_OBJECT
-public:
-    explicit EmailAccountSqlQueryModel(QObject *parent = 0);
-
-    Qt::ItemFlags flags(const QModelIndex &index) const;
-    bool setData(const QModelIndex &index, const QVariant &value, int role);
-
-signals:
-
-public slots:
-
-};
-
-} // namespace models
-} // namespace maily
-
-#endif // EMAILACCOUNTSQLQUERYMODEL_H
+}

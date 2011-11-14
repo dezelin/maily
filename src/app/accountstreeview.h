@@ -15,28 +15,21 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "emailaccountsqlquerymodel.h"
+#ifndef ACCOUNTSTREEVIEW_H
+#define ACCOUNTSTREEVIEW_H
 
-namespace maily {
-namespace models {
+#include <QTreeView>
 
-EmailAccountSqlQueryModel::EmailAccountSqlQueryModel(QObject *parent) :
-    QSqlQueryModel(parent)
+class AccountsTreeView : public QTreeView
 {
-}
+    Q_OBJECT
+public:
+    explicit AccountsTreeView(QWidget *parent = 0);
 
-Qt::ItemFlags EmailAccountSqlQueryModel::flags(const QModelIndex &index) const
-{
-  Qt::ItemFlags flags = QSqlQueryModel::flags(index);
-  return flags | Qt::ItemIsEditable;
-}
+signals:
 
-bool EmailAccountSqlQueryModel::setData(const QModelIndex &index,
-                                        const QVariant &value, int role)
-{
-  return true;
-}
+public slots:
 
-} // namespace models
-} // namespace maily
+};
 
+#endif // ACCOUNTSTREEVIEW_H
