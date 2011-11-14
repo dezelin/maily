@@ -36,6 +36,9 @@ signals:
 
 public slots:
 
+private slots:
+  void onPageChanged(int id);
+
 private:
   QWizardPage* createIntroPage();
   QWizardPage* createEmailAccountPage();

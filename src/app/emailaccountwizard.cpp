@@ -21,6 +21,7 @@
 #include <QVBoxLayout>
 #include <QWizardPage>
 
+#include "busyindicatorwidget.h"
 #include "emailaccountwizard.h"
 
 namespace maily
@@ -36,6 +37,8 @@ EmailAccountWizard::EmailAccountWizard(QWidget *parent) :
   //addPage(createEmailAccountManualPage());
   addPage(createFinishedPage());
   setWindowTitle(tr("Add new email account"));
+
+  connect(this, SIGNAL(currentIdChanged(int)), this, SLOT(onPageChanged(int)));
 }
 
 QWizardPage* EmailAccountWizard::createIntroPage()
@@ -70,6 +73,9 @@ QWizardPage* EmailAccountWizard::createEmailAccountPage()
   QLineEdit* passwordLineEdit = new QLineEdit();
   passwordLineEdit->setEchoMode(QLineEdit::PasswordEchoOnEdit);
 
+  maily::widgets::BusyIndicatorWidget* busyWidget = new maily::widgets::BusyIndicatorWidget();
+
+
   QGridLayout* layout = new QGridLayout();
   layout->addWidget(userNameLabel, 0, 0);
   layout->addWidget(userNameLineEdit, 0, 1);
@@ -77,6 +83,7 @@ QWizardPage* EmailAccountWizard::createEmailAccountPage()
   layout->addWidget(emailAddressLineEdit, 1, 1);
   layout->addWidget(passwordLabel, 2, 0);
   layout->addWidget(passwordLineEdit, 2, 1);
+  layout->addWidget(busyWidget);
   page->setLayout(layout);
 
   return page;
@@ -101,6 +108,17 @@ QWizardPage* EmailAccountWizard::createFinishedPage()
   page->setLayout(layout);
 
   return page;
+}
+
+void EmailAccountWizard::onPageChanged(int id)
+{
+  QWizardPage* page = currentPage();
+  Q_ASSERT(page);
+  if (!page)
+    return;
+
+  maily::widgets::BusyIndicatorWidget* busyWidget = findChild<maily::widgets::BusyIndicatorWidget*>("busyWidget");
+
 }
 
 } // namespace wizards

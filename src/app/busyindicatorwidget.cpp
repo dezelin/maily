@@ -59,7 +59,7 @@ BusyIndicatorWidget::BusyIndicatorWidget(QWidget *parent) :
   view->show();
 
   layout->addWidget(view);
-  parent->setLayout(layout);
+  setLayout(layout);
 
   data_->timeline_ = new QTimeLine(1000, this);
   data_->timeline_->setLoopCount(0);
@@ -71,7 +71,6 @@ BusyIndicatorWidget::BusyIndicatorWidget(QWidget *parent) :
 
 BusyIndicatorWidget::~BusyIndicatorWidget()
 {
-  delete data_->scene_;
   delete data_;
 }
 
