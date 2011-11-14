@@ -15,25 +15,35 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef NEWEMAILACCOUNTWIZARD_H
-#define NEWEMAILACCOUNTWIZARD_H
+#ifndef EMAILACCOUNTWIZARD_H
+#define EMAILACCOUNTWIZARD_H
 
 #include <QWizard>
+#include <QWizardPage>
 
-namespace Ui {
-    class NewEmailAccountWizard;
-}
+namespace maily
+{
+namespace wizards
+{
 
-class NewEmailAccountWizard : public QWizard
+class EmailAccountWizard : public QWizard
 {
     Q_OBJECT
-
 public:
-    explicit NewEmailAccountWizard(QWidget *parent = 0);
-    ~NewEmailAccountWizard();
+    explicit EmailAccountWizard(QWidget *parent = 0);
+
+signals:
+
+public slots:
 
 private:
-    Ui::NewEmailAccountWizard *ui;
+  QWizardPage* createIntroPage();
+  QWizardPage* createEmailAccountPage();
+  QWizardPage* createEmailAccountManualPage();
+  QWizardPage* createFinishedPage();
 };
 
-#endif // NEWEMAILACCOUNTWIZARD_H
+} // namespace wizards
+} // namespace maily
+
+#endif // EMAILACCOUNTWIZARD_H

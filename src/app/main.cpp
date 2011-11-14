@@ -17,13 +17,26 @@
 
 
 #include <QtGui/QApplication>
+#include <QLibraryInfo>
+#include <QLocale>
+#include <QTranslator>
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    QApplication app(argc, argv);
 
-    return a.exec();
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + QLocale::system().name(),
+                      QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    app.installTranslator(&qtTranslator);
+
+    QTranslator mailyTranslator;
+    mailyTranslator.load("maily" + QLocale::system().name());
+    app.installTranslator(&mailyTranslator);
+
+    MainWindow window;
+    window.show();
+
+    return app.exec();
 }

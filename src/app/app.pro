@@ -17,9 +17,9 @@ SOURCES += main.cpp\
     calendaraccountstreeview.cpp \
     emailaccountssqlquerymodel.cpp \
     calendaraccountssqlquerymodel.cpp \
-    newemailaccountwizard.cpp \
     busyindicator.cpp \
-    busyindicatorwidget.cpp
+    busyindicatorwidget.cpp \
+    emailaccountwizard.cpp
 
 HEADERS  += mainwindow.h \
     servicestoolbox.h \
@@ -27,9 +27,8 @@ HEADERS  += mainwindow.h \
     calendaraccountstreeview.h \
     emailaccountssqlquerymodel.h \
     calendaraccountssqlquerymodel.h \
-    newemailaccountwizard.h \
     busyindicator.h \
-    busyindicatorwidget.h
+    busyindicatorwidget.h \
+    emailaccountwizard.h
 
-FORMS    += mainwindow.ui \
-    newemailaccountwizard.ui
+FORMS    += mainwindow.ui
