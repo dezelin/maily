@@ -11,8 +11,18 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    servicestoolbox.cpp \
+    emailaccountstreeview.cpp \
+    calendaraccountstreeview.cpp \
+    emailaccountssqlquerymodel.cpp \
+    calendaraccountssqlquerymodel.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    servicestoolbox.h \
+    emailaccountstreeview.h \
+    calendaraccountstreeview.h \
+    emailaccountssqlquerymodel.h \
+    calendaraccountssqlquerymodel.h
 
 FORMS    += mainwindow.ui
