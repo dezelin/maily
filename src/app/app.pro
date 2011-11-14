@@ -12,11 +12,9 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    emailaccountsqlquerymodel.cpp \
-    emailaccounttreeview.cpp
+    emailaccountsqlquerymodel.cpp
 
 HEADERS  += mainwindow.h \
-    emailaccountsqlquerymodel.h \
-    emailaccounttreeview.h
+    emailaccountsqlquerymodel.h
 
 FORMS    += mainwindow.ui
