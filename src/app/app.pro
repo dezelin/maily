@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network sql webkit
+QT       += core declarative gui network sql webkit
 
 TARGET = maily
 TEMPLATE = app
@@ -16,13 +16,20 @@ SOURCES += main.cpp\
     emailaccountstreeview.cpp \
     calendaraccountstreeview.cpp \
     emailaccountssqlquerymodel.cpp \
-    calendaraccountssqlquerymodel.cpp
+    calendaraccountssqlquerymodel.cpp \
+    newemailaccountwizard.cpp \
+    busyindicator.cpp \
+    busyindicatorwidget.cpp
 
 HEADERS  += mainwindow.h \
     servicestoolbox.h \
     emailaccountstreeview.h \
     calendaraccountstreeview.h \
     emailaccountssqlquerymodel.h \
-    calendaraccountssqlquerymodel.h
+    calendaraccountssqlquerymodel.h \
+    newemailaccountwizard.h \
+    busyindicator.h \
+    busyindicatorwidget.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    newemailaccountwizard.ui
