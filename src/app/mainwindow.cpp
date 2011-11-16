@@ -34,6 +34,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionAccounts_triggered()
 {
-  maily::wizards::EmailAccountWizard* wizard = new maily::wizards::EmailAccountWizard(this);
+  Maily::Wizards::EmailAccountWizard* wizard = new Maily::Wizards::EmailAccountWizard(this);
   wizard->exec();
 }

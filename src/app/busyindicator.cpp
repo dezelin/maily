@@ -22,9 +22,9 @@
 #include <QPainterPath>
 #include <QPixmapCache>
 
-namespace maily
+namespace Maily
 {
-namespace widgets
+namespace Widgets
 {
 
 BusyIndicator::BusyIndicator(QDeclarativeItem* parent)
@@ -33,13 +33,13 @@ BusyIndicator::BusyIndicator(QDeclarativeItem* parent)
       m_outerRadius(1.0),
       m_backgroundColor(177, 210, 143, 70),
       m_foregroundColor(119, 183, 83, 255),
-      m_actualInnerRadius(90.0),
-      m_actualOuterRadius(100.0),
+      m_actualInnerRadius(0.0),
+      m_actualOuterRadius(0.0),
       m_cacheKey()
 {
     setFlag(QGraphicsItem::ItemHasNoContents, false);
-    setWidth(100.0);
-    setHeight(100.0);
+    setWidth(16.0);
+    setHeight(16.0);
 
     updateSpinner();
 
@@ -115,7 +115,7 @@ qreal BusyIndicator::actualOuterRadius() const
 
 void BusyIndicator::updateSpinner()
 {
-    // Calculate new inner and outer radii
+    // Calculate new inner and outer radius
     m_size = qMin(width(), height());
     qreal nCoef = 0.5 * m_size;
     m_actualInnerRadius = nCoef * m_innerRadius;
@@ -160,7 +160,7 @@ void BusyIndicator::paint(QPainter* painter,
         // Draw the ring background
         p.setPen(Qt::NoPen);
         p.setBrush(m_backgroundColor);
-        p.setRenderHint(QPainter::Antialiasing);
+        p.setRenderHints(QPainter::Antialiasing);
         p.drawPath(path);
 
         // Draw the ring foreground

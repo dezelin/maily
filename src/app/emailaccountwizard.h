@@ -21,9 +21,9 @@
 #include <QWizard>
 #include <QWizardPage>
 
-namespace maily
+namespace Maily
 {
-namespace wizards
+namespace Wizards
 {
 
 class EmailAccountWizard : public QWizard
@@ -32,12 +32,11 @@ class EmailAccountWizard : public QWizard
 public:
     explicit EmailAccountWizard(QWidget *parent = 0);
 
+    virtual bool validateCurrentPage();
+
 signals:
 
 public slots:
-
-private slots:
-  void onPageChanged(int id);
 
 private:
   QWizardPage* createIntroPage();

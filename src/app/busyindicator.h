@@ -20,9 +20,9 @@
 
 #include <QDeclarativeItem>
 
-namespace maily
+namespace Maily
 {
-namespace widgets
+namespace Widgets
 {
 
 class BusyIndicator : public QDeclarativeItem

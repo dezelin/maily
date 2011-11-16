@@ -20,9 +20,9 @@
 
 #include <QWidget>
 
-namespace maily
+namespace Maily
 {
-namespace widgets
+namespace Widgets
 {
 
 namespace details
@@ -40,6 +40,7 @@ public:
 signals:
 
 public slots:
+  void resume();
   void start();
   void stop();
 
@@ -47,7 +48,7 @@ private slots:
   void rotateSpinner(int value);
 
 private:
-  details::BusyIndicatorWidgetPrivate* data_;
+  details::BusyIndicatorWidgetPrivate* m_data;
 };
 
 } // namespace widgets
