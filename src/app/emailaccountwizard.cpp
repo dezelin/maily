@@ -41,8 +41,6 @@ EmailAccountWizard::EmailAccountWizard(QWidget *parent) :
   //addPage(createEmailAccountManualPage());
   addPage(createFinishedPage());
   setWindowTitle(tr("Add new email account"));
-
-  connect(this, SIGNAL(currentIdChanged(int)), this, SLOT(onPageChanged(int)));
 }
 
 bool EmailAccountWizard::validateCurrentPage()
