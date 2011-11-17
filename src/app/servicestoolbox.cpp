@@ -17,7 +17,15 @@
 
 #include "servicestoolbox.h"
 
+namespace Maily
+{
+namespace Widgets
+{
+
 ServicesToolbox::ServicesToolbox(QWidget *parent) :
     QToolBox(parent)
 {
 }
+
+} // namespace Widgets
+} // namespace Maily

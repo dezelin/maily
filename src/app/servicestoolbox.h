@@ -20,6 +20,11 @@
 
 #include <QToolBox>
 
+namespace Maily
+{
+namespace Widgets
+{
+
 class ServicesToolbox : public QToolBox
 {
     Q_OBJECT
@@ -31,5 +36,8 @@ signals:
 public slots:
 
 };
+
+} // namespace Widgets
+} // namespace Maily
 
 #endif // SERVICESTOOLBOX_H

@@ -51,7 +51,7 @@ private:
   details::BusyIndicatorWidgetPrivate* m_data;
 };
 
-} // namespace widgets
-} // namespace maily
+} // namespace Widgets
+} // namespace Maily
 
 #endif // BUSYINDICATORWIDGET_H
