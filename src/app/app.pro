@@ -19,7 +19,12 @@ SOURCES += main.cpp\
     calendaraccountssqlquerymodel.cpp \
     busyindicator.cpp \
     busyindicatorwidget.cpp \
-    emailaccountwizard.cpp
+    emailaccountwizard.cpp \
+    logininfo.cpp \
+    accountmanager.cpp \
+    accountenumerator.cpp \
+    mozillaaccountenumerator.cpp \
+    mailyaccountenumerator.cpp
 
 HEADERS  += mainwindow.h \
     servicestoolbox.h \
@@ -29,6 +34,11 @@ HEADERS  += mainwindow.h \
     calendaraccountssqlquerymodel.h \
     busyindicator.h \
     busyindicatorwidget.h \
-    emailaccountwizard.h
+    emailaccountwizard.h \
+    logininfo.h \
+    accountmanager.h \
+    accountenumerator.h \
+    mozillaaccountenumerator.h \
+    mailyaccountenumerator.h
 
 FORMS    += mainwindow.ui
