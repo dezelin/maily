@@ -15,17 +15,42 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "accountenumerator.h"
+#ifndef SERVICEPROVIDERINFO_H
+#define SERVICEPROVIDERINFO_H
+
+#include <QObject>
+#include "logininfo.h"
 
 namespace Maily
 {
 namespace Services
 {
 
-AccountEnumerator::AccountEnumerator(QObject* parent) :
-    QObject(parent)
+namespace Details
 {
+    struct ServiceProviderInfoPrivate;
 }
+
+class ServiceProviderInfo : public LoginInfo
+{
+    Q_OBJECT
+    Q_PROPERTY(QString address READ address WRITE setAddress)
+    Q_PROPERTY(unsigned int port READ port WRITE setPort)
+
+public:
+    explicit ServiceProviderInfo(QObject* parent = 0);
+
+    const QString& address() const;
+    void setAddress(const QString& address);
+
+    unsigned int port() const;
+    void setPort(unsigned int port);
+
+private:
+    Details::ServiceProviderInfoPrivate* m_data;
+};
 
 } // namespace Services
 } // namespace Maily
+
+#endif // SERVICEPROVIDERINFO_H

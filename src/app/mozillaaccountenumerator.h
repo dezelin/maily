@@ -19,15 +19,17 @@
 #define MOZILLAACCOUNTENUMERATOR_H
 
 #include <QObject>
+#include "accountenumerator.h"
 
 namespace Maily
 {
 namespace Services
 {
 
-class MozillaAccountEnumerator : public QObject
+class MozillaAccountEnumerator : public AccountEnumerator
 {
     Q_OBJECT
+
 public:
     explicit MozillaAccountEnumerator(QObject *parent = 0);
 

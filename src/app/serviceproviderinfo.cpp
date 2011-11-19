@@ -15,7 +15,7 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "logininfo.h"
+#include "serviceproviderinfo.h"
 
 namespace Maily
 {
@@ -24,51 +24,46 @@ namespace Services
 
 namespace Details
 {
-    struct LoginInfoPrivate
+    struct ServiceProviderInfoPrivate
     {
-        explicit LoginInfoPrivate()
+        ServiceProviderInfoPrivate() :
+            m_port(0)
         {
 
         }
 
-        QString m_username;
-        QString m_password;
+        QString m_address;
+        unsigned int m_port;
     };
 }
 
-LoginInfo::LoginInfo(QObject *parent) :
-    QObject(parent), m_data(new Details::LoginInfoPrivate())
+ServiceProviderInfo::ServiceProviderInfo(QObject* parent)
+    : LoginInfo(parent), m_data(new Details::ServiceProviderInfoPrivate())
 {
 }
 
-LoginInfo::~LoginInfo()
+const QString& ServiceProviderInfo::address() const
 {
     Q_ASSERT(m_data);
-    delete m_data;
+    return m_data->m_address;
 }
 
-const QString& LoginInfo::password() const
+void ServiceProviderInfo::setAddress(const QString& address)
 {
     Q_ASSERT(m_data);
-    return m_data->m_password;
+    m_data->m_address = address;
 }
 
-void LoginInfo::setPassword(const QString &password)
+unsigned int ServiceProviderInfo::port() const
 {
     Q_ASSERT(m_data);
-    m_data->m_password = password;
+    return m_data->m_port;
 }
 
-const QString& LoginInfo::username() const
+void ServiceProviderInfo::setPort(unsigned int port)
 {
     Q_ASSERT(m_data);
-    return m_data->m_username;
-}
-
-void LoginInfo::setUsername(const QString &username)
-{
-    Q_ASSERT(m_data);
-    m_data->m_username = username;
+    m_data->m_port = port;
 }
 
 } // namespace Services

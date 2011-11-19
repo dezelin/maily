@@ -24,7 +24,10 @@ SOURCES += main.cpp\
     accountmanager.cpp \
     accountenumerator.cpp \
     mozillaaccountenumerator.cpp \
-    mailyaccountenumerator.cpp
+    mailyaccountenumerator.cpp \
+    accountmanagerfactory.cpp \
+    serviceproviderinfo.cpp \
+    emailserviceproviderinfo.cpp
 
 HEADERS  += mainwindow.h \
     servicestoolbox.h \
@@ -39,6 +42,9 @@ HEADERS  += mainwindow.h \
     accountmanager.h \
     accountenumerator.h \
     mozillaaccountenumerator.h \
-    mailyaccountenumerator.h
+    mailyaccountenumerator.h \
+    accountmanagerfactory.h \
+    serviceproviderinfo.h \
+    emailserviceproviderinfo.h
 
 FORMS    += mainwindow.ui

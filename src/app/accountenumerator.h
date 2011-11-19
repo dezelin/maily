@@ -18,15 +18,19 @@
 #ifndef ACCOUNTENUMERATOR_H
 #define ACCOUNTENUMERATOR_H
 
+#include <QObject>
+
 namespace Maily
 {
 namespace Services
 {
 
-class AccountEnumerator
+class AccountEnumerator : public QObject
 {
+    Q_OBJECT
+
 public:
-    AccountEnumerator();
+    explicit AccountEnumerator(QObject* parent = 0);
 };
 
 } // namespace Services

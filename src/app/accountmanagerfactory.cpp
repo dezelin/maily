@@ -15,16 +15,22 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "accountenumerator.h"
+#include "accountmanagerfactory.h"
+#include "mozillaaccountenumerator.h"
 
 namespace Maily
 {
 namespace Services
 {
 
-AccountEnumerator::AccountEnumerator(QObject* parent) :
+AccountManagerFactory::AccountManagerFactory(QObject *parent) :
     QObject(parent)
 {
+}
+
+AccountEnumerator* AccountManagerFactory::createMozillaAccountEnumerator()
+{
+    return new MozillaAccountEnumerator();
 }
 
 } // namespace Services

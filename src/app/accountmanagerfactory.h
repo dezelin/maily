@@ -15,6 +15,10 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef ACCOUNTMANAGERFACTORY_H
+#define ACCOUNTMANAGERFACTORY_H
+
+#include <QObject>
 #include "accountenumerator.h"
 
 namespace Maily
@@ -22,10 +26,23 @@ namespace Maily
 namespace Services
 {
 
-AccountEnumerator::AccountEnumerator(QObject* parent) :
-    QObject(parent)
+class MozillaAccountEnumerator;
+
+class AccountManagerFactory : public QObject
 {
-}
+    Q_OBJECT
+public:
+    explicit AccountManagerFactory(QObject *parent = 0);
+
+    static AccountEnumerator* createMozillaAccountEnumerator();
+
+signals:
+
+public slots:
+
+};
 
 } // namespace Services
 } // namespace Maily
+
+#endif // ACCOUNTMANAGERFACTORY_H

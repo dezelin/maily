@@ -23,7 +23,7 @@ namespace Services
 {
 
 MozillaAccountEnumerator::MozillaAccountEnumerator(QObject *parent) :
-    QObject(parent)
+    AccountEnumerator(parent)
 {
 }
 
