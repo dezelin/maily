@@ -34,7 +34,8 @@ class AccountManagerFactory : public QObject
 public:
     explicit AccountManagerFactory(QObject *parent = 0);
 
-    static AccountEnumerator* createMozillaAccountEnumerator();
+    static AccountEnumerator* createMozillaAccountEnumerator(
+        const QString& domain);
 
 signals:
 

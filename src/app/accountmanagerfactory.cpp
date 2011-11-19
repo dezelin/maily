@@ -28,9 +28,10 @@ AccountManagerFactory::AccountManagerFactory(QObject *parent) :
 {
 }
 
-AccountEnumerator* AccountManagerFactory::createMozillaAccountEnumerator()
+AccountEnumerator* AccountManagerFactory::createMozillaAccountEnumerator(
+    const QString& domain)
 {
-    return new MozillaAccountEnumerator();
+    return new MozillaAccountEnumerator(0, domain);
 }
 
 } // namespace Services

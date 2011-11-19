@@ -18,34 +18,77 @@
 #ifndef EMAILACCOUNTWIZARD_H
 #define EMAILACCOUNTWIZARD_H
 
+#include <QList>
 #include <QWizard>
 #include <QWizardPage>
+
+#include "accountenumerator.h"
 
 namespace Maily
 {
 namespace Wizards
 {
 
+namespace Details
+{
+    struct EmailAccountWizardPrivate;
+}
+
 class EmailAccountWizard : public QWizard
 {
     Q_OBJECT
+
 public:
     explicit EmailAccountWizard(QWidget *parent = 0);
+    virtual ~EmailAccountWizard();
 
     virtual bool validateCurrentPage();
 
 signals:
 
 public slots:
+    void enumerationFinished();
 
 private:
-  QWizardPage* createIntroPage();
-  QWizardPage* createEmailAccountPage();
-  QWizardPage* createEmailAccountManualPage();
-  QWizardPage* createFinishedPage();
+    void disableButtons();
+    void enableButtons();
+    QList<Services::ServiceProviderInfo>* enumerateServiceProviders(
+        const QString& domainName) const;
+
+private:
+    Details::EmailAccountWizardPrivate* m_data;
 };
 
-} // namespace wizards
-} // namespace maily
+namespace Pages
+{
+
+class EmailAccountWizardIntroPage : public QWizardPage
+{
+    Q_OBJECT
+
+public:
+    explicit EmailAccountWizardIntroPage(QWidget* parent = 0);
+};
+
+class EmailAccountWizardAccountPage : public QWizardPage
+{
+    Q_OBJECT
+
+public:
+    explicit EmailAccountWizardAccountPage(QWidget* parent = 0);
+};
+
+class EmailAccountWizardFinishedPage : public QWizardPage
+{
+    Q_OBJECT
+
+public:
+    explicit EmailAccountWizardFinishedPage(QWidget* parent = 0);
+};
+
+} // namespace Pages
+
+} // namespace Wizards
+} // namespace Maily
 
 #endif // EMAILACCOUNTWIZARD_H

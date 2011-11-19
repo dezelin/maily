@@ -19,6 +19,7 @@
 #define ACCOUNTENUMERATOR_H
 
 #include <QObject>
+#include "serviceproviderinfo.h"
 
 namespace Maily
 {
@@ -31,6 +32,8 @@ class AccountEnumerator : public QObject
 
 public:
     explicit AccountEnumerator(QObject* parent = 0);
+
+    virtual QList<ServiceProviderInfo>* enumerateAccounts() const = 0;
 };
 
 } // namespace Services
