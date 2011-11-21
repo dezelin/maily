@@ -27,7 +27,9 @@ SOURCES += main.cpp\
     mailyaccountenumerator.cpp \
     accountmanagerfactory.cpp \
     serviceproviderinfo.cpp \
-    emailserviceproviderinfo.cpp
+    emailserviceproviderinfo.cpp \
+    customeditline.cpp \
+    emailvalidator.cpp
 
 HEADERS  += mainwindow.h \
     servicestoolbox.h \
@@ -45,6 +47,14 @@ HEADERS  += mainwindow.h \
     mailyaccountenumerator.h \
     accountmanagerfactory.h \
     serviceproviderinfo.h \
-    emailserviceproviderinfo.h
+    emailserviceproviderinfo.h \
+    tools.h \
+    customeditline.h \
+    emailvalidator.h
 
 FORMS    += mainwindow.ui
+
+
+
+
+

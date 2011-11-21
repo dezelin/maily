@@ -29,10 +29,6 @@ namespace Maily
 namespace Wizards
 {
 
-namespace Details
-{
-    struct EmailAccountWizardPrivate;
-}
 
 class EmailAccountWizard : public QWizard
 {
@@ -47,16 +43,11 @@ public:
 signals:
 
 public slots:
-    void enumerationFinished();
 
 private:
     void disableButtons();
     void enableButtons();
-    QList<Services::ServiceProviderInfo>* enumerateServiceProviders(
-        const QString& domainName) const;
-
-private:
-    Details::EmailAccountWizardPrivate* m_data;
+    bool validateEmailAccountWizardAccountPage(QWizardPage* page);
 };
 
 namespace Pages
@@ -70,12 +61,44 @@ public:
     explicit EmailAccountWizardIntroPage(QWidget* parent = 0);
 };
 
+namespace Details
+{
+    struct EmailAccountWizardAccountPagePrivate;
+}
+
 class EmailAccountWizardAccountPage : public QWizardPage
 {
     Q_OBJECT
 
 public:
     explicit EmailAccountWizardAccountPage(QWidget* parent = 0);
+    virtual ~EmailAccountWizardAccountPage();
+
+private slots:
+    void enumerationFinished();
+
+private:
+    QList<Services::ServiceProviderInfo>* enumerateServiceProviders(
+        const QString& domainName) const;
+
+private:
+    Details::EmailAccountWizardAccountPagePrivate* m_data;
+};
+
+class EmailAccountWizardIncommingServerPage : public QWizardPage
+{
+    Q_OBJECT
+
+public:
+    explicit EmailAccountWizardIncommingServerPage(QWidget* parent = 0);
+};
+
+class EmailAccountWizardOutgoingServerPage : public QWizardPage
+{
+    Q_OBJECT
+
+public:
+    explicit EmailAccountWizardOutgoingServerPage(QWidget* parent = 0);
 };
 
 class EmailAccountWizardFinishedPage : public QWizardPage
