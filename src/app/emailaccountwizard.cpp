@@ -27,6 +27,7 @@
 #include "accountmanagerfactory.h"
 #include "busyindicatorwidget.h"
 #include "customeditline.h"
+#include "forgettablewatcher.h"
 #include "emailaccountwizard.h"
 #include "emailvalidator.h"
 #include "mozillaaccountenumerator.h"
@@ -98,7 +99,7 @@ EmailAccountWizardIntroPage::EmailAccountWizardIntroPage(QWidget* parent) :
 struct EmailAccountWizardAccountPage::EmailAccountWizardAccountPagePrivate
 {
     EmailAccountWizardAccountPagePrivate() :
-        m_futureStarted(false)
+        m_futureStarted(false), m_futureWatcher(0)
     {
     }
 
@@ -106,7 +107,7 @@ struct EmailAccountWizardAccountPage::EmailAccountWizardAccountPagePrivate
         ServiceProviderInfoListPtr;
 
     bool m_futureStarted;
-    QFutureWatcher<ServiceProviderInfoListPtr> m_futureWatcher;
+    Services::Tasks::ForgettableWatcher<ServiceProviderInfoListPtr>* m_futureWatcher;
 };
 
 EmailAccountWizardAccountPage::EmailAccountWizardAccountPage(QWidget* parent) :
@@ -163,11 +164,11 @@ void EmailAccountWizardAccountPage::cleanupPage()
 
     bool started = m_data->m_futureStarted;
     if (started) {
-        m_data->m_futureWatcher.waitForFinished();
+        //m_data->m_futureWatcher.waitForFinished();
+        m_data->m_futureStarted = false;
+        m_data->m_futureWatcher->disconnect(this);
         stopBusyIndicator();
     }
-
-    m_data->m_futureWatcher.disconnect();
 }
 
 void EmailAccountWizardAccountPage::initializePage()
@@ -176,8 +177,6 @@ void EmailAccountWizardAccountPage::initializePage()
     if (!m_data)
         return;
 
-    connect(&m_data->m_futureWatcher, SIGNAL(finished()), this,
-        SLOT(enumerationFinished()));
 }
 
 int EmailAccountWizardAccountPage::nextId() const
@@ -192,7 +191,12 @@ int EmailAccountWizardAccountPage::nextId() const
 
     m_data->m_futureStarted = false; // we will proceed to the next page
 
-    bool foundProvider = !m_data->m_futureWatcher.result()->isEmpty();
+    Q_ASSERT(m_data->m_futureWatcher);
+    if (!m_data->m_futureWatcher)
+        return kPageIdEmailIncommingServer;
+
+    //bool foundProvider = !m_data->m_futureWatcher.result()->isEmpty();
+    bool foundProvider = !m_data->m_futureWatcher->result()->isEmpty();
     if (foundProvider)
         return kPageIdFinished;
 
@@ -206,7 +210,8 @@ bool EmailAccountWizardAccountPage::validatePage()
         return false;
 
     bool started = m_data->m_futureStarted;
-    bool finished = m_data->m_futureWatcher.isFinished();
+    bool finished = (m_data->m_futureWatcher) ? m_data->m_futureWatcher->isFinished()
+        : false;
     if (started && finished)
         return true;
 
@@ -217,8 +222,20 @@ bool EmailAccountWizardAccountPage::validatePage()
         this, &EmailAccountWizardAccountPage::enumerateServiceProviders,
             QString("gmail.com"));
 
+    typedef QScopedPointer<Services::Tasks::ForgettableWatcher<ServiceProviderInfoListPtr> >
+        ForgettableWatcherPtr;
+
+    ForgettableWatcherPtr futureWatcher(
+        new Services::Tasks::ForgettableWatcher<ServiceProviderInfoListPtr>());
+
+//    connect(&m_data->m_futureWatcher, SIGNAL(finished()), this,
+//        SLOT(enumerationFinished()));
+
+    connect(futureWatcher.data(), SIGNAL(finished()), this, SLOT(enumerationFinished()));
+    futureWatcher->setFuture(future);
+
     Q_ASSERT(m_data);
-    m_data->m_futureWatcher.setFuture(future);
+    m_data->m_futureWatcher = futureWatcher.take();
     m_data->m_futureStarted = true;
 
     // FutureWatcher will call enumerationFinished() when finished

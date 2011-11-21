@@ -18,6 +18,6 @@
 #ifndef TOOLS_H
 #define TOOLS_H
 
-#define Q_VOID(x) (void)x;
+#define Q_VOID(x) (void)x
 
 #endif // TOOLS_H
