@@ -18,6 +18,8 @@
 #ifndef EMAILSERVICEPROVIDERINFO_H
 #define EMAILSERVICEPROVIDERINFO_H
 
+#include <QScopedPointer>
+
 #include "serviceproviderinfo.h"
 
 namespace Maily
@@ -27,7 +29,6 @@ namespace Services
 
 namespace Details
 {
-    struct EmailServiceProviderInfoPrivate;
 }
 
 class EmailServiceProviderInfo : public ServiceProviderInfo
@@ -45,6 +46,7 @@ class EmailServiceProviderInfo : public ServiceProviderInfo
 
 public:
     explicit EmailServiceProviderInfo(QObject *parent = 0);
+    virtual ~EmailServiceProviderInfo();
 
     enum ServiceType { POP3, POP3S, IMAP, IMAPS, SMTP, SMTPS, MAILDIR, SENDMAIL };
 
@@ -77,7 +79,10 @@ signals:
 public slots:
 
 private:
-    Details::EmailServiceProviderInfoPrivate* m_data;
+    Q_DISABLE_COPY(EmailServiceProviderInfo)
+
+    struct EmailServiceProviderInfoPrivate;
+    QScopedPointer<EmailServiceProviderInfoPrivate> m_data;
 };
 
 } // namespace Services

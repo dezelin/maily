@@ -25,31 +25,24 @@ namespace Maily
 namespace Widgets
 {
 
-namespace Details
+struct CustomEditLine::CustomEditLinePrivate
 {
-    struct CustomEditLinePrivate
+    CustomEditLinePrivate() :
+        m_drawEmptyMsg(true)
     {
-        CustomEditLinePrivate() :
-            m_drawEmptyMsg(true)
-        {
+    }
 
-        }
-
-        bool m_drawEmptyMsg;
-        QString m_emptyMessage;
-    };
-}
-
+    bool m_drawEmptyMsg;
+    QString m_emptyMessage;
+};
 
 CustomEditLine::CustomEditLine(QWidget *parent) :
-    QLineEdit(parent), m_data(new Details::CustomEditLinePrivate())
+    QLineEdit(parent), m_data(new CustomEditLinePrivate())
 {
-
 }
 
 CustomEditLine::~CustomEditLine()
 {
-    delete m_data;
 }
 
 void CustomEditLine::setEmptyMessage(const QString& msg)

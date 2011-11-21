@@ -22,29 +22,19 @@ namespace Maily
 namespace Services
 {
 
-namespace Details
+struct LoginInfo::LoginInfoPrivate
 {
-    struct LoginInfoPrivate
-    {
-        explicit LoginInfoPrivate()
-        {
-
-        }
-
-        QString m_username;
-        QString m_password;
-    };
-}
+    QString m_username;
+    QString m_password;
+};
 
 LoginInfo::LoginInfo(QObject *parent) :
-    QObject(parent), m_data(new Details::LoginInfoPrivate())
+    QObject(parent), m_data(new LoginInfoPrivate())
 {
 }
 
 LoginInfo::~LoginInfo()
 {
-    Q_ASSERT(m_data);
-    delete m_data;
 }
 
 const QString& LoginInfo::password() const

@@ -29,6 +29,8 @@ namespace Validators
 
 class EmailValidator : public QRegExpValidator
 {
+    Q_OBJECT
+
 public:
     explicit EmailValidator(QObject* parent = 0);
 

@@ -28,14 +28,18 @@ namespace Maily
 namespace Widgets
 {
 
-namespace details
-{
-
-struct BusyIndicatorWidgetPrivate
+struct BusyIndicatorWidget::BusyIndicatorWidgetPrivate
 {
   BusyIndicatorWidgetPrivate() : m_busyIndicator(0), m_scene(0),
     m_timeline(0)
   {
+  }
+
+  ~BusyIndicatorWidgetPrivate()
+  {
+      delete m_busyIndicator;
+      delete m_scene;
+      delete m_timeline;
   }
 
   BusyIndicator* m_busyIndicator;
@@ -43,10 +47,8 @@ struct BusyIndicatorWidgetPrivate
   QTimeLine* m_timeline;
 };
 
-} // namespace details
-
 BusyIndicatorWidget::BusyIndicatorWidget(QWidget *parent) :
-  QWidget(parent), m_data(new details::BusyIndicatorWidgetPrivate())
+  QWidget(parent), m_data(new BusyIndicatorWidgetPrivate())
 {
   QLayout* layout = new QVBoxLayout();
 
@@ -73,7 +75,6 @@ BusyIndicatorWidget::BusyIndicatorWidget(QWidget *parent) :
 
 BusyIndicatorWidget::~BusyIndicatorWidget()
 {
-  delete m_data;
 }
 
 void BusyIndicatorWidget::resume()

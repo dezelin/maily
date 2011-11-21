@@ -18,6 +18,7 @@
 #ifndef BUSYINDICATORWIDGET_H
 #define BUSYINDICATORWIDGET_H
 
+#include <QScopedPointer>
 #include <QWidget>
 
 namespace Maily
@@ -25,14 +26,11 @@ namespace Maily
 namespace Widgets
 {
 
-namespace details
-{
-  struct BusyIndicatorWidgetPrivate;
-}
 
 class BusyIndicatorWidget : public QWidget
 {
     Q_OBJECT
+
 public:
     explicit BusyIndicatorWidget(QWidget *parent = 0);
     virtual ~BusyIndicatorWidget();
@@ -48,7 +46,10 @@ private slots:
   void rotateSpinner(int value);
 
 private:
-  details::BusyIndicatorWidgetPrivate* m_data;
+  Q_DISABLE_COPY(BusyIndicatorWidget)
+
+  struct BusyIndicatorWidgetPrivate;
+  QScopedPointer<BusyIndicatorWidgetPrivate> m_data;
 };
 
 } // namespace Widgets

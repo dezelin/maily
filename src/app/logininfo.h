@@ -25,16 +25,13 @@ namespace Maily
 namespace Services
 {
 
-namespace Details
-{
-    struct LoginInfoPrivate;
-}
 
 class LoginInfo : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString password READ password WRITE setPassword)
     Q_PROPERTY(QString username READ username WRITE setUsername)
+
 public:
     explicit LoginInfo(QObject *parent = 0);
     virtual ~LoginInfo();
@@ -50,7 +47,10 @@ signals:
 public slots:
 
 private:
-    Details::LoginInfoPrivate* m_data;
+    Q_DISABLE_COPY(LoginInfo)
+
+    struct LoginInfoPrivate;
+    QScopedPointer<LoginInfoPrivate> m_data;
 };
 
 } // namespace Services

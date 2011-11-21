@@ -28,6 +28,7 @@ namespace Services
 class AccountManager : public QObject
 {
     Q_OBJECT
+
 public:
     explicit AccountManager(QObject *parent = 0);
 

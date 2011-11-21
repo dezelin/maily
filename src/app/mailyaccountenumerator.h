@@ -28,6 +28,7 @@ namespace Services
 class MailyAccountEnumerator : public QObject
 {
     Q_OBJECT
+
 public:
     explicit MailyAccountEnumerator(QObject *parent = 0);
 

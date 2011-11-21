@@ -22,32 +22,32 @@ namespace Maily
 namespace Services
 {
 
-namespace Details
+struct EmailServiceProviderInfo::EmailServiceProviderInfoPrivate
 {
-    struct EmailServiceProviderInfoPrivate
+    EmailServiceProviderInfoPrivate() :
+        m_serviceType(EmailServiceProviderInfo::SENDMAIL), m_sasl(false),
+        m_saslFallback(false), m_tls(false), m_tlsRequired(false),
+        m_apop(false), m_apopFallback(false)
     {
-        EmailServiceProviderInfoPrivate() :
-            m_serviceType(EmailServiceProviderInfo::SENDMAIL), m_sasl(false),
-            m_saslFallback(false), m_tls(false), m_tlsRequired(false),
-            m_apop(false), m_apopFallback(false)
-        {
+    }
 
-        }
-
-        EmailServiceProviderInfo::ServiceType m_serviceType;
-        bool m_sasl;
-        bool m_saslFallback;
-        bool m_tls;
-        bool m_tlsRequired;
-        QString m_rootPath;
-        bool m_apop;
-        bool m_apopFallback;
-    };
-}
+    EmailServiceProviderInfo::ServiceType m_serviceType;
+    bool m_sasl;
+    bool m_saslFallback;
+    bool m_tls;
+    bool m_tlsRequired;
+    QString m_rootPath;
+    bool m_apop;
+    bool m_apopFallback;
+};
 
 EmailServiceProviderInfo::EmailServiceProviderInfo(QObject *parent) :
     ServiceProviderInfo(parent),
-    m_data(new Details::EmailServiceProviderInfoPrivate())
+    m_data(new EmailServiceProviderInfoPrivate())
+{
+}
+
+EmailServiceProviderInfo::~EmailServiceProviderInfo()
 {
 }
 

@@ -19,21 +19,18 @@
 #define CUSTOMEDITLINE_H
 
 #include <QLineEdit>
+#include <QScopedPointer>
 
 namespace Maily
 {
 namespace Widgets
 {
 
-namespace Details
-{
-    struct CustomEditLinePrivate;
-}
-
 
 class CustomEditLine : public QLineEdit
 {
     Q_OBJECT
+
 public:
     CustomEditLine(QWidget *parent = 0);
     virtual ~CustomEditLine();
@@ -47,7 +44,10 @@ protected:
     void focusOutEvent( QFocusEvent *ev );
 
 private:
-    Details::CustomEditLinePrivate* m_data;
+    Q_DISABLE_COPY(CustomEditLine)
+
+    struct CustomEditLinePrivate;
+    QScopedPointer<CustomEditLinePrivate> m_data;
 };
 
 } // namespace Widgets

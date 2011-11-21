@@ -28,6 +28,7 @@ namespace Widgets
 class ServicesToolbox : public QToolBox
 {
     Q_OBJECT
+
 public:
     explicit ServicesToolbox(QWidget *parent = 0);
 

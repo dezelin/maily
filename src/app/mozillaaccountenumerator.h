@@ -18,7 +18,8 @@
 #ifndef MOZILLAACCOUNTENUMERATOR_H
 #define MOZILLAACCOUNTENUMERATOR_H
 
-#include <QObject>
+#include <QScopedPointer>
+
 #include "accountenumerator.h"
 
 namespace Maily
@@ -26,10 +27,6 @@ namespace Maily
 namespace Services
 {
 
-namespace Details
-{
-    struct MozillaAccountEnumeratorPrivate;
-}
 
 class MozillaAccountEnumerator : public AccountEnumerator
 {
@@ -37,7 +34,8 @@ class MozillaAccountEnumerator : public AccountEnumerator
 
 public:
     explicit MozillaAccountEnumerator(QObject *parent = 0,
-                                      const QString& domain = "");
+        const QString& domain = "");
+    virtual ~MozillaAccountEnumerator();
 
     virtual QList<ServiceProviderInfo>* enumerateAccounts() const;
 
@@ -46,7 +44,10 @@ signals:
 public slots:
 
 private:
-    Details::MozillaAccountEnumeratorPrivate* m_data;
+    Q_DISABLE_COPY(MozillaAccountEnumerator)
+
+    struct MozillaAccountEnumeratorPrivate;
+    QScopedPointer<MozillaAccountEnumeratorPrivate> m_data;
 };
 
 } // namespace Services

@@ -18,7 +18,6 @@
 #ifndef ACCOUNTENUMERATOR_H
 #define ACCOUNTENUMERATOR_H
 
-#include <QObject>
 #include "serviceproviderinfo.h"
 
 namespace Maily

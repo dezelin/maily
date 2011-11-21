@@ -22,23 +22,23 @@ namespace Maily
 namespace Services
 {
 
-namespace Details
+struct ServiceProviderInfo::ServiceProviderInfoPrivate
 {
-    struct ServiceProviderInfoPrivate
+    ServiceProviderInfoPrivate() :
+        m_port(0)
     {
-        ServiceProviderInfoPrivate() :
-            m_port(0)
-        {
+    }
 
-        }
-
-        QString m_address;
-        unsigned int m_port;
-    };
-}
+    QString m_address;
+    unsigned int m_port;
+};
 
 ServiceProviderInfo::ServiceProviderInfo(QObject* parent)
-    : LoginInfo(parent), m_data(new Details::ServiceProviderInfoPrivate())
+    : LoginInfo(parent), m_data(new ServiceProviderInfoPrivate())
+{
+}
+
+ServiceProviderInfo::~ServiceProviderInfo()
 {
 }
 

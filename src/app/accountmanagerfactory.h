@@ -31,6 +31,7 @@ class MozillaAccountEnumerator;
 class AccountManagerFactory : public QObject
 {
     Q_OBJECT
+
 public:
     explicit AccountManagerFactory(QObject *parent = 0);
 

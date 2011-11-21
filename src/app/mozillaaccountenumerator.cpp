@@ -22,24 +22,23 @@ namespace Maily
 namespace Services
 {
 
-namespace Details
+struct MozillaAccountEnumerator::MozillaAccountEnumeratorPrivate
 {
-    struct MozillaAccountEnumeratorPrivate
+    MozillaAccountEnumeratorPrivate(const QString& domain) :
+        m_domain(domain)
     {
-        MozillaAccountEnumeratorPrivate(const QString& domain) :
-            m_domain(domain)
-        {
+    }
 
-        }
-
-        QString m_domain;
-    };
-}
+    QString m_domain;
+};
 
 MozillaAccountEnumerator::MozillaAccountEnumerator(QObject *parent,
-                                                   const QString& domain) :
-    AccountEnumerator(parent),
-    m_data(new Details::MozillaAccountEnumeratorPrivate(domain))
+    const QString& domain) : AccountEnumerator(parent),
+    m_data(new MozillaAccountEnumeratorPrivate(domain))
+{
+}
+
+MozillaAccountEnumerator::~MozillaAccountEnumerator()
 {
 }
 

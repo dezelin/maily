@@ -18,7 +18,8 @@
 #ifndef SERVICEPROVIDERINFO_H
 #define SERVICEPROVIDERINFO_H
 
-#include <QObject>
+#include <QScopedPointer>
+
 #include "logininfo.h"
 
 namespace Maily
@@ -26,10 +27,6 @@ namespace Maily
 namespace Services
 {
 
-namespace Details
-{
-    struct ServiceProviderInfoPrivate;
-}
 
 class ServiceProviderInfo : public LoginInfo
 {
@@ -39,6 +36,7 @@ class ServiceProviderInfo : public LoginInfo
 
 public:
     explicit ServiceProviderInfo(QObject* parent = 0);
+    virtual ~ServiceProviderInfo();
 
     const QString& address() const;
     void setAddress(const QString& address);
@@ -47,7 +45,10 @@ public:
     void setPort(unsigned int port);
 
 private:
-    Details::ServiceProviderInfoPrivate* m_data;
+    Q_DISABLE_COPY(ServiceProviderInfo)
+
+    struct ServiceProviderInfoPrivate;
+    QScopedPointer<ServiceProviderInfoPrivate> m_data;
 };
 
 } // namespace Services
