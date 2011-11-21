@@ -19,6 +19,8 @@
 #define EMAILACCOUNTWIZARD_H
 
 #include <QList>
+#include <QScopedPointer>
+#include <QSharedPointer>
 #include <QWizard>
 #include <QWizardPage>
 
@@ -36,18 +38,10 @@ class EmailAccountWizard : public QWizard
 
 public:
     explicit EmailAccountWizard(QWidget *parent = 0);
-    virtual ~EmailAccountWizard();
-
-    virtual bool validateCurrentPage();
 
 signals:
 
 public slots:
-
-private:
-    void disableButtons();
-    void enableButtons();
-    bool validateEmailAccountWizardAccountPage(QWizardPage* page);
 };
 
 namespace Pages
@@ -61,28 +55,41 @@ public:
     explicit EmailAccountWizardIntroPage(QWidget* parent = 0);
 };
 
-namespace Details
-{
-    struct EmailAccountWizardAccountPagePrivate;
-}
-
 class EmailAccountWizardAccountPage : public QWizardPage
 {
     Q_OBJECT
 
 public:
+    typedef QSharedPointer<Services::ServiceProviderInfo> ServiceProviderInfoPtr;
+    typedef QList<ServiceProviderInfoPtr> ServiceProviderInfoList;
+    typedef QSharedPointer<ServiceProviderInfoList> ServiceProviderInfoListPtr;
+
     explicit EmailAccountWizardAccountPage(QWidget* parent = 0);
     virtual ~EmailAccountWizardAccountPage();
+
+    virtual void cleanupPage();
+    virtual void initializePage();
+    virtual int nextId() const;
+    virtual bool validatePage();
 
 private slots:
     void enumerationFinished();
 
 private:
-    QList<Services::ServiceProviderInfo>* enumerateServiceProviders(
+    void disableButtons();
+    void enableButtons();
+    void next();
+    void startBusyIndicator();
+    void stopBusyIndicator();
+
+    ServiceProviderInfoListPtr enumerateServiceProviders(
         const QString& domainName) const;
 
 private:
-    Details::EmailAccountWizardAccountPagePrivate* m_data;
+    Q_DISABLE_COPY(EmailAccountWizardAccountPage)
+
+    struct EmailAccountWizardAccountPagePrivate;
+    QScopedPointer<EmailAccountWizardAccountPagePrivate> m_data;
 };
 
 class EmailAccountWizardIncommingServerPage : public QWizardPage

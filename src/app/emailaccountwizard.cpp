@@ -39,7 +39,11 @@ namespace Wizards
 
 const int kPageIdIntro = 0;
 const int kPageIdEmailAccount = 1;
-const int kPageIdFinished = 2;
+const int kPageIdEmailIncommingServer = 2;
+const int kPageIdEmailOutgoingServer = 3;
+const int kPageIdFinished = 4;
+
+const QString kBusyLayoutObjectName = "busyLayoutObject";
 
 const QString kFieldFullName = "fullName*";
 const QString kFieldEmailAddress = "emailAddress*";
@@ -71,106 +75,8 @@ EmailAccountWizard::EmailAccountWizard(QWidget *parent) :
     addPage(new Pages::EmailAccountWizardIncommingServerPage());
     addPage(new Pages::EmailAccountWizardOutgoingServerPage());
     addPage(new Pages::EmailAccountWizardFinishedPage());
-
 }
 
-EmailAccountWizard::~EmailAccountWizard()
-{
-}
-
-bool EmailAccountWizard::validateCurrentPage()
-{
-    QWizardPage* page = currentPage();
-    Q_ASSERT(page);
-    if (!page)
-        return false;
-
-    bool validated = true;
-    int pageId = currentId();
-    switch(pageId) {
-        case kPageIdIntro:
-            break;
-        case kPageIdEmailAccount: {
-            validated = validateEmailAccountWizardAccountPage(page);
-            break;
-        }
-        case kPageIdFinished:
-            break;
-    }
-
-    return validated;
-}
-
-void EmailAccountWizard::disableButtons()
-{
-    QAbstractButton* backButton = button(QWizard::BackButton);
-    QAbstractButton* nextButton = button(QWizard::NextButton);
-    QAbstractButton* cancelButton = button(QWizard::CancelButton);
-    Q_ASSERT(backButton && nextButton && cancelButton);
-    if (!backButton || !nextButton || !cancelButton)
-        return;
-
-    backButton->setEnabled(false);
-    nextButton->setEnabled(false);
-    cancelButton->setEnabled(false);
-}
-
-void EmailAccountWizard::enableButtons()
-{
-    QAbstractButton* backButton = button(QWizard::BackButton);
-    QAbstractButton* nextButton = button(QWizard::NextButton);
-    QAbstractButton* cancelButton = button(QWizard::CancelButton);
-    Q_ASSERT(backButton && nextButton && cancelButton);
-    if (!backButton || !nextButton || !cancelButton)
-        return;
-
-    backButton->setEnabled(true);
-    nextButton->setEnabled(true);
-    cancelButton->setEnabled(true);
-}
-
-bool EmailAccountWizard::validateEmailAccountWizardAccountPage(QWizardPage* page)
-{
-    Q_ASSERT(page);
-    if (!page)
-        return false;
-
-//    Q_ASSERT(m_data);
-//    if (!m_data)
-//        return false;
-
-//    if (m_data->m_futureWatcher.isFinished())
-//        return true;
-
-//    QGridLayout* layout = dynamic_cast<QGridLayout*>(page->layout());
-//    Q_ASSERT(layout);
-//    if (!layout)
-//        return false;
-
-//    QLabel* busyLabel = new QLabel(tr("<b>Checking the online database...</b>"));
-//    Widgets::BusyIndicatorWidget* busyIndicator =
-//            new Widgets::BusyIndicatorWidget();
-
-//    QHBoxLayout* busyLayout = new QHBoxLayout();
-//    busyLayout->addWidget(busyLabel, Qt::AlignCenter);
-//    busyLayout->addWidget(busyIndicator, Qt::AlignRight);
-//    layout->addLayout(busyLayout, layout->rowCount() + 1, 0, 1, -1);
-
-//    busyIndicator->start();
-//    disableButtons();
-
-//    QFuture<QList<Services::ServiceProviderInfo>*> future = QtConcurrent::run(
-//        this, &EmailAccountWizard::enumerateServiceProviders, QString("gmail.com"));
-
-//    Q_ASSERT(m_data);
-//    m_data->m_futureWatcher.setFuture(future);
-
-//    // FutureWatcher will call enumerationFinished() when finished
-//    // so return here false and stop moving to the next page temporary.
-//    return false;
-
-    return true;
-}
 
 namespace Pages
 {
@@ -189,19 +95,23 @@ EmailAccountWizardIntroPage::EmailAccountWizardIntroPage(QWidget* parent) :
     setLayout(layout);
 }
 
-namespace Details
+struct EmailAccountWizardAccountPage::EmailAccountWizardAccountPagePrivate
 {
-
-    struct EmailAccountWizardAccountPagePrivate
+    EmailAccountWizardAccountPagePrivate() :
+        m_futureStarted(false)
     {
-        QFutureWatcher<QList<Services::ServiceProviderInfo>*> m_futureWatcher;
-    };
+    }
 
-} // namespace Details
+    typedef EmailAccountWizardAccountPage::ServiceProviderInfoListPtr
+        ServiceProviderInfoListPtr;
+
+    bool m_futureStarted;
+    QFutureWatcher<ServiceProviderInfoListPtr> m_futureWatcher;
+};
 
 EmailAccountWizardAccountPage::EmailAccountWizardAccountPage(QWidget* parent) :
     QWizardPage(parent),
-    m_data(new Details::EmailAccountWizardAccountPagePrivate())
+    m_data(new EmailAccountWizardAccountPagePrivate())
 {
     setTitle(tr("Email account user details"));
     setSubTitle(tr("Please fill all fields."));
@@ -239,32 +149,190 @@ EmailAccountWizardAccountPage::EmailAccountWizardAccountPage(QWidget* parent) :
     layout->addItem(new QSpacerItem(50, 20), 3, 0, 1, -1);
     layout->addWidget(savePasswordCheckBox, 4, 0);
     setLayout(layout);
+}
+
+EmailAccountWizardAccountPage::~EmailAccountWizardAccountPage()
+{
+}
+
+void EmailAccountWizardAccountPage::cleanupPage()
+{
+    Q_ASSERT(m_data);
+    if (!m_data)
+        return;
+
+    bool started = m_data->m_futureStarted;
+    if (started) {
+        m_data->m_futureWatcher.waitForFinished();
+        stopBusyIndicator();
+    }
+
+    m_data->m_futureWatcher.disconnect();
+}
+
+void EmailAccountWizardAccountPage::initializePage()
+{
+    Q_ASSERT(m_data);
+    if (!m_data)
+        return;
 
     connect(&m_data->m_futureWatcher, SIGNAL(finished()), this,
         SLOT(enumerationFinished()));
 }
 
-EmailAccountWizardAccountPage::~EmailAccountWizardAccountPage()
+int EmailAccountWizardAccountPage::nextId() const
 {
-    delete m_data;
+    Q_ASSERT(m_data);
+    if (!m_data)
+        return false;
+
+    bool started = m_data->m_futureStarted;
+    if (!started)
+        return kPageIdEmailIncommingServer;
+
+    m_data->m_futureStarted = false; // we will proceed to the next page
+
+    bool foundProvider = !m_data->m_futureWatcher.result()->isEmpty();
+    if (foundProvider)
+        return kPageIdFinished;
+
+    return kPageIdEmailIncommingServer;
+}
+
+bool EmailAccountWizardAccountPage::validatePage()
+{
+    Q_ASSERT(m_data);
+    if (!m_data)
+        return false;
+
+    bool started = m_data->m_futureStarted;
+    bool finished = m_data->m_futureWatcher.isFinished();
+    if (started && finished)
+        return true;
+
+    startBusyIndicator();
+    disableButtons();
+
+    QFuture<ServiceProviderInfoListPtr> future = QtConcurrent::run(
+        this, &EmailAccountWizardAccountPage::enumerateServiceProviders,
+            QString("gmail.com"));
+
+    Q_ASSERT(m_data);
+    m_data->m_futureWatcher.setFuture(future);
+    m_data->m_futureStarted = true;
+
+    // FutureWatcher will call enumerationFinished() when finished
+    // so return here false and stop proceeding to the next page temporaly.
+    return false;
+}
+
+void EmailAccountWizardAccountPage::disableButtons()
+{
+    QWizard* w = wizard();
+    Q_ASSERT(w);
+    if (!w)
+        return;
+
+    QAbstractButton* nextButton = w->button(QWizard::NextButton);
+    Q_ASSERT(nextButton);
+    if (!nextButton)
+        return;
+
+    nextButton->setEnabled(false);
+}
+
+void EmailAccountWizardAccountPage::enableButtons()
+{
+    QWizard* w = wizard();
+    Q_ASSERT(w);
+    if (!w)
+        return;
+
+    QAbstractButton* nextButton = w->button(QWizard::NextButton);
+    Q_ASSERT(nextButton);
+    if (!nextButton)
+        return;
+
+    nextButton->setEnabled(true);
+}
+
+void EmailAccountWizardAccountPage::next()
+{
+    QWizard* w = wizard();
+    Q_ASSERT(w);
+    if (!w)
+        return;
+
+    w->next();
+}
+
+void EmailAccountWizardAccountPage::startBusyIndicator()
+{
+    QGridLayout* l = dynamic_cast<QGridLayout*>(layout());
+    Q_ASSERT(l);
+    if (!l)
+        return;
+
+    QLabel* busyLabel = new QLabel(tr("<b>Checking the online database...</b>"));
+    Widgets::BusyIndicatorWidget* busyIndicator =
+            new Widgets::BusyIndicatorWidget();
+
+    QHBoxLayout* busyLayout = new QHBoxLayout();
+    busyLayout->setObjectName(kBusyLayoutObjectName);
+    busyLayout->addWidget(busyLabel, Qt::AlignCenter);
+    busyLayout->addWidget(busyIndicator, Qt::AlignRight);
+    l->addLayout(busyLayout, l->rowCount() + 1, 0, 1, -1);
+
+    busyIndicator->start();
+}
+
+void EmailAccountWizardAccountPage::stopBusyIndicator()
+{
+    QGridLayout* l = dynamic_cast<QGridLayout*>(layout());
+    Q_ASSERT(l);
+    if (!l)
+        return;
+
+    QHBoxLayout* busyLayout = l->findChild<QHBoxLayout*>(kBusyLayoutObjectName);
+    Q_ASSERT(busyLayout);
+    if (!busyLayout)
+        return;
+
+    QObjectList::const_iterator it = busyLayout->children().begin();
+    while(*it++)
+        delete *it;
+
+    delete busyLayout;
 }
 
 void EmailAccountWizardAccountPage::enumerationFinished()
 {
+    stopBusyIndicator();
+    enableButtons();
+    next();
 }
 
-QList<Services::ServiceProviderInfo>*
+EmailAccountWizardAccountPage::ServiceProviderInfoListPtr
 EmailAccountWizardAccountPage::enumerateServiceProviders(
     const QString& domainName) const
 {
-    Services::AccountEnumerator* enumerator =
+    QScopedPointer<Services::AccountEnumerator> enumerator(
         Services::AccountManagerFactory::createMozillaAccountEnumerator(
-        domainName);
+            domainName));
     Q_ASSERT(enumerator);
+    if (!enumerator)
+        return ServiceProviderInfoListPtr();
 
-    delete enumerator;
+    ServiceProviderInfoListPtr providers(new ServiceProviderInfoList());
+    ServiceProviderInfoPtr info(new Services::ServiceProviderInfo());
+    providers->append(info);
 
-    return 0;
+    QMutex dummy;
+    dummy.lock();
+    QWaitCondition waitCondition;
+    waitCondition.wait(&dummy, 20000);
+
+    return providers;
 }
 
 EmailAccountWizardIncommingServerPage::EmailAccountWizardIncommingServerPage(
