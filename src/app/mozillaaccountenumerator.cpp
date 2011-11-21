@@ -45,7 +45,6 @@ MozillaAccountEnumerator::MozillaAccountEnumerator(QObject *parent,
 
 QList<ServiceProviderInfo>* MozillaAccountEnumerator::enumerateAccounts() const
 {
-    sleep(10);
     return new QList<ServiceProviderInfo>();
 }
 
