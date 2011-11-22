@@ -26,7 +26,7 @@ namespace Maily
 namespace Widgets
 {
 
-
+class CustomEditLinePrivate;
 class CustomEditLine : public QLineEdit
 {
     Q_OBJECT
@@ -45,9 +45,8 @@ protected:
 
 private:
     Q_DISABLE_COPY(CustomEditLine)
-
-    struct CustomEditLinePrivate;
-    QScopedPointer<CustomEditLinePrivate> m_data;
+    Q_DECLARE_PRIVATE(CustomEditLine)
+    QScopedPointer<CustomEditLinePrivate> d_ptr;
 };
 
 } // namespace Widgets

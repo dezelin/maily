@@ -25,7 +25,7 @@ namespace Maily
 namespace Widgets
 {
 
-struct CustomEditLine::CustomEditLinePrivate
+struct CustomEditLinePrivate
 {
     CustomEditLinePrivate() :
         m_drawEmptyMsg(true)
@@ -37,7 +37,7 @@ struct CustomEditLine::CustomEditLinePrivate
 };
 
 CustomEditLine::CustomEditLine(QWidget *parent) :
-    QLineEdit(parent), m_data(new CustomEditLinePrivate())
+    QLineEdit(parent), d_ptr(new CustomEditLinePrivate())
 {
 }
 
@@ -47,51 +47,43 @@ CustomEditLine::~CustomEditLine()
 
 void CustomEditLine::setEmptyMessage(const QString& msg)
 {
-    Q_ASSERT(m_data);
-    if (!m_data)
-        return;
-
-    m_data->m_emptyMessage = msg;
-    m_data->m_drawEmptyMsg = text().isEmpty();
+    Q_D(CustomEditLine);
+    d->m_emptyMessage = msg;
+    d->m_drawEmptyMsg = text().isEmpty();
     update();
 }
 
 void CustomEditLine::paintEvent(QPaintEvent* ev)
 {
+    Q_D(CustomEditLine);
     QLineEdit::paintEvent(ev);
 
-    Q_ASSERT(m_data);
-    if (!m_data)
+    if (!text().isEmpty())
         return;
 
-    if (text().isEmpty()) {
-        QPainter p(this);
-        QFont f = font();
-        f.setItalic(true);
-        p.setFont(f);
+    QPainter p(this);
+    QFont f = font();
+    f.setItalic(true);
+    p.setFont(f);
 
-        QColor color(palette().color(foregroundRole()));
-        color.setAlphaF(0.5);
-        p.setPen(color);
+    QColor color(palette().color(foregroundRole()));
+    color.setAlphaF(0.5);
+    p.setPen(color);
 
-        QStyleOptionFrame opt;
-        initStyleOption(&opt);
-        QRect cr = style()->subElementRect(QStyle::SE_LineEditContents, &opt, this);
-        cr.setLeft(cr.left() + 2);
-        cr.setRight(cr.right() - 2);
+    QStyleOptionFrame opt;
+    initStyleOption(&opt);
+    QRect cr = style()->subElementRect(QStyle::SE_LineEditContents, &opt, this);
+    cr.setLeft(cr.left() + 2);
+    cr.setRight(cr.right() - 2);
 
-        p.drawText(cr, Qt::AlignLeft | Qt::AlignVCenter, m_data->m_emptyMessage);
-    }
+    p.drawText(cr, Qt::AlignLeft | Qt::AlignVCenter, d->m_emptyMessage);
 }
 
 void CustomEditLine::focusInEvent(QFocusEvent* ev)
 {
-    Q_ASSERT(m_data);
-    if (!m_data)
-        return;
-
-    if (m_data->m_drawEmptyMsg) {
-        m_data->m_drawEmptyMsg = false;
+    Q_D(CustomEditLine);
+    if (d->m_drawEmptyMsg) {
+        d->m_drawEmptyMsg = false;
         update();
     }
 
@@ -100,12 +92,9 @@ void CustomEditLine::focusInEvent(QFocusEvent* ev)
 
 void CustomEditLine::focusOutEvent( QFocusEvent* ev)
 {
-    Q_ASSERT(m_data);
-    if (!m_data)
-        return;
-
+    Q_D(CustomEditLine);
     if (text().isEmpty()) {
-        m_data->m_drawEmptyMsg = true;
+        d->m_drawEmptyMsg = true;
         update();
     }
 
