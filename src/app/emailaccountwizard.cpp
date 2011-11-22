@@ -38,6 +38,8 @@ namespace Maily
 namespace Wizards
 {
 
+using namespace Services::Tasks;
+
 const int kPageIdIntro = 0;
 const int kPageIdEmailAccount = 1;
 const int kPageIdEmailIncommingServer = 2;
@@ -222,20 +224,17 @@ bool EmailAccountWizardAccountPage::validatePage()
         this, &EmailAccountWizardAccountPage::enumerateServiceProviders,
             QString("gmail.com"));
 
-    typedef QScopedPointer<Services::Tasks::ForgettableWatcher<ServiceProviderInfoListPtr> >
-        ForgettableWatcherPtr;
-
-    ForgettableWatcherPtr futureWatcher(
-        new Services::Tasks::ForgettableWatcher<ServiceProviderInfoListPtr>());
+    ForgettableWatcher<ServiceProviderInfoListPtr>* futureWatcher =
+        new ForgettableWatcher<ServiceProviderInfoListPtr>();
 
 //    connect(&m_data->m_futureWatcher, SIGNAL(finished()), this,
 //        SLOT(enumerationFinished()));
 
-    connect(futureWatcher.data(), SIGNAL(finished()), this, SLOT(enumerationFinished()));
+    connect(futureWatcher, SIGNAL(finished()), this, SLOT(enumerationFinished()));
     futureWatcher->setFuture(future);
 
     Q_ASSERT(m_data);
-    m_data->m_futureWatcher = futureWatcher.take();
+    m_data->m_futureWatcher = futureWatcher;
     m_data->m_futureStarted = true;
 
     // FutureWatcher will call enumerationFinished() when finished
@@ -327,6 +326,14 @@ void EmailAccountWizardAccountPage::enumerationFinished()
     stopBusyIndicator();
     enableButtons();
     next();
+
+    Q_ASSERT(m_data);
+    if (!m_data)
+        return;
+
+    // ForgettableWatcher will be deleted after return
+    // so make it null.
+    m_data->m_futureWatcher = 0;
 }
 
 EmailAccountWizardAccountPage::ServiceProviderInfoListPtr

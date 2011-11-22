@@ -19,6 +19,7 @@
 #define FORGETTABLEWATCHER_H
 
 #include <QFutureWatcher>
+#include <QScopedPointer>
 
 namespace Maily
 {
@@ -27,17 +28,69 @@ namespace Services
 namespace Tasks
 {
 
-class ForgettableWatcherBase : public QFutureWatcherBase
+class ForgettableWatcherBasePrivate;
+
+class ForgettableWatcherBase : public QObject
 {
     Q_OBJECT
-    //Q_DECLARE_PRIVATE(ForgettableWatcherBase)
 
 public:
     ForgettableWatcherBase(QObject* parent);
+    virtual ~ForgettableWatcherBase();
 
-private slots:
+    int progressValue() const;
+    int progressMinimum() const;
+    int progressMaximum() const;
+    QString progressText() const;
 
-    void finish();
+    bool isStarted() const;
+    bool isFinished() const;
+    bool isRunning() const;
+    bool isCanceled() const;
+    bool isPaused() const;
+
+    void waitForFinished();
+
+    void setPendingResultsLimit(int limit);
+
+Q_SIGNALS:
+    void started();
+    void finished();
+    void canceled();
+    void paused();
+    void resumed();
+    void resultReadyAt(int resultIndex);
+    void resultsReadyAt(int beginIndex, int endIndex);
+    void progressRangeChanged(int minimum, int maximum);
+    void progressValueChanged(int progressValue);
+    void progressTextChanged(const QString &progressText);
+
+public Q_SLOTS:
+    void cancel();
+    void setPaused(bool paused);
+    void pause();
+    void resume();
+    void togglePaused();
+
+protected:
+    // called from setFuture() implemented in template sub-classes
+    void connectOutputInterface();
+    void disconnectOutputInterface(bool pendingAssignment = false);
+    void connectForwardedInterface();
+    void disconnectForwardedInterface();
+
+private Q_SLOTS:
+    void deleteObject();
+
+private:
+    // implemented in the template sub-classes
+    virtual const QFutureInterfaceBase &futureInterface() const = 0;
+    virtual QFutureInterfaceBase &futureInterface() = 0;
+
+private:
+    QScopedPointer<ForgettableWatcherBasePrivate> d_ptr;
+    Q_DECLARE_PRIVATE(ForgettableWatcherBase)
+    Q_DISABLE_COPY(ForgettableWatcherBase)
 };
 
 template <typename T>
@@ -49,9 +102,9 @@ public:
     {
     }
 
-    ~ForgettableWatcher()
+    void destroy()
     {
-        disconnectOutputInterface();
+        delete this;
     }
 
     void setFuture(const QFuture<T> &future);
@@ -62,9 +115,17 @@ public:
     T resultAt(int index) const { return m_future.resultAt(index); }
 
 private:
+
+    // Disable allocation in stack
+    ~ForgettableWatcher()
+    {
+        disconnectOutputInterface();
+        disconnectForwardedInterface();
+    }
+
     QFuture<T> m_future;
-    const QFutureInterfaceBase &futureInterface() const { return m_future.d; }
-    QFutureInterfaceBase &futureInterface() { return m_future.d; }
+    virtual const QFutureInterfaceBase &futureInterface() const { return m_future.d; }
+    virtual QFutureInterfaceBase &futureInterface() { return m_future.d; }
 };
 
 template <typename T>
@@ -73,6 +134,7 @@ Q_INLINE_TEMPLATE void ForgettableWatcher<T>::setFuture(const QFuture<T> &_futur
     if (_future == m_future)
         return;
 
+    connectForwardedInterface();
     disconnectOutputInterface(true);
     m_future = _future;
     connectOutputInterface();
