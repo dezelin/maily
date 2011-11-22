@@ -38,7 +38,8 @@ namespace Maily
 namespace Wizards
 {
 
-using namespace Services::Tasks;
+using namespace Maily::Services::Tasks;
+using namespace Maily::Widgets::Validators;
 
 const int kPageIdIntro = 0;
 const int kPageIdEmailAccount = 1;
@@ -101,7 +102,8 @@ EmailAccountWizardIntroPage::EmailAccountWizardIntroPage(QWidget* parent) :
 struct EmailAccountWizardAccountPage::EmailAccountWizardAccountPagePrivate
 {
     EmailAccountWizardAccountPagePrivate() :
-        m_futureStarted(false), m_futureWatcher(0)
+        m_futureStarted(false), m_futureWatcher(0),
+        m_emailValidator(new EmailValidator())
     {
     }
 
@@ -109,7 +111,8 @@ struct EmailAccountWizardAccountPage::EmailAccountWizardAccountPagePrivate
         ServiceProviderInfoListPtr;
 
     bool m_futureStarted;
-    Services::Tasks::ForgettableWatcher<ServiceProviderInfoListPtr>* m_futureWatcher;
+    ForgettableWatcher<ServiceProviderInfoListPtr>* m_futureWatcher;
+    QScopedPointer<EmailValidator> m_emailValidator;
 };
 
 EmailAccountWizardAccountPage::EmailAccountWizardAccountPage(QWidget* parent) :
@@ -129,8 +132,7 @@ EmailAccountWizardAccountPage::EmailAccountWizardAccountPage(QWidget* parent) :
     Widgets::CustomEditLine* emailAddressEditLine =
         new Widgets::CustomEditLine();
     emailAddressEditLine->setEmptyMessage(tr("Email address"));
-    emailAddressEditLine->setValidator(
-        new Widgets::Validators::EmailValidator());
+    emailAddressEditLine->setValidator(m_data->m_emailValidator.data());
     registerField(kFieldEmailAddress, emailAddressEditLine);
 
     QLabel* passwordLabel = new QLabel(tr("Account password:"));
@@ -226,9 +228,6 @@ bool EmailAccountWizardAccountPage::validatePage()
 
     ForgettableWatcher<ServiceProviderInfoListPtr>* futureWatcher =
         new ForgettableWatcher<ServiceProviderInfoListPtr>();
-
-//    connect(&m_data->m_futureWatcher, SIGNAL(finished()), this,
-//        SLOT(enumerationFinished()));
 
     connect(futureWatcher, SIGNAL(finished()), this, SLOT(enumerationFinished()));
     futureWatcher->setFuture(future);
