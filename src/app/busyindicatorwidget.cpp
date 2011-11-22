@@ -28,49 +28,51 @@ namespace Maily
 namespace Widgets
 {
 
-struct BusyIndicatorWidget::BusyIndicatorWidgetPrivate
+struct BusyIndicatorWidgetPrivate
 {
-  BusyIndicatorWidgetPrivate() : m_busyIndicator(0), m_scene(0),
-    m_timeline(0)
-  {
-  }
+    BusyIndicatorWidgetPrivate() : m_busyIndicator(0), m_scene(0),
+        m_timeline(0)
+    {
+    }
 
-  ~BusyIndicatorWidgetPrivate()
-  {
-      delete m_busyIndicator;
-      delete m_scene;
-      delete m_timeline;
-  }
+    ~BusyIndicatorWidgetPrivate()
+    {
+        delete m_busyIndicator;
+        delete m_scene;
+        delete m_timeline;
+    }
 
-  BusyIndicator* m_busyIndicator;
-  QGraphicsScene* m_scene;
-  QTimeLine* m_timeline;
+    BusyIndicator* m_busyIndicator;
+    QGraphicsScene* m_scene;
+    QTimeLine* m_timeline;
 };
 
 BusyIndicatorWidget::BusyIndicatorWidget(QWidget *parent) :
-  QWidget(parent), m_data(new BusyIndicatorWidgetPrivate())
+QWidget(parent), d_ptr(new BusyIndicatorWidgetPrivate())
 {
-  QLayout* layout = new QVBoxLayout();
+    Q_D(BusyIndicatorWidget);
 
-  m_data->m_busyIndicator = new BusyIndicator();
-  m_data->m_scene = new QGraphicsScene(this);
-  m_data->m_scene->addItem(dynamic_cast<QGraphicsItem*>(m_data->m_busyIndicator));
-  m_data->m_scene->setBackgroundBrush(palette().background());
-  QGraphicsView* view = new QGraphicsView(m_data->m_scene, this);
-  view->setFrameStyle(QFrame::NoFrame);
-  view->setViewport(parent);
-  view->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-  view->show();
+    QLayout* layout = new QVBoxLayout();
 
-  layout->addWidget(view);
-  setLayout(layout);
+    d->m_busyIndicator = new BusyIndicator();
+    d->m_scene = new QGraphicsScene(this);
+    d->m_scene->addItem(dynamic_cast<QGraphicsItem*>(d->m_busyIndicator));
+    d->m_scene->setBackgroundBrush(palette().background());
+    QGraphicsView* view = new QGraphicsView(d->m_scene, this);
+    view->setFrameStyle(QFrame::NoFrame);
+    view->setViewport(parent);
+    view->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    view->show();
 
-  m_data->m_timeline = new QTimeLine(1000, this);
-  m_data->m_timeline->setLoopCount(0);
-  m_data->m_timeline->setFrameRange(0, 36);
+    layout->addWidget(view);
+    setLayout(layout);
 
-  connect(m_data->m_timeline, SIGNAL(frameChanged(int)), this,
-          SLOT(rotateSpinner(int)));
+    d->m_timeline = new QTimeLine(1000, this);
+    d->m_timeline->setLoopCount(0);
+    d->m_timeline->setFrameRange(0, 36);
+
+    connect(d->m_timeline, SIGNAL(frameChanged(int)), this,
+    SLOT(rotateSpinner(int)));
 }
 
 BusyIndicatorWidget::~BusyIndicatorWidget()
@@ -79,23 +81,27 @@ BusyIndicatorWidget::~BusyIndicatorWidget()
 
 void BusyIndicatorWidget::resume()
 {
-  m_data->m_timeline->resume();
+    Q_D(BusyIndicatorWidget);
+    d->m_timeline->resume();
 }
 
 void BusyIndicatorWidget::start()
 {
-  m_data->m_timeline->start();
+    Q_D(BusyIndicatorWidget);
+    d->m_timeline->start();
 }
 
 void BusyIndicatorWidget::stop()
 {
-  m_data->m_timeline->stop();
+    Q_D(BusyIndicatorWidget);
+    d->m_timeline->stop();
 }
 
 void BusyIndicatorWidget::rotateSpinner(int value)
 {
-  qreal transx = m_data->m_busyIndicator->actualOuterRadius();
-  m_data->m_busyIndicator->setTransform(QTransform().translate(
+    Q_D(BusyIndicatorWidget);
+    qreal transx = d->m_busyIndicator->actualOuterRadius();
+    d->m_busyIndicator->setTransform(QTransform().translate(
     transx, transx).rotate(value * 10).translate(-1 * transx, -1 * transx));
 }
 

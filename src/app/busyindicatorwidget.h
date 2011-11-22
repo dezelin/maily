@@ -26,7 +26,7 @@ namespace Maily
 namespace Widgets
 {
 
-
+class BusyIndicatorWidgetPrivate;
 class BusyIndicatorWidget : public QWidget
 {
     Q_OBJECT
@@ -47,9 +47,8 @@ private slots:
 
 private:
   Q_DISABLE_COPY(BusyIndicatorWidget)
-
-  struct BusyIndicatorWidgetPrivate;
-  QScopedPointer<BusyIndicatorWidgetPrivate> m_data;
+  Q_DECLARE_PRIVATE(BusyIndicatorWidget)
+  QScopedPointer<BusyIndicatorWidgetPrivate> const d_ptr;
 };
 
 } // namespace Widgets
