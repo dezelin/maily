@@ -19,12 +19,14 @@
 #define BUSYINDICATOR_H
 
 #include <QDeclarativeItem>
+#include <QScopedPointer>
 
 namespace Maily
 {
 namespace Widgets
 {
 
+class BusyIndicatorPrivate;
 class BusyIndicator : public QDeclarativeItem
 {
     Q_OBJECT
@@ -37,6 +39,7 @@ class BusyIndicator : public QDeclarativeItem
 
 public:
     explicit BusyIndicator(QDeclarativeItem* parent = 0);
+    virtual ~BusyIndicator();
 
     void setInnerRadius(const qreal& innerRadius);
     qreal innerRadius() const;
@@ -67,18 +70,9 @@ protected slots:
     virtual void updateSpinner();
 
 private:
-    // User settable properties
-    qreal m_innerRadius; // In range (0, m_outerRadius]
-    qreal m_outerRadius; // (m_innerRadius, 1]
-    QColor m_backgroundColor;
-    QColor m_foregroundColor;
-
-    // The calculated size, inner and outer radii
-    qreal m_size;
-    qreal m_actualInnerRadius;
-    qreal m_actualOuterRadius;
-
-    QString m_cacheKey;
+    Q_DISABLE_COPY(BusyIndicator)
+    Q_DECLARE_PRIVATE(BusyIndicator)
+    QScopedPointer<BusyIndicatorPrivate> const d_ptr;
 };
 
 } // namespace widgets

@@ -27,10 +27,32 @@ namespace Maily
 namespace Widgets
 {
 
+class BusyIndicatorPrivate
+{
+public:
+    BusyIndicatorPrivate() : m_innerRadius(0.8), m_outerRadius(1.0),
+        m_backgroundColor(177, 210, 143, 70),
+        m_foregroundColor(119, 183, 83, 255), m_actualInnerRadius(0.0),
+        m_actualOuterRadius(0.0), m_cacheKey()
+    {
+    }
+
+    // User settable properties
+    qreal m_innerRadius; // In range (0, m_outerRadius]
+    qreal m_outerRadius; // (m_innerRadius, 1]
+    QColor m_backgroundColor;
+    QColor m_foregroundColor;
+
+    // The calculated size, inner and outer radii
+    qreal m_size;
+    qreal m_actualInnerRadius;
+    qreal m_actualOuterRadius;
+
+    QString m_cacheKey;
+};
+
 BusyIndicator::BusyIndicator(QDeclarativeItem* parent) :
-    QDeclarativeItem(parent), m_innerRadius(0.8), m_outerRadius(1.0),
-    m_backgroundColor(177, 210, 143, 70), m_foregroundColor(119, 183, 83, 255),
-    m_actualInnerRadius(0.0), m_actualOuterRadius(0.0), m_cacheKey()
+    QDeclarativeItem(parent), d_ptr(new BusyIndicatorPrivate())
 {
     setFlag(QGraphicsItem::ItemHasNoContents, false);
     setWidth(16.0);
@@ -42,88 +64,108 @@ BusyIndicator::BusyIndicator(QDeclarativeItem* parent) :
     connect(this, SIGNAL(heightChanged()), SLOT(updateSpinner()));
 }
 
+BusyIndicator::~BusyIndicator()
+{
+}
+
 void BusyIndicator::setInnerRadius(const qreal& innerRadius)
 {
-    if (qFuzzyCompare(m_innerRadius, innerRadius))
+    Q_D(BusyIndicator);
+    if (qFuzzyCompare(d->m_innerRadius, innerRadius))
         return;
-    m_innerRadius = innerRadius;
+
+    d->m_innerRadius = innerRadius;
     updateSpinner();
     emit innerRadiusChanged();
 }
 
 qreal BusyIndicator::innerRadius() const
 {
-    return m_innerRadius;
+    Q_D(const BusyIndicator);
+    return d->m_innerRadius;
 }
 
 void BusyIndicator::setOuterRadius(const qreal& outerRadius)
 {
-    if (qFuzzyCompare(m_outerRadius, outerRadius))
+    Q_D(BusyIndicator);
+    if (qFuzzyCompare(d->m_outerRadius, outerRadius))
         return;
-    m_outerRadius = outerRadius;
+
+    d->m_outerRadius = outerRadius;
     updateSpinner();
     emit outerRadiusChanged();
 }
 
 qreal BusyIndicator::outerRadius() const
 {
-    return m_outerRadius;
+    Q_D(const BusyIndicator);
+    return d->m_outerRadius;
 }
 
 void BusyIndicator::setBackgroundColor(const QColor& color)
 {
-    if (m_backgroundColor == color)
+    Q_D(BusyIndicator);
+    if (d->m_backgroundColor == color)
         return;
-    m_backgroundColor = color;
+
+    d->m_backgroundColor = color;
     updateSpinner();
     emit backgroundColorChanged();
 }
 
 QColor BusyIndicator::backgroundColor() const
 {
-    return m_backgroundColor;
+    Q_D(const BusyIndicator);
+    return d->m_backgroundColor;
 }
 
 void BusyIndicator::setForegroundColor(const QColor& color)
 {
-    if (m_foregroundColor == color)
+    Q_D(BusyIndicator);
+    if (d->m_foregroundColor == color)
         return;
-    m_foregroundColor = color;
+
+    d->m_foregroundColor = color;
     updateSpinner();
     emit foregroundColorChanged();
 }
 
 QColor BusyIndicator::foregroundColor() const
 {
-    return m_foregroundColor;
+    Q_D(const BusyIndicator);
+    return d->m_foregroundColor;
 }
 
 qreal BusyIndicator::actualInnerRadius() const
 {
-    return m_actualInnerRadius;
+    Q_D(const BusyIndicator);
+    return d->m_actualInnerRadius;
 }
 
 qreal BusyIndicator::actualOuterRadius() const
 {
-    return m_actualOuterRadius;
+    Q_D(const BusyIndicator);
+    return d->m_actualOuterRadius;
 }
 
 void BusyIndicator::updateSpinner()
 {
+    Q_D(BusyIndicator);
+
     // Calculate new inner and outer radius
-    m_size = qMin(width(), height());
-    qreal nCoef = 0.5 * m_size;
-    m_actualInnerRadius = nCoef * m_innerRadius;
-    m_actualOuterRadius = nCoef * m_outerRadius;
+    d->m_size = qMin(width(), height());
+    qreal nCoef = 0.5 * d->m_size;
+    d->m_actualInnerRadius = nCoef * d->m_innerRadius;
+    d->m_actualOuterRadius = nCoef * d->m_outerRadius;
 
     // Calculate a new key
-    m_cacheKey = m_backgroundColor.name();
-    m_cacheKey += "-";
-    m_cacheKey += m_foregroundColor.name();
-    m_cacheKey += "-";
-    m_cacheKey += QString::number(m_actualOuterRadius);
-    m_cacheKey += "-";
-    m_cacheKey += QString::number(m_actualInnerRadius);
+    d->m_cacheKey = d->m_backgroundColor.name();
+    d->m_cacheKey += "-";
+    d->m_cacheKey += d->m_foregroundColor.name();
+    d->m_cacheKey += "-";
+    d->m_cacheKey += QString::number(d->m_actualOuterRadius);
+    d->m_cacheKey += "-";
+    d->m_cacheKey += QString::number(d->m_actualInnerRadius);
 
     emit actualInnerRadiusChanged();
     emit actualOuterRadiusChanged();
@@ -135,44 +177,45 @@ void BusyIndicator::paint(QPainter* painter,
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
+    Q_D(BusyIndicator);
 
     QPixmap pixmap;
-    if (!QPixmapCache::find(m_cacheKey, pixmap))
+    if (!QPixmapCache::find(d->m_cacheKey, pixmap))
     {
         // Set up a convenient path
         QPainterPath path;
         path.setFillRule(Qt::OddEvenFill);
-        path.addEllipse(QPointF(m_actualOuterRadius, m_actualOuterRadius),
-                        m_actualOuterRadius, m_actualOuterRadius);
-        path.addEllipse(QPointF(m_actualOuterRadius, m_actualOuterRadius),
-                        m_actualInnerRadius, m_actualInnerRadius);
+        path.addEllipse(QPointF(d->m_actualOuterRadius, d->m_actualOuterRadius),
+                        d->m_actualOuterRadius, d->m_actualOuterRadius);
+        path.addEllipse(QPointF(d->m_actualOuterRadius, d->m_actualOuterRadius),
+                        d->m_actualInnerRadius, d->m_actualInnerRadius);
 
-        qreal nActualDiameter = 2 * m_actualOuterRadius;
+        qreal nActualDiameter = 2 * d->m_actualOuterRadius;
         pixmap = QPixmap(nActualDiameter, nActualDiameter);
         pixmap.fill(Qt::transparent);
         QPainter p(&pixmap);
 
         // Draw the ring background
         p.setPen(Qt::NoPen);
-        p.setBrush(m_backgroundColor);
+        p.setBrush(d->m_backgroundColor);
         p.setRenderHints(QPainter::Antialiasing);
         p.drawPath(path);
 
         // Draw the ring foreground
-        QConicalGradient gradient(QPointF(m_actualOuterRadius,
-                                          m_actualOuterRadius), 0.0);
+        QConicalGradient gradient(QPointF(d->m_actualOuterRadius,
+                                          d->m_actualOuterRadius), 0.0);
         gradient.setColorAt(0.0, Qt::transparent);
-        gradient.setColorAt(0.05, m_foregroundColor);
+        gradient.setColorAt(0.05, d->m_foregroundColor);
         gradient.setColorAt(0.8, Qt::transparent);
         p.setBrush(gradient);
         p.drawPath(path);
         p.end();
 
-        QPixmapCache::insert(m_cacheKey, pixmap);
+        QPixmapCache::insert(d->m_cacheKey, pixmap);
     }
 
     // Draw pixmap at center of item
-    painter->drawPixmap(0.5 * (width() - m_size), 0.5 * (height() - m_size),
+    painter->drawPixmap(0.5 * (width() - d->m_size), 0.5 * (height() - d->m_size),
                         pixmap);
 }
 
