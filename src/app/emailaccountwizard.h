@@ -31,6 +31,7 @@ namespace Maily
 namespace Wizards
 {
 
+using namespace Services;
 
 class EmailAccountWizard : public QWizard
 {
@@ -61,10 +62,6 @@ class EmailAccountWizardAccountPage : public QWizardPage
     Q_OBJECT
 
 public:
-    typedef QSharedPointer<Services::ServiceProviderInfo> ServiceProviderInfoPtr;
-    typedef QList<ServiceProviderInfoPtr> ServiceProviderInfoList;
-    typedef QSharedPointer<ServiceProviderInfoList> ServiceProviderInfoListPtr;
-
     explicit EmailAccountWizardAccountPage(QWidget* parent = 0);
     virtual ~EmailAccountWizardAccountPage();
 
@@ -82,7 +79,7 @@ private:
     void startBusyIndicator();
     void stopBusyIndicator();
 
-    ServiceProviderInfoListPtr enumerateServiceProviders(
+    QSharedPointer<QList<ServiceProviderInfo> > enumerateServiceProviders(
         const QString& domainName) const;
 
 private:

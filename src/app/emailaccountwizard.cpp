@@ -108,11 +108,8 @@ public:
     {
     }
 
-    typedef EmailAccountWizardAccountPage::ServiceProviderInfoListPtr
-        ServiceProviderInfoListPtr;
-
     mutable bool m_futureStarted;
-    ForgettableWatcher<ServiceProviderInfoListPtr>* m_futureWatcher;
+    ForgettableWatcher<QSharedPointer<QList<ServiceProviderInfo> > >* m_futureWatcher;
     QScopedPointer<EmailValidator> m_emailValidator;
 };
 
@@ -210,12 +207,12 @@ bool EmailAccountWizardAccountPage::validatePage()
     startBusyIndicator();
     disableButtons();
 
-    QFuture<ServiceProviderInfoListPtr> future = QtConcurrent::run(
+    QFuture<QSharedPointer<QList<ServiceProviderInfo> > > future = QtConcurrent::run(
         this, &EmailAccountWizardAccountPage::enumerateServiceProviders,
             QString("gmail.com"));
 
-    ForgettableWatcher<ServiceProviderInfoListPtr>* futureWatcher =
-        new ForgettableWatcher<ServiceProviderInfoListPtr>();
+    ForgettableWatcher<QSharedPointer<QList<ServiceProviderInfo> > >* futureWatcher =
+        new ForgettableWatcher<QSharedPointer<QList<ServiceProviderInfo> > >();
 
     connect(futureWatcher, SIGNAL(finished()), this, SLOT(enumerationFinished()));
     futureWatcher->setFuture(future);
@@ -321,27 +318,18 @@ void EmailAccountWizardAccountPage::enumerationFinished()
     d->m_futureWatcher = 0;
 }
 
-EmailAccountWizardAccountPage::ServiceProviderInfoListPtr
+QSharedPointer<QList<ServiceProviderInfo> >
 EmailAccountWizardAccountPage::enumerateServiceProviders(
     const QString& domainName) const
 {
-    QScopedPointer<Services::AccountEnumerator> enumerator(
-        Services::AccountManagerFactory::createMozillaAccountEnumerator(
-            domainName));
+    QScopedPointer<AccountEnumerator> enumerator(
+        AccountManagerFactory::createMozillaAccountEnumerator(domainName));
     Q_ASSERT(enumerator);
     if (!enumerator)
-        return ServiceProviderInfoListPtr();
+        return QSharedPointer<QList<ServiceProviderInfo> >();
 
-    ServiceProviderInfoListPtr providers(new ServiceProviderInfoList());
-    ServiceProviderInfoPtr info(new Services::ServiceProviderInfo());
-    providers->append(info);
-
-    QMutex dummy;
-    dummy.lock();
-    QWaitCondition waitCondition;
-    waitCondition.wait(&dummy, 20000);
-
-    return providers;
+    QScopedPointer<QList<ServiceProviderInfo> > providers(enumerator->enumerateAccounts());
+    return QSharedPointer<QList<ServiceProviderInfo> >(providers.take());
 }
 
 EmailAccountWizardIncommingServerPage::EmailAccountWizardIncommingServerPage(
