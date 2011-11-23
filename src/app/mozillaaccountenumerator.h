@@ -18,6 +18,7 @@
 #ifndef MOZILLAACCOUNTENUMERATOR_H
 #define MOZILLAACCOUNTENUMERATOR_H
 
+#include <QNetworkReply>
 #include <QScopedPointer>
 
 #include "accountenumerator.h"
@@ -30,14 +31,17 @@ namespace Services
 class MozillaAccountEnumeratorPrivate;
 class MozillaAccountEnumerator : public AccountEnumerator
 {
+    Q_OBJECT
+
 public:
     MozillaAccountEnumerator(QObject* parent = 0,
         const QString& domain = "");
     virtual ~MozillaAccountEnumerator();
 
-    virtual QList<ServiceProviderInfo>* enumerateAccounts() const;
+    virtual QList<ServiceProviderInfo>* enumerateAccounts();
 
 private:
+    Q_DISABLE_COPY(MozillaAccountEnumerator)
     Q_DECLARE_PRIVATE(MozillaAccountEnumerator)
     QScopedPointer<MozillaAccountEnumeratorPrivate> d_ptr;
 };
