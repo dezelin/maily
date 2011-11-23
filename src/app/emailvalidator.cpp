@@ -38,7 +38,7 @@ EmailValidator::EmailValidator(QObject* parent) :
 
 void EmailValidator::fixup(QString& input) const
 {
-    Q_VOID(input);
+    Q_UNUSED(input);
 }
 
 QValidator::State EmailValidator::validate(QString& str, int& pos) const
