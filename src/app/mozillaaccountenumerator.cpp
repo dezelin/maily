@@ -22,8 +22,9 @@ namespace Maily
 namespace Services
 {
 
-struct MozillaAccountEnumerator::MozillaAccountEnumeratorPrivate
+class MozillaAccountEnumeratorPrivate
 {
+public:
     MozillaAccountEnumeratorPrivate(const QString& domain) :
         m_domain(domain)
     {
@@ -32,9 +33,9 @@ struct MozillaAccountEnumerator::MozillaAccountEnumeratorPrivate
     QString m_domain;
 };
 
-MozillaAccountEnumerator::MozillaAccountEnumerator(QObject *parent,
+MozillaAccountEnumerator::MozillaAccountEnumerator(QObject* parent,
     const QString& domain) : AccountEnumerator(parent),
-    m_data(new MozillaAccountEnumeratorPrivate(domain))
+    d_ptr(new MozillaAccountEnumeratorPrivate(domain))
 {
 }
 

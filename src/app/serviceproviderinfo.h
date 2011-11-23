@@ -27,16 +27,18 @@ namespace Maily
 namespace Services
 {
 
-
+class ServiceProviderInfoPrivate;
 class ServiceProviderInfo : public LoginInfo
 {
-    Q_OBJECT
-    Q_PROPERTY(QString address READ address WRITE setAddress)
-    Q_PROPERTY(unsigned int port READ port WRITE setPort)
-
 public:
-    explicit ServiceProviderInfo(QObject* parent = 0);
+    ServiceProviderInfo();
     virtual ~ServiceProviderInfo();
+
+    ServiceProviderInfo(const ServiceProviderInfo& providerInfo);
+    ServiceProviderInfo& operator=(const ServiceProviderInfo& providerInfo);
+    const ServiceProviderInfo& operator=(const ServiceProviderInfo& providerInfo) const;
+
+    void swap(ServiceProviderInfo& providerInfo);
 
     const QString& address() const;
     void setAddress(const QString& address);
@@ -45,10 +47,8 @@ public:
     void setPort(unsigned int port);
 
 private:
-    Q_DISABLE_COPY(ServiceProviderInfo)
-
-    struct ServiceProviderInfoPrivate;
-    QScopedPointer<ServiceProviderInfoPrivate> m_data;
+    Q_DECLARE_PRIVATE(ServiceProviderInfo)
+    QScopedPointer<ServiceProviderInfoPrivate> d_ptr;
 };
 
 } // namespace Services

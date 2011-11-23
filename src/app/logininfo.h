@@ -25,16 +25,19 @@ namespace Maily
 namespace Services
 {
 
-
-class LoginInfo : public QObject
+class LoginInfoPrivate;
+class LoginInfo
 {
-    Q_OBJECT
-    Q_PROPERTY(QString password READ password WRITE setPassword)
-    Q_PROPERTY(QString username READ username WRITE setUsername)
-
 public:
-    explicit LoginInfo(QObject *parent = 0);
+    LoginInfo();
+    LoginInfo(const QString& username, const QString& password);
     virtual ~LoginInfo();
+
+    LoginInfo(const LoginInfo& loginInfo);
+    LoginInfo& operator= (const LoginInfo& loginInfo);
+    const LoginInfo& operator= (const LoginInfo& loginInfo) const;
+
+    void swap(LoginInfo& loginInfo);
 
     const QString& password() const;
     void setPassword(const QString& password);
@@ -42,15 +45,9 @@ public:
     const QString& username() const;
     void setUsername(const QString& username);
 
-signals:
-
-public slots:
-
 private:
-    Q_DISABLE_COPY(LoginInfo)
-
-    struct LoginInfoPrivate;
-    QScopedPointer<LoginInfoPrivate> m_data;
+    Q_DECLARE_PRIVATE(LoginInfo)
+    QScopedPointer<LoginInfoPrivate> d_ptr;
 };
 
 } // namespace Services

@@ -27,26 +27,23 @@ namespace Maily
 namespace Services
 {
 
-namespace Details
-{
-}
 
+class EmailServiceProviderInfoPrivate;
 class EmailServiceProviderInfo : public ServiceProviderInfo
 {
-    Q_OBJECT
-    Q_ENUMS(ServiceType)
-    Q_PROPERTY(ServiceType serviceType READ serviceType WRITE setServiceType)
-    Q_PROPERTY(bool sasl READ sasl WRITE setSasl)
-    Q_PROPERTY(bool saslFallback READ saslFallback WRITE setSaslFallback)
-    Q_PROPERTY(bool tls READ tls WRITE setTls)
-    Q_PROPERTY(bool tlsRequired READ tlsRequired WRITE setTlsRequired)
-    Q_PROPERTY(QString rootPath READ rootPath WRITE setRootPath)
-    Q_PROPERTY(bool apop READ apop WRITE setApop)
-    Q_PROPERTY(bool apopFallback READ apopFallback WRITE setApopFallback)
-
 public:
-    explicit EmailServiceProviderInfo(QObject *parent = 0);
+    EmailServiceProviderInfo();
     virtual ~EmailServiceProviderInfo();
+
+    EmailServiceProviderInfo(const EmailServiceProviderInfo& providerInfo);
+
+    EmailServiceProviderInfo& operator =(
+        const EmailServiceProviderInfo& providerInfo);
+
+    const EmailServiceProviderInfo& operator =(
+        const EmailServiceProviderInfo& providerInfo) const;
+
+    void swap(EmailServiceProviderInfo& providerInfo);
 
     enum ServiceType { POP3, POP3S, IMAP, IMAPS, SMTP, SMTPS, MAILDIR, SENDMAIL };
 
@@ -74,15 +71,9 @@ public:
     bool apopFallback() const;
     void setApopFallback(bool apopFallback);
 
-signals:
-
-public slots:
-
 private:
-    Q_DISABLE_COPY(EmailServiceProviderInfo)
-
-    struct EmailServiceProviderInfoPrivate;
-    QScopedPointer<EmailServiceProviderInfoPrivate> m_data;
+    Q_DECLARE_PRIVATE(EmailServiceProviderInfo)
+    QScopedPointer<EmailServiceProviderInfoPrivate> d_ptr;
 };
 
 } // namespace Services

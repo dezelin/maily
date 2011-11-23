@@ -18,23 +18,18 @@
 #ifndef MAILYACCOUNTENUMERATOR_H
 #define MAILYACCOUNTENUMERATOR_H
 
-#include <QObject>
+#include "accountenumerator.h"
 
 namespace Maily
 {
 namespace Services
 {
 
-class MailyAccountEnumerator : public QObject
+class MailyAccountEnumerator : public AccountEnumerator
 {
-    Q_OBJECT
 
 public:
-    explicit MailyAccountEnumerator(QObject *parent = 0);
-
-signals:
-
-public slots:
+    explicit MailyAccountEnumerator(QObject* parent = 0);
 
 };
 

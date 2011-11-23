@@ -22,14 +22,55 @@ namespace Maily
 namespace Services
 {
 
-struct LoginInfo::LoginInfoPrivate
+class LoginInfoPrivate
 {
+public:
+    LoginInfoPrivate()
+    {
+    }
+
+    LoginInfoPrivate(const QString& username, const QString& password) :
+        m_username(username), m_password(password)
+    {
+    }
+
+    LoginInfoPrivate(const LoginInfoPrivate& d)
+    {
+        *this = d;
+    }
+
+    LoginInfoPrivate& operator= (const LoginInfoPrivate& d)
+    {
+        if (this == &d)
+            return *this;
+
+        LoginInfoPrivate tmp(d);
+        swap(tmp);
+        return *this;
+    }
+
+    const LoginInfoPrivate& operator= (const LoginInfoPrivate& d) const
+    {
+        return (*this = d);
+    }
+
+    void swap(LoginInfoPrivate& d)
+    {
+        m_username.swap(d.m_username);
+        m_password.swap(d.m_password);
+    }
+
     QString m_username;
     QString m_password;
 };
 
-LoginInfo::LoginInfo(QObject *parent) :
-    QObject(parent), m_data(new LoginInfoPrivate())
+LoginInfo::LoginInfo() :
+    d_ptr(new LoginInfoPrivate())
+{
+}
+
+LoginInfo::LoginInfo(const QString& username, const QString& password) :
+    d_ptr(new LoginInfoPrivate(username, password))
 {
 }
 
@@ -37,28 +78,53 @@ LoginInfo::~LoginInfo()
 {
 }
 
+LoginInfo::LoginInfo(const LoginInfo& loginInfo)
+{
+    *this = loginInfo;
+}
+
+LoginInfo& LoginInfo::operator= (const LoginInfo& loginInfo)
+{
+    if (this == & loginInfo)
+        return *this;
+
+    LoginInfo tmp(loginInfo);
+    swap(tmp);
+    return *this;
+}
+
+const LoginInfo& LoginInfo::operator= (const LoginInfo& loginInfo) const
+{
+    return (*this = loginInfo);
+}
+
+void LoginInfo::swap(LoginInfo& loginInfo)
+{
+    d_ptr.swap(loginInfo.d_ptr);
+}
+
 const QString& LoginInfo::password() const
 {
-    Q_ASSERT(m_data);
-    return m_data->m_password;
+    Q_D(const LoginInfo);
+    return d->m_password;
 }
 
 void LoginInfo::setPassword(const QString &password)
 {
-    Q_ASSERT(m_data);
-    m_data->m_password = password;
+    Q_D(LoginInfo);
+    d->m_password = password;
 }
 
 const QString& LoginInfo::username() const
 {
-    Q_ASSERT(m_data);
-    return m_data->m_username;
+    Q_D(const LoginInfo);
+    return d->m_username;
 }
 
 void LoginInfo::setUsername(const QString &username)
 {
-    Q_ASSERT(m_data);
-    m_data->m_username = username;
+    Q_D(LoginInfo);
+    d->m_username = username;
 }
 
 } // namespace Services

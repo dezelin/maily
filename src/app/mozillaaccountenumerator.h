@@ -27,27 +27,19 @@ namespace Maily
 namespace Services
 {
 
-
+class MozillaAccountEnumeratorPrivate;
 class MozillaAccountEnumerator : public AccountEnumerator
 {
-    Q_OBJECT
-
 public:
-    explicit MozillaAccountEnumerator(QObject *parent = 0,
+    MozillaAccountEnumerator(QObject* parent = 0,
         const QString& domain = "");
     virtual ~MozillaAccountEnumerator();
 
     virtual QList<ServiceProviderInfo>* enumerateAccounts() const;
 
-signals:
-
-public slots:
-
 private:
-    Q_DISABLE_COPY(MozillaAccountEnumerator)
-
-    struct MozillaAccountEnumeratorPrivate;
-    QScopedPointer<MozillaAccountEnumeratorPrivate> m_data;
+    Q_DECLARE_PRIVATE(MozillaAccountEnumerator)
+    QScopedPointer<MozillaAccountEnumeratorPrivate> d_ptr;
 };
 
 } // namespace Services

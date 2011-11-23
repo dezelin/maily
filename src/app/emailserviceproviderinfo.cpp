@@ -22,13 +22,46 @@ namespace Maily
 namespace Services
 {
 
-struct EmailServiceProviderInfo::EmailServiceProviderInfoPrivate
+struct EmailServiceProviderInfoPrivate
 {
     EmailServiceProviderInfoPrivate() :
         m_serviceType(EmailServiceProviderInfo::SENDMAIL), m_sasl(false),
         m_saslFallback(false), m_tls(false), m_tlsRequired(false),
         m_apop(false), m_apopFallback(false)
     {
+    }
+
+    EmailServiceProviderInfoPrivate(const EmailServiceProviderInfoPrivate& d)
+    {
+        *this = d;
+    }
+
+    EmailServiceProviderInfoPrivate&
+    operator =(const EmailServiceProviderInfoPrivate& d)
+    {
+        if (this == &d)
+            return *this;
+
+        EmailServiceProviderInfoPrivate tmp(d);
+        return *this;
+    }
+
+    const EmailServiceProviderInfoPrivate&
+    operator =(const EmailServiceProviderInfoPrivate& d) const
+    {
+        return (*this = d);
+    }
+
+    void swap(EmailServiceProviderInfoPrivate& d)
+    {
+        std::swap(m_serviceType, d.m_serviceType);
+        std::swap(m_sasl, d.m_sasl);
+        std::swap(m_saslFallback, d.m_saslFallback);
+        std::swap(m_tls, d.m_tls);
+        std::swap(m_tlsRequired, d.m_tlsRequired);
+        m_rootPath.swap(d.m_rootPath);
+        std::swap(m_apop, d.m_apop);
+        std::swap(m_apopFallback, d.m_apopFallback);
     }
 
     EmailServiceProviderInfo::ServiceType m_serviceType;
@@ -41,9 +74,8 @@ struct EmailServiceProviderInfo::EmailServiceProviderInfoPrivate
     bool m_apopFallback;
 };
 
-EmailServiceProviderInfo::EmailServiceProviderInfo(QObject *parent) :
-    ServiceProviderInfo(parent),
-    m_data(new EmailServiceProviderInfoPrivate())
+EmailServiceProviderInfo::EmailServiceProviderInfo() :
+    ServiceProviderInfo(), d_ptr(new EmailServiceProviderInfoPrivate())
 {
 }
 
@@ -51,100 +83,129 @@ EmailServiceProviderInfo::~EmailServiceProviderInfo()
 {
 }
 
+EmailServiceProviderInfo::EmailServiceProviderInfo(
+    const EmailServiceProviderInfo &providerInfo) :
+        ServiceProviderInfo(providerInfo)
+{
+    *this = providerInfo;
+}
+
+EmailServiceProviderInfo& EmailServiceProviderInfo::operator =(
+    const EmailServiceProviderInfo& providerInfo)
+{
+    if (this == &providerInfo)
+        return *this;
+
+    EmailServiceProviderInfo tmp(providerInfo);
+    swap(tmp);
+    return *this;
+}
+
+const EmailServiceProviderInfo& EmailServiceProviderInfo::operator =(
+    const EmailServiceProviderInfo& providerInfo) const
+{
+    return (*this = providerInfo);
+}
+
+void EmailServiceProviderInfo::swap(EmailServiceProviderInfo& providerInfo)
+{
+    d_ptr.swap(providerInfo.d_ptr);
+}
+
 EmailServiceProviderInfo::ServiceType EmailServiceProviderInfo::serviceType() const
 {
-    Q_ASSERT(m_data);
-    return m_data->m_serviceType;
+    Q_D(const EmailServiceProviderInfo);
+    return d->m_serviceType;
 }
 
 void EmailServiceProviderInfo::setServiceType(ServiceType serviceType)
 {
-    Q_ASSERT(m_data);
-    m_data->m_serviceType = serviceType;
+    Q_D(EmailServiceProviderInfo);
+    d->m_serviceType = serviceType;
 }
 
 bool EmailServiceProviderInfo::sasl() const
 {
-    Q_ASSERT(m_data);
-    return m_data->m_sasl;
+    Q_D(const EmailServiceProviderInfo);
+    return d->m_sasl;
 }
 
 void EmailServiceProviderInfo::setSasl(bool sasl)
 {
-    Q_ASSERT(m_data);
-    m_data->m_sasl = sasl;
+    Q_D(EmailServiceProviderInfo);
+    d->m_sasl = sasl;
 }
 
 bool EmailServiceProviderInfo::saslFallback() const
 {
-    Q_ASSERT(m_data);
-    return m_data->m_saslFallback;
+    Q_D(const EmailServiceProviderInfo);
+    return d->m_saslFallback;
 }
 
 void EmailServiceProviderInfo::setSaslFallback(bool saslFallback)
 {
-    Q_ASSERT(m_data);
-    m_data->m_saslFallback = saslFallback;
+    Q_D(EmailServiceProviderInfo);
+    d->m_saslFallback = saslFallback;
 }
 
 bool EmailServiceProviderInfo::tls() const
 {
-    Q_ASSERT(m_data);
-    return m_data->m_tls;
+    Q_D(const EmailServiceProviderInfo);
+    return d->m_tls;
 }
 
 void EmailServiceProviderInfo::setTls(bool tls)
 {
-    Q_ASSERT(m_data);
-    m_data->m_tls = tls;
+    Q_D(EmailServiceProviderInfo);
+    d->m_tls = tls;
 }
 
 bool EmailServiceProviderInfo::tlsRequired() const
 {
-    Q_ASSERT(m_data);
-    return m_data->m_tlsRequired;
+    Q_D(const EmailServiceProviderInfo);
+    return d->m_tlsRequired;
 }
 
 void EmailServiceProviderInfo::setTlsRequired(bool tlsRequired)
 {
-    Q_ASSERT(m_data);
-    m_data->m_tlsRequired = tlsRequired;
+    Q_D(EmailServiceProviderInfo);
+    d->m_tlsRequired = tlsRequired;
 }
 
 const QString& EmailServiceProviderInfo::rootPath() const
 {
-    Q_ASSERT(m_data);
-    return m_data->m_rootPath;
+    Q_D(const EmailServiceProviderInfo);
+    return d->m_rootPath;
 }
 
 void EmailServiceProviderInfo::setRootPath(const QString& rootPath)
 {
-    Q_ASSERT(m_data);
-    m_data->m_rootPath = rootPath;
+    Q_D(EmailServiceProviderInfo);
+    d->m_rootPath = rootPath;
 }
 
 bool EmailServiceProviderInfo::apop() const
 {
-    Q_ASSERT(m_data);
-    return m_data->m_apop;
+    Q_D(const EmailServiceProviderInfo);
+    return d->m_apop;
 }
 
 void EmailServiceProviderInfo::setApop(bool apop)
 {
-    Q_ASSERT(m_data);
-    m_data->m_apop = apop;
+    Q_D(EmailServiceProviderInfo);
+    d->m_apop = apop;
 }
 
 bool EmailServiceProviderInfo::apopFallback() const
 {
-    Q_ASSERT(m_data);
-    return m_data->m_apopFallback;
+    Q_D(const EmailServiceProviderInfo);
+    return d->m_apopFallback;
 }
 
 void EmailServiceProviderInfo::setApopFallback(bool apopFallback)
 {
-    Q_ASSERT(m_data);
-    m_data->m_apopFallback = apopFallback;
+    Q_D(EmailServiceProviderInfo);
+    d->m_apopFallback = apopFallback;
 }
 
 } // namespace Services

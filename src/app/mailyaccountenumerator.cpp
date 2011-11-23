@@ -22,8 +22,8 @@ namespace Maily
 namespace Services
 {
 
-MailyAccountEnumerator::MailyAccountEnumerator(QObject *parent) :
-    QObject(parent)
+MailyAccountEnumerator::MailyAccountEnumerator(QObject* parent) :
+    AccountEnumerator(parent)
 {
 }
 
