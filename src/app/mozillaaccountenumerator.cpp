@@ -15,12 +15,19 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QEventLoop>
+#include <QNetworkAccessManager>
+
 #include "mozillaaccountenumerator.h"
+#include "tools.h"
 
 namespace Maily
 {
 namespace Services
 {
+
+const QString kMozillaISPDBUrlTemplate =
+    "http://ispdb.mozillamessaging.com/export_xml/v1.1/%1";
 
 class MozillaAccountEnumeratorPrivate
 {
@@ -31,6 +38,7 @@ public:
     }
 
     QString m_domain;
+    QScopedPointer<QList<ServiceProviderInfo> > m_accounts;
 };
 
 MozillaAccountEnumerator::MozillaAccountEnumerator(QObject* parent,
@@ -43,9 +51,34 @@ MozillaAccountEnumerator::~MozillaAccountEnumerator()
 {
 }
 
-QList<ServiceProviderInfo>* MozillaAccountEnumerator::enumerateAccounts() const
+QList<ServiceProviderInfo>* MozillaAccountEnumerator::enumerateAccounts()
 {
-    return new QList<ServiceProviderInfo>();
+    Q_D(MozillaAccountEnumerator);
+
+    d->m_accounts.reset(new QList<ServiceProviderInfo>());
+
+    QScopedPointer<QNetworkAccessManager> networkManager(new QNetworkAccessManager);
+    connect(networkManager.data(), SIGNAL(finished(QNetworkReply*)), this,
+        SLOT(finishedReply(QNetworkReply*)));
+
+    QString serviceUrl = kMozillaISPDBUrlTemplate.arg(d->m_domain);
+    qDebug() << QString("Getting service description from %1").arg(serviceUrl);
+    networkManager->get(QNetworkRequest(QUrl(serviceUrl)));
+
+    QEventLoop loop;
+    loop.exec();
+
+    return d->m_accounts.take();
+}
+
+void MozillaAccountEnumerator::finishedReply(QNetworkReply *reply)
+{
+    Q_D(MozillaAccountEnumerator);
+    Q_ASSERT(reply);
+    if (!reply)
+        return;
+
+    //reply->readAll()
 }
 
 } // namespace Services
