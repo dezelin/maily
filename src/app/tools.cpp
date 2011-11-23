@@ -15,8 +15,11 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TOOLS_H
-#define TOOLS_H
+#include <QMutex>
+#include <QWaitCondition>
+
+#include "tools.h"
+
 
 namespace Maily
 {
@@ -25,10 +28,14 @@ namespace Services
 namespace Tools
 {
 
-void Sleep(unsigned int msec);
+void Sleep(unsigned int msec)
+{
+    QMutex dummy;
+    dummy.lock();
+    QWaitCondition waitCondition;
+    waitCondition.wait(&dummy, msec);
+}
 
 } // namespace Tools
 } // namespace Services
 } // namespace Maily
-
-#endif // TOOLS_H
