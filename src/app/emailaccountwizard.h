@@ -55,6 +55,7 @@ public:
     explicit EmailAccountWizardIntroPage(QWidget* parent = 0);
 };
 
+class EmailAccountWizardAccountPagePrivate;
 class EmailAccountWizardAccountPage : public QWizardPage
 {
     Q_OBJECT
@@ -68,7 +69,6 @@ public:
     virtual ~EmailAccountWizardAccountPage();
 
     virtual void cleanupPage();
-    virtual void initializePage();
     virtual int nextId() const;
     virtual bool validatePage();
 
@@ -87,9 +87,8 @@ private:
 
 private:
     Q_DISABLE_COPY(EmailAccountWizardAccountPage)
-
-    struct EmailAccountWizardAccountPagePrivate;
-    QScopedPointer<EmailAccountWizardAccountPagePrivate> m_data;
+    Q_DECLARE_PRIVATE(EmailAccountWizardAccountPage)
+    QScopedPointer<EmailAccountWizardAccountPagePrivate> d_ptr;
 };
 
 class EmailAccountWizardIncommingServerPage : public QWizardPage

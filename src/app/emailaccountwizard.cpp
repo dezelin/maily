@@ -99,8 +99,9 @@ EmailAccountWizardIntroPage::EmailAccountWizardIntroPage(QWidget* parent) :
     setLayout(layout);
 }
 
-struct EmailAccountWizardAccountPage::EmailAccountWizardAccountPagePrivate
+class EmailAccountWizardAccountPagePrivate
 {
+public:
     EmailAccountWizardAccountPagePrivate() :
         m_futureStarted(false), m_futureWatcher(0),
         m_emailValidator(new EmailValidator())
@@ -110,15 +111,17 @@ struct EmailAccountWizardAccountPage::EmailAccountWizardAccountPagePrivate
     typedef EmailAccountWizardAccountPage::ServiceProviderInfoListPtr
         ServiceProviderInfoListPtr;
 
-    bool m_futureStarted;
+    mutable bool m_futureStarted;
     ForgettableWatcher<ServiceProviderInfoListPtr>* m_futureWatcher;
     QScopedPointer<EmailValidator> m_emailValidator;
 };
 
 EmailAccountWizardAccountPage::EmailAccountWizardAccountPage(QWidget* parent) :
     QWizardPage(parent),
-    m_data(new EmailAccountWizardAccountPagePrivate())
+    d_ptr(new EmailAccountWizardAccountPagePrivate())
 {
+    Q_D(EmailAccountWizardAccountPage);
+
     setTitle(tr("Email account user details"));
     setSubTitle(tr("Please fill all fields."));
 
@@ -132,7 +135,7 @@ EmailAccountWizardAccountPage::EmailAccountWizardAccountPage(QWidget* parent) :
     Widgets::CustomEditLine* emailAddressEditLine =
         new Widgets::CustomEditLine();
     emailAddressEditLine->setEmptyMessage(tr("Email address"));
-    emailAddressEditLine->setValidator(m_data->m_emailValidator.data());
+    emailAddressEditLine->setValidator(d->m_emailValidator.data());
     registerField(kFieldEmailAddress, emailAddressEditLine);
 
     QLabel* passwordLabel = new QLabel(tr("Account password:"));
@@ -162,45 +165,32 @@ EmailAccountWizardAccountPage::~EmailAccountWizardAccountPage()
 
 void EmailAccountWizardAccountPage::cleanupPage()
 {
-    Q_ASSERT(m_data);
-    if (!m_data)
-        return;
+    Q_D(EmailAccountWizardAccountPage);
 
-    bool started = m_data->m_futureStarted;
+    bool started = d->m_futureStarted;
     if (started) {
         //m_data->m_futureWatcher.waitForFinished();
-        m_data->m_futureStarted = false;
-        m_data->m_futureWatcher->disconnect(this);
+        d->m_futureStarted = false;
+        d->m_futureWatcher->disconnect(this);
         stopBusyIndicator();
     }
 }
 
-void EmailAccountWizardAccountPage::initializePage()
-{
-    Q_ASSERT(m_data);
-    if (!m_data)
-        return;
-
-}
-
 int EmailAccountWizardAccountPage::nextId() const
 {
-    Q_ASSERT(m_data);
-    if (!m_data)
-        return false;
+    Q_D(const EmailAccountWizardAccountPage);
 
-    bool started = m_data->m_futureStarted;
+    bool started = d->m_futureStarted;
     if (!started)
         return kPageIdEmailIncommingServer;
 
-    m_data->m_futureStarted = false; // we will proceed to the next page
+    d->m_futureStarted = false; // we will proceed to the next page
 
-    Q_ASSERT(m_data->m_futureWatcher);
-    if (!m_data->m_futureWatcher)
+    Q_ASSERT(d->m_futureWatcher);
+    if (!d->m_futureWatcher)
         return kPageIdEmailIncommingServer;
 
-    //bool foundProvider = !m_data->m_futureWatcher.result()->isEmpty();
-    bool foundProvider = !m_data->m_futureWatcher->result()->isEmpty();
+    bool foundProvider = !d->m_futureWatcher->result()->isEmpty();
     if (foundProvider)
         return kPageIdFinished;
 
@@ -209,12 +199,10 @@ int EmailAccountWizardAccountPage::nextId() const
 
 bool EmailAccountWizardAccountPage::validatePage()
 {
-    Q_ASSERT(m_data);
-    if (!m_data)
-        return false;
+    Q_D(EmailAccountWizardAccountPage);
 
-    bool started = m_data->m_futureStarted;
-    bool finished = (m_data->m_futureWatcher) ? m_data->m_futureWatcher->isFinished()
+    bool started = d->m_futureStarted;
+    bool finished = (d->m_futureWatcher) ? d->m_futureWatcher->isFinished()
         : false;
     if (started && finished)
         return true;
@@ -232,12 +220,12 @@ bool EmailAccountWizardAccountPage::validatePage()
     connect(futureWatcher, SIGNAL(finished()), this, SLOT(enumerationFinished()));
     futureWatcher->setFuture(future);
 
-    Q_ASSERT(m_data);
-    m_data->m_futureWatcher = futureWatcher;
-    m_data->m_futureStarted = true;
+    Q_ASSERT(d);
+    d->m_futureWatcher = futureWatcher;
+    d->m_futureStarted = true;
 
     // FutureWatcher will call enumerationFinished() when finished
-    // so return here false and stop proceeding to the next page temporaly.
+    // so return here false and stop proceeding to the next page temporarely.
     return false;
 }
 
@@ -322,17 +310,15 @@ void EmailAccountWizardAccountPage::stopBusyIndicator()
 
 void EmailAccountWizardAccountPage::enumerationFinished()
 {
+    Q_D(EmailAccountWizardAccountPage);
+
     stopBusyIndicator();
     enableButtons();
     next();
 
-    Q_ASSERT(m_data);
-    if (!m_data)
-        return;
-
     // ForgettableWatcher will be deleted after return
     // so make it null.
-    m_data->m_futureWatcher = 0;
+    d->m_futureWatcher = 0;
 }
 
 EmailAccountWizardAccountPage::ServiceProviderInfoListPtr
