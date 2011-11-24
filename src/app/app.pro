@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core declarative gui network sql webkit
+QT       += core declarative gui network sql webkit xml
 
 TARGET = maily
 TEMPLATE = app
