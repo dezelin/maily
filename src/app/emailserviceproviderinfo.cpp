@@ -25,9 +25,8 @@ namespace Services
 struct EmailServiceProviderInfoPrivate
 {
     EmailServiceProviderInfoPrivate() :
-        m_serviceType(EmailServiceProviderInfo::SENDMAIL), m_sasl(false),
-        m_saslFallback(false), m_tls(false), m_tlsRequired(false),
-        m_apop(false), m_apopFallback(false)
+        m_serviceType(EmailServiceProviderInfo::SENDMAIL), m_tls(false),
+        m_tlsRequired(false), m_authenticationType(EmailServiceProviderInfo::AuthNone)
     {
     }
 
@@ -55,23 +54,19 @@ struct EmailServiceProviderInfoPrivate
     void swap(EmailServiceProviderInfoPrivate& d)
     {
         std::swap(m_serviceType, d.m_serviceType);
-        std::swap(m_sasl, d.m_sasl);
-        std::swap(m_saslFallback, d.m_saslFallback);
         std::swap(m_tls, d.m_tls);
         std::swap(m_tlsRequired, d.m_tlsRequired);
         m_rootPath.swap(d.m_rootPath);
-        std::swap(m_apop, d.m_apop);
-        std::swap(m_apopFallback, d.m_apopFallback);
+        m_sendmailPath.swap(d.m_sendmailPath);
+        std::swap(m_authenticationType, d.m_authenticationType);
     }
 
     EmailServiceProviderInfo::ServiceType m_serviceType;
-    bool m_sasl;
-    bool m_saslFallback;
     bool m_tls;
     bool m_tlsRequired;
     QString m_rootPath;
-    bool m_apop;
-    bool m_apopFallback;
+    QString m_sendmailPath;
+    int m_authenticationType;
 };
 
 EmailServiceProviderInfo::EmailServiceProviderInfo() :
@@ -124,30 +119,6 @@ void EmailServiceProviderInfo::setServiceType(ServiceType serviceType)
     d->m_serviceType = serviceType;
 }
 
-bool EmailServiceProviderInfo::sasl() const
-{
-    Q_D(const EmailServiceProviderInfo);
-    return d->m_sasl;
-}
-
-void EmailServiceProviderInfo::setSasl(bool sasl)
-{
-    Q_D(EmailServiceProviderInfo);
-    d->m_sasl = sasl;
-}
-
-bool EmailServiceProviderInfo::saslFallback() const
-{
-    Q_D(const EmailServiceProviderInfo);
-    return d->m_saslFallback;
-}
-
-void EmailServiceProviderInfo::setSaslFallback(bool saslFallback)
-{
-    Q_D(EmailServiceProviderInfo);
-    d->m_saslFallback = saslFallback;
-}
-
 bool EmailServiceProviderInfo::tls() const
 {
     Q_D(const EmailServiceProviderInfo);
@@ -184,29 +155,66 @@ void EmailServiceProviderInfo::setRootPath(const QString& rootPath)
     d->m_rootPath = rootPath;
 }
 
+const QString& EmailServiceProviderInfo::sendmailBinPath() const
+{
+    Q_D(const EmailServiceProviderInfo);
+    return d->m_sendmailPath;
+}
+
+void EmailServiceProviderInfo::setSendmailBinPath(const QString& path)
+{
+    Q_D(EmailServiceProviderInfo);
+    d->m_sendmailPath = path;
+}
+
+bool EmailServiceProviderInfo::authenication() const
+{
+    Q_D(const EmailServiceProviderInfo);
+    return d->m_authenticationType != AuthNone;
+}
+
 bool EmailServiceProviderInfo::apop() const
 {
     Q_D(const EmailServiceProviderInfo);
-    return d->m_apop;
-}
-
-void EmailServiceProviderInfo::setApop(bool apop)
-{
-    Q_D(EmailServiceProviderInfo);
-    d->m_apop = apop;
+    return d->m_authenticationType & AuthAPOP;
 }
 
 bool EmailServiceProviderInfo::apopFallback() const
 {
     Q_D(const EmailServiceProviderInfo);
-    return d->m_apopFallback;
+    return (d->m_authenticationType & ~AuthAPOP) != AuthAPOP;
 }
 
-void EmailServiceProviderInfo::setApopFallback(bool apopFallback)
+bool EmailServiceProviderInfo::plain() const
 {
-    Q_D(EmailServiceProviderInfo);
-    d->m_apopFallback = apopFallback;
+    Q_D(const EmailServiceProviderInfo);
+    return d->m_authenticationType & AuthPlain;
 }
+
+bool EmailServiceProviderInfo::plainFallback() const
+{
+    Q_D(const EmailServiceProviderInfo);
+    return (d->m_authenticationType & ~AuthPlain) != AuthPlain;
+}
+
+bool EmailServiceProviderInfo::sasl() const
+{
+    Q_D(const EmailServiceProviderInfo);
+    return d->m_authenticationType & AuthSASL;
+}
+
+bool EmailServiceProviderInfo::saslFallback() const
+{
+    Q_D(const EmailServiceProviderInfo);
+    return (d->m_authenticationType & ~AuthSASL) != AuthSASL;
+}
+
+bool EmailServiceProviderInfo::smtpAuthentication() const
+{
+    Q_D(const EmailServiceProviderInfo);
+    return d->m_serviceType == SMTP && d->m_authenticationType != AuthNone;
+}
+
 
 } // namespace Services
 } // namespace Maily

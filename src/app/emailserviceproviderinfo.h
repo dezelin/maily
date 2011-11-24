@@ -50,12 +50,6 @@ public:
     ServiceType serviceType() const;
     void setServiceType(ServiceType serviceType);
 
-    bool sasl() const;
-    void setSasl(bool sasl);
-
-    bool saslFallback() const;
-    void setSaslFallback(bool saslFallback);
-
     bool tls() const;
     void setTls(bool tls);
 
@@ -65,11 +59,22 @@ public:
     const QString& rootPath() const;
     void setRootPath(const QString& rootPath);
 
-    bool apop() const;
-    void setApop(bool apop);
+    const QString& sendmailBinPath() const;
+    void setSendmailBinPath(const QString& path);
 
+    enum AuthenticationType { AuthNone = 0, AuthPlain = 1, AuthSASL = 2, AuthAPOP = 4};
+
+    AuthenticationType authenticationType() const;
+    void setAuthenticationType(int authenticationType);
+
+    bool authenication() const;
+    bool apop() const;
     bool apopFallback() const;
-    void setApopFallback(bool apopFallback);
+    bool plain() const;
+    bool plainFallback() const;
+    bool sasl() const;
+    bool saslFallback() const;
+    bool smtpAuthentication() const;
 
 private:
     Q_DECLARE_PRIVATE(EmailServiceProviderInfo)
