@@ -18,12 +18,17 @@
 #ifndef TOOLS_H
 #define TOOLS_H
 
+#include <QDebug>
+#include <QString>
+
 namespace Maily
 {
 namespace Services
 {
 namespace Tools
 {
+
+#define qLog() (qDebug() << QString("%1:%2 ").arg(__FILE__, __LINE__))
 
 void Sleep(unsigned int msec);
 
