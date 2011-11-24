@@ -62,7 +62,8 @@ public:
     const QString& sendmailBinPath() const;
     void setSendmailBinPath(const QString& path);
 
-    enum AuthenticationType { AuthNone = 0, AuthPlain = 1, AuthSASL = 2, AuthAPOP = 4};
+    enum AuthenticationType { AuthNone = 0, AuthCleartext = 1, AuthPlain = 2,
+        AuthSASL = 4, AuthAPOP = 8};
 
     AuthenticationType authenticationType() const;
     void setAuthenticationType(int authenticationType);
@@ -70,6 +71,8 @@ public:
     bool authenication() const;
     bool apop() const;
     bool apopFallback() const;
+    bool cleartext() const;
+    bool cleartextFallback() const;
     bool plain() const;
     bool plainFallback() const;
     bool sasl() const;

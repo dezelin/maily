@@ -185,6 +185,18 @@ bool EmailServiceProviderInfo::apopFallback() const
     return (d->m_authenticationType & ~AuthAPOP) != AuthAPOP;
 }
 
+bool EmailServiceProviderInfo::cleartext() const
+{
+    Q_D(const EmailServiceProviderInfo);
+    return d->m_authenticationType & AuthCleartext;
+}
+
+bool EmailServiceProviderInfo::cleartextFallback() const
+{
+    Q_D(const EmailServiceProviderInfo);
+    return (d->m_authenticationType & ~AuthCleartext) != AuthCleartext;
+}
+
 bool EmailServiceProviderInfo::plain() const
 {
     Q_D(const EmailServiceProviderInfo);
