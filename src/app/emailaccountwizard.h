@@ -88,12 +88,12 @@ private:
     QScopedPointer<EmailAccountWizardAccountPagePrivate> d_ptr;
 };
 
-class EmailAccountWizardIncommingServerPage : public QWizardPage
+class EmailAccountWizardIncomingServerPage : public QWizardPage
 {
     Q_OBJECT
 
 public:
-    explicit EmailAccountWizardIncommingServerPage(QWidget* parent = 0);
+    explicit EmailAccountWizardIncomingServerPage(QWidget* parent = 0);
 };
 
 class EmailAccountWizardOutgoingServerPage : public QWizardPage

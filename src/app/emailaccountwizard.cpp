@@ -53,13 +53,13 @@ const QString kFieldFullName = "fullName*";
 const QString kFieldEmailAddress = "emailAddress*";
 const QString kFieldPassword = "password";
 const QString kFieldSavePassword = "savePassword";
-const QString kFieldIncommingServerUsername = "incommingServerUsername*";
-const QString kFieldIncommingServerPassword = "incommingServerPassword*";
-const QString kFieldIncommingServerType = "incommingServerType";
-const QString kFieldIncommingServerHostname = "incommingServerHostname*";
-const QString kFieldIncommingServerPort = "incommingServerPort";
-const QString kFieldIncommingServerSSL = "incommingServerSSL";
-const QString kFieldIncommingServerAuth = "incommingServerAuth";
+const QString kFieldIncomingServerUsername = "incommingServerUsername*";
+const QString kFieldIncomingServerPassword = "incommingServerPassword*";
+const QString kFieldIncomingServerType = "incommingServerType";
+const QString kFieldIncomingServerHostname = "incommingServerHostname*";
+const QString kFieldIncomingServerPort = "incommingServerPort";
+const QString kFieldIncomingServerSSL = "incommingServerSSL";
+const QString kFieldIncomingServerAuth = "incommingServerAuth";
 const QString kFieldOutgoingServerUsername = "outgoingServerUsername*";
 const QString kFieldOutgoingServerPassword = "outgoingServerPassword*";
 const QString kFieldOutgoingServerType = "outgoingServerType";
@@ -76,7 +76,7 @@ EmailAccountWizard::EmailAccountWizard(QWidget *parent) :
 
     addPage(new Pages::EmailAccountWizardIntroPage());
     addPage(new Pages::EmailAccountWizardAccountPage());
-    addPage(new Pages::EmailAccountWizardIncommingServerPage());
+    addPage(new Pages::EmailAccountWizardIncomingServerPage());
     addPage(new Pages::EmailAccountWizardOutgoingServerPage());
     addPage(new Pages::EmailAccountWizardFinishedPage());
 }
@@ -333,59 +333,59 @@ EmailAccountWizardAccountPage::enumerateServiceProviders(
     return providers;
 }
 
-EmailAccountWizardIncommingServerPage::EmailAccountWizardIncommingServerPage(
+EmailAccountWizardIncomingServerPage::EmailAccountWizardIncomingServerPage(
     QWidget* parent) : QWizardPage(parent)
 {
-    setTitle(tr("Incomming server details"));
+    setTitle(tr("Incoming server details"));
     setSubTitle(tr("Please fill all fields."));
 
     QLabel* usernameLabel = new QLabel(tr("Account username:"));
     Widgets::CustomEditLine* usernameEditLine = new Widgets::CustomEditLine();
     usernameEditLine->setEmptyMessage(tr("Username"));
-    registerField(kFieldIncommingServerUsername, usernameEditLine);
+    registerField(kFieldIncomingServerUsername, usernameEditLine);
 
     QLabel* passwordLabel = new QLabel(tr("Account password:"));
     Widgets::CustomEditLine* passwordEditLine = new Widgets::CustomEditLine();
     passwordEditLine->setEmptyMessage(tr("Password"));
     passwordEditLine->setEchoMode(QLineEdit::Password);
-    registerField(kFieldIncommingServerPassword, passwordEditLine);
+    registerField(kFieldIncomingServerPassword, passwordEditLine);
 
-    QStringList incommingTypes;
-    incommingTypes << "POP3" << "IMAP" << "Maildir";
+    QStringList incomingTypes;
+    incomingTypes << "POP3" << "IMAP" << "Maildir";
 
-    QLabel* incommingTypeLabel = new QLabel(tr("Incomming server type:"));
-    QComboBox* incommingTypeComboBox = new QComboBox();
-    incommingTypeComboBox->insertItems(0, incommingTypes);
-    registerField(kFieldIncommingServerType, incommingTypeComboBox);
+    QLabel* incomingTypeLabel = new QLabel(tr("Incoming server type:"));
+    QComboBox* incomingTypeComboBox = new QComboBox();
+    incomingTypeComboBox->insertItems(0, incomingTypes);
+    registerField(kFieldIncomingServerType, incomingTypeComboBox);
 
-    QLabel* incommingHostnameLabel = new QLabel(tr("Hostname:"));
-    Widgets::CustomEditLine* incommingHostnameEditLine =
+    QLabel* incomingHostnameLabel = new QLabel(tr("Hostname:"));
+    Widgets::CustomEditLine* incomingHostnameEditLine =
         new Widgets::CustomEditLine();
-    incommingHostnameEditLine->setEmptyMessage(tr("Server hostname"));
-    registerField(kFieldIncommingServerHostname, incommingHostnameEditLine);
+    incomingHostnameEditLine->setEmptyMessage(tr("Server hostname"));
+    registerField(kFieldIncomingServerHostname, incomingHostnameEditLine);
 
-    QLabel* incommingPortLabel = new QLabel(tr("Port:"));
-    Widgets::CustomEditLine* incommingPortEditLine =
+    QLabel* incomingPortLabel = new QLabel(tr("Port:"));
+    Widgets::CustomEditLine* incomingPortEditLine =
         new Widgets::CustomEditLine();
-    incommingPortEditLine->setEmptyMessage(tr("Server port"));
-    registerField(kFieldIncommingServerPort, incommingPortEditLine);
+    incomingPortEditLine->setEmptyMessage(tr("Server port"));
+    registerField(kFieldIncomingServerPort, incomingPortEditLine);
 
-    QStringList incommingSSL;
-    incommingSSL << tr("Autodetect") << tr("None") << "STARTTLS" << "SSL/TLS";
+    QStringList incomingSSL;
+    incomingSSL << tr("Autodetect") << tr("None") << "STARTTLS" << "SSL/TLS";
 
-    QLabel* incommingSSLLabel = new QLabel(tr("SSL:"));
-    QComboBox* incommingSSLComboBox = new QComboBox();
-    incommingSSLComboBox->insertItems(0, incommingSSL);
-    registerField(kFieldIncommingServerSSL, incommingSSLComboBox);
+    QLabel* incomingSSLLabel = new QLabel(tr("SSL:"));
+    QComboBox* incomingSSLComboBox = new QComboBox();
+    incomingSSLComboBox->insertItems(0, incomingSSL);
+    registerField(kFieldIncomingServerSSL, incomingSSLComboBox);
 
-    QStringList incommingAuth;
-    incommingAuth << tr("Autodetect") << tr("Normal password")
+    QStringList incomingAuth;
+    incomingAuth << tr("Autodetect") << tr("Normal password")
         << tr("Encrypted password") << "Kerberos / GSSAPI" << "NTLM";
 
-    QLabel* incommingAuthLabel = new QLabel(tr("Authentication:"));
-    QComboBox* incommingAuthComboBox = new QComboBox();
-    incommingAuthComboBox->insertItems(0, incommingAuth);
-    registerField(kFieldIncommingServerAuth, incommingAuthComboBox);
+    QLabel* incomingAuthLabel = new QLabel(tr("Authentication:"));
+    QComboBox* incomingAuthComboBox = new QComboBox();
+    incomingAuthComboBox->insertItems(0, incomingAuth);
+    registerField(kFieldIncomingServerAuth, incomingAuthComboBox);
 
     QGridLayout* layout = new QGridLayout();
     layout->addWidget(usernameLabel, 0, 0);
@@ -393,16 +393,16 @@ EmailAccountWizardIncommingServerPage::EmailAccountWizardIncommingServerPage(
     layout->addWidget(passwordLabel, 1, 0);
     layout->addWidget(passwordEditLine, 1, 1);
     layout->addItem(new QSpacerItem(50, 20), 2, 0, 1, -1);
-    layout->addWidget(incommingTypeLabel, 3, 0);
-    layout->addWidget(incommingTypeComboBox, 3, 1);
-    layout->addWidget(incommingHostnameLabel, 4, 0);
-    layout->addWidget(incommingHostnameEditLine, 4, 1);
-    layout->addWidget(incommingPortLabel, 5, 0);
-    layout->addWidget(incommingPortEditLine, 5, 1);
-    layout->addWidget(incommingSSLLabel, 6, 0);
-    layout->addWidget(incommingSSLComboBox, 6, 1);
-    layout->addWidget(incommingAuthLabel, 7, 0);
-    layout->addWidget(incommingAuthComboBox, 7, 1);
+    layout->addWidget(incomingTypeLabel, 3, 0);
+    layout->addWidget(incomingTypeComboBox, 3, 1);
+    layout->addWidget(incomingHostnameLabel, 4, 0);
+    layout->addWidget(incomingHostnameEditLine, 4, 1);
+    layout->addWidget(incomingPortLabel, 5, 0);
+    layout->addWidget(incomingPortEditLine, 5, 1);
+    layout->addWidget(incomingSSLLabel, 6, 0);
+    layout->addWidget(incomingSSLComboBox, 6, 1);
+    layout->addWidget(incomingAuthLabel, 7, 0);
+    layout->addWidget(incomingAuthComboBox, 7, 1);
     setLayout(layout);
 }
 
