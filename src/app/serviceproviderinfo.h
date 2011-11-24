@@ -46,6 +46,12 @@ public:
     unsigned int port() const;
     void setPort(unsigned int port);
 
+    const QString& displayName() const;
+    void setDisplayName(const QString& displayName);
+
+    const QString& displayShortName() const;
+    void setDisplayShortName(const QString& displayShortName);
+
 private:
     Q_DECLARE_PRIVATE(ServiceProviderInfo)
     QScopedPointer<ServiceProviderInfoPrivate> d_ptr;

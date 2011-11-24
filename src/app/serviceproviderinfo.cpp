@@ -55,10 +55,14 @@ public:
     {
         m_address.swap(d.m_address);
         std::swap(m_port, d.m_port);
+        m_displayName.swap(d.m_displayName);
+        m_displayShortName.swap(d.m_displayShortName);
     }
 
     QString m_address;
     unsigned int m_port;
+    QString m_displayName;
+    QString m_displayShortName;
 };
 
 ServiceProviderInfo::ServiceProviderInfo()
@@ -121,6 +125,31 @@ void ServiceProviderInfo::setPort(unsigned int port)
     Q_D(ServiceProviderInfo);
     d->m_port = port;
 }
+
+const QString& ServiceProviderInfo::displayName() const
+{
+    Q_D(const ServiceProviderInfo);
+    return d->m_displayName;
+}
+
+void ServiceProviderInfo::setDisplayName(const QString& displayName)
+{
+    Q_D(ServiceProviderInfo);
+    d->m_displayName = displayName;
+}
+
+const QString& ServiceProviderInfo::displayShortName() const
+{
+    Q_D(const ServiceProviderInfo);
+    return d->m_displayShortName;
+}
+
+void ServiceProviderInfo::setDisplayShortName(const QString& displayShortName)
+{
+    Q_D(ServiceProviderInfo);
+    d->m_displayShortName = displayShortName;
+}
+
 
 } // namespace Services
 } // namespace Maily
