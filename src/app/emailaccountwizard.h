@@ -83,6 +83,7 @@ private:
         const QString& domainName) const;
 
 private:
+
     Q_DISABLE_COPY(EmailAccountWizardAccountPage)
     Q_DECLARE_PRIVATE(EmailAccountWizardAccountPage)
     QScopedPointer<EmailAccountWizardAccountPagePrivate> d_ptr;

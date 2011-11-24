@@ -43,7 +43,7 @@ using namespace Maily::Widgets::Validators;
 
 const int kPageIdIntro = 0;
 const int kPageIdEmailAccount = 1;
-const int kPageIdEmailIncommingServer = 2;
+const int kPageIdEmailIncomingServer = 2;
 const int kPageIdEmailOutgoingServer = 3;
 const int kPageIdFinished = 4;
 
@@ -99,6 +99,9 @@ EmailAccountWizardIntroPage::EmailAccountWizardIntroPage(QWidget* parent) :
     setLayout(layout);
 }
 
+typedef ForgettableWatcher<QList<ServiceProviderInfo*>*>
+    ForgettableWatcherType;
+
 class EmailAccountWizardAccountPagePrivate
 {
 public:
@@ -109,7 +112,7 @@ public:
     }
 
     mutable bool m_futureStarted;
-    ForgettableWatcher<QList<ServiceProviderInfo*>*>* m_futureWatcher;
+    mutable ForgettableWatcherType* m_futureWatcher;
     QScopedPointer<EmailValidator> m_emailValidator;
 };
 
@@ -166,9 +169,8 @@ void EmailAccountWizardAccountPage::cleanupPage()
 
     bool started = d->m_futureStarted;
     if (started) {
-        //m_data->m_futureWatcher.waitForFinished();
         d->m_futureStarted = false;
-        d->m_futureWatcher->disconnect(this);
+        d->m_futureWatcher = 0;
         stopBusyIndicator();
     }
 }
@@ -179,19 +181,21 @@ int EmailAccountWizardAccountPage::nextId() const
 
     bool started = d->m_futureStarted;
     if (!started)
-        return kPageIdEmailIncommingServer;
+        return kPageIdEmailIncomingServer;
 
     d->m_futureStarted = false; // we will proceed to the next page
 
     Q_ASSERT(d->m_futureWatcher);
     if (!d->m_futureWatcher)
-        return kPageIdEmailIncommingServer;
+        return kPageIdEmailIncomingServer;
 
     bool foundProvider = !d->m_futureWatcher->result()->isEmpty();
-    if (foundProvider)
+    if (foundProvider) {
+        d->m_futureWatcher = 0;
         return kPageIdFinished;
+    }
 
-    return kPageIdEmailIncommingServer;
+    return kPageIdEmailIncomingServer;
 }
 
 bool EmailAccountWizardAccountPage::validatePage()
@@ -211,13 +215,10 @@ bool EmailAccountWizardAccountPage::validatePage()
         this, &EmailAccountWizardAccountPage::enumerateServiceProviders,
             QString("gmail.com"));
 
-    ForgettableWatcher<QList<ServiceProviderInfo*>*>* futureWatcher =
-        new ForgettableWatcher<QList<ServiceProviderInfo*>*>();
-
+    ForgettableWatcherType* futureWatcher = new ForgettableWatcherType();
     connect(futureWatcher, SIGNAL(finished()), this, SLOT(enumerationFinished()));
     futureWatcher->setFuture(future);
 
-    Q_ASSERT(d);
     d->m_futureWatcher = futureWatcher;
     d->m_futureStarted = true;
 
@@ -309,18 +310,25 @@ void EmailAccountWizardAccountPage::enumerationFinished()
 {
     Q_D(EmailAccountWizardAccountPage);
 
-    stopBusyIndicator();
-    enableButtons();
-    next();
+    ForgettableWatcherType* watcher = dynamic_cast<ForgettableWatcherType*>(
+        sender());
+    Q_ASSERT(watcher);
+    if (!watcher)
+        return;
+
+    // Only handle the actual watcher in this way
+    if (d->m_futureStarted && d->m_futureWatcher == watcher) {
+        stopBusyIndicator();
+        enableButtons();
+        next();
+    }
 
     // Delete QFuture result
-    QList<ServiceProviderInfo*>* result = d->m_futureWatcher->result();
-    if (result)
+    QList<ServiceProviderInfo*>* result = watcher->result();
+    if (result) {
         qDeleteAll(*result);
-
-    // ForgettableWatcher will be deleted after return
-    // so make it null.
-    d->m_futureWatcher = 0;
+        delete result;
+    }
 }
 
 QList<ServiceProviderInfo*>*
