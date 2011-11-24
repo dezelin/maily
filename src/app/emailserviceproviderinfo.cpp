@@ -25,14 +25,17 @@ namespace Services
 struct EmailServiceProviderInfoPrivate
 {
     EmailServiceProviderInfoPrivate() :
-        m_serviceType(EmailServiceProviderInfo::SENDMAIL), m_tls(false),
-        m_tlsRequired(false), m_authenticationType(EmailServiceProviderInfo::AuthNone)
+        m_tls(false), m_tlsRequired(false),
+        m_serviceType(EmailServiceProviderInfo::MAILDIR),
+        m_authType(EmailServiceProviderInfo::AuthNone)
     {
     }
 
-    EmailServiceProviderInfoPrivate(const EmailServiceProviderInfoPrivate& d)
+    EmailServiceProviderInfoPrivate(const EmailServiceProviderInfoPrivate& d) :
+        m_tls(d.m_tls), m_tlsRequired(d.m_tlsRequired), m_rootPath(d.m_rootPath),
+        m_sendmailPath(d.m_sendmailPath),  m_serviceType(d.m_serviceType),
+        m_authType(d.m_authType)
     {
-        *this = d;
     }
 
     EmailServiceProviderInfoPrivate&
@@ -53,20 +56,20 @@ struct EmailServiceProviderInfoPrivate
 
     void swap(EmailServiceProviderInfoPrivate& d)
     {
-        std::swap(m_serviceType, d.m_serviceType);
         std::swap(m_tls, d.m_tls);
         std::swap(m_tlsRequired, d.m_tlsRequired);
         m_rootPath.swap(d.m_rootPath);
         m_sendmailPath.swap(d.m_sendmailPath);
-        std::swap(m_authenticationType, d.m_authenticationType);
+        std::swap(m_serviceType, d.m_serviceType);
+        std::swap(m_authType, d.m_authType);
     }
 
-    EmailServiceProviderInfo::ServiceType m_serviceType;
     bool m_tls;
     bool m_tlsRequired;
     QString m_rootPath;
     QString m_sendmailPath;
-    int m_authenticationType;
+    EmailServiceProviderInfo::ServiceTypes m_serviceType;
+    EmailServiceProviderInfo::AuthenticationTypes m_authType;
 };
 
 EmailServiceProviderInfo::EmailServiceProviderInfo() :
@@ -82,7 +85,10 @@ EmailServiceProviderInfo::EmailServiceProviderInfo(
     const EmailServiceProviderInfo &providerInfo) :
         ServiceProviderInfo(providerInfo)
 {
-    *this = providerInfo;
+    Q_ASSERT(providerInfo.d_ptr);
+    QScopedPointer<EmailServiceProviderInfoPrivate> tmp(
+        new EmailServiceProviderInfoPrivate(*providerInfo.d_ptr));
+    d_ptr.swap(tmp);
 }
 
 EmailServiceProviderInfo& EmailServiceProviderInfo::operator =(
@@ -107,16 +113,16 @@ void EmailServiceProviderInfo::swap(EmailServiceProviderInfo& providerInfo)
     d_ptr.swap(providerInfo.d_ptr);
 }
 
-EmailServiceProviderInfo::ServiceType EmailServiceProviderInfo::serviceType() const
+EmailServiceProviderInfo::ServiceTypes EmailServiceProviderInfo::serviceType() const
 {
     Q_D(const EmailServiceProviderInfo);
     return d->m_serviceType;
 }
 
-void EmailServiceProviderInfo::setServiceType(ServiceType serviceType)
+void EmailServiceProviderInfo::setServiceType(ServiceTypes type)
 {
     Q_D(EmailServiceProviderInfo);
-    d->m_serviceType = serviceType;
+    d->m_serviceType = type;
 }
 
 bool EmailServiceProviderInfo::tls() const
@@ -167,64 +173,77 @@ void EmailServiceProviderInfo::setSendmailBinPath(const QString& path)
     d->m_sendmailPath = path;
 }
 
+EmailServiceProviderInfo::AuthenticationTypes
+EmailServiceProviderInfo::authenticationType() const
+{
+    Q_D(const EmailServiceProviderInfo);
+    return d->m_authType;
+}
+
+void EmailServiceProviderInfo::setAuthenticationType(AuthenticationTypes type)
+{
+    Q_D(EmailServiceProviderInfo);
+    d->m_authType = type;
+}
+
 bool EmailServiceProviderInfo::authenication() const
 {
     Q_D(const EmailServiceProviderInfo);
-    return d->m_authenticationType != AuthNone;
+    return d->m_authType != AuthNone;
 }
 
 bool EmailServiceProviderInfo::apop() const
 {
     Q_D(const EmailServiceProviderInfo);
-    return d->m_authenticationType & AuthAPOP;
+    return d->m_authType & AuthAPOP;
 }
 
 bool EmailServiceProviderInfo::apopFallback() const
 {
     Q_D(const EmailServiceProviderInfo);
-    return (d->m_authenticationType & ~AuthAPOP) != AuthAPOP;
+    return (d->m_authType & ~AuthAPOP) != AuthAPOP;
 }
 
 bool EmailServiceProviderInfo::cleartext() const
 {
     Q_D(const EmailServiceProviderInfo);
-    return d->m_authenticationType & AuthCleartext;
+    return d->m_authType & AuthCleartext;
 }
 
 bool EmailServiceProviderInfo::cleartextFallback() const
 {
     Q_D(const EmailServiceProviderInfo);
-    return (d->m_authenticationType & ~AuthCleartext) != AuthCleartext;
+    return (d->m_authType & ~AuthCleartext) != AuthCleartext;
 }
 
 bool EmailServiceProviderInfo::plain() const
 {
     Q_D(const EmailServiceProviderInfo);
-    return d->m_authenticationType & AuthPlain;
+    return d->m_authType & AuthPlain;
 }
 
 bool EmailServiceProviderInfo::plainFallback() const
 {
     Q_D(const EmailServiceProviderInfo);
-    return (d->m_authenticationType & ~AuthPlain) != AuthPlain;
+    return (d->m_authType & ~AuthPlain) != AuthPlain;
 }
 
 bool EmailServiceProviderInfo::sasl() const
 {
     Q_D(const EmailServiceProviderInfo);
-    return d->m_authenticationType & AuthSASL;
+    return d->m_authType & AuthSASL;
 }
 
 bool EmailServiceProviderInfo::saslFallback() const
 {
     Q_D(const EmailServiceProviderInfo);
-    return (d->m_authenticationType & ~AuthSASL) != AuthSASL;
+    return (d->m_authType & ~AuthSASL) != AuthSASL;
 }
 
 bool EmailServiceProviderInfo::smtpAuthentication() const
 {
     Q_D(const EmailServiceProviderInfo);
-    return d->m_serviceType == SMTP && d->m_authenticationType != AuthNone;
+    return d->m_serviceType == SMTP && d->m_authType != AuthNone;
 }
 
 

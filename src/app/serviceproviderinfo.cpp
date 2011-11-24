@@ -30,9 +30,10 @@ public:
     {
     }
 
-    ServiceProviderInfoPrivate(const ServiceProviderInfoPrivate& d)
+    ServiceProviderInfoPrivate(const ServiceProviderInfoPrivate& d) :
+        m_address(d.m_address), m_port(d.m_port), m_displayName(d.m_displayName),
+        m_displayShortName(d.m_displayShortName)
     {
-        *this = d;
     }
 
     ServiceProviderInfoPrivate& operator =(const ServiceProviderInfoPrivate& d)
@@ -77,7 +78,10 @@ ServiceProviderInfo::~ServiceProviderInfo()
 ServiceProviderInfo::ServiceProviderInfo(const ServiceProviderInfo& providerInfo)
 : LoginInfo(providerInfo)
 {
-    *this = providerInfo;
+    Q_ASSERT(providerInfo.d_ptr);
+    QScopedPointer<ServiceProviderInfoPrivate> tmp(
+        new ServiceProviderInfoPrivate(*providerInfo.d_ptr));
+    d_ptr.swap(tmp);
 }
 
 ServiceProviderInfo&

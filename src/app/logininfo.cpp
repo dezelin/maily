@@ -34,9 +34,9 @@ public:
     {
     }
 
-    LoginInfoPrivate(const LoginInfoPrivate& d)
+    LoginInfoPrivate(const LoginInfoPrivate& d) :
+        m_username(d.m_username), m_password(d.m_password)
     {
-        *this = d;
     }
 
     LoginInfoPrivate& operator= (const LoginInfoPrivate& d)
@@ -80,12 +80,14 @@ LoginInfo::~LoginInfo()
 
 LoginInfo::LoginInfo(const LoginInfo& loginInfo)
 {
-    *this = loginInfo;
+    Q_ASSERT(loginInfo.d_ptr);
+    QScopedPointer<LoginInfoPrivate> tmp(new LoginInfoPrivate(*loginInfo.d_ptr));
+    d_ptr.swap(tmp);
 }
 
 LoginInfo& LoginInfo::operator= (const LoginInfo& loginInfo)
 {
-    if (this == & loginInfo)
+    if (this == &loginInfo)
         return *this;
 
     LoginInfo tmp(loginInfo);

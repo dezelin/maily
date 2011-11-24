@@ -45,10 +45,10 @@ public:
 
     void swap(EmailServiceProviderInfo& providerInfo);
 
-    enum ServiceType { POP3, POP3S, IMAP, IMAPS, SMTP, SMTPS, MAILDIR, SENDMAIL };
+    enum ServiceTypes { POP3, POP3S, IMAP, IMAPS, SMTP, SMTPS, MAILDIR, SENDMAIL };
 
-    ServiceType serviceType() const;
-    void setServiceType(ServiceType serviceType);
+    ServiceTypes serviceType() const;
+    void setServiceType(ServiceTypes type);
 
     bool tls() const;
     void setTls(bool tls);
@@ -62,11 +62,11 @@ public:
     const QString& sendmailBinPath() const;
     void setSendmailBinPath(const QString& path);
 
-    enum AuthenticationType { AuthNone = 0, AuthCleartext = 1, AuthPlain = 2,
+    enum AuthenticationTypes { AuthNone = 0, AuthCleartext = 1, AuthPlain = 2,
         AuthSASL = 4, AuthAPOP = 8};
 
-    AuthenticationType authenticationType() const;
-    void setAuthenticationType(int authenticationType);
+    AuthenticationTypes authenticationType() const;
+    void setAuthenticationType(AuthenticationTypes type);
 
     bool authenication() const;
     bool apop() const;
@@ -83,6 +83,14 @@ private:
     Q_DECLARE_PRIVATE(EmailServiceProviderInfo)
     QScopedPointer<EmailServiceProviderInfoPrivate> d_ptr;
 };
+
+inline EmailServiceProviderInfo::AuthenticationTypes operator| (
+    EmailServiceProviderInfo::AuthenticationTypes a,
+    EmailServiceProviderInfo::AuthenticationTypes b)
+{
+    return static_cast<EmailServiceProviderInfo::AuthenticationTypes>(
+        static_cast<int>(a) | static_cast<int>(b));
+}
 
 } // namespace Services
 } // namespace Maily
