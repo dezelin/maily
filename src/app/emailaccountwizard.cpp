@@ -328,7 +328,8 @@ EmailAccountWizardAccountPage::enumerateServiceProviders(
     if (!enumerator)
         return QSharedPointer<QList<ServiceProviderInfo> >();
 
-    QSharedPointer<QList<ServiceProviderInfo> > providers(enumerator->enumerateAccounts());
+    QSharedPointer<QList<ServiceProviderInfo> > providers(
+        enumerator->enumerateAccounts());
     return providers;
 }
 
