@@ -32,7 +32,7 @@ class AccountEnumerator : public QObject
 public:
     explicit AccountEnumerator(QObject* parent = 0);
 
-    virtual QList<ServiceProviderInfo>* enumerateAccounts() = 0;
+    virtual QList<ServiceProviderInfo*>* enumerateAccounts() = 0;
 };
 
 } // namespace Services

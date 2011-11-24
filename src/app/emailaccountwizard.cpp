@@ -109,7 +109,7 @@ public:
     }
 
     mutable bool m_futureStarted;
-    ForgettableWatcher<QSharedPointer<QList<ServiceProviderInfo> > >* m_futureWatcher;
+    ForgettableWatcher<QList<ServiceProviderInfo*>*>* m_futureWatcher;
     QScopedPointer<EmailValidator> m_emailValidator;
 };
 
@@ -207,12 +207,12 @@ bool EmailAccountWizardAccountPage::validatePage()
     startBusyIndicator();
     disableButtons();
 
-    QFuture<QSharedPointer<QList<ServiceProviderInfo> > > future = QtConcurrent::run(
+    QFuture<QList<ServiceProviderInfo*>*> future = QtConcurrent::run(
         this, &EmailAccountWizardAccountPage::enumerateServiceProviders,
             QString("gmail.com"));
 
-    ForgettableWatcher<QSharedPointer<QList<ServiceProviderInfo> > >* futureWatcher =
-        new ForgettableWatcher<QSharedPointer<QList<ServiceProviderInfo> > >();
+    ForgettableWatcher<QList<ServiceProviderInfo*>*>* futureWatcher =
+        new ForgettableWatcher<QList<ServiceProviderInfo*>*>();
 
     connect(futureWatcher, SIGNAL(finished()), this, SLOT(enumerationFinished()));
     futureWatcher->setFuture(future);
@@ -313,12 +313,17 @@ void EmailAccountWizardAccountPage::enumerationFinished()
     enableButtons();
     next();
 
+    // Delete QFuture result
+    QList<ServiceProviderInfo*>* result = d->m_futureWatcher->result();
+    if (result)
+        qDeleteAll(*result);
+
     // ForgettableWatcher will be deleted after return
     // so make it null.
     d->m_futureWatcher = 0;
 }
 
-QSharedPointer<QList<ServiceProviderInfo> >
+QList<ServiceProviderInfo*>*
 EmailAccountWizardAccountPage::enumerateServiceProviders(
     const QString& domainName) const
 {
@@ -326,11 +331,9 @@ EmailAccountWizardAccountPage::enumerateServiceProviders(
         AccountManagerFactory::createMozillaAccountEnumerator(domainName));
     Q_ASSERT(enumerator);
     if (!enumerator)
-        return QSharedPointer<QList<ServiceProviderInfo> >();
+        return 0;
 
-    QSharedPointer<QList<ServiceProviderInfo> > providers(
-        enumerator->enumerateAccounts());
-    return providers;
+    return enumerator->enumerateAccounts();
 }
 
 EmailAccountWizardIncomingServerPage::EmailAccountWizardIncomingServerPage(

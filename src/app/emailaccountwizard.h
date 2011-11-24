@@ -79,7 +79,7 @@ private:
     void startBusyIndicator();
     void stopBusyIndicator();
 
-    QSharedPointer<QList<ServiceProviderInfo> > enumerateServiceProviders(
+    QList<ServiceProviderInfo*>* enumerateServiceProviders(
         const QString& domainName) const;
 
 private:

@@ -38,7 +38,7 @@ public:
         const QString& domain = "");
     virtual ~MozillaAccountEnumerator();
 
-    virtual QList<ServiceProviderInfo>* enumerateAccounts();
+    virtual QList<ServiceProviderInfo*>* enumerateAccounts();
 
 private:
     Q_DISABLE_COPY(MozillaAccountEnumerator)
