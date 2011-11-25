@@ -66,6 +66,7 @@ private:
     void next();
     void startBusyIndicator();
     void stopBusyIndicator();
+    void startFutureWatcher();
 
     QList<ServiceProviderInfo*>* enumerateServiceProviders(
         const QString& domainName) const;

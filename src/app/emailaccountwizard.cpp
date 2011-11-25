@@ -195,19 +195,7 @@ bool EmailAccountWizardAccountPage::validatePage()
     if (started && finished)
         return true;
 
-    startBusyIndicator();
-    disableButtons();
-
-    QFuture<QList<ServiceProviderInfo*>*> future = QtConcurrent::run(
-        this, &EmailAccountWizardAccountPage::enumerateServiceProviders,
-            QString("gmail.com"));
-
-    ForgettableWatcherType* futureWatcher = new ForgettableWatcherType();
-    connect(futureWatcher, SIGNAL(finished()), this, SLOT(enumerationFinished()));
-    futureWatcher->setFuture(future);
-
-    d->m_futureWatcher = futureWatcher;
-    d->m_futureStarted = true;
+    startFutureWatcher();
 
     // FutureWatcher will call enumerationFinished() when finished
     // so return here false and stop proceeding to the next page temporarely.
@@ -291,6 +279,25 @@ void EmailAccountWizardAccountPage::stopBusyIndicator()
         delete *it;
 
     delete busyLayout;
+}
+
+void EmailAccountWizardAccountPage::startFutureWatcher()
+{
+    Q_D(EmailAccountWizardAccountPage);
+
+    startBusyIndicator();
+    disableButtons();
+
+    QFuture<QList<ServiceProviderInfo*>*> future = QtConcurrent::run(
+        this, &EmailAccountWizardAccountPage::enumerateServiceProviders,
+            QString("gmail.com"));
+
+    ForgettableWatcherType* futureWatcher = new ForgettableWatcherType();
+    connect(futureWatcher, SIGNAL(finished()), this, SLOT(enumerationFinished()));
+    futureWatcher->setFuture(future);
+
+    d->m_futureWatcher = futureWatcher;
+    d->m_futureStarted = true;
 }
 
 void EmailAccountWizardAccountPage::enumerationFinished()
