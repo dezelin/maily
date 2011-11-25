@@ -507,5 +507,5 @@ EmailAccountWizardFinishedPage::EmailAccountWizardFinishedPage(QWidget* parent) 
 
 } // namespace Pages
 
-} // namespace wizards
-} // namespace maily
+} // namespace Wizards
+} // namespace Maily
