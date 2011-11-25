@@ -33,18 +33,6 @@ namespace Wizards
 
 using namespace Services;
 
-class EmailAccountWizard : public QWizard
-{
-    Q_OBJECT
-
-public:
-    explicit EmailAccountWizard(QWidget *parent = 0);
-
-signals:
-
-public slots:
-};
-
 namespace Pages
 {
 
@@ -114,6 +102,32 @@ public:
 };
 
 } // namespace Pages
+
+
+class EmailAccountWizardPrivate;
+class EmailAccountWizard : public QWizard
+{
+    Q_OBJECT
+
+public:
+    explicit EmailAccountWizard(QWidget *parent = 0);
+    virtual ~EmailAccountWizard();
+
+signals:
+
+public slots:
+
+private:
+    Q_DISABLE_COPY(EmailAccountWizard)
+    Q_DECLARE_PRIVATE(EmailAccountWizard)
+    QScopedPointer<EmailAccountWizardPrivate> d_ptr;
+
+    QList<ServiceProviderInfo*>* getResult() const;
+    void adoptResult(QList<ServiceProviderInfo*>* result);
+
+    friend class Pages::EmailAccountWizardAccountPage;
+};
+
 
 } // namespace Wizards
 } // namespace Maily

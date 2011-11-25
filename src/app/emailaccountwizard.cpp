@@ -69,19 +69,6 @@ const QString kFieldOutgoingServerSSL = "outgoingServerSSL";
 const QString kFieldOutgoingServerAuth = "outgoingServerAuth";
 
 
-EmailAccountWizard::EmailAccountWizard(QWidget *parent) :
-    QWizard(parent)
-{
-    setWindowTitle(tr("Add new email account"));
-
-    addPage(new Pages::EmailAccountWizardIntroPage());
-    addPage(new Pages::EmailAccountWizardAccountPage());
-    addPage(new Pages::EmailAccountWizardIncomingServerPage());
-    addPage(new Pages::EmailAccountWizardOutgoingServerPage());
-    addPage(new Pages::EmailAccountWizardFinishedPage());
-}
-
-
 namespace Pages
 {
 
@@ -316,19 +303,26 @@ void EmailAccountWizardAccountPage::enumerationFinished()
     if (!watcher)
         return;
 
-    // Only handle the actual watcher in this way
-    if (d->m_futureStarted && d->m_futureWatcher == watcher) {
-        stopBusyIndicator();
-        enableButtons();
-        next();
+    QList<ServiceProviderInfo*>* result = watcher->result();
+    if (!d->m_futureStarted || d->m_futureWatcher != watcher) {
+        // Delete QFuture results from the forgotten watchers
+        if (result) {
+            qDeleteAll(*result);
+            delete result;
+        }
+
+        return;
     }
 
-    // Delete QFuture result
-    QList<ServiceProviderInfo*>* result = watcher->result();
-    if (result) {
-        qDeleteAll(*result);
-        delete result;
-    }
+    // Get the result
+    EmailAccountWizard* w = dynamic_cast<EmailAccountWizard*>(wizard());
+    Q_ASSERT(w);
+    if (w)
+        w->adoptResult(result);
+
+    stopBusyIndicator();
+    enableButtons();
+    next();
 }
 
 QList<ServiceProviderInfo*>*
@@ -506,6 +500,60 @@ EmailAccountWizardFinishedPage::EmailAccountWizardFinishedPage(QWidget* parent) 
 }
 
 } // namespace Pages
+
+
+class EmailAccountWizardPrivate
+{
+public:
+    EmailAccountWizardPrivate(QList<ServiceProviderInfo*>* result = 0) :
+        m_result(result)
+    {
+    }
+
+    ~EmailAccountWizardPrivate()
+    {
+        if (m_result)
+            qDeleteAll(*m_result);
+    }
+
+    void swap(EmailAccountWizardPrivate& wizardPrivate)
+    {
+        m_result.swap(wizardPrivate.m_result);
+    }
+
+    QScopedPointer<QList<ServiceProviderInfo*> > m_result;
+};
+
+EmailAccountWizard::EmailAccountWizard(QWidget *parent) :
+QWizard(parent), d_ptr(new EmailAccountWizardPrivate())
+{
+    setWindowTitle(tr("Add new email account"));
+
+    addPage(new Pages::EmailAccountWizardIntroPage());
+    addPage(new Pages::EmailAccountWizardAccountPage());
+    addPage(new Pages::EmailAccountWizardIncomingServerPage());
+    addPage(new Pages::EmailAccountWizardOutgoingServerPage());
+    addPage(new Pages::EmailAccountWizardFinishedPage());
+}
+
+EmailAccountWizard::~EmailAccountWizard()
+{
+}
+
+QList<ServiceProviderInfo*>* EmailAccountWizard::getResult() const
+{
+    Q_D(const EmailAccountWizard);
+    return d->m_result.data();
+}
+
+void EmailAccountWizard::adoptResult(QList<ServiceProviderInfo*>* result)
+{
+    Q_ASSERT(result);
+    QScopedPointer<EmailAccountWizardPrivate> tmp(
+        new EmailAccountWizardPrivate(result));
+    d_ptr.swap(tmp);
+}
+
 
 } // namespace Wizards
 } // namespace Maily
