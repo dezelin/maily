@@ -41,12 +41,6 @@ namespace Wizards
 using namespace Maily::Services::Tasks;
 using namespace Maily::Widgets::Validators;
 
-const int kPageIdIntro = 0;
-const int kPageIdEmailAccount = 1;
-const int kPageIdEmailIncomingServer = 2;
-const int kPageIdEmailOutgoingServer = 3;
-const int kPageIdFinished = 4;
-
 const QString kBusyLayoutObjectName = "busyLayoutObject";
 
 const QString kFieldFullName = "fullName";
@@ -168,21 +162,21 @@ int EmailAccountWizardAccountPage::nextId() const
 
     bool started = d->m_futureStarted;
     if (!started)
-        return kPageIdEmailIncomingServer;
+        return EmailAccountWizard::PageEmailIncomingServer;
 
     d->m_futureStarted = false; // we will proceed to the next page
 
     Q_ASSERT(d->m_futureWatcher);
     if (!d->m_futureWatcher)
-        return kPageIdEmailIncomingServer;
+        return EmailAccountWizard::PageEmailIncomingServer;
 
     bool foundProvider = !d->m_futureWatcher->result()->isEmpty();
     if (foundProvider) {
         d->m_futureWatcher = 0;
-        return kPageIdFinished;
+        return EmailAccountWizard::PageFinished;
     }
 
-    return kPageIdEmailIncomingServer;
+    return EmailAccountWizard::PageEmailIncomingServer;
 }
 
 bool EmailAccountWizardAccountPage::validatePage()
@@ -551,11 +545,16 @@ QWizard(parent), d_ptr(new EmailAccountWizardPrivate())
 {
     setWindowTitle(tr("Add new email account"));
 
-    addPage(new Pages::EmailAccountWizardIntroPage());
-    addPage(new Pages::EmailAccountWizardAccountPage());
-    addPage(new Pages::EmailAccountWizardIncomingServerPage());
-    addPage(new Pages::EmailAccountWizardOutgoingServerPage());
-    addPage(new Pages::EmailAccountWizardFinishedPage());
+    setPage(EmailAccountWizard::PageIntro,
+        new Pages::EmailAccountWizardIntroPage());
+    setPage(EmailAccountWizard::PageEmailAccount,
+        new Pages::EmailAccountWizardAccountPage());
+    setPage(EmailAccountWizard::PageEmailIncomingServer,
+        new Pages::EmailAccountWizardIncomingServerPage());
+    setPage(EmailAccountWizard::PageEmailOutgoingServer,
+        new Pages::EmailAccountWizardOutgoingServerPage());
+    setPage(EmailAccountWizard::PageFinished,
+        new Pages::EmailAccountWizardFinishedPage());
 }
 
 EmailAccountWizard::~EmailAccountWizard()

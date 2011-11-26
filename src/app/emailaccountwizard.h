@@ -109,10 +109,14 @@ class EmailAccountWizardPrivate;
 class EmailAccountWizard : public QWizard
 {
     Q_OBJECT
+    Q_ENUMS(Pages)
 
 public:
     explicit EmailAccountWizard(QWidget *parent = 0);
     virtual ~EmailAccountWizard();
+
+    enum Pages { PageIntro, PageEmailAccount, PageEmailIncomingServer,
+        PageEmailOutgoingServer, PageFinished };
 
 signals:
 
