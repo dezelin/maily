@@ -295,7 +295,7 @@ void EmailAccountWizardAccountPage::startFutureWatcher()
     if (index < 1)
         return;
 
-    QString domain = emailAddress.mid(index);
+    QString domain = emailAddress.mid(index + 1);
     Q_ASSERT(!domain.isEmpty());
     if (domain.isEmpty())
         return;
