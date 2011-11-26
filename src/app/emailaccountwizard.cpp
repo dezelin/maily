@@ -285,12 +285,27 @@ void EmailAccountWizardAccountPage::startFutureWatcher()
 {
     Q_D(EmailAccountWizardAccountPage);
 
+    QString emailAddress = field(kFieldEmailAddress).toString();
+    Q_ASSERT(!emailAddress.isEmpty());
+    if (emailAddress.isEmpty())
+        return;
+
+    int index = emailAddress.indexOf('@');
+    Q_ASSERT(index > 0);
+    if (index < 1)
+        return;
+
+    QString domain = emailAddress.mid(index);
+    Q_ASSERT(!domain.isEmpty());
+    if (domain.isEmpty())
+        return;
+
     startBusyIndicator();
     disableButtons();
 
     QFuture<QList<ServiceProviderInfo*>*> future = QtConcurrent::run(
         this, &EmailAccountWizardAccountPage::enumerateServiceProviders,
-            QString("gmail.com"));
+            QString(domain));
 
     ForgettableWatcherType* futureWatcher = new ForgettableWatcherType();
     connect(futureWatcher, SIGNAL(finished()), this, SLOT(enumerationFinished()));
