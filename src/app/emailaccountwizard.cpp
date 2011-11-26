@@ -170,7 +170,9 @@ int EmailAccountWizardAccountPage::nextId() const
     if (!d->m_futureWatcher)
         return EmailAccountWizard::PageEmailIncomingServer;
 
-    bool foundProvider = !d->m_futureWatcher->result()->isEmpty();
+    QList<ServiceProviderInfo*>* result = d->m_futureWatcher->result();
+    bool foundProvider = (result) ? !d->m_futureWatcher->result()->isEmpty()
+        : false;
     if (foundProvider) {
         d->m_futureWatcher = 0;
         return EmailAccountWizard::PageFinished;
@@ -569,12 +571,16 @@ QList<ServiceProviderInfo*>* EmailAccountWizard::getResult() const
 
 void EmailAccountWizard::adoptResult(QList<ServiceProviderInfo*>* result)
 {
-    Q_ASSERT(result);
+    //Q_ASSERT(result);
     QScopedPointer<EmailAccountWizardPrivate> tmp(
         new EmailAccountWizardPrivate(result));
     d_ptr.swap(tmp);
 }
 
+void EmailAccountWizard::done(int result)
+{
+    QWizard::done(result);
+}
 
 } // namespace Wizards
 } // namespace Maily

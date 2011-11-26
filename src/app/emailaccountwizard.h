@@ -122,6 +122,9 @@ signals:
 
 public slots:
 
+protected:
+    virtual void done(int result);
+
 private:
     Q_DISABLE_COPY(EmailAccountWizard)
     Q_DECLARE_PRIVATE(EmailAccountWizard)
