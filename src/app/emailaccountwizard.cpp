@@ -49,21 +49,21 @@ const int kPageIdFinished = 4;
 
 const QString kBusyLayoutObjectName = "busyLayoutObject";
 
-const QString kFieldFullName = "fullName*";
-const QString kFieldEmailAddress = "emailAddress*";
+const QString kFieldFullName = "fullName";
+const QString kFieldEmailAddress = "emailAddress";
 const QString kFieldPassword = "password";
 const QString kFieldSavePassword = "savePassword";
-const QString kFieldIncomingServerUsername = "incommingServerUsername*";
-const QString kFieldIncomingServerPassword = "incommingServerPassword*";
+const QString kFieldIncomingServerUsername = "incommingServerUsername";
+const QString kFieldIncomingServerPassword = "incommingServerPassword";
 const QString kFieldIncomingServerType = "incommingServerType";
-const QString kFieldIncomingServerHostname = "incommingServerHostname*";
+const QString kFieldIncomingServerHostname = "incommingServerHostname";
 const QString kFieldIncomingServerPort = "incommingServerPort";
 const QString kFieldIncomingServerSSL = "incommingServerSSL";
 const QString kFieldIncomingServerAuth = "incommingServerAuth";
-const QString kFieldOutgoingServerUsername = "outgoingServerUsername*";
-const QString kFieldOutgoingServerPassword = "outgoingServerPassword*";
+const QString kFieldOutgoingServerUsername = "outgoingServerUsername";
+const QString kFieldOutgoingServerPassword = "outgoingServerPassword";
 const QString kFieldOutgoingServerType = "outgoingServerType";
-const QString kFieldOutgoingServerHostname = "outgoingServerHostname*";
+const QString kFieldOutgoingServerHostname = "outgoingServerHostname";
 const QString kFieldOutgoingServerPort = "outgoingServerPort";
 const QString kFieldOutgoingServerSSL = "outgoingServerSSL";
 const QString kFieldOutgoingServerAuth = "outgoingServerAuth";
@@ -116,14 +116,14 @@ EmailAccountWizardAccountPage::EmailAccountWizardAccountPage(QWidget* parent) :
     Widgets::CustomEditLine* userFullNameEditLine =
         new Widgets::CustomEditLine();
     userFullNameEditLine->setEmptyMessage(tr("Full name"));
-    registerField(kFieldFullName, userFullNameEditLine);
+    registerField(kFieldFullName + "*", userFullNameEditLine);
 
     QLabel* emailAddressLabel = new QLabel(tr("Email address:"));
     Widgets::CustomEditLine* emailAddressEditLine =
         new Widgets::CustomEditLine();
     emailAddressEditLine->setEmptyMessage(tr("Email address"));
     emailAddressEditLine->setValidator(d->m_emailValidator.data());
-    registerField(kFieldEmailAddress, emailAddressEditLine);
+    registerField(kFieldEmailAddress + "*", emailAddressEditLine);
 
     QLabel* passwordLabel = new QLabel(tr("Account password:"));
     Widgets::CustomEditLine* passwordEditLine = new Widgets::CustomEditLine();
@@ -369,13 +369,13 @@ EmailAccountWizardIncomingServerPage::EmailAccountWizardIncomingServerPage(
     QLabel* usernameLabel = new QLabel(tr("Account username:"));
     Widgets::CustomEditLine* usernameEditLine = new Widgets::CustomEditLine();
     usernameEditLine->setEmptyMessage(tr("Username"));
-    registerField(kFieldIncomingServerUsername, usernameEditLine);
+    registerField(kFieldIncomingServerUsername + "*", usernameEditLine);
 
     QLabel* passwordLabel = new QLabel(tr("Account password:"));
     Widgets::CustomEditLine* passwordEditLine = new Widgets::CustomEditLine();
     passwordEditLine->setEmptyMessage(tr("Password"));
     passwordEditLine->setEchoMode(QLineEdit::Password);
-    registerField(kFieldIncomingServerPassword, passwordEditLine);
+    registerField(kFieldIncomingServerPassword + "*", passwordEditLine);
 
     QStringList incomingTypes;
     incomingTypes << "POP3" << "IMAP" << "Maildir";
@@ -389,7 +389,7 @@ EmailAccountWizardIncomingServerPage::EmailAccountWizardIncomingServerPage(
     Widgets::CustomEditLine* incomingHostnameEditLine =
         new Widgets::CustomEditLine();
     incomingHostnameEditLine->setEmptyMessage(tr("Server hostname"));
-    registerField(kFieldIncomingServerHostname, incomingHostnameEditLine);
+    registerField(kFieldIncomingServerHostname + "*", incomingHostnameEditLine);
 
     QLabel* incomingPortLabel = new QLabel(tr("Port:"));
     Widgets::CustomEditLine* incomingPortEditLine =
@@ -442,13 +442,13 @@ EmailAccountWizardOutgoingServerPage::EmailAccountWizardOutgoingServerPage(
     QLabel* usernameLabel = new QLabel(tr("Account username:"));
     Widgets::CustomEditLine* usernameEditLine = new Widgets::CustomEditLine();
     usernameEditLine->setEmptyMessage(tr("Username"));
-    registerField(kFieldOutgoingServerUsername, usernameEditLine);
+    registerField(kFieldOutgoingServerUsername + "*", usernameEditLine);
 
     QLabel* passwordLabel = new QLabel(tr("Account password:"));
     Widgets::CustomEditLine* passwordEditLine = new Widgets::CustomEditLine();
     passwordEditLine->setEmptyMessage(tr("Password"));
     passwordEditLine->setEchoMode(QLineEdit::Password);
-    registerField(kFieldOutgoingServerPassword, passwordEditLine);
+    registerField(kFieldOutgoingServerPassword + "*", passwordEditLine);
 
     QStringList outgoingTypes;
     outgoingTypes << "SMTP" << "Sendmail";
@@ -462,7 +462,7 @@ EmailAccountWizardOutgoingServerPage::EmailAccountWizardOutgoingServerPage(
     Widgets::CustomEditLine* outgoingHostnameEditLine =
         new Widgets::CustomEditLine();
     outgoingHostnameEditLine->setEmptyMessage(tr("Server hostname"));
-    registerField(kFieldOutgoingServerHostname, outgoingHostnameEditLine);
+    registerField(kFieldOutgoingServerHostname + "*", outgoingHostnameEditLine);
 
     QLabel* outgoingPortLabel = new QLabel(tr("Port:"));
     Widgets::CustomEditLine* outgoingPortEditLine =
