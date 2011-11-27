@@ -109,7 +109,7 @@ QList<ServiceProviderInfo*>* MozillaAccountEnumerator::enumerateAccounts()
     QDomDocument dom;
     dom.setContent(reply.data());
 
-    qLog() << dom.toString();
+    qLog() << "Service description text:\n" << dom.toString();
 
     QDomElement root = dom.firstChildElement(kElementClientConfig);
     if (!root.isNull()) {
