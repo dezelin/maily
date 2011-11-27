@@ -19,6 +19,7 @@
 #define TOOLS_H
 
 #include <QDebug>
+#include <QFileInfo>
 #include <QString>
 
 namespace Maily
@@ -28,7 +29,8 @@ namespace Services
 namespace Tools
 {
 
-#define qLog() (qDebug() << QString("%1:%2 ").arg(__FILE__, __LINE__))
+#define qLog() (qDebug() << QString("%1:%2: ").arg( \
+    QFileInfo(__FILE__).fileName()).arg(__LINE__))
 
 void Sleep(unsigned int msec);
 
