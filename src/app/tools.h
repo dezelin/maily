@@ -32,6 +32,8 @@ namespace Tools
 #define qLog() (qDebug() << QString("%1:%2: ").arg( \
     QFileInfo(__FILE__).fileName()).arg(__LINE__))
 
+#define qFatalAssert(x) { if (!(x)) { qLog() << #x; exit(-1); }}
+
 void Sleep(unsigned int msec);
 
 } // namespace Tools
