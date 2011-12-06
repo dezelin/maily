@@ -216,6 +216,30 @@ bool EmailServiceProviderInfo::cleartextFallback() const
     return (d->m_authType & ~AuthCleartext) != AuthCleartext;
 }
 
+bool EmailServiceProviderInfo::kerberos() const
+{
+    Q_D(const EmailServiceProviderInfo);
+    return d->m_authType & AuthKerberos;
+}
+
+bool EmailServiceProviderInfo::kerberosFallback() const
+{
+    Q_D(const EmailServiceProviderInfo);
+    return (d->m_authType & ~AuthKerberos) != AuthKerberos;
+}
+
+bool EmailServiceProviderInfo::ntlm() const
+{
+    Q_D(const EmailServiceProviderInfo);
+    return d->m_authType & AuthNTLM;
+}
+
+bool EmailServiceProviderInfo::ntlmFallback() const
+{
+    Q_D(const EmailServiceProviderInfo);
+    return (d->m_authType & ~AuthNTLM) != AuthNTLM;
+}
+
 bool EmailServiceProviderInfo::plain() const
 {
     Q_D(const EmailServiceProviderInfo);

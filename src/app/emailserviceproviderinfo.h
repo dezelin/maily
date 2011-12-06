@@ -45,7 +45,8 @@ public:
 
     void swap(EmailServiceProviderInfo& providerInfo);
 
-    enum ServiceTypes { POP3, POP3S, IMAP, IMAPS, SMTP, SMTPS, MAILDIR, SENDMAIL };
+    enum ServiceTypes { POP3, POP3S, IMAP, IMAPS, SMTP, SMTPS, MAILDIR,
+        SENDMAIL };
 
     ServiceTypes serviceType() const;
     void setServiceType(ServiceTypes type);
@@ -62,8 +63,9 @@ public:
     const QString& sendmailBinPath() const;
     void setSendmailBinPath(const QString& path);
 
-    enum AuthenticationTypes { AuthNone = 0, AuthCleartext = 1, AuthPlain = 2,
-        AuthSASL = 4, AuthAPOP = 8};
+    enum AuthenticationTypes { AuthAuto = 0, AuthNone = 1, AuthCleartext = 2,
+        AuthPlain = 4, AuthSASL = 8, AuthAPOP = 16, AuthKerberos = 32,
+        AuthNTLM = 64};
 
     AuthenticationTypes authenticationType() const;
     void setAuthenticationType(AuthenticationTypes type);
@@ -73,6 +75,10 @@ public:
     bool apopFallback() const;
     bool cleartext() const;
     bool cleartextFallback() const;
+    bool kerberos() const;
+    bool kerberosFallback() const;
+    bool ntlm() const;
+    bool ntlmFallback() const;
     bool plain() const;
     bool plainFallback() const;
     bool sasl() const;
