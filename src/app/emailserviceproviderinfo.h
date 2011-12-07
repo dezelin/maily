@@ -45,8 +45,8 @@ public:
 
     void swap(EmailServiceProviderInfo& providerInfo);
 
-    enum ServiceTypes { POP3, POP3S, IMAP, IMAPS, SMTP, SMTPS, MAILDIR,
-        SENDMAIL };
+    enum ServiceTypes { POP3 = 1, POP3S = 2, IMAP = 4, IMAPS = 8, SMTP = 16,
+        SMTPS = 32, MAILDIR = 64, SENDMAIL = 128 };
 
     ServiceTypes serviceType() const;
     void setServiceType(ServiceTypes type);
@@ -63,9 +63,9 @@ public:
     const QString& sendmailBinPath() const;
     void setSendmailBinPath(const QString& path);
 
-    enum AuthenticationTypes { AuthAuto = 0, AuthNone = 1, AuthCleartext = 2,
-        AuthPlain = 4, AuthSASL = 8, AuthAPOP = 16, AuthKerberos = 32,
-        AuthNTLM = 64};
+    enum AuthenticationTypes { AuthAuto = 1, AuthNone = 2, AuthCleartext = 4,
+        AuthPlain = 8, AuthSASL = 16, AuthAPOP = 32, AuthKerberos = 64,
+        AuthNTLM = 128 };
 
     AuthenticationTypes authenticationType() const;
     void setAuthenticationType(AuthenticationTypes type);
@@ -95,6 +95,14 @@ inline EmailServiceProviderInfo::AuthenticationTypes operator| (
     EmailServiceProviderInfo::AuthenticationTypes b)
 {
     return static_cast<EmailServiceProviderInfo::AuthenticationTypes>(
+        static_cast<int>(a) | static_cast<int>(b));
+}
+
+inline EmailServiceProviderInfo::ServiceTypes operator| (
+    EmailServiceProviderInfo::ServiceTypes a,
+    EmailServiceProviderInfo::ServiceTypes b)
+{
+    return static_cast<EmailServiceProviderInfo::ServiceTypes>(
         static_cast<int>(a) | static_cast<int>(b));
 }
 
