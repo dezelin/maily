@@ -78,20 +78,53 @@ private:
     QScopedPointer<EmailAccountWizardAccountPagePrivate> d_ptr;
 };
 
+class EmailAccountWizardIncomingServerPagePrivate;
 class EmailAccountWizardIncomingServerPage : public QWizardPage
 {
     Q_OBJECT
 
 public:
     explicit EmailAccountWizardIncomingServerPage(QWidget* parent = 0);
+    virtual ~EmailAccountWizardIncomingServerPage();
+
+    virtual void initializePage();
+
+public slots:
+    void testButtonClicked(int which);
+
+private slots:
+    void incomingServerTypeIndexChanged(int index);
+    void incomingSSLIndexChanged(int index);
+
+private:
+    Q_DISABLE_COPY(EmailAccountWizardIncomingServerPage)
+    Q_DECLARE_PRIVATE(EmailAccountWizardIncomingServerPage)
+    QScopedPointer<EmailAccountWizardIncomingServerPagePrivate> d_ptr;
 };
 
+class EmailAccountWizardOutgoingServerPagePrivate;
 class EmailAccountWizardOutgoingServerPage : public QWizardPage
 {
     Q_OBJECT
 
 public:
     explicit EmailAccountWizardOutgoingServerPage(QWidget* parent = 0);
+    virtual ~EmailAccountWizardOutgoingServerPage();
+
+    virtual void initializePage();
+
+public slots:
+    void testButtonClicked(int which);
+
+private slots:
+    void incomingServerTypeIndexChanged(int index);
+    void incomingSSLIndexChanged(int index);
+    void incomingAuthIndexChanged(int index);
+
+private:
+    Q_DISABLE_COPY(EmailAccountWizardOutgoingServerPage)
+    Q_DECLARE_PRIVATE(EmailAccountWizardOutgoingServerPage)
+    QScopedPointer<EmailAccountWizardOutgoingServerPagePrivate> d_ptr;
 };
 
 class EmailAccountWizardFinishedPage : public QWizardPage
@@ -115,22 +148,22 @@ public:
     explicit EmailAccountWizard(QWidget *parent = 0);
     virtual ~EmailAccountWizard();
 
-    enum Pages { PageIntro, PageEmailAccount, PageEmailIncomingServer,
+    enum Pages { PageIntro = 0, PageEmailAccount, PageEmailIncomingServer,
         PageEmailOutgoingServer, PageFinished };
-
-signals:
-
-public slots:
 
 protected:
     virtual void done(int result);
+
+private slots:
+    void currentIdChanged(int id);
 
 private:
     Q_DISABLE_COPY(EmailAccountWizard)
     Q_DECLARE_PRIVATE(EmailAccountWizard)
     QScopedPointer<EmailAccountWizardPrivate> d_ptr;
 
-    QList<ServiceProviderInfo*>* getResult() const;
+    QList<ServiceProviderInfo*>* getResult();
+    QList<ServiceProviderInfo*>* getResultFromFields();
     void adoptResult(QList<ServiceProviderInfo*>* result);
 
     friend class Pages::EmailAccountWizardAccountPage;

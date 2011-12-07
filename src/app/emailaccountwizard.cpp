@@ -29,6 +29,7 @@
 #include "customeditline.h"
 #include "forgettablewatcher.h"
 #include "emailaccountwizard.h"
+#include "emailserviceproviderinfo.h"
 #include "emailvalidator.h"
 #include "mozillaaccountenumerator.h"
 #include "tools.h"
@@ -38,7 +39,9 @@ namespace Maily
 namespace Wizards
 {
 
+using namespace Maily::Services;
 using namespace Maily::Services::Tasks;
+using namespace Maily::Widgets;
 using namespace Maily::Widgets::Validators;
 
 const QString kBusyLayoutObjectName = "busyLayoutObject";
@@ -61,6 +64,13 @@ const QString kFieldOutgoingServerHostname = "outgoingServerHostname";
 const QString kFieldOutgoingServerPort = "outgoingServerPort";
 const QString kFieldOutgoingServerSSL = "outgoingServerSSL";
 const QString kFieldOutgoingServerAuth = "outgoingServerAuth";
+
+const int kPortPop3 = 110;
+const int kPortPop3s = 995;
+const int kPortImap = 143;
+const int kPortImaps = 585;
+const int kPortSmtp = 25;
+const int kPortSmtps = 465;
 
 
 namespace Pages
@@ -107,20 +117,18 @@ EmailAccountWizardAccountPage::EmailAccountWizardAccountPage(QWidget* parent) :
     setSubTitle(tr("Please fill all fields."));
 
     QLabel* userFullNameLabel = new QLabel(tr("Your full name:"));
-    Widgets::CustomEditLine* userFullNameEditLine =
-        new Widgets::CustomEditLine();
+    CustomEditLine* userFullNameEditLine = new CustomEditLine();
     userFullNameEditLine->setEmptyMessage(tr("Full name"));
     registerField(kFieldFullName + "*", userFullNameEditLine);
 
     QLabel* emailAddressLabel = new QLabel(tr("Email address:"));
-    Widgets::CustomEditLine* emailAddressEditLine =
-        new Widgets::CustomEditLine();
+    CustomEditLine* emailAddressEditLine = new CustomEditLine();
     emailAddressEditLine->setEmptyMessage(tr("Email address"));
     emailAddressEditLine->setValidator(d->m_emailValidator.data());
     registerField(kFieldEmailAddress + "*", emailAddressEditLine);
 
     QLabel* passwordLabel = new QLabel(tr("Account password:"));
-    Widgets::CustomEditLine* passwordEditLine = new Widgets::CustomEditLine();
+    CustomEditLine* passwordEditLine = new CustomEditLine();
     passwordEditLine->setEmptyMessage(tr("Password"));
     passwordEditLine->setEchoMode(QLineEdit::Password);
     registerField(kFieldPassword, passwordEditLine);
@@ -246,8 +254,7 @@ void EmailAccountWizardAccountPage::startBusyIndicator()
         return;
 
     QLabel* busyLabel = new QLabel(tr("<b>Checking the online database...</b>"));
-    Widgets::BusyIndicatorWidget* busyIndicator =
-            new Widgets::BusyIndicatorWidget();
+    BusyIndicatorWidget* busyIndicator = new BusyIndicatorWidget();
 
     QHBoxLayout* busyLayout = new QHBoxLayout();
     busyLayout->setObjectName(kBusyLayoutObjectName);
@@ -356,19 +363,40 @@ EmailAccountWizardAccountPage::enumerateServiceProviders(
     return enumerator->enumerateAccounts();
 }
 
-EmailAccountWizardIncomingServerPage::EmailAccountWizardIncomingServerPage(
-    QWidget* parent) : QWizardPage(parent)
+class EmailAccountWizardIncomingServerPagePrivate
 {
+public:
+    EmailAccountWizardIncomingServerPagePrivate() :
+        usernameEditLine(0), passwordEditLine(0), typeComboBox(0),
+        hostnameEditLine(0), sslComboBox(0), portEditLine(0), authComboBox(0)
+    {
+    }
+
+    CustomEditLine* usernameEditLine;
+    CustomEditLine* passwordEditLine;
+    QComboBox* typeComboBox;
+    CustomEditLine* hostnameEditLine;
+    QComboBox* sslComboBox;
+    CustomEditLine* portEditLine;
+    QComboBox* authComboBox;
+};
+
+EmailAccountWizardIncomingServerPage::EmailAccountWizardIncomingServerPage(
+    QWidget* parent) : QWizardPage(parent),
+    d_ptr(new EmailAccountWizardIncomingServerPagePrivate())
+{
+    Q_D(EmailAccountWizardIncomingServerPage);
+
     setTitle(tr("Incoming server details"));
     setSubTitle(tr("Please fill all fields."));
 
     QLabel* usernameLabel = new QLabel(tr("Account username:"));
-    Widgets::CustomEditLine* usernameEditLine = new Widgets::CustomEditLine();
+    CustomEditLine* usernameEditLine = new CustomEditLine();
     usernameEditLine->setEmptyMessage(tr("Username"));
     registerField(kFieldIncomingServerUsername + "*", usernameEditLine);
 
     QLabel* passwordLabel = new QLabel(tr("Account password:"));
-    Widgets::CustomEditLine* passwordEditLine = new Widgets::CustomEditLine();
+    CustomEditLine* passwordEditLine = new CustomEditLine();
     passwordEditLine->setEmptyMessage(tr("Password"));
     passwordEditLine->setEchoMode(QLineEdit::Password);
     registerField(kFieldIncomingServerPassword + "*", passwordEditLine);
@@ -376,39 +404,38 @@ EmailAccountWizardIncomingServerPage::EmailAccountWizardIncomingServerPage(
     QStringList incomingTypes;
     incomingTypes << "POP3" << "IMAP" << "Maildir";
 
-    QLabel* incomingTypeLabel = new QLabel(tr("Incoming server type:"));
-    QComboBox* incomingTypeComboBox = new QComboBox();
-    incomingTypeComboBox->insertItems(0, incomingTypes);
-    registerField(kFieldIncomingServerType, incomingTypeComboBox);
+    QLabel* typeLabel = new QLabel(tr("Incoming server type:"));
+    QComboBox* typeComboBox = new QComboBox();
+    typeComboBox->insertItems(0, incomingTypes);
+    registerField(kFieldIncomingServerType, typeComboBox);
 
-    QLabel* incomingHostnameLabel = new QLabel(tr("Hostname:"));
-    Widgets::CustomEditLine* incomingHostnameEditLine =
-        new Widgets::CustomEditLine();
-    incomingHostnameEditLine->setEmptyMessage(tr("Server hostname"));
-    registerField(kFieldIncomingServerHostname + "*", incomingHostnameEditLine);
+    QLabel* hostnameLabel = new QLabel(tr("Hostname:"));
+    CustomEditLine* hostnameEditLine = new CustomEditLine();
+    hostnameEditLine->setEmptyMessage(tr("Server hostname"));
+    registerField(kFieldIncomingServerHostname + "*", hostnameEditLine);
 
-    QLabel* incomingPortLabel = new QLabel(tr("Port:"));
-    Widgets::CustomEditLine* incomingPortEditLine =
-        new Widgets::CustomEditLine();
-    incomingPortEditLine->setEmptyMessage(tr("Server port"));
-    registerField(kFieldIncomingServerPort, incomingPortEditLine);
+    QLabel* portLabel = new QLabel(tr("Port:"));
+    CustomEditLine* portEditLine = new CustomEditLine();
+    portEditLine->setEmptyMessage(tr("Server port"));
+    portEditLine->setDisabled(true);
+    registerField(kFieldIncomingServerPort, portEditLine);
 
     QStringList incomingSSL;
-    incomingSSL << tr("Autodetect") << tr("None") << "STARTTLS" << "SSL/TLS";
+    incomingSSL << tr("Autodetect") << tr("None") << "STARTTLS" << "SSL / TLS";
 
-    QLabel* incomingSSLLabel = new QLabel(tr("SSL:"));
-    QComboBox* incomingSSLComboBox = new QComboBox();
-    incomingSSLComboBox->insertItems(0, incomingSSL);
-    registerField(kFieldIncomingServerSSL, incomingSSLComboBox);
+    QLabel* sslLabel = new QLabel(tr("SSL:"));
+    QComboBox* sslComboBox = new QComboBox();
+    sslComboBox->insertItems(0, incomingSSL);
+    registerField(kFieldIncomingServerSSL, sslComboBox);
 
     QStringList incomingAuth;
     incomingAuth << tr("Autodetect") << tr("Normal password")
         << tr("Encrypted password") << "Kerberos / GSSAPI" << "NTLM";
 
-    QLabel* incomingAuthLabel = new QLabel(tr("Authentication:"));
-    QComboBox* incomingAuthComboBox = new QComboBox();
-    incomingAuthComboBox->insertItems(0, incomingAuth);
-    registerField(kFieldIncomingServerAuth, incomingAuthComboBox);
+    QLabel* authLabel = new QLabel(tr("Authentication:"));
+    QComboBox* authComboBox = new QComboBox();
+    authComboBox->insertItems(0, incomingAuth);
+    registerField(kFieldIncomingServerAuth, authComboBox);
 
     QGridLayout* layout = new QGridLayout();
     layout->addWidget(usernameLabel, 0, 0);
@@ -416,22 +443,161 @@ EmailAccountWizardIncomingServerPage::EmailAccountWizardIncomingServerPage(
     layout->addWidget(passwordLabel, 1, 0);
     layout->addWidget(passwordEditLine, 1, 1);
     layout->addItem(new QSpacerItem(50, 20), 2, 0, 1, -1);
-    layout->addWidget(incomingTypeLabel, 3, 0);
-    layout->addWidget(incomingTypeComboBox, 3, 1);
-    layout->addWidget(incomingHostnameLabel, 4, 0);
-    layout->addWidget(incomingHostnameEditLine, 4, 1);
-    layout->addWidget(incomingPortLabel, 5, 0);
-    layout->addWidget(incomingPortEditLine, 5, 1);
-    layout->addWidget(incomingSSLLabel, 6, 0);
-    layout->addWidget(incomingSSLComboBox, 6, 1);
-    layout->addWidget(incomingAuthLabel, 7, 0);
-    layout->addWidget(incomingAuthComboBox, 7, 1);
+    layout->addWidget(typeLabel, 3, 0);
+    layout->addWidget(typeComboBox, 3, 1);
+    layout->addWidget(hostnameLabel, 4, 0);
+    layout->addWidget(hostnameEditLine, 4, 1);
+    layout->addWidget(portLabel, 5, 0);
+    layout->addWidget(portEditLine, 5, 1);
+    layout->addWidget(sslLabel, 6, 0);
+    layout->addWidget(sslComboBox, 6, 1);
+    layout->addWidget(authLabel, 7, 0);
+    layout->addWidget(authComboBox, 7, 1);
     setLayout(layout);
+
+    d->authComboBox = authComboBox;
+    d->hostnameEditLine = hostnameEditLine;
+    d->portEditLine = portEditLine;
+    d->sslComboBox = sslComboBox;
+    d->typeComboBox = typeComboBox;
+    d->passwordEditLine = passwordEditLine;
+    d->usernameEditLine = usernameEditLine;
+
+    connect(typeComboBox, SIGNAL(currentIndexChanged(int)), this,
+        SLOT(incomingServerTypeIndexChanged(int)));
+
+    connect(sslComboBox, SIGNAL(currentIndexChanged(int)), this,
+        SLOT(incomingSSLIndexChanged(int)));
 }
 
-EmailAccountWizardOutgoingServerPage::EmailAccountWizardOutgoingServerPage(
-    QWidget* parent) : QWizardPage(parent)
+EmailAccountWizardIncomingServerPage::~EmailAccountWizardIncomingServerPage()
 {
+}
+
+void EmailAccountWizardIncomingServerPage::initializePage()
+{
+    QWizardPage::initializePage();
+
+    QString username = field(kFieldEmailAddress).toString();
+    QString password = field(kFieldPassword).toString();
+
+    int index = username.indexOf('@');
+    if (index != -1)
+        username = username.left(index);
+
+    setField(kFieldIncomingServerUsername, username);
+    setField(kFieldIncomingServerPassword, password);
+}
+
+void EmailAccountWizardIncomingServerPage::incomingServerTypeIndexChanged(int index)
+{
+    Q_D(EmailAccountWizardIncomingServerPage);
+
+    int ssl = d->sslComboBox->currentIndex();
+    switch(index) {
+        case 0: { // POP3
+            if (ssl == 0)
+                setField(kFieldIncomingServerPort, "");
+            else {
+                int port = (ssl == 1) ? kPortPop3 : kPortPop3s;
+                setField(kFieldIncomingServerPort, port);
+            }
+            break;
+        }
+        case 1: { // IMAP
+            if (ssl == 0)
+                setField(kFieldIncomingServerPort, "");
+            else {
+                int port = (ssl == 1) ? kPortImap : kPortImaps;
+                setField(kFieldIncomingServerPort, port);
+            }
+            break;
+        }
+        case 2: { // Maildir
+            break;
+        }
+        default: {
+            qFatalAssert(!"Unknown index.");
+            break;
+        }
+    }
+
+    d->authComboBox->setDisabled(index == 2);
+    d->hostnameEditLine->setDisabled(index == 2);
+    d->portEditLine->setDisabled(index == 2 || ssl == 0);
+    d->sslComboBox->setDisabled(index == 2);
+}
+
+void EmailAccountWizardIncomingServerPage::incomingSSLIndexChanged(int index)
+{
+    Q_D(EmailAccountWizardIncomingServerPage);
+
+    int type = d->typeComboBox->currentIndex();
+    switch(type) {
+        case 0: { // POP3
+            if (index == 0)
+                setField(kFieldIncomingServerPort, "");
+            else {
+                int port = (index == 1) ? kPortPop3 : kPortPop3s;
+                setField(kFieldIncomingServerPort, port);
+            }
+            break;
+        }
+        case 1: { // IMAP
+            if (index == 0)
+                setField(kFieldIncomingServerPort, "");
+            else {
+                int port = (index == 1) ? kPortImap : kPortImaps;
+                setField(kFieldIncomingServerPort, port);
+            }
+            break;
+        }
+        case 2: { // Maildir
+            break;
+        }
+        default: {
+            qFatalAssert(!"Unknown index.");
+            break;
+        }
+    }
+
+    d->portEditLine->setDisabled(index == 0);
+}
+
+void EmailAccountWizardIncomingServerPage::testButtonClicked(int which)
+{
+    Q_ASSERT(which == QWizard::CustomButton1);
+    if (which != QWizard::CustomButton1)
+        return;
+
+    if (wizard()->currentId() != EmailAccountWizard::PageEmailIncomingServer)
+        return;
+}
+
+class EmailAccountWizardOutgoingServerPagePrivate
+{
+public:
+    EmailAccountWizardOutgoingServerPagePrivate() :
+        usernameEditLine(0), passwordEditLine(0), typeComboBox(0),
+        hostnameEditLine(0), sslComboBox(0), portEditLine(0), authComboBox(0)
+    {
+    }
+
+    CustomEditLine* usernameEditLine;
+    CustomEditLine* passwordEditLine;
+    QComboBox* typeComboBox;
+    CustomEditLine* hostnameEditLine;
+    QComboBox* sslComboBox;
+    CustomEditLine* portEditLine;
+    QComboBox* authComboBox;
+};
+
+EmailAccountWizardOutgoingServerPage::EmailAccountWizardOutgoingServerPage(
+    QWidget* parent) : QWizardPage(parent),
+    d_ptr(new EmailAccountWizardOutgoingServerPagePrivate())
+{
+    Q_D(EmailAccountWizardOutgoingServerPage);
+
     setTitle(tr("Outgoing server details"));
     setSubTitle(tr("Please fill all fields."));
 
@@ -449,40 +615,39 @@ EmailAccountWizardOutgoingServerPage::EmailAccountWizardOutgoingServerPage(
     QStringList outgoingTypes;
     outgoingTypes << "SMTP" << "Sendmail";
 
-    QLabel* outgoingTypeLabel = new QLabel(tr("Outgoing server type:"));
-    QComboBox* outgoingTypeComboBox = new QComboBox();
-    outgoingTypeComboBox->insertItems(0, outgoingTypes);
-    registerField(kFieldOutgoingServerType, outgoingTypeComboBox);
+    QLabel* typeLabel = new QLabel(tr("Outgoing server type:"));
+    QComboBox* typeComboBox = new QComboBox();
+    typeComboBox->insertItems(0, outgoingTypes);
+    registerField(kFieldOutgoingServerType, typeComboBox);
 
-    QLabel* outgoingHostnameLabel = new QLabel(tr("Hostname:"));
-    Widgets::CustomEditLine* outgoingHostnameEditLine =
-        new Widgets::CustomEditLine();
-    outgoingHostnameEditLine->setEmptyMessage(tr("Server hostname"));
-    registerField(kFieldOutgoingServerHostname + "*", outgoingHostnameEditLine);
+    QLabel* hostnameLabel = new QLabel(tr("Hostname:"));
+    CustomEditLine* hostnameEditLine = new CustomEditLine();
+    hostnameEditLine->setEmptyMessage(tr("Server hostname"));
+    registerField(kFieldOutgoingServerHostname + "*", hostnameEditLine);
 
-    QLabel* outgoingPortLabel = new QLabel(tr("Port:"));
-    Widgets::CustomEditLine* outgoingPortEditLine =
-        new Widgets::CustomEditLine();
-    outgoingPortEditLine->setEmptyMessage(tr("Server port"));
-    registerField(kFieldOutgoingServerPort, outgoingPortEditLine);
+    QLabel* portLabel = new QLabel(tr("Port:"));
+    CustomEditLine* portEditLine = new CustomEditLine();
+    portEditLine->setEmptyMessage(tr("Server port"));
+    portEditLine->setDisabled(true);
+    registerField(kFieldOutgoingServerPort, portEditLine);
 
     QStringList outgoingSSL;
     outgoingSSL << tr("Autodetect") << tr("None") << "STARTTLS" << "SSL/TLS";
 
-    QLabel* outgoingSSLLabel = new QLabel(tr("SSL:"));
-    QComboBox* outgoingSSLComboBox = new QComboBox();
-    outgoingSSLComboBox->insertItems(0, outgoingSSL);
-    registerField(kFieldOutgoingServerSSL, outgoingSSLComboBox);
+    QLabel* sslLabel = new QLabel(tr("SSL:"));
+    QComboBox* sslComboBox = new QComboBox();
+    sslComboBox->insertItems(0, outgoingSSL);
+    registerField(kFieldOutgoingServerSSL, sslComboBox);
 
     QStringList outgoingAuth;
     outgoingAuth << tr("Autodetect") << tr("No authentication")
         << tr("Normal password") << tr("Encrypted password")
         << "Kerberos / GSSAPI" << "NTLM";
 
-    QLabel* outgoingAuthLabel = new QLabel(tr("Authentication:"));
-    QComboBox* outgoingAuthComboBox = new QComboBox();
-    outgoingAuthComboBox->insertItems(0, outgoingAuth);
-    registerField(kFieldOutgoingServerAuth, outgoingAuthComboBox);
+    QLabel* authLabel = new QLabel(tr("Authentication:"));
+    QComboBox* authComboBox = new QComboBox();
+    authComboBox->insertItems(0, outgoingAuth);
+    registerField(kFieldOutgoingServerAuth, authComboBox);
 
     QGridLayout* layout = new QGridLayout();
     layout->addWidget(usernameLabel, 0, 0);
@@ -490,17 +655,126 @@ EmailAccountWizardOutgoingServerPage::EmailAccountWizardOutgoingServerPage(
     layout->addWidget(passwordLabel, 1, 0);
     layout->addWidget(passwordEditLine, 1, 1);
     layout->addItem(new QSpacerItem(50, 20), 2, 0, 1, -1);
-    layout->addWidget(outgoingTypeLabel, 3, 0);
-    layout->addWidget(outgoingTypeComboBox, 3, 1);
-    layout->addWidget(outgoingHostnameLabel, 4, 0);
-    layout->addWidget(outgoingHostnameEditLine, 4, 1);
-    layout->addWidget(outgoingPortLabel, 5, 0);
-    layout->addWidget(outgoingPortEditLine, 5, 1);
-    layout->addWidget(outgoingSSLLabel, 6, 0);
-    layout->addWidget(outgoingSSLComboBox, 6, 1);
-    layout->addWidget(outgoingAuthLabel, 7, 0);
-    layout->addWidget(outgoingAuthComboBox, 7, 1);
+    layout->addWidget(typeLabel, 3, 0);
+    layout->addWidget(typeComboBox, 3, 1);
+    layout->addWidget(hostnameLabel, 4, 0);
+    layout->addWidget(hostnameEditLine, 4, 1);
+    layout->addWidget(portLabel, 5, 0);
+    layout->addWidget(portEditLine, 5, 1);
+    layout->addWidget(sslLabel, 6, 0);
+    layout->addWidget(sslComboBox, 6, 1);
+    layout->addWidget(authLabel, 7, 0);
+    layout->addWidget(authComboBox, 7, 1);
     setLayout(layout);
+
+    d->authComboBox = authComboBox;
+    d->hostnameEditLine = hostnameEditLine;
+    d->portEditLine = portEditLine;
+    d->sslComboBox = sslComboBox;
+    d->typeComboBox = typeComboBox;
+    d->passwordEditLine = passwordEditLine;
+    d->usernameEditLine = usernameEditLine;
+
+    connect(typeComboBox, SIGNAL(currentIndexChanged(int)), this,
+        SLOT(incomingServerTypeIndexChanged(int)));
+
+    connect(sslComboBox, SIGNAL(currentIndexChanged(int)), this,
+        SLOT(incomingSSLIndexChanged(int)));
+
+    connect(authComboBox, SIGNAL(currentIndexChanged(int)), this,
+        SLOT(incomingAuthIndexChanged(int)));
+}
+
+EmailAccountWizardOutgoingServerPage::~EmailAccountWizardOutgoingServerPage()
+{
+}
+
+void EmailAccountWizardOutgoingServerPage::initializePage()
+{
+    QWizardPage::initializePage();
+
+    QString username = field(kFieldIncomingServerUsername).toString();
+    QString password = field(kFieldIncomingServerPassword).toString();
+    QString hostname = field(kFieldIncomingServerHostname).toString();
+    setField(kFieldOutgoingServerUsername, username);
+    setField(kFieldOutgoingServerPassword, password);
+    setField(kFieldOutgoingServerHostname, hostname);
+}
+
+void EmailAccountWizardOutgoingServerPage::incomingServerTypeIndexChanged(int index)
+{
+    Q_D(EmailAccountWizardOutgoingServerPage);
+
+    int ssl = d->sslComboBox->currentIndex();
+    switch(index) {
+        case 0: { // SMTP
+            if (ssl == 0)
+                setField(kFieldOutgoingServerPort, "");
+            else {
+                int port = (ssl == 1) ? kPortSmtp : kPortSmtps;
+                setField(kFieldOutgoingServerPort, port);
+            }
+            break;
+        }
+        case 1: { // Sendmail
+            break;
+        }
+        default: {
+            qFatalAssert(!"Unknown index.");
+            break;
+        }
+    }
+
+    d->authComboBox->setDisabled(index == 1);
+    d->hostnameEditLine->setDisabled(index == 1);
+    d->portEditLine->setDisabled(index == 1 || ssl == 0);
+    d->sslComboBox->setDisabled(index == 1);
+}
+
+void EmailAccountWizardOutgoingServerPage::incomingSSLIndexChanged(int index)
+{
+    Q_D(EmailAccountWizardOutgoingServerPage);
+
+    int type = d->typeComboBox->currentIndex();
+    switch(type) {
+        case 0: { // SMTP
+            if (index == 0)
+                setField(kFieldOutgoingServerPort, "");
+            else {
+                int port = (index == 1) ? kPortSmtp : kPortSmtps;
+                setField(kFieldOutgoingServerPort, port);
+            }
+            break;
+        }
+        case 1: { // Sendmail
+            break;
+        }
+        default: {
+            qFatalAssert(!"Unknown index.");
+            break;
+        }
+    }
+
+    d->portEditLine->setDisabled(index == 0);
+}
+
+void EmailAccountWizardOutgoingServerPage::incomingAuthIndexChanged(int index)
+{
+    Q_D(EmailAccountWizardOutgoingServerPage);
+
+    d->passwordEditLine->setDisabled(index == 1);
+    d->usernameEditLine->setDisabled(index == 1);
+}
+
+void EmailAccountWizardOutgoingServerPage::testButtonClicked(int which)
+{
+    Q_ASSERT(which == QWizard::CustomButton1);
+    if (which != QWizard::CustomButton1)
+        return;
+
+    if (wizard()->currentId() != EmailAccountWizard::PageEmailOutgoingServer)
+        return;
+
 }
 
 EmailAccountWizardFinishedPage::EmailAccountWizardFinishedPage(QWidget* parent) :
@@ -547,26 +821,213 @@ QWizard(parent), d_ptr(new EmailAccountWizardPrivate())
 {
     setWindowTitle(tr("Add new email account"));
 
+    QScopedPointer<Pages::EmailAccountWizardIncomingServerPage> incomingPage(
+        new Pages::EmailAccountWizardIncomingServerPage());
+    QScopedPointer<Pages::EmailAccountWizardOutgoingServerPage> outgoingPage(
+        new Pages::EmailAccountWizardOutgoingServerPage());
+
+    connect(this, SIGNAL(customButtonClicked(int)), incomingPage.data(),
+        SLOT(testButtonClicked(int)));
+    connect(this, SIGNAL(customButtonClicked(int)), outgoingPage.data(),
+        SLOT(testButtonClicked(int)));
+
     setPage(EmailAccountWizard::PageIntro,
         new Pages::EmailAccountWizardIntroPage());
     setPage(EmailAccountWizard::PageEmailAccount,
         new Pages::EmailAccountWizardAccountPage());
-    setPage(EmailAccountWizard::PageEmailIncomingServer,
-        new Pages::EmailAccountWizardIncomingServerPage());
-    setPage(EmailAccountWizard::PageEmailOutgoingServer,
-        new Pages::EmailAccountWizardOutgoingServerPage());
+    setPage(EmailAccountWizard::PageEmailIncomingServer, incomingPage.take());
+    setPage(EmailAccountWizard::PageEmailOutgoingServer, outgoingPage.take());
     setPage(EmailAccountWizard::PageFinished,
         new Pages::EmailAccountWizardFinishedPage());
+
+    connect(this, SIGNAL(currentIdChanged(int)), this, SLOT(currentIdChanged(int)));
 }
 
 EmailAccountWizard::~EmailAccountWizard()
 {
 }
 
-QList<ServiceProviderInfo*>* EmailAccountWizard::getResult() const
+QList<ServiceProviderInfo*>* EmailAccountWizard::getResult()
 {
-    Q_D(const EmailAccountWizard);
-    return d->m_result.data();
+    Q_D(EmailAccountWizard);
+    return d->m_result.take();
+}
+
+QList<ServiceProviderInfo*>* EmailAccountWizard::getResultFromFields()
+{
+    QScopedPointer<QList<ServiceProviderInfo*> > providers(
+        new QList<ServiceProviderInfo*>());
+
+    QString username = field(kFieldIncomingServerUsername).toString();
+    QString password = field(kFieldIncomingServerPassword).toString();
+    int serverType = field(kFieldIncomingServerType).toInt();
+    QString hostname = field(kFieldIncomingServerHostname).toString();
+    int port = field(kFieldIncomingServerPort).toInt();
+    int ssl = field(kFieldIncomingServerSSL).toInt();
+    int auth = field(kFieldIncomingServerAuth).toInt();
+
+    QScopedPointer<EmailServiceProviderInfo> info(
+        new EmailServiceProviderInfo());
+    info->setUsername(username);
+    info->setPassword(password);
+    info->setAddress(hostname);
+    info->setPort(port);
+    info->setDisplayName(hostname);
+    info->setDisplayShortName(hostname);
+
+    switch(auth) {
+        case 0: { // Autodetect
+            info->setAuthenticationType(EmailServiceProviderInfo::AuthAuto);
+            break;
+        }
+        case 1: { // Normal password
+            info->setAuthenticationType(EmailServiceProviderInfo::AuthPlain);
+            break;
+        }
+        case 2: { // Encrypted password
+            info->setAuthenticationType(EmailServiceProviderInfo::AuthCleartext);
+            break;
+        }
+        case 3: { // Kerberos / GSSAPI
+            info->setAuthenticationType(EmailServiceProviderInfo::AuthKerberos);
+            break;
+        }
+        case 4: { // NTLM
+            info->setAuthenticationType(EmailServiceProviderInfo::AuthNTLM);
+            break;
+        }
+        default: {
+            qFatalAssert(!"Unknown authentication type.");
+            break;
+        }
+    }
+
+    switch(serverType) {
+        case 0: { // POP3
+            if (ssl > 1) { // STARTTLS or SSL/TLS
+                info->setServiceType(EmailServiceProviderInfo::POP3S);
+                info->setTls(true);
+                info->setTlsRequired(false);
+            } else if (ssl == 1) { // None
+                info->setServiceType(EmailServiceProviderInfo::POP3);
+                info->setTls(false);
+                info->setTlsRequired(false);
+            } else { // Autodetect
+                info->setServiceType(EmailServiceProviderInfo::POP3S
+                    | EmailServiceProviderInfo::POP3);
+                info->setTls(true);
+                info->setTlsRequired(false);
+            }
+
+            break;
+        }
+        case 1: { // IMAP
+            if (ssl > 1) { // STARTTLS or SSL/TLS
+                info->setServiceType(EmailServiceProviderInfo::IMAPS);
+                info->setTls(true);
+                info->setTlsRequired(false);
+            } else if (ssl == 1) { // None
+                info->setServiceType(EmailServiceProviderInfo::IMAP);
+                info->setTls(false);
+                info->setTlsRequired(false);
+            } else { // Autodetect
+                info->setServiceType(EmailServiceProviderInfo::IMAPS
+                    | EmailServiceProviderInfo::IMAP);
+                info->setTls(true);
+                info->setTlsRequired(false);
+            }
+
+            break;
+        }
+        case 2: { // Maildir
+            info->setServiceType(EmailServiceProviderInfo::MAILDIR);
+        }
+        default: {
+            qFatalAssert(!"Unknown server type.")
+            break;
+        }
+    }
+
+    providers->push_back(info.take());
+
+    username = field(kFieldOutgoingServerUsername).toString();
+    password = field(kFieldOutgoingServerPassword).toString();
+    serverType = field(kFieldOutgoingServerType).toInt();
+    hostname = field(kFieldOutgoingServerHostname).toString();
+    port = field(kFieldOutgoingServerPort).toInt();
+    ssl = field(kFieldOutgoingServerSSL).toInt();
+    auth = field(kFieldOutgoingServerAuth).toInt();
+
+    info.reset(new EmailServiceProviderInfo());
+    info->setUsername(username);
+    info->setPassword(password);
+    info->setAddress(hostname);
+    info->setPort(port);
+    info->setDisplayName(hostname);
+    info->setDisplayShortName(hostname);
+
+    switch(auth) {
+        case 0: { // Autodetect
+            info->setAuthenticationType(EmailServiceProviderInfo::AuthAuto);
+            break;
+        }
+        case 1: { // No authentication
+            info->setAuthenticationType(EmailServiceProviderInfo::AuthNone);
+            break;
+        }
+        case 2: { // Normal password
+            info->setAuthenticationType(EmailServiceProviderInfo::AuthPlain);
+            break;
+        }
+        case 3: { // Encrypted password
+            info->setAuthenticationType(EmailServiceProviderInfo::AuthCleartext);
+            break;
+        }
+        case 4: { // Kerberos / GSSAPI
+            info->setAuthenticationType(EmailServiceProviderInfo::AuthKerberos);
+            break;
+        }
+        case 5: { // NTLM
+            info->setAuthenticationType(EmailServiceProviderInfo::AuthNTLM);
+            break;
+        }
+        default: {
+            qFatalAssert(!"Unknown authentication type.");
+            break;
+        }
+    }
+
+    switch(serverType) {
+        case 0: { // SMTP
+            if (ssl > 1) { // STARTTLS or SSL/TLS
+                info->setServiceType(EmailServiceProviderInfo::SMTPS);
+                info->setTls(true);
+                info->setTlsRequired(false);
+            } else if (ssl == 1) { // None
+                info->setServiceType(EmailServiceProviderInfo::SMTP);
+                info->setTls(false);
+                info->setTlsRequired(false);
+            } else { // Autodetect
+                info->setServiceType(EmailServiceProviderInfo::SMTPS
+                    | EmailServiceProviderInfo::SMTP);
+                info->setTls(true);
+                info->setTlsRequired(false);
+            }
+
+            break;
+        }
+        case 2: { // Sendmail
+            info->setServiceType(EmailServiceProviderInfo::SENDMAIL);
+        }
+        default: {
+            qFatalAssert(!"Unknown server type.")
+            break;
+        }
+    }
+
+    providers->push_back(info.take());
+
+    return providers.take();
 }
 
 void EmailAccountWizard::adoptResult(QList<ServiceProviderInfo*>* result)
@@ -579,7 +1040,53 @@ void EmailAccountWizard::adoptResult(QList<ServiceProviderInfo*>* result)
 
 void EmailAccountWizard::done(int result)
 {
+    if (result != QWizard::Accepted)
+        QWizard::done(result);
+
+    QList<ServiceProviderInfo*>* providers = getResult();
+    if (!providers)
+        providers = getResultFromFields();
+
+    qDeleteAll(*providers);
+    delete providers;
+
     QWizard::done(result);
+}
+
+void EmailAccountWizard::currentIdChanged(int id)
+{
+    if (id == -1)
+        return;
+
+    QList<QWizard::WizardButton> layout;
+    Pages pageId = static_cast<Pages>(id);
+
+    switch(pageId) {
+        case PageIntro:
+        case PageEmailAccount:
+        case PageFinished: {
+            setOption(HaveCustomButton1, false);
+            layout << QWizard::Stretch << QWizard::BackButton
+                << QWizard::NextButton << QWizard::FinishButton
+                << QWizard::CancelButton;
+            break;
+        }
+        case PageEmailIncomingServer:
+        case PageEmailOutgoingServer: {
+            setOption(HaveCustomButton1, true);
+            setButtonText(CustomButton1, tr("Test"));
+            layout << QWizard::CustomButton1 << QWizard::Stretch
+                << QWizard::BackButton << QWizard::NextButton
+                << QWizard::FinishButton << QWizard::CancelButton;
+            break;
+        }
+        default: {
+            qFatalAssert(!"Unknown page id.");
+            break;
+        }
+    }
+
+    setButtonLayout(layout);
 }
 
 } // namespace Wizards
