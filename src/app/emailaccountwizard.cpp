@@ -23,10 +23,12 @@
 #include <QSpacerItem>
 #include <QVBoxLayout>
 #include <QWizardPage>
+#include <vmime/vmime.hpp>
 
 #include "accountmanagerfactory.h"
 #include "busyindicatorwidget.h"
 #include "customeditline.h"
+#include "dummycertverifier.h"
 #include "forgettablewatcher.h"
 #include "emailaccountwizard.h"
 #include "emailserviceproviderinfo.h"
@@ -572,6 +574,31 @@ void EmailAccountWizardIncomingServerPage::testButtonClicked(int which)
 
     if (wizard()->currentId() != EmailAccountWizard::PageEmailIncomingServer)
         return;
+
+    EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
+    Q_ASSERT(w);
+    if (!w)
+        return;
+
+    QScopedPointer<EmailServiceProviderInfo> info(
+        static_cast<EmailServiceProviderInfo*>(w->getResultFromIncomingPage()));
+    Q_ASSERT(info);
+    if (!info)
+        return;
+
+    vmime::utility::url url(QString("pop3s").toStdString(), QString("mail.pstech.rs").toStdString());
+    vmime::ref<vmime::net::session> theSession = vmime::create<vmime::net::session>();
+    //theSession->getProperties()["store.pop3s.auth.username"] = "aleksandar.dezelin";
+    theSession->getProperties()["store.pop3s.auth.password"] = "gandalf";
+    vmime::ref<vmime::net::store> store = theSession->getStore(url);
+    store->setCertificateVerifier(vmime::create<Maily::Services::Security::DummyCertVerifier>());
+
+    try {
+        store->connect();
+        store->disconnect();
+    } catch (vmime::exception& e) {
+        qLog() << e.what();
+    }
 }
 
 class EmailAccountWizardOutgoingServerPagePrivate
@@ -858,6 +885,22 @@ QList<ServiceProviderInfo*>* EmailAccountWizard::getResultFromFields()
     QScopedPointer<QList<ServiceProviderInfo*> > providers(
         new QList<ServiceProviderInfo*>());
 
+    ServiceProviderInfo* incoming = getResultFromIncomingPage();
+    if (incoming)
+        providers->push_back(incoming);
+
+    ServiceProviderInfo* outgoing = getResultFromOutgoingPage();
+    if (outgoing)
+        providers->push_back(outgoing);
+
+    return providers.take();
+}
+
+ServiceProviderInfo* EmailAccountWizard::getResultFromIncomingPage()
+{
+    QScopedPointer<EmailServiceProviderInfo> info(
+        new EmailServiceProviderInfo());
+
     QString username = field(kFieldIncomingServerUsername).toString();
     QString password = field(kFieldIncomingServerPassword).toString();
     int serverType = field(kFieldIncomingServerType).toInt();
@@ -866,8 +909,6 @@ QList<ServiceProviderInfo*>* EmailAccountWizard::getResultFromFields()
     int ssl = field(kFieldIncomingServerSSL).toInt();
     int auth = field(kFieldIncomingServerAuth).toInt();
 
-    QScopedPointer<EmailServiceProviderInfo> info(
-        new EmailServiceProviderInfo());
     info->setUsername(username);
     info->setPassword(password);
     info->setAddress(hostname);
@@ -948,15 +989,21 @@ QList<ServiceProviderInfo*>* EmailAccountWizard::getResultFromFields()
         }
     }
 
-    providers->push_back(info.take());
+    return info.take();
+}
 
-    username = field(kFieldOutgoingServerUsername).toString();
-    password = field(kFieldOutgoingServerPassword).toString();
-    serverType = field(kFieldOutgoingServerType).toInt();
-    hostname = field(kFieldOutgoingServerHostname).toString();
-    port = field(kFieldOutgoingServerPort).toInt();
-    ssl = field(kFieldOutgoingServerSSL).toInt();
-    auth = field(kFieldOutgoingServerAuth).toInt();
+ServiceProviderInfo* EmailAccountWizard::getResultFromOutgoingPage()
+{
+    QScopedPointer<EmailServiceProviderInfo> info(
+        new EmailServiceProviderInfo());
+
+    QString username = field(kFieldOutgoingServerUsername).toString();
+    QString password = field(kFieldOutgoingServerPassword).toString();
+    int serverType = field(kFieldOutgoingServerType).toInt();
+    QString hostname = field(kFieldOutgoingServerHostname).toString();
+    int port = field(kFieldOutgoingServerPort).toInt();
+    int ssl = field(kFieldOutgoingServerSSL).toInt();
+    int auth = field(kFieldOutgoingServerAuth).toInt();
 
     info.reset(new EmailServiceProviderInfo());
     info->setUsername(username);
@@ -1025,9 +1072,7 @@ QList<ServiceProviderInfo*>* EmailAccountWizard::getResultFromFields()
         }
     }
 
-    providers->push_back(info.take());
-
-    return providers.take();
+    return info.take();
 }
 
 void EmailAccountWizard::adoptResult(QList<ServiceProviderInfo*>* result)

@@ -9,7 +9,6 @@ QT       += core declarative gui network sql webkit xml
 TARGET = maily
 TEMPLATE = app
 
-
 SOURCES += main.cpp\
         mainwindow.cpp \
     servicestoolbox.cpp \
@@ -31,7 +30,8 @@ SOURCES += main.cpp\
     customeditline.cpp \
     emailvalidator.cpp \
     forgettablewatcher.cpp \
-    tools.cpp
+    tools.cpp \
+    serviceproviderinfoproperties.cpp
 
 HEADERS  += mainwindow.h \
     servicestoolbox.h \
@@ -53,14 +53,14 @@ HEADERS  += mainwindow.h \
     tools.h \
     customeditline.h \
     emailvalidator.h \
-    forgettablewatcher.h
+    forgettablewatcher.h \
+    platform.h \
+    dummycertverifier.h \
+    serviceproviderinfoproperties.h
 
 FORMS    += mainwindow.ui
 
-
-
-
-
+unix|win32: LIBS += -lvmime
 
 
 

@@ -164,9 +164,13 @@ private:
 
     QList<ServiceProviderInfo*>* getResult();
     QList<ServiceProviderInfo*>* getResultFromFields();
+    ServiceProviderInfo* getResultFromIncomingPage();
+    ServiceProviderInfo* getResultFromOutgoingPage();
     void adoptResult(QList<ServiceProviderInfo*>* result);
 
     friend class Pages::EmailAccountWizardAccountPage;
+    friend class Pages::EmailAccountWizardIncomingServerPage;
+    friend class Pages::EmailAccountWizardOutgoingServerPage;
 };
 
 

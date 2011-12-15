@@ -15,15 +15,31 @@
  *   along with Maily.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "platform.h"
 
 #include <QtGui/QApplication>
 #include <QLibraryInfo>
 #include <QLocale>
 #include <QTranslator>
+
+#include <vmime/vmime.hpp>
+
+#if defined(OS_WIN)
+#include <vmime/platforms/windows/windowsHandler.hpp>
+#else // OS_POSIX
+#include <vmime/platforms/posix/posixHandler.hpp>
+#endif
+
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
+#if defined(OS_WIN)
+    vmime::platform::setHandler<vmime::platforms::windows::windowsHandler>();
+#else // OS_POSIX
+    vmime::platform::setHandler<vmime::platforms::posix::posixHandler>();
+#endif
+
     QApplication app(argc, argv);
 
     QTranslator qtTranslator;
