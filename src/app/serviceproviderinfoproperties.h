@@ -18,6 +18,9 @@
 #ifndef SERVICEPROVIDERINFOPROPERTIES_H
 #define SERVICEPROVIDERINFOPROPERTIES_H
 
+#include "serviceproviderinfo.h"
+
+#include <QMap>
 #include <QScopedPointer>
 
 namespace Maily
@@ -29,7 +32,28 @@ class ServiceProviderInfoPropertiesPrivate;
 class ServiceProviderInfoProperties
 {
 public:
-    ServiceProviderInfoProperties();
+    ServiceProviderInfoProperties(const ServiceProviderInfo* info = 0);
+    virtual ~ServiceProviderInfoProperties();
+
+    ServiceProviderInfoProperties(
+        const ServiceProviderInfoProperties& properties);
+
+    ServiceProviderInfoProperties& operator =(
+        const ServiceProviderInfoProperties& properties);
+
+    const ServiceProviderInfoProperties& operator =(
+        const ServiceProviderInfoProperties& properties) const;
+
+    void swap(ServiceProviderInfoProperties& properties);
+
+    static QMap<QString, QString>* create(const ServiceProviderInfo* info) const;
+
+    const QString& get(const QString& name) const;
+    void set(const QString& name, const QString& value);
+
+private:
+    Q_DECLARE_PRIVATE(ServiceProviderInfoProperties)
+    QScopedPointer<ServiceProviderInfoPropertiesPrivate> d_ptr;
 };
 
 } // namespace Services

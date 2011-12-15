@@ -22,9 +22,99 @@ namespace Maily
 namespace Services
 {
 
-ServiceProviderInfoProperties::ServiceProviderInfoProperties()
+class ServiceProviderInfoPropertiesPrivate
+{
+public:
+    ServiceProviderInfoPropertiesPrivate()
+    {
+
+    }
+
+    ServiceProviderInfoPropertiesPrivate(
+        const ServiceProviderInfoPropertiesPrivate& d) :
+        map(d.map)
+    {
+    }
+
+    ServiceProviderInfoPropertiesPrivate& operator =(
+        const ServiceProviderInfoPropertiesPrivate& d)
+    {
+        if (this == &d)
+            return *this;
+
+        ServiceProviderInfoPropertiesPrivate tmp(d);
+        swap(tmp);
+        return *this;
+    }
+
+    const ServiceProviderInfoPropertiesPrivate& operator =(
+        const ServiceProviderInfoPropertiesPrivate& d) const
+    {
+        return (*this = d);
+    }
+
+    void swap(ServiceProviderInfoPropertiesPrivate& d)
+    {
+        map.swap(d.map);
+    }
+
+    QScopedPointer<QMap<QString, QString> > map;
+};
+
+ServiceProviderInfoProperties::ServiceProviderInfoProperties(
+    const ServiceProviderInfo* info) :
+    d_ptr(new ServiceProviderInfoPropertiesPrivate())
 {
 }
+
+ServiceProviderInfoProperties::~ServiceProviderInfoProperties()
+{
+}
+
+ServiceProviderInfoProperties::ServiceProviderInfoProperties(
+    const ServiceProviderInfoProperties& properties) :
+    d_ptr(properties.d_ptr)
+{
+}
+
+ServiceProviderInfoProperties& ServiceProviderInfoProperties::operator =(
+    const ServiceProviderInfoProperties& properties)
+{
+    if (this == &properties)
+        return *this;
+
+    ServiceProviderInfoProperties tmp(properties);
+    swap(tmp);
+    return *this;
+}
+
+const ServiceProviderInfoProperties& ServiceProviderInfoProperties::operator =(
+    const ServiceProviderInfoProperties& properties) const
+{
+    return (*this = properties);
+}
+
+void ServiceProviderInfoProperties::swap(ServiceProviderInfoProperties& properties)
+{
+    d_ptr.swap(properties.d_ptr);
+}
+
+static QMap<QString, QString>* ServiceProviderInfoProperties::create(
+    const ServiceProviderInfo* info) const
+{
+
+}
+
+const QString& ServiceProviderInfoProperties::get(const QString& name) const
+{
+
+}
+
+void ServiceProviderInfoProperties::set(const QString& name, const QString& value)
+{
+
+}
+
 
 } // namespace Services
 } // namespace Maily
