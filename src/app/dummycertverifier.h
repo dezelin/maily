@@ -32,6 +32,7 @@ class DummyCertVerifier : public vmime::security::cert::certificateVerifier
 public:
     virtual void verify(vmime::ref<vmime::security::cert::certificateChain> certs)
     {
+        Q_UNUSED(certs);
     }
 };
 
