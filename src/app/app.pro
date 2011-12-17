@@ -30,8 +30,7 @@ SOURCES += main.cpp\
     customeditline.cpp \
     emailvalidator.cpp \
     forgettablewatcher.cpp \
-    tools.cpp \
-    serviceproviderinfoproperties.cpp
+    tools.cpp
 
 HEADERS  += mainwindow.h \
     servicestoolbox.h \
@@ -55,8 +54,7 @@ HEADERS  += mainwindow.h \
     emailvalidator.h \
     forgettablewatcher.h \
     platform.h \
-    dummycertverifier.h \
-    serviceproviderinfoproperties.h
+    dummycertverifier.h
 
 FORMS    += mainwindow.ui
 
