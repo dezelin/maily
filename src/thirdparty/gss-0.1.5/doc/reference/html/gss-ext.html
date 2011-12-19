@@ -1,0 +1,447 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ext</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="GNU Generic Security Service (GSS) API Reference Manual">
+<link rel="up" href="ch01.html" title="GNU Generic Security Service (GSS) API Reference Manual">
+<link rel="prev" href="gss-api.html" title="api">
+<link rel="next" href="gss-krb5.html" title="krb5">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gss-api.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GNU Generic Security Service (GSS) API Reference Manual</th>
+<td><a accesskey="n" href="gss-krb5.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gss-ext.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#gss-ext.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="ext">
+<a name="gss-ext"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gss-ext.top_of_page"></a>ext</span></h2>
+<p>ext</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="gss-ext.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">const <span class="returnvalue">char</span> *        <a class="link" href="gss-ext.html#gss-check-version" title="gss_check_version ()">gss_check_version</a>                   (<em class="parameter"><code>const <span class="type">char</span> *req_version</code></em>);
+<a href="/usr/share/gtk-doc/html/gnutls/gnutls-crypto.html#int"><span class="returnvalue">int</span></a>                 <a class="link" href="gss-ext.html#gss-oid-equal" title="gss_oid_equal ()">gss_oid_equal</a>                       (<em class="parameter"><code><span class="type">gss_OID</span> first_oid</code></em>,
+                                                         <em class="parameter"><code><span class="type">gss_OID</span> second_oid</code></em>);
+<a class="link" href="gss-api.html#OM-uint32" title="OM_uint32"><span class="returnvalue">OM_uint32</span></a>           <a class="link" href="gss-ext.html#gss-copy-oid" title="gss_copy_oid ()">gss_copy_oid</a>                        (<em class="parameter"><code><a class="link" href="gss-api.html#OM-uint32" title="OM_uint32"><span class="type">OM_uint32</span></a> *minor_status</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">gss_OID</span> src_oid</code></em>,
+                                                         <em class="parameter"><code><span class="type">gss_OID</span> dest_oid</code></em>);
+<a class="link" href="gss-api.html#OM-uint32" title="OM_uint32"><span class="returnvalue">OM_uint32</span></a>           <a class="link" href="gss-ext.html#gss-duplicate-oid" title="gss_duplicate_oid ()">gss_duplicate_oid</a>                   (<em class="parameter"><code><a class="link" href="gss-api.html#OM-uint32" title="OM_uint32"><span class="type">OM_uint32</span></a> *minor_status</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">gss_OID</span> src_oid</code></em>,
+                                                         <em class="parameter"><code><span class="type">gss_OID</span> *dest_oid</code></em>);
+<a href="/usr/share/gtk-doc/html/gnutls/gnutls-crypto.html#int"><span class="returnvalue">int</span></a>                 <a class="link" href="gss-ext.html#gss-userok" title="gss_userok ()">gss_userok</a>                          (<em class="parameter"><code>const <a class="link" href="gss-api.html#gss-name-t" title="gss_name_t"><span class="type">gss_name_t</span></a> name</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *username</code></em>);
+<a href="/usr/share/gtk-doc/html/gnutls/gnutls-crypto.html#int"><span class="returnvalue">int</span></a>                 <a class="link" href="gss-ext.html#gss-encapsulate-token" title="gss_encapsulate_token ()">gss_encapsulate_token</a>               (<em class="parameter"><code>const <span class="type">gss_buffer_t</span> input_message</code></em>,
+                                                         <em class="parameter"><code><span class="type">gss_OID</span> token_oid</code></em>,
+                                                         <em class="parameter"><code><span class="type">gss_buffer_t</span> output_message</code></em>);
+<a href="/usr/share/gtk-doc/html/gnutls/gnutls-crypto.html#int"><span class="returnvalue">int</span></a>                 <a class="link" href="gss-ext.html#gss-encapsulate-token-prefix" title="gss_encapsulate_token_prefix ()">gss_encapsulate_token_prefix</a>        (<em class="parameter"><code>const <span class="type">gss_buffer_t</span> input_message</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *prefix</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> prefixlen</code></em>,
+                                                         <em class="parameter"><code><span class="type">gss_OID</span> token_oid</code></em>,
+                                                         <em class="parameter"><code><span class="type">gss_buffer_t</span> output_message</code></em>);
+<a href="/usr/share/gtk-doc/html/gnutls/gnutls-crypto.html#int"><span class="returnvalue">int</span></a>                 <a class="link" href="gss-ext.html#gss-decapsulate-token" title="gss_decapsulate_token ()">gss_decapsulate_token</a>               (<em class="parameter"><code>const <span class="type">gss_buffer_t</span> input_message</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">gss_OID</span> token_oid</code></em>,
+                                                         <em class="parameter"><code><span class="type">char</span> **dataptr</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> *datalen</code></em>);
+extern              gss_OID_desc <a class="link" href="gss-ext.html#GSS-C-NT-USER-NAME-static" title="GSS_C_NT_USER_NAME_static">GSS_C_NT_USER_NAME_static</a>;
+extern              gss_OID_desc <a class="link" href="gss-ext.html#GSS-C-NT-MACHINE-UID-NAME-static" title="GSS_C_NT_MACHINE_UID_NAME_static">GSS_C_NT_MACHINE_UID_NAME_static</a>;
+extern              gss_OID_desc <a class="link" href="gss-ext.html#GSS-C-NT-STRING-UID-NAME-static" title="GSS_C_NT_STRING_UID_NAME_static">GSS_C_NT_STRING_UID_NAME_static</a>;
+extern              gss_OID_desc <a class="link" href="gss-ext.html#GSS-C-NT-HOSTBASED-SERVICE-X-static" title="GSS_C_NT_HOSTBASED_SERVICE_X_static">GSS_C_NT_HOSTBASED_SERVICE_X_static</a>;
+extern              gss_OID_desc <a class="link" href="gss-ext.html#GSS-C-NT-HOSTBASED-SERVICE-static" title="GSS_C_NT_HOSTBASED_SERVICE_static">GSS_C_NT_HOSTBASED_SERVICE_static</a>;
+extern              gss_OID_desc <a class="link" href="gss-ext.html#GSS-C-NT-ANONYMOUS-static" title="GSS_C_NT_ANONYMOUS_static">GSS_C_NT_ANONYMOUS_static</a>;
+extern              gss_OID_desc <a class="link" href="gss-ext.html#GSS-C-NT-EXPORT-NAME-static" title="GSS_C_NT_EXPORT_NAME_static">GSS_C_NT_EXPORT_NAME_static</a>;
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="gss-ext.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="gss-ext.details"></a><h2>Details</h2>
+<div class="refsect2" title="gss_check_version ()">
+<a name="gss-check-version"></a><h3>gss_check_version ()</h3>
+<pre class="programlisting">const <span class="returnvalue">char</span> *        gss_check_version                   (<em class="parameter"><code>const <span class="type">char</span> *req_version</code></em>);</pre>
+<p>
+Check that the version of the library is at minimum the one
+given as a string in <em class="parameter"><code>req_version</code></em>.
+</p>
+<p>
+WARNING: This function is a GNU GSS specific extension, and is not
+part of the official GSS API.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>req_version</code></em> :</span></p></td>
+<td>version string to compare with, or NULL
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The actual version string of the library; NULL if the
+  condition is not met.  If <code class="literal">NULL</code> is passed to this function no
+  check is done and only the version string is returned.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gss_oid_equal ()">
+<a name="gss-oid-equal"></a><h3>gss_oid_equal ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gnutls/gnutls-crypto.html#int"><span class="returnvalue">int</span></a>                 gss_oid_equal                       (<em class="parameter"><code><span class="type">gss_OID</span> first_oid</code></em>,
+                                                         <em class="parameter"><code><span class="type">gss_OID</span> second_oid</code></em>);</pre>
+<p>
+Compare two OIDs for equality.  The comparison is "deep", i.e., the
+actual byte sequences of the OIDs are compared instead of just the
+pointer equality.
+</p>
+<p>
+WARNING: This function is a GNU GSS specific extension, and is not
+part of the official GSS API.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_oid</code></em> :</span></p></td>
+<td>(Object ID, read) First Object identifier.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>second_oid</code></em> :</span></p></td>
+<td>(Object ID, read) First Object identifier.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> Returns boolean value true when the two OIDs are
+  equal, otherwise false.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gss_copy_oid ()">
+<a name="gss-copy-oid"></a><h3>gss_copy_oid ()</h3>
+<pre class="programlisting"><a class="link" href="gss-api.html#OM-uint32" title="OM_uint32"><span class="returnvalue">OM_uint32</span></a>           gss_copy_oid                        (<em class="parameter"><code><a class="link" href="gss-api.html#OM-uint32" title="OM_uint32"><span class="type">OM_uint32</span></a> *minor_status</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">gss_OID</span> src_oid</code></em>,
+                                                         <em class="parameter"><code><span class="type">gss_OID</span> dest_oid</code></em>);</pre>
+<p>
+Make an exact copy of the given OID, that shares no memory areas
+with the original.
+</p>
+<p>
+WARNING: This function is a GNU GSS specific extension, and is not
+part of the official GSS API.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>minor_status</code></em> :</span></p></td>
+<td>(integer, modify) Mechanism specific status code.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>src_oid</code></em> :</span></p></td>
+<td>(Object ID, read) The object identifier to copy.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dest_oid</code></em> :</span></p></td>
+<td>(Object ID, modify) The resultant copy of <em class="parameter"><code>src_oid</code></em>.
+  Storage associated with this name must be freed by the
+  application, but <code class="function">gss_release_oid()</code> cannot be used generally as it
+  deallocate the oid structure itself too (use
+  <a class="link" href="gss-ext.html#gss-duplicate-oid" title="gss_duplicate_oid ()"><code class="function">gss_duplicate_oid()</code></a> if you don't want this problem.)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+`GSS_S_COMPLETE`: Successful completion.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gss_duplicate_oid ()">
+<a name="gss-duplicate-oid"></a><h3>gss_duplicate_oid ()</h3>
+<pre class="programlisting"><a class="link" href="gss-api.html#OM-uint32" title="OM_uint32"><span class="returnvalue">OM_uint32</span></a>           gss_duplicate_oid                   (<em class="parameter"><code><a class="link" href="gss-api.html#OM-uint32" title="OM_uint32"><span class="type">OM_uint32</span></a> *minor_status</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">gss_OID</span> src_oid</code></em>,
+                                                         <em class="parameter"><code><span class="type">gss_OID</span> *dest_oid</code></em>);</pre>
+<p>
+Allocate a new OID and make it an exact copy of the given OID, that
+shares no memory areas with the original.
+</p>
+<p>
+WARNING: This function is a GNU GSS specific extension, and is not
+part of the official GSS API.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>minor_status</code></em> :</span></p></td>
+<td>(integer, modify) Mechanism specific status code.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>src_oid</code></em> :</span></p></td>
+<td>(Object ID, read) The object identifier to duplicate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dest_oid</code></em> :</span></p></td>
+<td>(Object ID, modify) The resultant copy of <em class="parameter"><code>src_oid</code></em>.
+  Storage associated with this name must be freed by the
+  application, by calling <code class="function">gss_release_oid()</code>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+`GSS_S_COMPLETE`: Successful completion.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gss_userok ()">
+<a name="gss-userok"></a><h3>gss_userok ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gnutls/gnutls-crypto.html#int"><span class="returnvalue">int</span></a>                 gss_userok                          (<em class="parameter"><code>const <a class="link" href="gss-api.html#gss-name-t" title="gss_name_t"><span class="type">gss_name_t</span></a> name</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *username</code></em>);</pre>
+<p>
+Compare the username against the output from <a class="link" href="gss-api.html#gss-export-name" title="gss_export_name ()"><code class="function">gss_export_name()</code></a>
+invoked on <em class="parameter"><code>name</code></em>, after removing the leading OID.  This answers the
+question whether the particular mechanism would authenticate them
+as the same principal
+</p>
+<p>
+WARNING: This function is a GNU GSS specific extension, and is not
+part of the official GSS API.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td>(gss_name_t, read) Name to be compared.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>username</code></em> :</span></p></td>
+<td>Zero terminated string with username.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> Returns 0 if the names match, non-0 otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gss_encapsulate_token ()">
+<a name="gss-encapsulate-token"></a><h3>gss_encapsulate_token ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gnutls/gnutls-crypto.html#int"><span class="returnvalue">int</span></a>                 gss_encapsulate_token               (<em class="parameter"><code>const <span class="type">gss_buffer_t</span> input_message</code></em>,
+                                                         <em class="parameter"><code><span class="type">gss_OID</span> token_oid</code></em>,
+                                                         <em class="parameter"><code><span class="type">gss_buffer_t</span> output_message</code></em>);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>input_message</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>token_oid</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>output_message</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gss_encapsulate_token_prefix ()">
+<a name="gss-encapsulate-token-prefix"></a><h3>gss_encapsulate_token_prefix ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gnutls/gnutls-crypto.html#int"><span class="returnvalue">int</span></a>                 gss_encapsulate_token_prefix        (<em class="parameter"><code>const <span class="type">gss_buffer_t</span> input_message</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *prefix</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> prefixlen</code></em>,
+                                                         <em class="parameter"><code><span class="type">gss_OID</span> token_oid</code></em>,
+                                                         <em class="parameter"><code><span class="type">gss_buffer_t</span> output_message</code></em>);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>input_message</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>prefix</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>prefixlen</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>token_oid</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>output_message</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gss_decapsulate_token ()">
+<a name="gss-decapsulate-token"></a><h3>gss_decapsulate_token ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gnutls/gnutls-crypto.html#int"><span class="returnvalue">int</span></a>                 gss_decapsulate_token               (<em class="parameter"><code>const <span class="type">gss_buffer_t</span> input_message</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">gss_OID</span> token_oid</code></em>,
+                                                         <em class="parameter"><code><span class="type">char</span> **dataptr</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> *datalen</code></em>);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>input_message</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>token_oid</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dataptr</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>datalen</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="GSS_C_NT_USER_NAME_static">
+<a name="GSS-C-NT-USER-NAME-static"></a><h3>GSS_C_NT_USER_NAME_static</h3>
+<pre class="programlisting">extern gss_OID_desc GSS_C_NT_USER_NAME_static;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_C_NT_MACHINE_UID_NAME_static">
+<a name="GSS-C-NT-MACHINE-UID-NAME-static"></a><h3>GSS_C_NT_MACHINE_UID_NAME_static</h3>
+<pre class="programlisting">extern gss_OID_desc GSS_C_NT_MACHINE_UID_NAME_static;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_C_NT_STRING_UID_NAME_static">
+<a name="GSS-C-NT-STRING-UID-NAME-static"></a><h3>GSS_C_NT_STRING_UID_NAME_static</h3>
+<pre class="programlisting">extern gss_OID_desc GSS_C_NT_STRING_UID_NAME_static;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_C_NT_HOSTBASED_SERVICE_X_static">
+<a name="GSS-C-NT-HOSTBASED-SERVICE-X-static"></a><h3>GSS_C_NT_HOSTBASED_SERVICE_X_static</h3>
+<pre class="programlisting">extern gss_OID_desc GSS_C_NT_HOSTBASED_SERVICE_X_static;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_C_NT_HOSTBASED_SERVICE_static">
+<a name="GSS-C-NT-HOSTBASED-SERVICE-static"></a><h3>GSS_C_NT_HOSTBASED_SERVICE_static</h3>
+<pre class="programlisting">extern gss_OID_desc GSS_C_NT_HOSTBASED_SERVICE_static;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_C_NT_ANONYMOUS_static">
+<a name="GSS-C-NT-ANONYMOUS-static"></a><h3>GSS_C_NT_ANONYMOUS_static</h3>
+<pre class="programlisting">extern gss_OID_desc GSS_C_NT_ANONYMOUS_static;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_C_NT_EXPORT_NAME_static">
+<a name="GSS-C-NT-EXPORT-NAME-static"></a><h3>GSS_C_NT_EXPORT_NAME_static</h3>
+<pre class="programlisting">extern gss_OID_desc GSS_C_NT_EXPORT_NAME_static;
+</pre>
+<p>
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.14</div>
+</body>
+</html>

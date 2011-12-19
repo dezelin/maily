@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gss-krb5">
+<refmeta>
+<refentrytitle role="top_of_page" id="gss-krb5.top_of_page">krb5</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>
+  GSS Library
+</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>krb5</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gss-krb5.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>#define             <link linkend="GSS-KRB5-S-G-BAD-SERVICE-NAME:CAPS">GSS_KRB5_S_G_BAD_SERVICE_NAME</link>
+#define             <link linkend="GSS-KRB5-S-G-BAD-STRING-UID:CAPS">GSS_KRB5_S_G_BAD_STRING_UID</link>
+#define             <link linkend="GSS-KRB5-S-G-NOUSER:CAPS">GSS_KRB5_S_G_NOUSER</link>
+#define             <link linkend="GSS-KRB5-S-G-VALIDATE-FAILED:CAPS">GSS_KRB5_S_G_VALIDATE_FAILED</link>
+#define             <link linkend="GSS-KRB5-S-G-BUFFER-ALLOC:CAPS">GSS_KRB5_S_G_BUFFER_ALLOC</link>
+#define             <link linkend="GSS-KRB5-S-G-BAD-MSG-CTX:CAPS">GSS_KRB5_S_G_BAD_MSG_CTX</link>
+#define             <link linkend="GSS-KRB5-S-G-WRONG-SIZE:CAPS">GSS_KRB5_S_G_WRONG_SIZE</link>
+#define             <link linkend="GSS-KRB5-S-G-BAD-USAGE:CAPS">GSS_KRB5_S_G_BAD_USAGE</link>
+#define             <link linkend="GSS-KRB5-S-G-UNKNOWN-QOP:CAPS">GSS_KRB5_S_G_UNKNOWN_QOP</link>
+#define             <link linkend="GSS-KRB5-S-KG-CCACHE-NOMATCH:CAPS">GSS_KRB5_S_KG_CCACHE_NOMATCH</link>
+#define             <link linkend="GSS-KRB5-S-KG-KEYTAB-NOMATCH:CAPS">GSS_KRB5_S_KG_KEYTAB_NOMATCH</link>
+#define             <link linkend="GSS-KRB5-S-KG-TGT-MISSING:CAPS">GSS_KRB5_S_KG_TGT_MISSING</link>
+#define             <link linkend="GSS-KRB5-S-KG-NO-SUBKEY:CAPS">GSS_KRB5_S_KG_NO_SUBKEY</link>
+#define             <link linkend="GSS-KRB5-S-KG-CONTEXT-ESTABLISHED:CAPS">GSS_KRB5_S_KG_CONTEXT_ESTABLISHED</link>
+#define             <link linkend="GSS-KRB5-S-KG-BAD-SIGN-TYPE:CAPS">GSS_KRB5_S_KG_BAD_SIGN_TYPE</link>
+#define             <link linkend="GSS-KRB5-S-KG-BAD-LENGTH:CAPS">GSS_KRB5_S_KG_BAD_LENGTH</link>
+#define             <link linkend="GSS-KRB5-S-KG-CTX-INCOMPLETE:CAPS">GSS_KRB5_S_KG_CTX_INCOMPLETE</link>
+extern              gss_OID <link linkend="GSS-KRB5-NT-USER-NAME:CAPS">GSS_KRB5_NT_USER_NAME</link>;
+extern              gss_OID <link linkend="GSS-KRB5-NT-HOSTBASED-SERVICE-NAME:CAPS">GSS_KRB5_NT_HOSTBASED_SERVICE_NAME</link>;
+extern              gss_OID <link linkend="GSS-KRB5-NT-PRINCIPAL-NAME:CAPS">GSS_KRB5_NT_PRINCIPAL_NAME</link>;
+extern              gss_OID <link linkend="GSS-KRB5-NT-MACHINE-UID-NAME:CAPS">GSS_KRB5_NT_MACHINE_UID_NAME</link>;
+extern              gss_OID <link linkend="GSS-KRB5-NT-STRING-UID-NAME:CAPS">GSS_KRB5_NT_STRING_UID_NAME</link>;
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="gss-krb5.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+<refsect1 id="gss-krb5.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GSS-KRB5-S-G-BAD-SERVICE-NAME:CAPS" role="macro">
+<title>GSS_KRB5_S_G_BAD_SERVICE_NAME</title>
+<indexterm zone="GSS-KRB5-S-G-BAD-SERVICE-NAME:CAPS"><primary>GSS_KRB5_S_G_BAD_SERVICE_NAME</primary></indexterm>
+<programlisting>#define GSS_KRB5_S_G_BAD_SERVICE_NAME 1
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-S-G-BAD-STRING-UID:CAPS" role="macro">
+<title>GSS_KRB5_S_G_BAD_STRING_UID</title>
+<indexterm zone="GSS-KRB5-S-G-BAD-STRING-UID:CAPS"><primary>GSS_KRB5_S_G_BAD_STRING_UID</primary></indexterm>
+<programlisting>#define GSS_KRB5_S_G_BAD_STRING_UID 2
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-S-G-NOUSER:CAPS" role="macro">
+<title>GSS_KRB5_S_G_NOUSER</title>
+<indexterm zone="GSS-KRB5-S-G-NOUSER:CAPS"><primary>GSS_KRB5_S_G_NOUSER</primary></indexterm>
+<programlisting>#define GSS_KRB5_S_G_NOUSER 3
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-S-G-VALIDATE-FAILED:CAPS" role="macro">
+<title>GSS_KRB5_S_G_VALIDATE_FAILED</title>
+<indexterm zone="GSS-KRB5-S-G-VALIDATE-FAILED:CAPS"><primary>GSS_KRB5_S_G_VALIDATE_FAILED</primary></indexterm>
+<programlisting>#define GSS_KRB5_S_G_VALIDATE_FAILED 4
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-S-G-BUFFER-ALLOC:CAPS" role="macro">
+<title>GSS_KRB5_S_G_BUFFER_ALLOC</title>
+<indexterm zone="GSS-KRB5-S-G-BUFFER-ALLOC:CAPS"><primary>GSS_KRB5_S_G_BUFFER_ALLOC</primary></indexterm>
+<programlisting>#define GSS_KRB5_S_G_BUFFER_ALLOC 5
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-S-G-BAD-MSG-CTX:CAPS" role="macro">
+<title>GSS_KRB5_S_G_BAD_MSG_CTX</title>
+<indexterm zone="GSS-KRB5-S-G-BAD-MSG-CTX:CAPS"><primary>GSS_KRB5_S_G_BAD_MSG_CTX</primary></indexterm>
+<programlisting>#define GSS_KRB5_S_G_BAD_MSG_CTX 6
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-S-G-WRONG-SIZE:CAPS" role="macro">
+<title>GSS_KRB5_S_G_WRONG_SIZE</title>
+<indexterm zone="GSS-KRB5-S-G-WRONG-SIZE:CAPS"><primary>GSS_KRB5_S_G_WRONG_SIZE</primary></indexterm>
+<programlisting>#define GSS_KRB5_S_G_WRONG_SIZE 7
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-S-G-BAD-USAGE:CAPS" role="macro">
+<title>GSS_KRB5_S_G_BAD_USAGE</title>
+<indexterm zone="GSS-KRB5-S-G-BAD-USAGE:CAPS"><primary>GSS_KRB5_S_G_BAD_USAGE</primary></indexterm>
+<programlisting>#define GSS_KRB5_S_G_BAD_USAGE 8
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-S-G-UNKNOWN-QOP:CAPS" role="macro">
+<title>GSS_KRB5_S_G_UNKNOWN_QOP</title>
+<indexterm zone="GSS-KRB5-S-G-UNKNOWN-QOP:CAPS"><primary>GSS_KRB5_S_G_UNKNOWN_QOP</primary></indexterm>
+<programlisting>#define GSS_KRB5_S_G_UNKNOWN_QOP 9
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-S-KG-CCACHE-NOMATCH:CAPS" role="macro">
+<title>GSS_KRB5_S_KG_CCACHE_NOMATCH</title>
+<indexterm zone="GSS-KRB5-S-KG-CCACHE-NOMATCH:CAPS"><primary>GSS_KRB5_S_KG_CCACHE_NOMATCH</primary></indexterm>
+<programlisting>#define GSS_KRB5_S_KG_CCACHE_NOMATCH 10
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-S-KG-KEYTAB-NOMATCH:CAPS" role="macro">
+<title>GSS_KRB5_S_KG_KEYTAB_NOMATCH</title>
+<indexterm zone="GSS-KRB5-S-KG-KEYTAB-NOMATCH:CAPS"><primary>GSS_KRB5_S_KG_KEYTAB_NOMATCH</primary></indexterm>
+<programlisting>#define GSS_KRB5_S_KG_KEYTAB_NOMATCH 11
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-S-KG-TGT-MISSING:CAPS" role="macro">
+<title>GSS_KRB5_S_KG_TGT_MISSING</title>
+<indexterm zone="GSS-KRB5-S-KG-TGT-MISSING:CAPS"><primary>GSS_KRB5_S_KG_TGT_MISSING</primary></indexterm>
+<programlisting>#define GSS_KRB5_S_KG_TGT_MISSING 12
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-S-KG-NO-SUBKEY:CAPS" role="macro">
+<title>GSS_KRB5_S_KG_NO_SUBKEY</title>
+<indexterm zone="GSS-KRB5-S-KG-NO-SUBKEY:CAPS"><primary>GSS_KRB5_S_KG_NO_SUBKEY</primary></indexterm>
+<programlisting>#define GSS_KRB5_S_KG_NO_SUBKEY 13
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-S-KG-CONTEXT-ESTABLISHED:CAPS" role="macro">
+<title>GSS_KRB5_S_KG_CONTEXT_ESTABLISHED</title>
+<indexterm zone="GSS-KRB5-S-KG-CONTEXT-ESTABLISHED:CAPS"><primary>GSS_KRB5_S_KG_CONTEXT_ESTABLISHED</primary></indexterm>
+<programlisting>#define GSS_KRB5_S_KG_CONTEXT_ESTABLISHED 14
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-S-KG-BAD-SIGN-TYPE:CAPS" role="macro">
+<title>GSS_KRB5_S_KG_BAD_SIGN_TYPE</title>
+<indexterm zone="GSS-KRB5-S-KG-BAD-SIGN-TYPE:CAPS"><primary>GSS_KRB5_S_KG_BAD_SIGN_TYPE</primary></indexterm>
+<programlisting>#define GSS_KRB5_S_KG_BAD_SIGN_TYPE 15
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-S-KG-BAD-LENGTH:CAPS" role="macro">
+<title>GSS_KRB5_S_KG_BAD_LENGTH</title>
+<indexterm zone="GSS-KRB5-S-KG-BAD-LENGTH:CAPS"><primary>GSS_KRB5_S_KG_BAD_LENGTH</primary></indexterm>
+<programlisting>#define GSS_KRB5_S_KG_BAD_LENGTH 16
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-S-KG-CTX-INCOMPLETE:CAPS" role="macro">
+<title>GSS_KRB5_S_KG_CTX_INCOMPLETE</title>
+<indexterm zone="GSS-KRB5-S-KG-CTX-INCOMPLETE:CAPS"><primary>GSS_KRB5_S_KG_CTX_INCOMPLETE</primary></indexterm>
+<programlisting>#define GSS_KRB5_S_KG_CTX_INCOMPLETE 17
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-NT-USER-NAME:CAPS" role="variable">
+<title>GSS_KRB5_NT_USER_NAME</title>
+<indexterm zone="GSS-KRB5-NT-USER-NAME:CAPS"><primary>GSS_KRB5_NT_USER_NAME</primary></indexterm>
+<programlisting>extern gss_OID GSS_KRB5_NT_USER_NAME;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-NT-HOSTBASED-SERVICE-NAME:CAPS" role="variable">
+<title>GSS_KRB5_NT_HOSTBASED_SERVICE_NAME</title>
+<indexterm zone="GSS-KRB5-NT-HOSTBASED-SERVICE-NAME:CAPS"><primary>GSS_KRB5_NT_HOSTBASED_SERVICE_NAME</primary></indexterm>
+<programlisting>extern gss_OID GSS_KRB5_NT_HOSTBASED_SERVICE_NAME;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-NT-PRINCIPAL-NAME:CAPS" role="variable">
+<title>GSS_KRB5_NT_PRINCIPAL_NAME</title>
+<indexterm zone="GSS-KRB5-NT-PRINCIPAL-NAME:CAPS"><primary>GSS_KRB5_NT_PRINCIPAL_NAME</primary></indexterm>
+<programlisting>extern gss_OID GSS_KRB5_NT_PRINCIPAL_NAME;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-NT-MACHINE-UID-NAME:CAPS" role="variable">
+<title>GSS_KRB5_NT_MACHINE_UID_NAME</title>
+<indexterm zone="GSS-KRB5-NT-MACHINE-UID-NAME:CAPS"><primary>GSS_KRB5_NT_MACHINE_UID_NAME</primary></indexterm>
+<programlisting>extern gss_OID GSS_KRB5_NT_MACHINE_UID_NAME;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-NT-STRING-UID-NAME:CAPS" role="variable">
+<title>GSS_KRB5_NT_STRING_UID_NAME</title>
+<indexterm zone="GSS-KRB5-NT-STRING-UID-NAME:CAPS"><primary>GSS_KRB5_NT_STRING_UID_NAME</primary></indexterm>
+<programlisting>extern gss_OID GSS_KRB5_NT_STRING_UID_NAME;
+</programlisting>
+<para>
+</para></refsect2>
+
+</refsect1>
+
+</refentry>

@@ -1,0 +1,1706 @@
+\input texinfo   @c -*- mode: texinfo; coding: us-ascii; -*-
+@c This file is part of the GNU Generic Security Service Library.
+@c See below for copyright and license.
+
+@setfilename gss.info
+@include version.texi
+@settitle GNU Generic Security Service Library
+@finalout
+
+@c Unify some of the indices.
+@syncodeindex tp fn
+@syncodeindex pg fn
+@syncodeindex vr fn
+
+@copying
+This manual is last updated @value{UPDATED} for version
+@value{VERSION} of GNU GSS.
+
+Copyright @copyright{} 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010 Simon Josefsson.
+
+@quotation
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A
+copy of the license is included in the section entitled ``GNU Free
+Documentation License''.
+@end quotation
+@end copying
+
+@dircategory GNU Libraries
+@direntry
+* gss: (gss).		Generic Security Service API Library
+@end direntry
+
+@titlepage
+@title GNU Generic Security Service Library
+@subtitle GSS-API Library for the GNU system
+@subtitle for version @value{VERSION}, @value{UPDATED}
+@author Simon Josefsson
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@contents
+
+@ifnottex
+@node Top
+@top GNU Generic Security Service Library
+@insertcopying
+@end ifnottex
+
+@menu
+* Introduction::                How to use this manual.
+* Preparation::                 What you should do before using the library.
+* Standard GSS API::            Reference documentation for the Standard API.
+* Extended GSS API::            Non-standard functions.
+* Acknowledgements::            Whom to blame.
+
+Appendices
+
+* Criticism of GSS::            Why you maybe shouldn't use GSS.
+* Copying Information::         How you can copy and share GSS.
+
+Indices
+
+* Concept Index::               Index of concepts and programs.
+* API Index::                   Index of functions, variables and data types.
+@end menu
+
+@c **********************************************************
+@c *******************  Introduction  ***********************
+@c **********************************************************
+@node Introduction
+@chapter Introduction
+
+GSS is an implementation of the Generic Security Service Application
+Program Interface (GSS-API).  GSS-API is used by network servers to
+provide security services, e.g., to authenticate SMTP/IMAP clients
+against SMTP/IMAP servers.  GSS consists of a library and a manual.
+
+GSS is developed for the GNU/Linux system, but runs on over 20
+platforms including most major Unix platforms and Windows, and many
+kind of devices including iPAQ handhelds and S/390 mainframes.
+
+GSS is a GNU project, and is licensed under the GNU General Public
+License version 3 or later.
+
+@menu
+* Getting Started::
+* Features::
+* GSS-API Overview::
+* Supported Platforms::
+* Commercial Support::
+* Downloading and Installing::
+* Bug Reports::
+* Contributing::
+* Planned Features::
+@end menu
+
+@node Getting Started
+@section Getting Started
+
+This manual documents the GSS programming interface.  All functions
+and data types provided by the library are explained.
+
+The reader is assumed to possess basic familiarity with GSS-API and
+network programming in C or C++.  For general GSS-API information, and
+some programming examples, there is a guide available online at
+@url{http://docs.sun.com/db/doc/816-1331}.
+
+This manual can be used in several ways.  If read from the beginning
+to the end, it gives a good introduction into the library and how it
+can be used in an application.  Forward references are included where
+necessary.  Later on, the manual can be used as a reference manual to
+get just the information needed about any particular interface of the
+library.  Experienced programmers might want to start looking at the
+examples at the end of the manual, and then only read up those parts
+of the interface which are unclear.
+
+@node Features
+@section Features
+
+GSS might have a couple of advantages over other libraries doing a
+similar job.
+
+@table @asis
+@item It's Free Software
+Anybody can use, modify, and redistribute it under the terms of the
+GNU General Public License version 3 or later.
+
+@item It's thread-safe
+No global variables are used and multiple library handles and session
+handles may be used in parallell.
+
+@item It's internationalized
+It handles non-ASCII names and user visible strings used in the
+library (e.g., error messages) can be translated into the users'
+language.
+
+@item It's portable
+It should work on all Unix like operating systems, including Windows.
+
+@end table
+
+@node GSS-API Overview
+@section GSS-API Overview
+
+This section describes GSS-API from a protocol point of view.
+
+The Generic Security Service Application Programming Interface
+provides security services to calling applications.  It allows a
+communicating application to authenticate the user associated with
+another application, to delegate rights to another application, and to
+apply security services such as confidentiality and integrity on a
+per-message basis.
+
+There are four stages to using the GSS-API:
+
+@enumerate
+@item
+The application acquires a set of credentials with which it may prove
+its identity to other processes. The application's credentials vouch
+for its global identity, which may or may not be related to any local
+username under which it may be running.
+
+@item
+A pair of communicating applications establish a joint security
+context using their credentials.  The security context is a pair of
+GSS-API data structures that contain shared state information, which
+is required in order that per-message security services may be
+provided.  Examples of state that might be shared between applications
+as part of a security context are cryptographic keys, and message
+sequence numbers.  As part of the establishment of a security context,
+the context initiator is authenticated to the responder, and may
+require that the responder is authenticated in turn.  The initiator
+may optionally give the responder the right to initiate further
+security contexts, acting as an agent or delegate of the initiator.
+This transfer of rights is termed delegation, and is achieved by
+creating a set of credentials, similar to those used by the initiating
+application, but which may be used by the responder.
+
+To establish and maintain the shared information that makes up the
+security context, certain GSS-API calls will return a token data
+structure, which is an opaque data type that may contain
+cryptographically protected data.  The caller of such a GSS-API
+routine is responsible for transferring the token to the peer
+application, encapsulated if necessary in an application- application
+protocol.  On receipt of such a token, the peer application should
+pass it to a corresponding GSS-API routine which will decode the token
+and extract the information, updating the security context state
+information accordingly.
+
+@item
+Per-message services are invoked to apply either: integrity and data
+origin authentication, or confidentiality, integrity and data origin
+authentication to application data, which are treated by GSS-API as
+arbitrary octet-strings.  An application transmitting a message that
+it wishes to protect will call the appropriate GSS-API routine
+(gss_get_mic or gss_wrap) to apply protection, specifying the
+appropriate security context, and send the resulting token to the
+receiving application.  The receiver will pass the received token
+(and, in the case of data protected by gss_get_mic, the accompanying
+message-data) to the corresponding decoding routine (gss_verify_mic or
+gss_unwrap) to remove the protection and validate the data.
+
+@item
+At the completion of a communications session (which may extend across
+several transport connections), each application calls a GSS-API
+routine to delete the security context.  Multiple contexts may also be
+used (either successively or simultaneously) within a single
+communications association, at the option of the applications.
+@end enumerate
+
+@node Supported Platforms
+@section Supported Platforms
+
+GSS has at some point in time been tested on the following platforms.
+
+@enumerate
+
+@item Debian GNU/Linux 3.0 (Woody)
+@cindex Debian
+
+GCC 2.95.4 and GNU Make. This is the main development platform.
+@code{alphaev67-unknown-linux-gnu}, @code{alphaev6-unknown-linux-gnu},
+@code{arm-unknown-linux-gnu}, @code{hppa-unknown-linux-gnu},
+@code{hppa64-unknown-linux-gnu}, @code{i686-pc-linux-gnu},
+@code{ia64-unknown-linux-gnu}, @code{m68k-unknown-linux-gnu},
+@code{mips-unknown-linux-gnu}, @code{mipsel-unknown-linux-gnu},
+@code{powerpc-unknown-linux-gnu}, @code{s390-ibm-linux-gnu},
+@code{sparc-unknown-linux-gnu}.
+
+@item Debian GNU/Linux 2.1
+@cindex Debian
+
+GCC 2.95.1 and GNU Make. @code{armv4l-unknown-linux-gnu}.
+
+@item Tru64 UNIX
+@cindex Tru64
+
+Tru64 UNIX C compiler and Tru64 Make. @code{alphaev67-dec-osf5.1},
+@code{alphaev68-dec-osf5.1}.
+
+@item SuSE Linux 7.1
+@cindex SuSE
+
+GCC 2.96 and GNU Make. @code{alphaev6-unknown-linux-gnu},
+@code{alphaev67-unknown-linux-gnu}.
+
+@item SuSE Linux 7.2a
+@cindex SuSE Linux
+
+GCC 3.0 and GNU Make. @code{ia64-unknown-linux-gnu}.
+
+@item RedHat Linux 7.2
+@cindex RedHat
+
+GCC 2.96 and GNU Make. @code{alphaev6-unknown-linux-gnu},
+@code{alphaev67-unknown-linux-gnu}, @code{ia64-unknown-linux-gnu}.
+
+@item RedHat Linux 8.0
+@cindex RedHat
+
+GCC 3.2 and GNU Make. @code{i686-pc-linux-gnu}.
+
+@item RedHat Advanced Server 2.1
+@cindex RedHat Advanced Server
+
+GCC 2.96 and GNU Make. @code{i686-pc-linux-gnu}.
+
+@item Slackware Linux 8.0.01
+@cindex RedHat
+
+GCC 2.95.3 and GNU Make. @code{i686-pc-linux-gnu}.
+
+@item Mandrake Linux 9.0
+@cindex Mandrake
+
+GCC 3.2 and GNU Make. @code{i686-pc-linux-gnu}.
+
+@item IRIX 6.5
+@cindex IRIX
+
+MIPS C compiler, IRIX Make. @code{mips-sgi-irix6.5}.
+
+@item AIX 4.3.2
+@cindex AIX
+
+IBM C for AIX compiler, AIX Make.  @code{rs6000-ibm-aix4.3.2.0}.
+
+@item Microsoft Windows 2000 (Cygwin)
+@cindex Windows
+
+GCC 3.2, GNU make. @code{i686-pc-cygwin}.
+
+@item HP-UX 11
+@cindex HP-UX
+
+HP-UX C compiler and HP Make. @code{ia64-hp-hpux11.22},
+@code{hppa2.0w-hp-hpux11.11}.
+
+@item SUN Solaris 2.8
+@cindex Solaris
+
+Sun WorkShop Compiler C 6.0 and SUN Make. @code{sparc-sun-solaris2.8}.
+
+@item NetBSD 1.6
+@cindex NetBSD
+
+GCC 2.95.3 and GNU Make. @code{alpha-unknown-netbsd1.6},
+@code{i386-unknown-netbsdelf1.6}.
+
+@item OpenBSD 3.1 and 3.2
+@cindex OpenBSD
+
+GCC 2.95.3 and GNU Make. @code{alpha-unknown-openbsd3.1},
+@code{i386-unknown-openbsd3.1}.
+
+@item FreeBSD 4.7
+@cindex FreeBSD
+
+GCC 2.95.4 and GNU Make. @code{alpha-unknown-freebsd4.7},
+@code{i386-unknown-freebsd4.7}.
+
+@item Cross compiled to uClinux/uClibc on Motorola Coldfire.
+@cindex Motorola Coldfire
+@cindex uClinux
+@cindex uClibc
+
+GCC 3.4 and GNU Make @code{m68k-uclinux-elf}.
+
+@end enumerate
+
+If you use GSS on, or port GSS to, a new platform please report it to
+the author.
+
+@node Commercial Support
+@section Commercial Support
+
+Commercial support is available for users of GNU GSS.  The kind of
+support that can be purchased may include:
+
+@itemize
+
+@item Implement new features.
+Such as a new GSS-API mechanism.
+
+@item Port GSS to new platforms.
+This could include porting to an embedded platforms that may need
+memory or size optimization.
+
+@item Integrating GSS as a security environment in your existing project.
+
+@item System design of components related to GSS-API.
+
+@end itemize
+
+If you are interested, please write to:
+
+@verbatim
+Simon Josefsson Datakonsult
+Hagagatan 24
+113 47 Stockholm
+Sweden
+
+E-mail: simon@josefsson.org
+@end verbatim
+
+If your company provides support related to GNU GSS and would like to
+be mentioned here, contact the author (@pxref{Bug Reports}).
+
+@node Downloading and Installing
+@section Downloading and Installing
+@cindex Installation
+@cindex Download
+
+The package can be downloaded from several places, including:
+
+@url{ftp://alpha.gnu.org/pub/gnu/gss/}
+
+The latest version is stored in a file, e.g.,
+@samp{gss-@value{VERSION}.tar.gz} where the @samp{@value{VERSION}}
+indicate the highest version number.
+
+The package is then extracted, configured and built like many other
+packages that use Autoconf.  For detailed information on configuring
+and building it, refer to the @file{INSTALL} file that is part of the
+distribution archive.
+
+Here is an example terminal session that downloads, configures, builds
+and installs the package.  You will need a few basic tools, such as
+@samp{sh}, @samp{make} and @samp{cc}.
+
+@example
+$ wget -q ftp://alpha.gnu.org/pub/gnu/gss/gss-@value{VERSION}.tar.gz
+$ tar xfz gss-@value{VERSION}.tar.gz
+$ cd gss-@value{VERSION}/
+$ ./configure
+...
+$ make
+...
+$ make install
+...
+@end example
+
+After that GSS should be properly installed and ready for use.
+
+@node Bug Reports
+@section Bug Reports
+@cindex Reporting Bugs
+
+If you think you have found a bug in GSS, please investigate it and
+report it.
+
+@itemize @bullet
+
+@item Please make sure that the bug is really in GSS, and
+preferably also check that it hasn't already been fixed in the latest
+version.
+
+@item You have to send us a test case that makes it possible for us to
+reproduce the bug.
+
+@item You also have to explain what is wrong; if you get a crash, or
+if the results printed are not good and in that case, in what way.
+Make sure that the bug report includes all information you would need
+to fix this kind of bug for someone else.
+
+@end itemize
+
+Please make an effort to produce a self-contained report, with
+something definite that can be tested or debugged.  Vague queries or
+piecemeal messages are difficult to act on and don't help the
+development effort.
+
+If your bug report is good, we will do our best to help you to get a
+corrected version of the software; if the bug report is poor, we won't
+do anything about it (apart from asking you to send better bug
+reports).
+
+If you think something in this manual is unclear, or downright
+incorrect, or if the language needs to be improved, please also send a
+note.
+
+Send your bug report to:
+
+@center @samp{bug-gss@@gnu.org}
+
+@node Contributing
+@section Contributing
+@cindex Contributing
+@cindex Hacking
+
+If you want to submit a patch for inclusion -- from solve a typo you
+discovered, up to adding support for a new feature -- you should
+submit it as a bug report (@pxref{Bug Reports}).  There are some
+things that you can do to increase the chances for it to be included
+in the official package.
+
+Unless your patch is very small (say, under 10 lines) we require that
+you assign the copyright of your work to the Free Software Foundation.
+This is to protect the freedom of the project.  If you have not
+already signed papers, we will send you the necessary information when
+you submit your contribution.
+
+For contributions that doesn't consist of actual programming code, the
+only guidelines are common sense.  Use it.
+
+For code contributions, a number of style guides will help you:
+
+@itemize @bullet
+
+@item Coding Style.
+Follow the GNU Standards document (@pxref{top, GNU Coding Standards,,
+standards}).
+
+If you normally code using another coding standard, there is no
+problem, but you should use @samp{indent} to reformat the code
+(@pxref{top, GNU Indent,, indent}) before submitting your work.
+
+@item Use the unified diff format @samp{diff -u}.
+
+@item Return errors.
+No reason whatsoever should abort the execution of the library.  Even
+memory allocation errors, e.g. when malloc return NULL, should work
+although result in an error code.
+
+@item Design with thread safety in mind.
+Don't use global variables.  Don't even write to per-handle global
+variables unless the documented behaviour of the function you write is
+to write to the per-handle global variable.
+
+@item Avoid using the C math library.
+It causes problems for embedded implementations, and in most
+situations it is very easy to avoid using it.
+
+@item Document your functions.
+Use comments before each function headers, that, if properly
+formatted, are extracted into Texinfo manuals and GTK-DOC web pages.
+
+@item Supply a ChangeLog and NEWS entries, where appropriate.
+
+@end itemize
+
+@node Planned Features
+@section Planned Features
+@cindex Todo list
+@cindex Future goals
+
+This is also known as the ``todo list''.  If you like to start working
+on anything, please let me know so work duplication can be avoided.
+
+@itemize
+@item Support non-blocking mode.
+This would be an API extension.  It could work by forking a process
+and interface to it, or by using a user-specific daemon.  E.g., h =
+START(accept_sec_context(...)), FINISHED(h), ret = FINISH(h), ABORT(h).
+
+@item Compute MD5 of non-empty channel bindings.
+
+@item Support loadable modules via dlopen, a'la Solaris GSS.
+
+@item Port to Cyclone? CCured?
+
+@end itemize
+
+
+@c **********************************************************
+@c *******************  Preparation  ************************
+@c **********************************************************
+@node Preparation
+@chapter Preparation
+
+To use GSS, you have to perform some changes to your sources and the
+build system.  The necessary changes are small and explained in the
+following sections.  At the end of this chapter, it is described how
+the library is initialized, and how the requirements of the library
+are verified.
+
+A faster way to find out how to adapt your application for use with
+GSS may be to look at the examples at the end of this manual.
+
+@menu
+* Header::
+* Initialization::
+* Version Check::
+* Building the source::
+* Out of Memory handling::
+@end menu
+
+@node Header
+@section Header
+
+@cindex Header files
+All standard interfaces (data types and functions) of the official GSS
+API are defined in the header file @file{gss/api.h}.  The file is
+taken verbatim from the RFC (after correcting a few typos) where it is
+known as @file{gssapi.h}.  However, to be able to co-exist gracefully
+with other GSS-API implementation, the name @file{gssapi.h} was
+changed.
+
+The header file @file{gss.h} includes @file{gss/api.h}, and declares a
+few non-standard extensions (by including @file{gss/ext.h}), takes
+care of including header files related to all supported mechanisms
+(e.g., @file{gss/krb5.h}) and finally adds C++ namespace protection of
+all definitions.  Therefore, including @file{gss.h} in your project is
+recommended over @file{gss/api.h}.  If using @file{gss.h} instead of
+@file{gss/api.h} causes problems, it should be regarded a bug.
+
+You must include either file in all programs using the library, either
+directly or through some other header file, like this:
+
+@example
+#include <gss.h>
+@end example
+
+The name space of GSS is @code{gss_*} for function names, @code{gss_*}
+for data types and @code{GSS_*} for other symbols.  In addition the
+same name prefixes with one prepended underscore are reserved for
+internal use and should never be used by an application.
+
+Each supported GSS mechanism may want to expose mechanism specific
+functionality, and can do so through one or more header files under
+the @file{gss/} directory.  The Kerberos 5 mechanism uses the file
+@file{gss/krb5.h}, but again, it is included (with C++ namespace
+fixes) from @file{gss.h}.
+
+@node Initialization
+@section Initialization
+
+GSS does not need to be initialized before it can be used.
+
+In order to take advantage of the internationalisation features in
+GSS, e.g. translated error messages, the application must set the
+current locale using @code{setlocale()} before calling, e.g.,
+@code{gss_display_status()}.  This is typically done in @code{main()}
+as in the following example.
+
+@example
+#include <gss.h>
+#include <locale.h>
+...
+  setlocale (LC_ALL, "");
+@end example
+
+@node Version Check
+@section Version Check
+
+It is often desirable to check that the version of GSS used is indeed
+one which fits all requirements.  Even with binary compatibility new
+features may have been introduced but due to problem with the dynamic
+linker an old version is actually used.  So you may want to check that
+the version is okay right after program startup.  The function is
+called @code{gss_check_version()} and is described formally in
+@xref{Extended GSS API}.
+
+The normal way to use the function is to put something similar to the
+following early in your @code{main()}:
+
+@example
+#include <gss.h>
+...
+  if (!gss_check_version (GSS_VERSION))
+    @{
+      printf ("gss_check_version() failed:\n"
+              "Header file incompatible with shared library.\n");
+      exit(EXIT_FAILURE);
+    @}
+@end example
+
+@node Building the source
+@section Building the source
+@cindex Compiling your application
+
+If you want to compile a source file that includes the @file{gss.h} header
+file, you must make sure that the compiler can find it in the
+directory hierarchy.  This is accomplished by adding the path to the
+directory in which the header file is located to the compilers include
+file search path (via the @option{-I} option).
+
+However, the path to the include file is determined at the time the
+source is configured.  To solve this problem, GSS uses the external
+package @command{pkg-config} that knows the path to the include file
+and other configuration options.  The options that need to be added to
+the compiler invocation at compile time are output by the
+@option{--cflags} option to @command{pkg-config gss}.  The following
+example shows how it can be used at the command line:
+
+@example
+gcc -c foo.c `pkg-config gss --cflags`
+@end example
+
+Adding the output of @samp{pkg-config gss --cflags} to the compilers
+command line will ensure that the compiler can find the @file{gss.h} header
+file.
+
+A similar problem occurs when linking the program with the library.
+Again, the compiler has to find the library files.  For this to work,
+the path to the library files has to be added to the library search
+path (via the @option{-L} option).  For this, the option
+@option{--libs} to @command{pkg-config gss} can be used.  For
+convenience, this option also outputs all other options that are
+required to link the program with the GSS libarary (for instance, the
+@samp{-lshishi} option).  The example shows how to link @file{foo.o}
+with GSS into a program @command{foo}.
+
+@example
+gcc -o foo foo.o `pkg-config gss --libs`
+@end example
+
+Of course you can also combine both examples to a single command by
+specifying both options to @command{pkg-config}:
+
+@example
+gcc -o foo foo.c `pkg-config gss --cflags --libs`
+@end example
+
+@node Out of Memory handling
+@section Out of Memory handling
+
+@cindex Out of Memory handling
+@cindex Memory allocation failure
+The GSS API does not have a standard error code for the out of memory
+error condition.  This library will return @code{GSS_S_FAILURE} and
+set @code{minor_status} to ENOMEM.
+
+@c **********************************************************
+@c ************** Generic Security Services  ****************
+@c **********************************************************
+@node Standard GSS API
+@chapter Standard GSS API
+
+@menu
+* Simple Data Types::		About integers, strings, OIDs, and OID sets.
+* Complex Data Types::		About credentials, contexts, names, etc.
+* Optional Parameters::		What value to use when you don't want one.
+* Error Handling::		How errors in GSS are reported and handled.
+* Credential Management::	Standard GSS credential functions.
+* Context-Level Routines::	Standard GSS context functions.
+* Per-Message Routines::	Standard GSS per-message functions.
+* Name Manipulation::		Standard GSS name manipulation functions.
+* Miscellaneous Routines::	Standard miscellaneous functions.
+* SASL GS2 Routines::	        Standard SASL GS2 related functions.
+@end menu
+
+@node Simple Data Types
+@section Simple Data Types
+
+The following conventions are used by the GSS-API C-language bindings:
+
+@subsection Integer types
+
+GSS-API uses the following integer data type:
+
+@verbatim
+   OM_uint32    32-bit unsigned integer
+@end verbatim
+
+@subsection String and similar data
+
+Many of the GSS-API routines take arguments and return values that
+describe contiguous octet-strings.  All such data is passed between
+the GSS-API and the caller using the @code{gss_buffer_t} data type.
+This data type is a pointer to a buffer descriptor, which consists of
+a length field that contains the total number of bytes in the datum,
+and a value field which contains a pointer to the actual datum:
+
+@verbatim
+   typedef struct gss_buffer_desc_struct {
+      size_t    length;
+      void      *value;
+   } gss_buffer_desc, *gss_buffer_t;
+@end verbatim
+
+Storage for data returned to the application by a GSS-API routine
+using the @code{gss_buffer_t} conventions is allocated by the GSS-API
+routine.  The application may free this storage by invoking the
+@code{gss_release_buffer} routine.  Allocation of the
+@code{gss_buffer_desc} object is always the responsibility of the
+application; unused @code{gss_buffer_desc} objects may be initialized
+to the value @code{GSS_C_EMPTY_BUFFER}.
+
+@subsubsection Opaque data types
+
+Certain multiple-word data items are considered opaque data types at
+the GSS-API, because their internal structure has no significance
+either to the GSS-API or to the caller.  Examples of such opaque data
+types are the input_token parameter to @code{gss_init_sec_context}
+(which is opaque to the caller), and the input_message parameter to
+@code{gss_wrap} (which is opaque to the GSS-API).  Opaque data is
+passed between the GSS-API and the application using the
+@code{gss_buffer_t} datatype.
+
+@subsubsection Character strings
+
+Certain multiple-word data items may be regarded as simple ISO Latin-1
+character strings.  Examples are the printable strings passed to
+@code{gss_import_name} via the input_name_buffer parameter. Some
+GSS-API routines also return character strings.  All such character
+strings are passed between the application and the GSS-API
+implementation using the @code{gss_buffer_t} datatype, which is a
+pointer to a @code{gss_buffer_desc} object.
+
+When a @code{gss_buffer_desc} object describes a printable string, the
+length field of the @code{gss_buffer_desc} should only count printable
+characters within the string.  In particular, a trailing NUL character
+should NOT be included in the length count, nor should either the
+GSS-API implementation or the application assume the presence of an
+uncounted trailing NUL.
+
+@subsection Object Identifiers
+@anchor{Object Identifiers}
+
+Certain GSS-API procedures take parameters of the type @code{gss_OID},
+or Object identifier.  This is a type containing ISO-defined tree-
+structured values, and is used by the GSS-API caller to select an
+underlying security mechanism and to specify namespaces.  A value of
+type @code{gss_OID} has the following structure:
+
+@verbatim
+   typedef struct gss_OID_desc_struct {
+      OM_uint32   length;
+      void        *elements;
+   } gss_OID_desc, *gss_OID;
+@end verbatim
+
+The elements field of this structure points to the first byte of an
+octet string containing the ASN.1 BER encoding of the value portion of
+the normal BER TLV encoding of the @code{gss_OID}.  The length field
+contains the number of bytes in this value.  For example, the
+@code{gss_OID} value corresponding to @code{iso(1)
+identified-organization(3) icd-ecma(12) member-company(2) dec(1011)
+cryptoAlgorithms(7) DASS(5)}, meaning the DASS X.509 authentication
+mechanism, has a length field of 7 and an elements field pointing to
+seven octets containing the following octal values:
+53,14,2,207,163,7,5. GSS-API implementations should provide constant
+@code{gss_OID} values to allow applications to request any supported
+mechanism, although applications are encouraged on portability grounds
+to accept the default mechanism.  @code{gss_OID} values should also be
+provided to allow applications to specify particular name types (see
+section 3.10).  Applications should treat @code{gss_OID_desc} values
+returned by GSS-API routines as read-only.  In particular, the
+application should not attempt to deallocate them with free().
+
+@subsection Object Identifier Sets
+
+Certain GSS-API procedures take parameters of the type
+@code{gss_OID_set}.  This type represents one or more object
+identifiers (@pxref{Object Identifiers}).  A @code{gss_OID_set} object
+has the following structure:
+
+@verbatim
+   typedef struct gss_OID_set_desc_struct {
+      size_t    count;
+      gss_OID   elements;
+   } gss_OID_set_desc, *gss_OID_set;
+@end verbatim
+
+The count field contains the number of OIDs within the set.  The
+elements field is a pointer to an array of @code{gss_OID_desc}
+objects, each of which describes a single OID.  @code{gss_OID_set}
+values are used to name the available mechanisms supported by the
+GSS-API, to request the use of specific mechanisms, and to indicate
+which mechanisms a given credential supports.
+
+All OID sets returned to the application by GSS-API are dynamic
+objects (the @code{gss_OID_set_desc}, the "elements" array of the set,
+and the "elements" array of each member OID are all dynamically
+allocated), and this storage must be deallocated by the application
+using the @code{gss_release_oid_set} routine.
+
+@node Complex Data Types
+@section Complex Data Types
+
+@subsection Credentials
+
+A credential handle is a caller-opaque atomic datum that identifies a
+GSS-API credential data structure.  It is represented by the caller-
+opaque type @code{gss_cred_id_t}.
+
+GSS-API credentials can contain mechanism-specific principal
+authentication data for multiple mechanisms.  A GSS-API credential is
+composed of a set of credential-elements, each of which is applicable
+to a single mechanism.  A credential may contain at most one
+credential-element for each supported mechanism. A credential-element
+identifies the data needed by a single mechanism to authenticate a
+single principal, and conceptually contains two credential-references
+that describe the actual mechanism-specific authentication data, one
+to be used by GSS-API for initiating contexts, and one to be used for
+accepting contexts.  For mechanisms that do not distinguish between
+acceptor and initiator credentials, both references would point to the
+same underlying mechanism-specific authentication data.
+
+Credentials describe a set of mechanism-specific principals, and give
+their holder the ability to act as any of those principals. All
+principal identities asserted by a single GSS-API credential should
+belong to the same entity, although enforcement of this property is an
+implementation-specific matter.  The GSS-API does not make the actual
+credentials available to applications; instead a credential handle is
+used to identify a particular credential, held internally by GSS-API.
+The combination of GSS-API credential handle and mechanism identifies
+the principal whose identity will be asserted by the credential when
+used with that mechanism.
+
+The @code{gss_init_sec_context} and @code{gss_accept_sec_context}
+routines allow the value @code{GSS_C_NO_CREDENTIAL} to be specified as
+their credential handle parameter.  This special credential-handle
+indicates a desire by the application to act as a default principal.
+
+@subsection Contexts
+
+The @code{gss_ctx_id_t} data type contains a caller-opaque atomic
+value that identifies one end of a GSS-API security context.
+
+The security context holds state information about each end of a peer
+communication, including cryptographic state information.
+
+@subsection Authentication tokens
+
+A token is a caller-opaque type that GSS-API uses to maintain
+synchronization between the context data structures at each end of a
+GSS-API security context.  The token is a cryptographically protected
+octet-string, generated by the underlying mechanism at one end of a
+GSS-API security context for use by the peer mechanism at the other
+end.  Encapsulation (if required) and transfer of the token are the
+responsibility of the peer applications.  A token is passed between
+the GSS-API and the application using the @code{gss_buffer_t}
+conventions.
+
+@subsection Interprocess tokens
+
+Certain GSS-API routines are intended to transfer data between
+processes in multi-process programs.  These routines use a
+caller-opaque octet-string, generated by the GSS-API in one process
+for use by the GSS-API in another process.  The calling application is
+responsible for transferring such tokens between processes in an
+OS-specific manner.  Note that, while GSS-API implementors are
+encouraged to avoid placing sensitive information within interprocess
+tokens, or to cryptographically protect them, many implementations
+will be unable to avoid placing key material or other sensitive data
+within them.  It is the application's responsibility to ensure that
+interprocess tokens are protected in transit, and transferred only to
+processes that are trustworthy. An interprocess token is passed
+between the GSS-API and the application using the @code{gss_buffer_t}
+conventions.
+
+@subsection Names
+
+A name is used to identify a person or entity.  GSS-API authenticates
+the relationship between a name and the entity claiming the name.
+
+Since different authentication mechanisms may employ different
+namespaces for identifying their principals, GSSAPI's naming support
+is necessarily complex in multi-mechanism environments (or even in
+some single-mechanism environments where the underlying mechanism
+supports multiple namespaces).
+
+Two distinct representations are defined for names:
+
+@itemize
+@item An internal form.
+This is the GSS-API "native" format for names, represented by the
+implementation-specific @code{gss_name_t} type.  It is opaque to
+GSS-API callers.  A single @code{gss_name_t} object may contain
+multiple names from different namespaces, but all names should refer
+to the same entity.  An example of such an internal name would be the
+name returned from a call to the @code{gss_inquire_cred} routine, when
+applied to a credential containing credential elements for multiple
+authentication mechanisms employing different namespaces.  This
+@code{gss_name_t} object will contain a distinct name for the entity
+for each authentication mechanism.
+
+For GSS-API implementations supporting multiple namespaces, objects of
+type @code{gss_name_t} must contain sufficient information to
+determine the namespace to which each primitive name belongs.
+
+@item Mechanism-specific contiguous octet-string forms.
+A format capable of containing a single name (from a single
+namespace).  Contiguous string names are always accompanied by an
+object identifier specifying the namespace to which the name belongs,
+and their format is dependent on the authentication mechanism that
+employs the name.  Many, but not all, contiguous string names will be
+printable, and may therefore be used by GSS-API applications for
+communication with their users.
+@end itemize
+
+Routines (@code{gss_import_name} and @code{gss_display_name}) are
+provided to convert names between contiguous string representations
+and the internal @code{gss_name_t} type.  @code{gss_import_name} may
+support multiple syntaxes for each supported namespace, allowing users
+the freedom to choose a preferred name
+representation. @code{gss_display_name} should use an
+implementation-chosen printable syntax for each supported name-type.
+
+If an application calls @code{gss_display_name}, passing the internal
+name resulting from a call to @code{gss_import_name}, there is no
+guarantee the resulting contiguous string name will be the same as the
+original imported string name.  Nor do name-space identifiers
+necessarily survive unchanged after a journey through the internal
+name-form.  An example of this might be a mechanism that authenticates
+X.500 names, but provides an algorithmic mapping of Internet DNS names
+into X.500.  That mechanism's implementation of @code{gss_import_name}
+might, when presented with a DNS name, generate an internal name that
+contained both the original DNS name and the equivalent X.500 name.
+Alternatively, it might only store the X.500 name.  In the latter
+case, @code{gss_display_name} would most likely generate a printable
+X.500 name, rather than the original DNS name.
+
+The process of authentication delivers to the context acceptor an
+internal name.  Since this name has been authenticated by a single
+mechanism, it contains only a single name (even if the internal name
+presented by the context initiator to @code{gss_init_sec_context} had
+multiple components).  Such names are termed internal mechanism names,
+or "MN"s and the names emitted by @code{gss_accept_sec_context} are
+always of this type.  Since some applications may require MNs without
+wanting to incur the overhead of an authentication operation, a second
+function, @code{gss_canonicalize_name}, is provided to convert a
+general internal name into an MN.
+
+Comparison of internal-form names may be accomplished via the
+@code{gss_compare_name} routine, which returns true if the two names
+being compared refer to the same entity.  This removes the need for
+the application program to understand the syntaxes of the various
+printable names that a given GSS-API implementation may support.
+Since GSS-API assumes that all primitive names contained within a
+given internal name refer to the same entity, @code{gss_compare_name}
+can return true if the two names have at least one primitive name in
+common.  If the implementation embodies knowledge of equivalence
+relationships between names taken from different namespaces, this
+knowledge may also allow successful comparison of internal names
+containing no overlapping primitive elements.
+
+When used in large access control lists, the overhead of invoking
+@code{gss_import_name} and @code{gss_compare_name} on each name from
+the ACL may be prohibitive.  As an alternative way of supporting this
+case, GSS-API defines a special form of the contiguous string name
+which may be compared directly (e.g. with memcmp()).  Contiguous names
+suitable for comparison are generated by the @code{gss_export_name}
+routine, which requires an MN as input.  Exported names may be re-
+imported by the @code{gss_import_name} routine, and the resulting
+internal name will also be an MN.  The @code{gss_OID} constant
+@code{GSS_C_NT_EXPORT_NAME} indentifies the "export name" type, and
+the value of this constant is given in Appendix A.  Structurally, an
+exported name object consists of a header containing an OID
+identifying the mechanism that authenticated the name, and a trailer
+containing the name itself, where the syntax of the trailer is defined
+by the individual mechanism specification.  The precise format of an
+export name is defined in the language-independent GSS-API
+specification [GSSAPI].
+
+Note that the results obtained by using @code{gss_compare_name} will
+in general be different from those obtained by invoking
+@code{gss_canonicalize_name} and @code{gss_export_name}, and then
+comparing the exported names.  The first series of operation
+determines whether two (unauthenticated) names identify the same
+principal; the second whether a particular mechanism would
+authenticate them as the same principal.  These two operations will in
+general give the same results only for MNs.
+
+The @code{gss_name_t} datatype should be implemented as a pointer
+type. To allow the compiler to aid the application programmer by
+performing type-checking, the use of (void *) is discouraged.  A
+pointer to an implementation-defined type is the preferred choice.
+
+Storage is allocated by routines that return @code{gss_name_t}
+values. A procedure, @code{gss_release_name}, is provided to free
+storage associated with an internal-form name.
+
+@subsection Channel Bindings
+
+GSS-API supports the use of user-specified tags to identify a given
+context to the peer application.  These tags are intended to be used
+to identify the particular communications channel that carries the
+context.  Channel bindings are communicated to the GSS-API using the
+following structure:
+
+@verbatim
+   typedef struct gss_channel_bindings_struct {
+      OM_uint32       initiator_addrtype;
+      gss_buffer_desc initiator_address;
+      OM_uint32       acceptor_addrtype;
+      gss_buffer_desc acceptor_address;
+      gss_buffer_desc application_data;
+   } *gss_channel_bindings_t;
+@end verbatim
+
+The initiator_addrtype and acceptor_addrtype fields denote the type of
+addresses contained in the initiator_address and acceptor_address
+buffers.  The address type should be one of the following:
+
+@verbatim
+   GSS_C_AF_UNSPEC     Unspecified address type
+   GSS_C_AF_LOCAL      Host-local address type
+   GSS_C_AF_INET       Internet address type (e.g. IP)
+   GSS_C_AF_IMPLINK    ARPAnet IMP address type
+   GSS_C_AF_PUP        pup protocols (eg BSP) address type
+   GSS_C_AF_CHAOS      MIT CHAOS protocol address type
+   GSS_C_AF_NS         XEROX NS address type
+   GSS_C_AF_NBS        nbs address type
+   GSS_C_AF_ECMA       ECMA address type
+   GSS_C_AF_DATAKIT    datakit protocols address type
+   GSS_C_AF_CCITT      CCITT protocols
+   GSS_C_AF_SNA        IBM SNA address type
+   GSS_C_AF_DECnet     DECnet address type
+   GSS_C_AF_DLI        Direct data link interface address type
+   GSS_C_AF_LAT        LAT address type
+   GSS_C_AF_HYLINK     NSC Hyperchannel address type
+   GSS_C_AF_APPLETALK  AppleTalk address type
+   GSS_C_AF_BSC        BISYNC 2780/3780 address type
+   GSS_C_AF_DSS        Distributed system services address type
+   GSS_C_AF_OSI        OSI TP4 address type
+   GSS_C_AF_X25        X.25
+   GSS_C_AF_NULLADDR   No address specified
+@end verbatim
+
+Note that these symbols name address families rather than specific
+addressing formats.  For address families that contain several
+alternative address forms, the initiator_address and acceptor_address
+fields must contain sufficient information to determine which address
+form is used.  When not otherwise specified, addresses should be
+specified in network byte-order (that is, native byte-ordering for the
+address family).
+
+Conceptually, the GSS-API concatenates the initiator_addrtype,
+initiator_address, acceptor_addrtype, acceptor_address and
+application_data to form an octet string.  The mechanism calculates a
+MIC over this octet string, and binds the MIC to the context
+establishment token emitted by @code{gss_init_sec_context}. The same bindings
+are presented by the context acceptor to @code{gss_accept_sec_context}, and a
+MIC is calculated in the same way. The calculated MIC is compared with
+that found in the token, and if the MICs differ,
+@code{gss_accept_sec_context} will return a @code{GSS_S_BAD_BINDINGS} error, and the
+context will not be established.  Some mechanisms may include the
+actual channel binding data in the token (rather than just a MIC);
+applications should therefore not use confidential data as
+channel-binding components.
+
+Individual mechanisms may impose additional constraints on addresses
+and address types that may appear in channel bindings.  For example, a
+mechanism may verify that the initiator_address field of the channel
+bindings presented to @code{gss_init_sec_context} contains the correct
+network address of the host system.  Portable applications should
+therefore ensure that they either provide correct information for the
+address fields, or omit addressing information, specifying
+@code{GSS_C_AF_NULLADDR} as the address-types.
+
+@node Optional Parameters
+@section Optional Parameters
+
+Various parameters are described as optional.  This means that they
+follow a convention whereby a default value may be requested.  The
+following conventions are used for omitted parameters.  These
+conventions apply only to those parameters that are explicitly
+documented as optional.
+
+@itemize
+@item gss_buffer_t types.
+Specify GSS_C_NO_BUFFER as a value.  For an input parameter this
+signifies that default behavior is requested, while for an output
+parameter it indicates that the information that would be returned via
+the parameter is not required by the application.
+
+@item Integer types (input).
+Individual parameter documentation lists values to be used to indicate
+default actions.
+
+@item Integer types (output).
+Specify NULL as the value for the pointer.
+
+@item Pointer types.
+Specify NULL as the value.
+
+@item Object IDs.
+Specify GSS_C_NO_OID as the value.
+
+@item Object ID Sets.
+Specify GSS_C_NO_OID_SET as the value.
+
+@item Channel Bindings.
+Specify GSS_C_NO_CHANNEL_BINDINGS to indicate that channel bindings
+are not to be used.
+@end itemize
+
+@node Error Handling
+@section Error Handling
+
+@cindex status codes
+@cindex mechanism status codes
+Every GSS-API routine returns two distinct values to report status
+information to the caller: GSS status codes and Mechanism status
+codes.
+
+@subsection GSS status codes
+
+GSS-API routines return GSS status codes as their @code{OM_uint32}
+function value.  These codes indicate errors that are independent of
+the underlying mechanism(s) used to provide the security service.  The
+errors that can be indicated via a GSS status code are either generic
+API routine errors (errors that are defined in the GSS-API
+specification) or calling errors (errors that are specific to these
+language bindings).
+
+A GSS status code can indicate a single fatal generic API error from
+the routine and a single calling error.  In addition, supplementary
+status information may be indicated via the setting of bits in the
+supplementary info field of a GSS status code.
+
+These errors are encoded into the 32-bit GSS status code as follows:
+
+@verbatim
+      MSB                                                        LSB
+      |------------------------------------------------------------|
+      |  Calling Error | Routine Error  |    Supplementary Info    |
+      |------------------------------------------------------------|
+   Bit 31            24 23            16 15                       0
+@end verbatim
+
+Hence if a GSS-API routine returns a GSS status code whose upper 16
+bits contain a non-zero value, the call failed.  If the calling error
+field is non-zero, the invoking application's call of the routine was
+erroneous.  Calling errors are defined in table 3-1.  If the routine
+error field is non-zero, the routine failed for one of the routine-
+specific reasons listed below in table 3-2.  Whether or not the upper
+16 bits indicate a failure or a success, the routine may indicate
+additional information by setting bits in the supplementary info field
+of the status code. The meaning of individual bits is listed below in
+table 3-3.
+
+@vindex GSS_S_...
+@verbatim
+   Table 3-1  Calling Errors
+
+   Name                   Value in field           Meaning
+   ----                   --------------           -------
+   GSS_S_CALL_INACCESSIBLE_READ  1       A required input parameter
+                                         could not be read
+   GSS_S_CALL_INACCESSIBLE_WRITE 2       A required output parameter
+                                          could not be written.
+   GSS_S_CALL_BAD_STRUCTURE      3       A parameter was malformed
+@end verbatim
+
+@verbatim
+   Table 3-2  Routine Errors
+
+   Name                   Value in field           Meaning
+   ----                   --------------           -------
+   GSS_S_BAD_MECH                1       An unsupported mechanism
+                                         was requested
+   GSS_S_BAD_NAME                2       An invalid name was
+                                         supplied
+   GSS_S_BAD_NAMETYPE            3       A supplied name was of an
+                                         unsupported type
+   GSS_S_BAD_BINDINGS            4       Incorrect channel bindings
+                                         were supplied
+   GSS_S_BAD_STATUS              5       An invalid status code was
+                                         supplied
+   GSS_S_BAD_MIC GSS_S_BAD_SIG   6       A token had an invalid MIC
+   GSS_S_NO_CRED                 7       No credentials were
+                                         supplied, or the
+                                         credentials were
+                                         unavailable or
+                                         inaccessible.
+   GSS_S_NO_CONTEXT              8       No context has been
+                                         established
+   GSS_S_DEFECTIVE_TOKEN         9       A token was invalid
+   GSS_S_DEFECTIVE_CREDENTIAL   10       A credential was invalid
+   GSS_S_CREDENTIALS_EXPIRED    11       The referenced credentials
+                                         have expired
+   GSS_S_CONTEXT_EXPIRED        12       The context has expired
+   GSS_S_FAILURE                13       Miscellaneous failure (see
+                                         text)
+   GSS_S_BAD_QOP                14       The quality-of-protection
+                                         requested could not be
+                                         provided
+   GSS_S_UNAUTHORIZED           15       The operation is forbidden
+                                         by local security policy
+   GSS_S_UNAVAILABLE            16       The operation or option is
+                                         unavailable
+   GSS_S_DUPLICATE_ELEMENT      17       The requested credential
+                                         element already exists
+   GSS_S_NAME_NOT_MN            18       The provided name was not a
+                                         mechanism name
+@end verbatim
+
+@verbatim
+   Table 3-3  Supplementary Status Bits
+
+   Name                   Bit Number           Meaning
+   ----                   ----------           -------
+   GSS_S_CONTINUE_NEEDED   0 (LSB)   Returned only by
+                                     gss_init_sec_context or
+                                     gss_accept_sec_context. The
+                                     routine must be called again
+                                     to complete its function.
+                                     See routine documentation for
+                                     detailed description
+   GSS_S_DUPLICATE_TOKEN   1         The token was a duplicate of
+                                     an earlier token
+   GSS_S_OLD_TOKEN         2         The token's validity period
+                                     has expired
+   GSS_S_UNSEQ_TOKEN       3         A later token has already been
+                                     processed
+   GSS_S_GAP_TOKEN         4         An expected per-message token
+                                     was not received
+@end verbatim
+
+The routine documentation also uses the name GSS_S_COMPLETE, which is
+a zero value, to indicate an absence of any API errors or
+supplementary information bits.
+
+@findex GSS_CALLING_ERROR
+@findex GSS_ROUTINE_ERROR
+@findex GSS_SUPPLEMENTARY_INFO
+@findex GSS_ERROR
+All GSS_S_xxx symbols equate to complete @code{OM_uint32} status
+codes, rather than to bitfield values.  For example, the actual value
+of the symbol @code{GSS_S_BAD_NAMETYPE} (value 3 in the routine error
+field) is 3<<16.  The macros @code{GSS_CALLING_ERROR},
+@code{GSS_ROUTINE_ERROR} and @code{GSS_SUPPLEMENTARY_INFO} are
+provided, each of which takes a GSS status code and removes all but
+the relevant field.  For example, the value obtained by applying
+@code{GSS_ROUTINE_ERROR} to a status code removes the calling errors
+and supplementary info fields, leaving only the routine errors field.
+The values delivered by these macros may be directly compared with a
+@code{GSS_S_xxx} symbol of the appropriate type.  The macro
+@code{GSS_ERROR} is also provided, which when applied to a GSS status
+code returns a non-zero value if the status code indicated a calling
+or routine error, and a zero value otherwise.  All macros defined by
+GSS-API evaluate their argument(s) exactly once.
+
+A GSS-API implementation may choose to signal calling errors in a
+platform-specific manner instead of, or in addition to the routine
+value; routine errors and supplementary info should be returned via
+major status values only.
+
+The GSS major status code @code{GSS_S_FAILURE} is used to indicate
+that the underlying mechanism detected an error for which no specific
+GSS status code is defined.  The mechanism-specific status code will
+provide more details about the error.
+
+In addition to the explicit major status codes for each API function,
+the code @code{GSS_S_FAILURE} may be returned by any routine,
+indicating an implementation-specific or mechanism-specific error
+condition, further details of which are reported via the
+@code{minor_status} parameter.
+
+@subsection Mechanism-specific status codes
+
+GSS-API routines return a minor_status parameter, which is used to
+indicate specialized errors from the underlying security mechanism.
+This parameter may contain a single mechanism-specific error,
+indicated by a @code{OM_uint32} value.
+
+The minor_status parameter will always be set by a GSS-API routine,
+even if it returns a calling error or one of the generic API errors
+indicated above as fatal, although most other output parameters may
+remain unset in such cases.  However, output parameters that are
+expected to return pointers to storage allocated by a routine must
+always be set by the routine, even in the event of an error, although
+in such cases the GSS-API routine may elect to set the returned
+parameter value to NULL to indicate that no storage was actually
+allocated.  Any length field associated with such pointers (as in a
+@code{gss_buffer_desc} structure) should also be set to zero in such cases.
+
+@node Credential Management
+@section Credential Management
+
+@verbatim
+   GSS-API Credential-management Routines
+
+   Routine                         Function
+   -------                         --------
+   gss_acquire_cred                Assume a global identity; Obtain
+                                   a GSS-API credential handle for
+                                   pre-existing credentials.
+   gss_add_cred                    Construct credentials
+                                   incrementally.
+   gss_inquire_cred                Obtain information about a
+                                   credential.
+   gss_inquire_cred_by_mech        Obtain per-mechanism information
+                                   about a credential.
+   gss_release_cred                Discard a credential handle.
+@end verbatim
+
+@include texi/gss_acquire_cred.texi
+@include texi/gss_add_cred.texi
+@include texi/gss_inquire_cred.texi
+@include texi/gss_inquire_cred_by_mech.texi
+@include texi/gss_release_cred.texi
+
+@node Context-Level Routines
+@section Context-Level Routines
+
+@verbatim
+   GSS-API Context-Level Routines
+
+   Routine                         Function
+   -------                         --------
+   gss_init_sec_context            Initiate a security context with
+                                   a peer application.
+   gss_accept_sec_context          Accept a security context
+                                   initiated by a peer application.
+   gss_delete_sec_context          Discard a security context.
+   gss_process_context_token       Process a token on a security
+                                   context from a peer application.
+   gss_context_time                Determine for how long a context
+                                   will remain valid.
+   gss_inquire_context             Obtain information about a
+                                   security context.
+   gss_wrap_size_limit             Determine token-size limit for
+                                   gss_wrap on a context.
+   gss_export_sec_context          Transfer a security context to
+                                   another process.
+   gss_import_sec_context          Import a transferred context.
+@end verbatim
+
+@include texi/gss_init_sec_context.texi
+@include texi/gss_accept_sec_context.texi
+@include texi/gss_delete_sec_context.texi
+@include texi/gss_process_context_token.texi
+@include texi/gss_context_time.texi
+@include texi/gss_inquire_context.texi
+@include texi/gss_wrap_size_limit.texi
+@include texi/gss_export_sec_context.texi
+@include texi/gss_import_sec_context.texi
+
+@node Per-Message Routines
+@section Per-Message Routines
+
+@verbatim
+   GSS-API Per-message Routines
+
+   Routine                         Function
+   -------                         --------
+   gss_get_mic                     Calculate a cryptographic message
+                                   integrity code (MIC) for a
+                                   message; integrity service.
+   gss_verify_mic                  Check a MIC against a message;
+                                   verify integrity of a received
+                                   message.
+   gss_wrap                        Attach a MIC to a message, and
+                                   optionally encrypt the message
+                                   content.
+                                   confidentiality service
+   gss_unwrap                      Verify a message with attached
+                                   MIC, and decrypt message content
+                                   if necessary.
+@end verbatim
+
+@include texi/gss_get_mic.texi
+@include texi/gss_verify_mic.texi
+@include texi/gss_wrap.texi
+@include texi/gss_unwrap.texi
+
+@node Name Manipulation
+@section Name Manipulation
+
+@verbatim
+   GSS-API Name manipulation Routines
+
+   Routine                         Function
+   -------                         --------
+   gss_import_name                 Convert a contiguous string name
+                                   to internal-form.
+   gss_display_name                Convert internal-form name to
+                                   text.
+   gss_compare_name                Compare two internal-form names.
+   gss_release_name                Discard an internal-form name.
+   gss_inquire_names_for_mech      List the name-types supported by.
+                                   the specified mechanism.
+   gss_inquire_mechs_for_name      List mechanisms that support the
+                                   specified name-type.
+   gss_canonicalize_name           Convert an internal name to an MN.
+   gss_export_name                 Convert an MN to export form.
+   gss_duplicate_name              Create a copy of an internal name.
+@end verbatim
+
+@include texi/gss_import_name.texi
+@include texi/gss_display_name.texi
+@include texi/gss_compare_name.texi
+@include texi/gss_release_name.texi
+@include texi/gss_inquire_names_for_mech.texi
+@include texi/gss_inquire_mechs_for_name.texi
+@include texi/gss_canonicalize_name.texi
+@include texi/gss_export_name.texi
+@include texi/gss_duplicate_name.texi
+
+@node Miscellaneous Routines
+@section Miscellaneous Routines
+
+@verbatim
+   GSS-API Miscellaneous Routines
+
+   Routine                        Function
+   -------                        --------
+   gss_add_oid_set_member         Add an object identifier to
+                                  a set.
+   gss_display_status             Convert a GSS-API status code
+                                  to text.
+   gss_indicate_mechs             Determine available underlying
+                                  authentication mechanisms.
+   gss_release_buffer             Discard a buffer.
+   gss_release_oid_set            Discard a set of object
+                                  identifiers.
+   gss_create_empty_oid_set       Create a set containing no
+                                  object identifiers.
+   gss_test_oid_set_member        Determines whether an object
+                                  identifier is a member of a set.
+@end verbatim
+
+@include texi/gss_add_oid_set_member.texi
+@include texi/gss_display_status.texi
+@include texi/gss_indicate_mechs.texi
+@include texi/gss_release_buffer.texi
+@include texi/gss_release_oid_set.texi
+@include texi/gss_create_empty_oid_set.texi
+@include texi/gss_test_oid_set_member.texi
+
+@node SASL GS2 Routines
+@section SASL GS2 Routines
+
+@include texi/gss_inquire_mech_for_saslname.texi
+@include texi/gss_inquire_saslname_for_mech.texi
+
+@c **********************************************************
+@c ************** Generic Security Services  ****************
+@c **********************************************************
+@node Extended GSS API
+@chapter Extended GSS API
+
+None of the following functions are standard GSS API functions.  As
+such, they are not declared in @file{gss/api.h}, but rather in
+@file{gss/ext.h} (which is included from @file{gss.h}).
+@xref{Header}.
+
+@include texi/gss_check_version.texi
+@include texi/gss_oid_equal.texi
+@include texi/gss_copy_oid.texi
+@include texi/gss_duplicate_oid.texi
+@include texi/gss_userok.texi
+
+@deftypefun {int} gss_encapsulate_token (gss_buffer_t @var{input_message}, gss_OID @var{token_oid}, gss_buffer_t @var{output_message})
+
+@var{input_message}: Message to be encapsulated.
+
+@var{token_oid}: OID of mechanism.
+
+@var{input_message}: Output buffer with encapsulated message.
+
+Wrap a buffer in the mechanism-independent token format.  This is used
+for the initial token of a GSS-API context establishment sequence.  It
+incorporates an identifier of the mechanism type to be used on that
+context, and enables tokens to be interpreted unambiguously at GSS-API
+peers.  See further section 3.1 of RFC 2743.
+@end deftypefun
+
+@deftypefun {int} gss_decapsulate_token (gss_buffer_t @var{input_message}, gss_OID @var{token_oid}, gss_buffer_t @var{output_message})
+
+@var{input_message}: Message to decapsulated.
+
+@var{token_oid}: Output buffer with mechanism OID used in message.
+
+@var{input_message}: Output buffer with encapsulated message.
+
+Unwrap a buffer in the mechanism-independent token format.  This is
+the reverse of @code{gss_encapsulate_token}.  The translation is
+loss-less, all data is preserved as is.
+
+@end deftypefun
+
+@c **********************************************************
+@c *******************  Acknowledgements  *******************
+@c **********************************************************
+@node Acknowledgements
+@chapter Acknowledgements
+
+This manual borrows text from RFC 2743 and RFC 2744 that describe GSS
+API formally.
+
+@c **********************************************************
+@c *******************  Appendices  *************************
+@c **********************************************************
+
+@node Criticism of GSS
+@appendix Criticism of GSS
+
+The author has doubts whether GSS is the best solution for free
+software projects looking for a implementation agnostic security
+framework.  We express these doubts in this section, so that the
+reader can judge for herself if any of the potential problems
+discussed here are relevant for their project, or if the benefit
+outweigh the problems.  We are aware that some of the opinions are
+highly subjective, but we offer them in the hope they can serve as
+anecdotal evidence.
+
+GSS can be criticized on several levels.  We start with the actual
+implementation.
+
+GSS does not appear to be designed by experienced C programmers.
+While generally this may be a good thing (C is not the best language),
+but since they defined the API in C, it is unfortunate.  The primary
+evidence of this is the major_status and minor_status error code
+solution.  It is a complicated way to describe error conditions, but
+what makes matters worse, the error condition is separated; half of
+the error condition is in the function return value and the other half
+is in the first argument to the function, which is always a pointer to
+an integer.  (The pointer is not even allowed to be @code{NULL}, if
+the application doesn't care about the minor error code.)  This makes
+the API unreadable, and difficult to use.  A better solutions would be
+to return a struct containing the entire error condition, which can be
+accessed using macros, although we acknowledge that the C language
+used at the time GSS was designed may not have allowed this (this may
+in fact be the reason the awkward solution was chosen).  Instead, the
+return value could have been passed back to callers using a pointer to
+a struct, accessible using various macros, and the function could have
+a void prototype.  The fact that minor_status is placed first in the
+parameter list increases the pain it is to use the API.  Important
+parameters should be placed first. A better place for minor_status (if
+it must be present at all) would have been last in the prototypes.
+
+Another evidence of the C inexperience are the memory management
+issues; GSS provides functions to deallocate data stored within, e.g.,
+@code{gss_buffer_t} but the caller is responsible of deallocating the
+structure pointed at by the @code{gss_buffer_t} (i.e., the
+@code{gss_buffer_desc}) itself.  Memory management issues are error
+prone, and this division easily leads to memory leaks (or worse).
+Instead, the API should be the sole owner of all @code{gss_ctx_id_t},
+@code{gss_cred_id_t}, and @code{gss_buffer_t} structures: they should
+be allocated by the library, and deallocated (using the utility
+functions defined for this purpose) by the library.
+
+TBA: specification is unclear how memory for OIDs are managed.  For
+example, who is responsible for deallocate potentially newly allocated
+OIDs returned as @code{actual_mechs} in @code{gss_acquire_cred}?
+Further, are OIDs deeply copied into OID sets?  In other words, if I
+add an OID into an OID set, and modify the original OID, will the OID
+in the OID set be modified too?
+
+Another illustrating example is the sample GSS header file given in
+the RFC, which contains:
+
+@example
+/*
+ * We have included the xom.h header file.  Verify that OM_uint32
+ * is defined correctly.
+ */
+#if sizeof(gss_uint32) != sizeof(OM_uint32)
+#error Incompatible definition of OM_uint32 from xom.h
+#endif
+@end example
+
+The C pre-processor does not know about the @code{sizeof} function, so
+it is treated as an identifier, which maps to 0.  Thus, the expression
+does not check that the size of @code{OM_uint32} is correct.  It
+checks whether the expression @code{0 != 0} holds.
+
+TBA: thread issues
+
+TBA: multiple mechanisms in a GSS library
+
+TBA: high-level design criticism.
+
+TBA: no credential forwarding.
+
+TBA: internationalization
+
+TBA: dynamically generated OIDs and memory deallocation issue.  I.e.,
+should gss_import_name or gss_duplicate_name allocate memory and copy
+the OID provided, or simply copy the pointer?  If the former, who
+would deallocate that memory?  If the latter, the application may
+deallocate or modify the OID, which seem unwanted.
+
+TBA: krb5: no way to access authorization-data
+
+TBA: krb5: firewall/pre-IP: iakerb status?
+
+TBA: krb5: single-DES only
+
+TBA: the API may block, unusable in select() based servers.
+Especially if the servers contacted is decided by the, yet
+unauthenticated, remote client.
+
+TBA: krb5: no support for GSS_C_PROT_READY_FLAG.  We support it
+anyway, though.
+
+TBA: krb5: gssapi-cfx differ from rfc 1964 in the reply token in that
+the latter require presence of sequence numbers whereas the former
+doesn't.
+
+Finally we note that few free security applications uses GSS, perhaps
+the only major exception to this are Kerberos 5 implementations.
+While not substantial evidence, this do suggest that the GSS may not
+be the simplest solution available to solve actual problems, since
+otherwise more projects would have chosen to take advantage of the
+work that went into GSS instead of using another framework (or
+designing their own solution).
+
+Our conclusion is that free software projects that are looking for a
+security framework should evaluate carefully whether GSS actually is
+the best solution before using it.  In particular it is recommended to
+compare GSS with the Simple Authentication and Security Layer (SASL)
+framework, which in several situations provide the same feature as GSS
+does.  The most compelling argument for SASL over GSS is, as its
+acronym suggest, Simple, whereas GSS is far from it.
+
+However, that said, for free software projects that wants to support
+Kerberos 5, we do acknowledge that no other framework provides a more
+portable and interoperable interface into the Kerberos 5 system.  If
+your project needs to use Kerberos 5 specifically, we do recommend you
+to use GSS instead of the Kerberos 5 implementation specific APIs.
+
+@node Copying Information
+@appendix Copying Information
+
+@menu
+* GNU Free Documentation License::   License for copying this manual.
+* GNU GPL::                          License for copying the programs.
+@end menu
+
+@node GNU Free Documentation License
+@appendixsec GNU Free Documentation License
+
+@cindex FDL, GNU Free Documentation License
+
+@include fdl-1.3.texi
+
+@node GNU GPL
+@appendixsec GNU General Public License
+@cindex GPL, GNU General Public License
+@cindex License, GNU GPL
+
+@include gpl-3.0.texi
+
+@node Concept Index
+@unnumbered Concept Index
+
+@printindex cp
+
+@node API Index
+@unnumbered API Index
+
+@printindex fn
+
+@bye

@@ -1,0 +1,173 @@
+<!-- ##### SECTION Title ##### -->
+krb5
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### MACRO GSS_KRB5_S_G_BAD_SERVICE_NAME ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_KRB5_S_G_BAD_STRING_UID ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_KRB5_S_G_NOUSER ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_KRB5_S_G_VALIDATE_FAILED ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_KRB5_S_G_BUFFER_ALLOC ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_KRB5_S_G_BAD_MSG_CTX ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_KRB5_S_G_WRONG_SIZE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_KRB5_S_G_BAD_USAGE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_KRB5_S_G_UNKNOWN_QOP ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_KRB5_S_KG_CCACHE_NOMATCH ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_KRB5_S_KG_KEYTAB_NOMATCH ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_KRB5_S_KG_TGT_MISSING ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_KRB5_S_KG_NO_SUBKEY ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_KRB5_S_KG_CONTEXT_ESTABLISHED ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_KRB5_S_KG_BAD_SIGN_TYPE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_KRB5_S_KG_BAD_LENGTH ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_KRB5_S_KG_CTX_INCOMPLETE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### VARIABLE GSS_KRB5_NT_USER_NAME ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_KRB5_NT_HOSTBASED_SERVICE_NAME ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_KRB5_NT_PRINCIPAL_NAME ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_KRB5_NT_MACHINE_UID_NAME ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_KRB5_NT_STRING_UID_NAME ##### -->
+<para>
+
+</para>
+
+

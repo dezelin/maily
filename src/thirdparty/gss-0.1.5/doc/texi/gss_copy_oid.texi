@@ -1,0 +1,23 @@
+@subheading gss_copy_oid
+@anchor{gss_copy_oid}
+@deftypefun {OM_uint32} {gss_copy_oid} (OM_uint32 * @var{minor_status}, const gss_OID @var{src_oid}, gss_OID @var{dest_oid})
+@var{minor_status}: (integer, modify) Mechanism specific status code.
+
+@var{src_oid}: (Object ID, read) The object identifier to copy.
+
+@var{dest_oid}: (Object ID, modify) The resultant copy of @@src_oid.
+Storage associated with this name must be freed by the
+application, but gss_release_oid() cannot be used generally as it
+deallocate the oid structure itself too (use
+gss_duplicate_oid() if you don't want this problem.)
+
+
+Make an exact copy of the given OID, that shares no memory areas
+with the original.
+
+Return value:
+
+
+@code{GSS_S_COMPLETE}: Successful completion.
+@end deftypefun
+

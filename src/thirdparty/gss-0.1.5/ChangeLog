@@ -1,0 +1,6204 @@
+2010-03-22  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.1.5.
+
+2010-03-22  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2010-03-22  Simon Josefsson <simon@josefsson.org>
+
+	* doc/announce.txt: Add.
+
+2010-03-22  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: Generated.
+
+2010-03-22  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.1.4.
+
+2010-03-22  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Don't generate src/gl/tests/Makefile.
+
+2010-03-22  Simon Josefsson <simon@josefsson.org>
+
+	* src/gl/Makefile.am, src/gl/m4/alloca.m4, src/gl/m4/dos.m4,
+	src/gl/m4/dup2.m4, src/gl/m4/eealloc.m4, src/gl/m4/environ.m4,
+	src/gl/m4/errno_h.m4, src/gl/m4/fcntl-o.m4, src/gl/m4/fcntl_h.m4,
+	src/gl/m4/gnulib-cache.m4, src/gl/m4/gnulib-comp.m4,
+	src/gl/m4/longlong.m4, src/gl/m4/lstat.m4, src/gl/m4/malloc.m4,
+	src/gl/m4/malloca.m4, src/gl/m4/mode_t.m4, src/gl/m4/multiarch.m4,
+	src/gl/m4/open.m4, src/gl/m4/pathmax.m4, src/gl/m4/putenv.m4,
+	src/gl/m4/setenv.m4, src/gl/m4/stat.m4, src/gl/m4/stdbool.m4,
+	src/gl/m4/stdint.m4, src/gl/m4/stdlib_h.m4, src/gl/m4/symlink.m4,
+	src/gl/m4/sys_stat_h.m4, src/gl/m4/time_h.m4, src/gl/m4/wchar_h.m4,
+	src/gl/m4/wint_t.m4, src/gl/tests/Makefile.am,
+	src/gl/tests/alloca.in.h, src/gl/tests/binary-io.h,
+	src/gl/tests/dup2.c, src/gl/tests/errno.in.h,
+	src/gl/tests/fcntl.in.h, src/gl/tests/ignore-value.h,
+	src/gl/tests/intprops.h, src/gl/tests/lstat.c,
+	src/gl/tests/macros.h, src/gl/tests/malloc.c,
+	src/gl/tests/malloca.c, src/gl/tests/malloca.h,
+	src/gl/tests/malloca.valgrind, src/gl/tests/open.c,
+	src/gl/tests/pathmax.h, src/gl/tests/putenv.c,
+	src/gl/tests/same-inode.h, src/gl/tests/setenv.c,
+	src/gl/tests/signature.h, src/gl/tests/stat.c,
+	src/gl/tests/stdbool.in.h, src/gl/tests/stdint.in.h,
+	src/gl/tests/stdlib.in.h, src/gl/tests/symlink.c,
+	src/gl/tests/sys_stat.in.h, src/gl/tests/test-alloca-opt.c,
+	src/gl/tests/test-binary-io.c, src/gl/tests/test-binary-io.sh,
+	src/gl/tests/test-dup2.c, src/gl/tests/test-environ.c,
+	src/gl/tests/test-errno.c, src/gl/tests/test-getopt.c,
+	src/gl/tests/test-getopt.h, src/gl/tests/test-getopt_long.h,
+	src/gl/tests/test-lstat.c, src/gl/tests/test-lstat.h,
+	src/gl/tests/test-malloca.c, src/gl/tests/test-open.c,
+	src/gl/tests/test-open.h, src/gl/tests/test-setenv.c,
+	src/gl/tests/test-stat.c, src/gl/tests/test-stat.h,
+	src/gl/tests/test-stdbool.c, src/gl/tests/test-stddef.c,
+	src/gl/tests/test-stdint.c, src/gl/tests/test-symlink.c,
+	src/gl/tests/test-symlink.h, src/gl/tests/test-unsetenv.c,
+	src/gl/tests/test-version-etc.c, src/gl/tests/test-version-etc.sh,
+	src/gl/tests/time.in.h, src/gl/tests/unsetenv.c,
+	src/gl/tests/verify.h, src/gl/tests/version-etc-fsf.c,
+	src/gl/tests/wchar.in.h: Remove gnulib self-tests for src/.
+
+2010-03-22  Simon Josefsson <simon@josefsson.org>
+
+	* .gitignore: Ignore more.
+
+2010-03-22  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/Makefile.am: Ignore more.
+
+2010-03-22  Simon Josefsson <simon@josefsson.org>
+
+	* tests/saslname.c: Cast to avoid warnings.
+
+2010-03-22  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Doc fix.
+
+2010-03-22  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2010-03-22  Simon Josefsson <simon@josefsson.org>
+
+	* build-aux/c++defs.h, build-aux/gendocs.sh, build-aux/gnupload,
+	build-aux/link-warning.h, build-aux/vc-list-files,
+	build-aux/warn-on-use.h, gl/m4/gnulib-common.m4,
+	gl/m4/gnulib-comp.m4, gl/m4/gnulib-comp.m4~, lib/gl/Makefile.am,
+	lib/gl/m4/gnulib-common.m4, lib/gl/m4/gnulib-comp.m4,
+	lib/gl/m4/string_h.m4, lib/gl/m4/warn-on-use.m4,
+	lib/gl/string.in.h, maint.mk, src/gl/Makefile.am, src/gl/getopt.c,
+	src/gl/m4/fcntl_h.m4, src/gl/m4/gnulib-cache.m4,
+	src/gl/m4/gnulib-common.m4, src/gl/m4/gnulib-comp.m4,
+	src/gl/m4/setenv.m4, src/gl/m4/stdlib_h.m4,
+	src/gl/m4/sys_stat_h.m4, src/gl/m4/time_h.m4,
+	src/gl/m4/unistd_h.m4, src/gl/m4/warn-on-use.m4,
+	src/gl/m4/wchar.m4, src/gl/m4/wchar_h.m4, src/gl/tests/Makefile.am,
+	src/gl/tests/fcntl.in.h, src/gl/tests/ignore-value.h,
+	src/gl/tests/stdlib.in.h, src/gl/tests/sys_stat.in.h,
+	src/gl/tests/test-fcntl-h.c, src/gl/tests/test-lstat.c,
+	src/gl/tests/test-stdlib.c, src/gl/tests/test-symlink.c,
+	src/gl/tests/test-sys_stat.c, src/gl/tests/test-time.c,
+	src/gl/tests/test-unistd.c, src/gl/tests/test-wchar.c,
+	src/gl/tests/time.in.h, src/gl/tests/wchar.in.h, src/gl/unistd.in.h: 
+	Update gnulib files.
+
+2010-03-22  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Document SASL GS2 functions.
+
+2010-03-22  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, doc/reference/gss-docs.sgml, lib/Makefile.am,
+	lib/headers/gss/api.h, lib/libgss.map, lib/meta.c, lib/meta.h,
+	lib/saslname.c, po/POTFILES.in, tests/Makefile.am, tests/saslname.c: 
+	Add new interfaces defined in RFC 5801.  The APIs are gss_inquire_mech_for_saslname and
+	gss_inquire_saslname_for_mech.
+
+2010-03-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/checksum.c: Fix warning.
+
+2010-03-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/checksum.c: Correctly hash all of channel bindings.
+
+2010-03-18  Simon Josefsson <simon@josefsson.org>
+
+	* tests/krb5context.c: Test channel bindings too, to avoid
+	regressions.
+
+2010-03-18  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, lib/krb5/checksum.c: KRB5: Fix bug in channel binding
+	computation.
+
+2010-03-18  Simon Josefsson <simon@josefsson.org>
+
+	* README-alpha: Mention gengetopt.
+
+2010-03-16  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Dist shishi.conf.
+
+2010-03-15  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2010-03-15  Simon Josefsson <simon@josefsson.org>
+
+	* doc/announce.txt: Add.
+
+2010-03-15  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: Generated.
+
+2010-03-15  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.1.3.
+
+2010-03-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/checksum.c, tests/Makefile.am, tests/shishi.conf: Handle
+	no channel bindings.
+
+2010-03-15  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2010-03-15  Simon Josefsson <simon@josefsson.org>
+
+	* po/LINGUAS, po/it.po.in: Sync with TP.
+
+2010-03-15  Simon Josefsson <simon@josefsson.org>
+
+	* cfg.mk: Add review-diff.
+
+2010-03-10  Simon Josefsson <simon@josefsson.org>
+
+	* .gitignore: Add.
+
+2010-03-10  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, lib/krb5/checksum.c, lib/krb5/checksum.h,
+	lib/krb5/context.c: KRB5: Add support for channel bindings.
+
+2010-03-10  Simon Josefsson <simon@josefsson.org>
+
+	* src/gss.c: Fix gcc warning.
+
+2010-03-10  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c: Input parameter sanization.
+
+2010-03-10  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump version.
+
+2010-01-19  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: Generated.
+
+2010-01-19  Simon Josefsson <simon@josefsson.org>
+
+	* doc/cyclo/Makefile.am: Fix.
+
+2010-01-19  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.1.2.
+
+2010-01-19  Simon Josefsson <simon@josefsson.org>
+
+	* doc/cyclo/Makefile.am: Add cyclo stuff.
+
+2010-01-19  Simon Josefsson <simon@josefsson.org>
+
+	* build-aux/pmccabe.css, build-aux/pmccabe2html, configure.ac,
+	doc/Makefile.am, gl/Makefile.am, gl/Makefile.am~,
+	gl/m4/gnulib-cache.m4, gl/m4/gnulib-cache.m4~,
+	gl/m4/gnulib-comp.m4, gl/m4/gnulib-comp.m4~: Add cyclo stuff.
+
+2010-01-19  Simon Josefsson <simon@josefsson.org>
+
+	* cfg.mk, lib/gl/Makefile.am, maint.mk, src/gl/Makefile.am: Update
+	gnulib files.
+
+2010-01-19  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Bump copyright year.
+
+2010-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* gl/m4/gnulib-common.m4, gl/m4/warnings.m4,
+	lib/gl/m4/gnulib-common.m4, src/gl/m4/gnulib-common.m4: Update
+	gnulib files.
+
+2010-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* m4/valgrind.m4: Fix valgrind.m4.
+
+2010-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* .x-sc_trailing_blank: Add.
+
+2010-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* README-alpha, cfg.mk, configure.ac, doc/gss.texi,
+	doc/reference/gss-docs.sgml, doc/texinfo.css, gss.pc.in,
+	gtk-doc.make, lib/ext.c, lib/internal.h, lib/krb5/Makefile.am,
+	lib/misc.c, lib/version.c, m4/valgrind.m4, maint.mk, src/gss.c,
+	tests/Makefile.am, tests/basic.c, tests/krb5context.c: Fix
+	syntax-checks.
+
+2010-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* tests/utils.c: Add.
+
+2010-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* .x-sc_prohibit_cvs_keyword: Add.
+
+2010-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* .x-sc_program_name: Add.
+
+2010-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* .x-sc_cast_of_argument_to_free: Add.
+
+2010-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* .x-sc_GPL_version: Add.
+
+2010-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2010-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* po/LINGUAS, po/fi.po.in, po/zh_CN.po.in: Sync with TP.
+
+2010-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* GNUmakefile, build-aux/arg-nonnull.h, build-aux/config.rpath,
+	build-aux/gendocs.sh, build-aux/link-warning.h,
+	build-aux/useless-if-before-free, build-aux/vc-list-files,
+	build-aux/warn-on-use.h, gl/Makefile.am, gl/Makefile.am~,
+	gl/dummy.c, gl/m4/00gnulib.m4, gl/m4/autobuild.m4,
+	gl/m4/gnulib-cache.m4, gl/m4/gnulib-cache.m4~,
+	gl/m4/gnulib-common.m4, gl/m4/gnulib-comp.m4,
+	gl/m4/gnulib-comp.m4~, gl/m4/gnulib-tool.m4,
+	gl/m4/ld-version-script.m4, gl/m4/lib-ld.m4, gl/m4/lib-link.m4,
+	gl/m4/lib-prefix.m4, gl/m4/manywarnings.m4, gl/m4/warnings.m4,
+	lib/gl/Makefile.am, lib/gl/dummy.c, lib/gl/gettext.h,
+	lib/gl/m4/00gnulib.m4, lib/gl/m4/extensions.m4,
+	lib/gl/m4/gnulib-cache.m4, lib/gl/m4/gnulib-common.m4,
+	lib/gl/m4/gnulib-comp.m4, lib/gl/m4/gnulib-tool.m4,
+	lib/gl/m4/include_next.m4, lib/gl/m4/ld-output-def.m4,
+	lib/gl/m4/stddef_h.m4, lib/gl/m4/string_h.m4,
+	lib/gl/m4/strverscmp.m4, lib/gl/m4/wchar_t.m4, lib/gl/stddef.in.h,
+	lib/gl/string.in.h, lib/gl/strverscmp.c, maint.mk,
+	src/gl/Makefile.am, src/gl/getopt.c, src/gl/getopt.in.h,
+	src/gl/getopt1.c, src/gl/getopt_int.h, src/gl/gettext.h,
+	src/gl/m4/00gnulib.m4, src/gl/m4/alloca.m4, src/gl/m4/dos.m4,
+	src/gl/m4/dup2.m4, src/gl/m4/eealloc.m4, src/gl/m4/environ.m4,
+	src/gl/m4/errno_h.m4, src/gl/m4/extensions.m4,
+	src/gl/m4/fcntl-o.m4, src/gl/m4/fcntl_h.m4, src/gl/m4/getopt.m4,
+	src/gl/m4/gnulib-cache.m4, src/gl/m4/gnulib-common.m4,
+	src/gl/m4/gnulib-comp.m4, src/gl/m4/gnulib-tool.m4,
+	src/gl/m4/include_next.m4, src/gl/m4/longlong.m4,
+	src/gl/m4/lstat.m4, src/gl/m4/malloc.m4, src/gl/m4/malloca.m4,
+	src/gl/m4/mode_t.m4, src/gl/m4/multiarch.m4, src/gl/m4/open.m4,
+	src/gl/m4/pathmax.m4, src/gl/m4/putenv.m4, src/gl/m4/setenv.m4,
+	src/gl/m4/stat.m4, src/gl/m4/stdarg.m4, src/gl/m4/stdbool.m4,
+	src/gl/m4/stddef_h.m4, src/gl/m4/stdint.m4, src/gl/m4/stdlib_h.m4,
+	src/gl/m4/symlink.m4, src/gl/m4/sys_stat_h.m4, src/gl/m4/time_h.m4,
+	src/gl/m4/unistd_h.m4, src/gl/m4/version-etc.m4,
+	src/gl/m4/warn-on-use.m4, src/gl/m4/wchar.m4, src/gl/m4/wchar_t.m4,
+	src/gl/m4/wint_t.m4, src/gl/progname.c, src/gl/progname.h,
+	src/gl/stdarg.in.h, src/gl/stddef.in.h, src/gl/tests/Makefile.am,
+	src/gl/tests/alloca.in.h, src/gl/tests/binary-io.h,
+	src/gl/tests/dup2.c, src/gl/tests/errno.in.h,
+	src/gl/tests/fcntl.in.h, src/gl/tests/intprops.h,
+	src/gl/tests/lstat.c, src/gl/tests/macros.h, src/gl/tests/malloc.c,
+	src/gl/tests/malloca.c, src/gl/tests/malloca.h,
+	src/gl/tests/open.c, src/gl/tests/pathmax.h, src/gl/tests/putenv.c,
+	src/gl/tests/same-inode.h, src/gl/tests/setenv.c,
+	src/gl/tests/signature.h, src/gl/tests/stat.c,
+	src/gl/tests/stdbool.in.h, src/gl/tests/stdint.in.h,
+	src/gl/tests/stdlib.in.h, src/gl/tests/symlink.c,
+	src/gl/tests/sys_stat.in.h, src/gl/tests/test-alloca-opt.c,
+	src/gl/tests/test-binary-io.c, src/gl/tests/test-dup2.c,
+	src/gl/tests/test-environ.c, src/gl/tests/test-errno.c,
+	src/gl/tests/test-fcntl-h.c, src/gl/tests/test-getopt.c,
+	src/gl/tests/test-getopt.h, src/gl/tests/test-getopt_long.h,
+	src/gl/tests/test-lstat.c, src/gl/tests/test-lstat.h,
+	src/gl/tests/test-malloca.c, src/gl/tests/test-open.c,
+	src/gl/tests/test-open.h, src/gl/tests/test-setenv.c,
+	src/gl/tests/test-stat.c, src/gl/tests/test-stat.h,
+	src/gl/tests/test-stdbool.c, src/gl/tests/test-stddef.c,
+	src/gl/tests/test-stdint.c, src/gl/tests/test-stdlib.c,
+	src/gl/tests/test-symlink.c, src/gl/tests/test-symlink.h,
+	src/gl/tests/test-sys_stat.c, src/gl/tests/test-time.c,
+	src/gl/tests/test-unistd.c, src/gl/tests/test-unsetenv.c,
+	src/gl/tests/test-version-etc.c, src/gl/tests/test-version-etc.sh,
+	src/gl/tests/test-wchar.c, src/gl/tests/time.in.h,
+	src/gl/tests/unsetenv.c, src/gl/tests/verify.h,
+	src/gl/tests/version-etc-fsf.c, src/gl/tests/wchar.in.h,
+	src/gl/unistd.in.h, src/gl/version-etc.c, src/gl/version-etc.h: 
+	Update gnulib files.
+
+2009-12-29  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2009-12-29  Simon Josefsson <simon@josefsson.org>
+
+	* build-aux/arg-nonnull.h, lib/gl/m4/stddef_h.m4,
+	lib/gl/m4/wchar_t.m4, lib/gl/stddef.in.h, src/gl/Makefile.am,
+	src/gl/m4/alloca.m4, src/gl/m4/dos.m4, src/gl/m4/dup2.m4,
+	src/gl/m4/eealloc.m4, src/gl/m4/environ.m4, src/gl/m4/errno_h.m4,
+	src/gl/m4/extensions.m4, src/gl/m4/fcntl-o.m4,
+	src/gl/m4/fcntl_h.m4, src/gl/m4/gnulib-cache.m4,
+	src/gl/m4/longlong.m4, src/gl/m4/lstat.m4, src/gl/m4/malloc.m4,
+	src/gl/m4/malloca.m4, src/gl/m4/mode_t.m4, src/gl/m4/multiarch.m4,
+	src/gl/m4/open.m4, src/gl/m4/pathmax.m4, src/gl/m4/putenv.m4,
+	src/gl/m4/setenv.m4, src/gl/m4/stat.m4, src/gl/m4/stdbool.m4,
+	src/gl/m4/stddef_h.m4, src/gl/m4/stdint.m4, src/gl/m4/stdlib_h.m4,
+	src/gl/m4/symlink.m4, src/gl/m4/sys_stat_h.m4, src/gl/m4/time_h.m4,
+	src/gl/m4/wchar.m4, src/gl/m4/wchar_t.m4, src/gl/m4/wint_t.m4,
+	src/gl/stddef.in.h, src/gl/tests/alloca.in.h,
+	src/gl/tests/binary-io.h, src/gl/tests/dup2.c,
+	src/gl/tests/errno.in.h, src/gl/tests/fcntl.in.h,
+	src/gl/tests/intprops.h, src/gl/tests/lstat.c,
+	src/gl/tests/macros.h, src/gl/tests/malloc.c,
+	src/gl/tests/malloca.c, src/gl/tests/malloca.h,
+	src/gl/tests/malloca.valgrind, src/gl/tests/open.c,
+	src/gl/tests/pathmax.h, src/gl/tests/putenv.c,
+	src/gl/tests/same-inode.h, src/gl/tests/setenv.c,
+	src/gl/tests/signature.h, src/gl/tests/stat.c,
+	src/gl/tests/stdbool.in.h, src/gl/tests/stdint.in.h,
+	src/gl/tests/stdlib.in.h, src/gl/tests/symlink.c,
+	src/gl/tests/sys_stat.in.h, src/gl/tests/test-alloca-opt.c,
+	src/gl/tests/test-binary-io.c, src/gl/tests/test-binary-io.sh,
+	src/gl/tests/test-dup2.c, src/gl/tests/test-environ.c,
+	src/gl/tests/test-errno.c, src/gl/tests/test-fcntl-h.c,
+	src/gl/tests/test-getopt.c, src/gl/tests/test-getopt.h,
+	src/gl/tests/test-getopt_long.h, src/gl/tests/test-lstat.c,
+	src/gl/tests/test-lstat.h, src/gl/tests/test-malloca.c,
+	src/gl/tests/test-open.c, src/gl/tests/test-open.h,
+	src/gl/tests/test-setenv.c, src/gl/tests/test-stat.c,
+	src/gl/tests/test-stat.h, src/gl/tests/test-stdbool.c,
+	src/gl/tests/test-stddef.c, src/gl/tests/test-stdint.c,
+	src/gl/tests/test-stdlib.c, src/gl/tests/test-symlink.c,
+	src/gl/tests/test-symlink.h, src/gl/tests/test-sys_stat.c,
+	src/gl/tests/test-time.c, src/gl/tests/test-unsetenv.c,
+	src/gl/tests/test-wchar.c, src/gl/tests/time.in.h,
+	src/gl/tests/unsetenv.c, src/gl/tests/wchar.in.h: Update gnulib
+	files.
+
+2009-12-29  Simon Josefsson <simon@josefsson.org>
+
+	* build-aux/gendocs.sh, build-aux/gnupload,
+	build-aux/link-warning.h, build-aux/useless-if-before-free,
+	gl/m4/gnulib-common.m4, gl/m4/gnulib-comp.m4,
+	gl/m4/gnulib-comp.m4~, gl/m4/ld-version-script.m4, gl/m4/lib-ld.m4,
+	gl/m4/warnings.m4, lib/gl/Makefile.am, lib/gl/gettext.h,
+	lib/gl/m4/extensions.m4, lib/gl/m4/gnulib-common.m4,
+	lib/gl/m4/gnulib-comp.m4, lib/gl/m4/include_next.m4,
+	lib/gl/m4/string_h.m4, lib/gl/override/lib/gettext.h.diff,
+	lib/gl/string.in.h, lib/gl/strverscmp.c, maint.mk,
+	src/gl/Makefile.am, src/gl/getopt.c, src/gl/getopt.in.h,
+	src/gl/getopt1.c, src/gl/getopt_int.h, src/gl/gettext.h,
+	src/gl/m4/getopt.m4, src/gl/m4/gnulib-common.m4,
+	src/gl/m4/gnulib-comp.m4, src/gl/m4/include_next.m4,
+	src/gl/m4/unistd_h.m4, src/gl/m4/version-etc.m4,
+	src/gl/override/lib/gettext.h.diff, src/gl/progname.c,
+	src/gl/progname.h, src/gl/tests/Makefile.am,
+	src/gl/tests/test-unistd.c, src/gl/tests/test-version-etc.c,
+	src/gl/tests/test-version-etc.sh, src/gl/tests/verify.h,
+	src/gl/unistd.in.h, src/gl/version-etc.c, src/gl/version-etc.h: 
+	Update gnulib files.
+
+2009-07-29  Simon Josefsson <simon@josefsson.org>
+
+	* README-alpha: Typo.
+
+2009-07-23  Simon Josefsson <simon@josefsson.org>
+
+	* build-aux/vc-list-files, gl/m4/lib-link.m4,
+	gl/m4/manywarnings.m4, lib/gl/Makefile.am,
+	lib/gl/m4/include_next.m4, lib/gl/m4/string_h.m4,
+	lib/gl/string.in.h, maint.mk, src/gl/Makefile.am,
+	src/gl/m4/gnulib-comp.m4, src/gl/m4/include_next.m4,
+	src/gl/m4/unistd_h.m4, src/gl/m4/version-etc.m4,
+	src/gl/tests/Makefile.am, src/gl/tests/test-unistd.c,
+	src/gl/tests/test-version-etc.c, src/gl/tests/test-version-etc.sh,
+	src/gl/tests/verify.h, src/gl/tests/version-etc-fsf.c,
+	src/gl/unistd.in.h, src/gl/version-etc.c, src/gl/version-etc.h: 
+	Update gnulib files.
+
+2009-06-17  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Typo.
+
+2009-06-17  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Typo.
+
+2009-05-20  Simon Josefsson <simon@josefsson.org>
+
+	* cfg.mk, configure.ac, lib/Makefile.am, lib/krb5/Makefile.am,
+	src/Makefile.am, tests/Makefile.am: Build fixes.
+
+2009-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* cfg.mk: Fix -Werror handling.
+
+2009-05-06  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Fix warning on Ubuntu 8.04.
+
+2009-05-06  Simon Josefsson <simon@josefsson.org>
+
+	* build-aux/gnupload, build-aux/useless-if-before-free,
+	build-aux/vc-list-files, doc/gendocs_template, gl/Makefile.am,
+	gl/Makefile.am~, gl/m4/gnulib-comp.m4, gl/m4/gnulib-comp.m4~,
+	gl/m4/lib-link.m4, gl/m4/lib-prefix.m4, lib/gl/gettext.h, maint.mk,
+	src/gl/getopt1.c, src/gl/gettext.h: Update gnulib files.
+
+2009-05-06  Simon Josefsson <simon@josefsson.org>
+
+	* README-alpha: Fix.
+
+2009-05-06  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Fix warnings on Ubuntu 8.04.
+
+2009-04-15  Simon Josefsson <simon@josefsson.org>
+
+	* build-aux/gendocs.sh, doc/gendocs_template,
+	gl/m4/ld-version-script.m4, maint.mk: Update gnulib files.
+
+2009-04-03  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2009-04-03  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: Generated.
+
+2009-04-03  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.1.1.
+
+2009-04-03  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2009-04-03  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, lib/misc.c, tests/basic.c: Fix memory leaks.
+
+2009-04-03  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Drop obsolete output def call.
+
+2009-04-03  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, lib/Makefile.am: Fix variable name.
+
+2009-04-03  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gl/Makefile.am, lib/gl/m4/gnulib-cache.m4,
+	lib/gl/m4/gnulib-comp.m4, lib/gl/m4/ld-output-def.m4,
+	m4/output-def.m4: Use ld-output-def from gnulib.
+
+2009-04-03  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, m4/valgrind.m4, tests/Makefile.am: Use valgrind for
+	self tests.
+
+2009-04-03  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2009-04-02  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, lib/krb5/name.c: Don't use insecure gethostname for name
+	canonicalization.
+
+2009-04-02  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/Makefile.am~, gl/m4/gnulib-cache.m4,
+	gl/m4/gnulib-cache.m4~, lib/gl/Makefile.am, lib/gl/errno.in.h,
+	lib/gl/gethostname.c, lib/gl/m4/errno_h.m4,
+	lib/gl/m4/gethostname.m4, lib/gl/m4/gnulib-cache.m4,
+	lib/gl/m4/gnulib-comp.m4, lib/gl/m4/sockpfaf.m4,
+	lib/gl/m4/sys_socket_h.m4, lib/gl/m4/unistd_h.m4,
+	lib/gl/sys_socket.in.h, lib/gl/unistd.in.h, lib/gl/w32sock.h: Update
+	gnulib files.
+
+2009-04-02  Simon Josefsson <simon@josefsson.org>
+
+	* tests/basic.c: Don't print garbage.
+
+2009-04-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c: Need to use bindtextdomain in libgss too.
+
+2009-04-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/name.c: Fix logic.
+
+2009-04-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/name.c: Work around HOST_NAME_MAX problem on mingw.
+
+2009-03-31  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2009-03-31  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am, lib/krb5/Makefile.am, src/Makefile.am,
+	tests/Makefile.am: Fix order of -I's.
+
+2009-03-31  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gl/Makefile.am, lib/gl/errno.in.h, lib/gl/gethostname.c,
+	lib/gl/m4/errno_h.m4, lib/gl/m4/gethostname.m4,
+	lib/gl/m4/gnulib-comp.m4, lib/gl/m4/sockpfaf.m4,
+	lib/gl/sys_socket.in.h, lib/gl/w32sock.h: Update gnulib files.
+
+2009-03-31  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Typo.
+
+2009-03-31  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac, lib/Makefile.am, m4/output-def.m4: Generate
+	*.def file.
+
+2009-03-31  Simon Josefsson <simon@josefsson.org>
+
+	* m4/pkg.m4: Needed by gtk-doc.m4.
+
+2009-03-31  Simon Josefsson <simon@josefsson.org>
+
+	* m4/gtk-doc.m4: Update gtk-doc.m4.
+
+2009-03-30  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2009-03-30  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2009-03-30  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: Generated.
+
+2009-03-30  Simon Josefsson <simon@josefsson.org>
+
+	* doc/texinfo.css: Update texinfo css.
+
+2009-03-30  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.1.0.
+
+2009-03-30  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2009-03-30  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac, doc/reference/gss-docs.sgml,
+	lib/headers/gss.h.in: Add GSS_VERSION_MAJOR, GSS_VERSION_MINOR,
+	GSS_VERSION_PATCH, and GSS_VERSION_NUMBER.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* src/Makefile.am: Link libcmd-gss to gnulib.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* lib/libgss.map: Use better shared library version name.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/gss-docs.sgml: Fix gtk-doc manual.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac, lib/headers/gss/krb5.h: Bump version.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.c, lib/libgss.map: Remove obsolete functions.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* lib/libgss.map: Don't export krb5 functions.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* lib/libgss.map: Separate official/inofficial krb5.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* lib/headers/gss/krb5-ext.h, lib/internal.h,
+	lib/krb5/k5internal.h, lib/krb5/oid.c: Fix compilation.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac, lib/Makefile.am, lib/headers/gss.h.in,
+	lib/headers/gss/krb5-ext.h, lib/headers/gss/krb5.h, lib/krb5/oid.c: 
+	Add GSS_KRB5_NT_MACHINE_UID_NAME*.  Add gss/krb5-ext.h.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac, lib/headers/gss/krb5.h, lib/libgss.map: Revert
+	"Drop GSS_KRB5*_static symbols." This reverts commit 6f67203f18eb78151d959b7985a1afd53b49909d.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/oid.c: Revert "Fix krb5 OID implementation." This reverts commit eca0ae5c9ec8226918ee46d3f734ab06d7292ae7.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/oid.c: Fix krb5 OID implementation.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac, lib/headers/gss/krb5.h, lib/libgss.map: Drop
+	GSS_KRB5*_static symbols.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/error.c: Use static on internal symbols.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, THANKS, src/gl/Makefile.am, src/gl/getopt.c,
+	src/gl/getopt.in.h, src/gl/getopt1.c, src/gl/getopt_int.h,
+	src/gl/m4/getopt.m4, src/gl/m4/gnulib-cache.m4,
+	src/gl/m4/gnulib-comp.m4, src/gl/m4/unistd_h.m4,
+	src/gl/tests/Makefile.am, src/gl/tests/test-unistd.c,
+	src/gl/unistd.in.h: Add getopt gnulib module to src/gl/.  Reported
+	by Dagobert Michelsen <dam@opencsw.org> in
+	<http://permalink.gmane.org/gmane.comp.gnu.gss.general/142>.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Only test warning parmeters when using GCC.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: Generated.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.26.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Dist libgss.map.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: More debug output.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, configure.ac: Fix distcheck.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* THANKS: Add.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* AUTHORS: Update PGP key.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, gl/Makefile.am, gl/Makefile.am~, gl/m4/gnulib-cache.m4,
+	gl/m4/gnulib-cache.m4~, gl/m4/gnulib-comp.m4,
+	gl/m4/gnulib-comp.m4~, gl/m4/ld-version-script.m4, lib/Makefile.am,
+	lib/libgss.map: Use library version script.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* README-alpha: Fix.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am, tests/basic.c, tests/krb5context.c: Make
+	self-tests compile.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/Makefile.am: Update.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/Makefile.am: Ignore more.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gl/Makefile.am, lib/gl/gettext.h, lib/gl/m4/gnulib-cache.m4,
+	lib/gl/m4/gnulib-comp.m4: Update gnulib files.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am, lib/gl/Makefile.am, lib/gl/getopt.c,
+	lib/gl/getopt.in.h, lib/gl/getopt1.c, lib/gl/getopt_int.h,
+	lib/gl/gettext.h, lib/gl/m4/getopt.m4, lib/gl/m4/gnulib-cache.m4,
+	lib/gl/m4/gnulib-comp.m4: Update gnulib files.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, configure.ac, gl/Makefile.am, gl/Makefile.am~,
+	gl/gethostname.c, gl/getopt.c, gl/getopt.in.h, gl/getopt1.c,
+	gl/getopt_int.h, gl/gettext.h, gl/m4/extensions.m4,
+	gl/m4/gethostname.m4, gl/m4/getopt.m4, gl/m4/gnulib-cache.m4,
+	gl/m4/gnulib-cache.m4~, gl/m4/gnulib-comp.m4,
+	gl/m4/gnulib-comp.m4~, gl/m4/include_next.m4, gl/m4/string_h.m4,
+	gl/m4/strverscmp.m4, gl/m4/sys_socket_h.m4, gl/m4/unistd_h.m4,
+	gl/override/lib/gettext.h.diff, gl/string.in.h, gl/strverscmp.c,
+	gl/unistd.in.h, lib/Makefile.am, lib/gl/Makefile.am,
+	lib/gl/dummy.c, lib/gl/gethostname.c, lib/gl/getopt.c,
+	lib/gl/getopt.in.h, lib/gl/getopt1.c, lib/gl/getopt_int.h,
+	lib/gl/gettext.h, lib/gl/m4/00gnulib.m4, lib/gl/m4/extensions.m4,
+	lib/gl/m4/gethostname.m4, lib/gl/m4/getopt.m4,
+	lib/gl/m4/gnulib-cache.m4, lib/gl/m4/gnulib-common.m4,
+	lib/gl/m4/gnulib-comp.m4, lib/gl/m4/gnulib-tool.m4,
+	lib/gl/m4/include_next.m4, lib/gl/m4/string_h.m4,
+	lib/gl/m4/strverscmp.m4, lib/gl/m4/sys_socket_h.m4,
+	lib/gl/m4/unistd_h.m4, lib/gl/override/lib/gettext.h.diff,
+	lib/gl/string.in.h, lib/gl/strverscmp.c, lib/gl/unistd.in.h,
+	lib/krb5/Makefile.am: Separate library gnulib files from top-level
+	gnulib files.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* lib/libgss.map: Add comment about obsolete symbols.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, doc/gss.texi, lib/headers/gss/ext.h: Drop
+	gss_alloc_fail_function.
+
+2009-03-27  Simon Josefsson <simon@josefsson.org>
+
+	* gl/unistd.in.h: Update gnulib files.
+
+2009-03-19  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, src/gss.c, tests/basic.c, tests/krb5context.c: 
+	Assume standard header files.
+
+2009-03-19  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Drop unused.
+
+2009-03-19  Simon Josefsson <simon@josefsson.org>
+
+	* GNUmakefile, build-aux/gnupload, maint.mk: Update gnulib files.
+
+2009-03-05  Simon Josefsson <simon@josefsson.org>
+
+	* build-aux/gnupload: Update gnulib files.
+
+2009-03-05  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/name.c: Avoid xgethostname.
+
+2009-03-05  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/dummy.c, gl/m4/gnulib-cache.m4,
+	gl/m4/gnulib-comp.m4, gl/m4/inline.m4, gl/m4/xalloc.m4,
+	gl/xalloc.h, gl/xgethostname.c, gl/xgethostname.h, gl/xmalloc.c: 
+	Drop xalloc.
+
+2009-03-05  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c, lib/error.c, lib/ext.c, lib/internal.h,
+	lib/krb5/cred.c, lib/krb5/error.c, lib/krb5/msg.c, lib/krb5/name.c: 
+	Reduce xalloc usage further.
+
+2009-03-05  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c, lib/cred.c, lib/ext.c, lib/internal.h,
+	lib/krb5/checksum.c, lib/krb5/checksum.h, lib/krb5/context.c,
+	lib/misc.c, lib/name.c: Reduce xalloc usage.
+
+2009-03-04  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/m4/gnulib-common.m4, src/gl/Makefile.am,
+	src/gl/m4/gnulib-common.m4, src/gl/m4/stdarg.m4: Update gnulib
+	files.
+
+2009-03-02  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gss.map, lib/libgss.map: Rename.
+
+2009-03-02  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gss.map: Add.
+
+2009-03-02  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c: Use static on error constant arrays.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Bump copyright year.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, doc/Makefile.am, doc/gdoc: Update gdoc.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump versions.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* cfg.mk: Fix release rules.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: Generated.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.25.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am, tests/basic.c, tests/krb5context.c: Fix header
+	usage in self tests.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/Makefile.am: Fix.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am, lib/internal.h, lib/krb5/Makefile.am,
+	lib/krb5/k5internal.h, lib/meta.c, lib/meta.h, src/Makefile.am,
+	src/gss.c: Fix header file usage.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, lib/Makefile.am, lib/api.h, lib/ext.h,
+	lib/gss.h.in, lib/headers/gss.h.in, lib/headers/gss/api.h,
+	lib/headers/gss/ext.h, lib/headers/gss/krb5.h, lib/krb5/krb5.h: Move
+	header files around.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Print whether krb5 plugin is built.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, gl/override/lib/progname.h.diff, src/Makefile.am,
+	src/gl/gettext.h, src/gl/override/lib/gettext.h.diff,
+	src/gl/override/lib/progname.h.diff, src/gl/progname.h: Fix gnulib
+	files.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, configure.ac, gl/Makefile.am, gl/m4/gnulib-cache.m4,
+	gl/m4/gnulib-comp.m4, gl/m4/stdarg.m4, gl/progname.c,
+	gl/progname.h, gl/stdarg.in.h, gl/version-etc.c, gl/version-etc.h,
+	src/Makefile.am, src/gl/Makefile.am, src/gl/gettext.h,
+	src/gl/m4/00gnulib.m4, src/gl/m4/gnulib-cache.m4,
+	src/gl/m4/gnulib-common.m4, src/gl/m4/gnulib-comp.m4,
+	src/gl/m4/gnulib-tool.m4, src/gl/m4/include_next.m4,
+	src/gl/m4/stdarg.m4, src/gl/progname.c, src/gl/progname.h,
+	src/gl/stdarg.in.h, src/gl/tests/Makefile.am, src/gl/version-etc.c,
+	src/gl/version-etc.h: Update gnulib files.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Fix tarname.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, gl/Makefile.am, gl/m4/gnulib-cache.m4,
+	gl/m4/gnulib-comp.m4, gl/m4/stdarg.m4,
+	gl/override/lib/progname.h.diff, gl/progname.c, gl/progname.h,
+	gl/stdarg.in.h, gl/version-etc.c, gl/version-etc.h,
+	src/Makefile.am, src/gss.c: Update gss --help and --version outputs.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* po/id.po.in, po/vi.po.in: Sync with TP.
+
+2009-02-26  Simon Josefsson <simon@josefsson.org>
+
+	* build-aux/gendocs.sh, build-aux/gnupload, doc/gendocs_template,
+	gl/Makefile.am, gl/m4/00gnulib.m4, gl/m4/extensions.m4,
+	gl/m4/gethostname.m4, gl/m4/gnulib-cache.m4,
+	gl/m4/gnulib-common.m4, gl/m4/gnulib-comp.m4,
+	gl/m4/include_next.m4, gl/m4/inline.m4, gl/m4/lib-ld.m4,
+	gl/m4/lib-link.m4, gl/m4/strverscmp.m4, gl/m4/unistd_h.m4,
+	gl/unistd.in.h: Update gnulib files.
+
+2008-12-11  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2008-12-11  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, src/Makefile.am, tests/Makefile.am, tests/basic.c,
+	tests/krb5context.c: Fix warnings.
+
+2008-12-11  Simon Josefsson <simon@josefsson.org>
+
+	* build-aux/gnupload, configure.ac, gl/Makefile.am, gl/gettext.h,
+	gl/m4/gnulib-cache.m4, gl/m4/gnulib-comp.m4, gl/m4/include_next.m4,
+	gl/m4/manywarnings.m4, gl/m4/warnings.m4,
+	gl/override/lib/gettext.h.diff, lib/Makefile.am,
+	lib/krb5/Makefile.am, lib/krb5/context.c, lib/krb5/cred.c,
+	lib/krb5/error.c, lib/krb5/msg.c, lib/krb5/name.c, lib/misc.c,
+	lib/obsolete.c, maint.mk: Enable more warnings.  Fix many warnings.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/Makefile.am, gtk-doc.make, m4/gtk-doc.m4: Update
+	gtk-doc files.
+
+2008-11-12  Simon Josefsson <simon@josefsson.org>
+
+	* README: Mention license versions.
+
+2008-11-12  Simon Josefsson <simon@josefsson.org>
+
+	* cfg.mk: Add coverage and mingw rules.
+
+2008-11-12  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Enable automake warnings.  Fix libtool warning.
+
+2008-11-12  Simon Josefsson <simon@josefsson.org>
+
+	* GNUmakefile, Makefile.am, NEWS, cfg.mk, configure.ac,
+	doc/Makefile.am, doc/fdl-1.3.texi, doc/fdl.texi, doc/gss.texi,
+	gl/Makefile.am, gl/gethostname.c, gl/m4/gethostname.m4,
+	gl/m4/gnulib-cache.m4, gl/m4/gnulib-common.m4,
+	gl/m4/gnulib-comp.m4, gl/m4/include_next.m4, gl/m4/string_h.m4,
+	gl/m4/sys_socket_h.m4, gl/m4/unistd_h.m4, gl/m4/warnings.m4,
+	gl/string.in.h, gl/unistd.in.h, maint.mk: Update gnulib files.  Use
+	GFDLv1.3+.
+
+2008-11-12  Simon Josefsson <simon@josefsson.org>
+
+	* gss.pc.in: Add URL fields.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: Generated.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.24.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* AUTHORS: Update PGP key.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* .cvsignore, build-aux/.cvsignore, doc/.cvsignore,
+	doc/reference/.cvsignore, doc/reference/tmpl/.cvsignore,
+	doc/reference/tmpl/gss-unused.sgml, gl/.cvsignore,
+	gl/m4/.cvsignore, lib/.cvsignore, lib/krb5/.cvsignore,
+	m4/.cvsignore, po/.cvsignore, src/.cvsignore, tests/.cvsignore: 
+	Remove unused.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/Makefile.am: Update to modern gtk-doc makefile.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/gss-docs.sgml: Sync with gss.texi.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix license version.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* gss.fms: Remove unused gss.fms.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* lib/meta.c: Fix warning.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Run distcheck with -Werror to catch regressions.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Fix project name.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c, lib/name.c: Fix warnings.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, cfg.mk: Move release target to cfg.mk and update it.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* .clcopying: Use liberal license.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-hartman-gss-naming-00.txt,
+	doc/specification/draft-hartman-gss-naming-01.txt,
+	doc/specification/draft-ietf-cat-gss-conv-00.txt,
+	doc/specification/draft-ietf-cat-gsseasy-01.txt,
+	doc/specification/draft-ietf-cat-gssv2-cbind-04.txt,
+	doc/specification/draft-ietf-cat-krb5gss-mech2-00.txt,
+	doc/specification/draft-ietf-cat-krb5gss-mech2-01.txt,
+	doc/specification/draft-ietf-cat-krb5gss-mech2-02.txt,
+	doc/specification/draft-ietf-cat-krb5gss-mech2-03.txt,
+	doc/specification/draft-ietf-kitten-2478bis-00.txt,
+	doc/specification/draft-ietf-kitten-2478bis-01.txt,
+	doc/specification/draft-ietf-kitten-2478bis-02.txt,
+	doc/specification/draft-ietf-kitten-2478bis-03.txt,
+	doc/specification/draft-ietf-kitten-2478bis-04.txt,
+	doc/specification/draft-ietf-kitten-2478bis-05.txt,
+	doc/specification/draft-ietf-kitten-extended-mech-inquiry-00.txt,
+	doc/specification/draft-ietf-kitten-extended-mech-inquiry-01.txt,
+	doc/specification/draft-ietf-kitten-extended-mech-inquiry-02.txt,
+	doc/specification/draft-ietf-kitten-extended-mech-inquiry-03.txt,
+	doc/specification/draft-ietf-kitten-gss-naming-00.txt,
+	doc/specification/draft-ietf-kitten-gss-naming-01.txt,
+	doc/specification/draft-ietf-kitten-gss-naming-02.txt,
+	doc/specification/draft-ietf-kitten-gss-naming-03.txt,
+	doc/specification/draft-ietf-kitten-gss-naming-04.txt,
+	doc/specification/draft-ietf-kitten-gss-naming-05.txt,
+	doc/specification/draft-ietf-kitten-gssapi-channel-bindings-00.txt,
+	doc/specification/draft-ietf-kitten-gssapi-channel-bindings-01.txt,
+	doc/specification/draft-ietf-kitten-gssapi-channel-bindings-02.txt,
+	doc/specification/draft-ietf-kitten-gssapi-channel-bindings-03.txt,
+	doc/specification/draft-ietf-kitten-gssapi-csharp-bindings-00.txt,
+	doc/specification/draft-ietf-kitten-gssapi-domain-based-names-00.tx
+	t,
+	doc/specification/draft-ietf-kitten-gssapi-domain-based-names-01.tx
+	t,
+	doc/specification/draft-ietf-kitten-gssapi-domain-based-names-02.tx
+	t,
+	doc/specification/draft-ietf-kitten-gssapi-domain-based-names-03.tx
+	t,
+	doc/specification/draft-ietf-kitten-gssapi-domain-based-names-05.tx
+	t,
+	doc/specification/draft-ietf-kitten-gssapi-extensions-iana-00.txt,
+	doc/specification/draft-ietf-kitten-gssapi-extensions-iana-01.txt,
+	doc/specification/draft-ietf-kitten-gssapi-extensions-iana-02.txt,
+	doc/specification/draft-ietf-kitten-gssapi-naming-exts-00.txt,
+	doc/specification/draft-ietf-kitten-gssapi-naming-exts-01.txt,
+	doc/specification/draft-ietf-kitten-gssapi-naming-exts-02.txt,
+	doc/specification/draft-ietf-kitten-gssapi-prf-00.txt,
+	doc/specification/draft-ietf-kitten-gssapi-prf-01.txt,
+	doc/specification/draft-ietf-kitten-gssapi-prf-02.txt,
+	doc/specification/draft-ietf-kitten-gssapi-prf-03.txt,
+	doc/specification/draft-ietf-kitten-gssapi-prf-04.txt,
+	doc/specification/draft-ietf-kitten-gssapi-prf-06.txt,
+	doc/specification/draft-ietf-kitten-gssapi-prf-07.txt,
+	doc/specification/draft-ietf-kitten-gssapi-rfc2853-update-for-cshar
+	p-00.txt,
+	doc/specification/draft-ietf-kitten-gssapi-store-cred-00.txt,
+	doc/specification/draft-ietf-kitten-gssapi-store-cred-01.txt,
+	doc/specification/draft-ietf-kitten-gssapi-store-cred-02.txt,
+	doc/specification/draft-ietf-kitten-gssapi-v3-guide-to-00.txt,
+	doc/specification/draft-ietf-kitten-gssapi-v3-guide-to-01.txt,
+	doc/specification/draft-ietf-kitten-krb5-gssapi-domain-based-names-
+	00.txt,
+	doc/specification/draft-ietf-kitten-krb5-gssapi-domain-based-names-
+	02.txt,
+	doc/specification/draft-ietf-kitten-krb5-gssapi-domain-based-names-
+	03.txt, doc/specification/draft-ietf-kitten-krb5-gssapi-prf-00.txt,
+	doc/specification/draft-ietf-kitten-krb5-gssapi-prf-01.txt,
+	doc/specification/draft-ietf-kitten-krb5-gssapi-prf-02.txt,
+	doc/specification/draft-ietf-kitten-krb5-gssapi-prf-03.txt,
+	doc/specification/draft-ietf-kitten-krb5-gssapi-prf-04.txt,
+	doc/specification/draft-ietf-kitten-rfc2853bis-00.txt,
+	doc/specification/draft-ietf-kitten-rfc2853bis-01.txt,
+	doc/specification/draft-ietf-kitten-rfc2853bis-03.txt,
+	doc/specification/draft-ietf-kitten-stackable-pseudo-mechs-00.txt,
+	doc/specification/draft-ietf-kitten-stackable-pseudo-mechs-01.txt,
+	doc/specification/draft-ietf-kitten-stackable-pseudo-mechs-02.txt,
+	doc/specification/draft-ietf-krb-wg-gss-cb-hash-agility-00.txt,
+	doc/specification/draft-ietf-krb-wg-gss-crypto-00.txt,
+	doc/specification/draft-ietf-krb-wg-gssapi-cfx-00.txt,
+	doc/specification/draft-ietf-krb-wg-gssapi-cfx-01.txt,
+	doc/specification/draft-ietf-krb-wg-gssapi-cfx-02.txt,
+	doc/specification/draft-ietf-krb-wg-gssapi-cfx-03.txt,
+	doc/specification/draft-ietf-krb-wg-gssapi-cfx-04.txt,
+	doc/specification/draft-ietf-krb-wg-gssapi-cfx-05.txt,
+	doc/specification/draft-ietf-krb-wg-gssapi-cfx-06.txt,
+	doc/specification/draft-ietf-krb-wg-gssapi-cfx-07.txt,
+	doc/specification/draft-ietf-nfsv4-ccm-03.txt,
+	doc/specification/draft-ietf-nfsv4-channel-bindings-02.txt,
+	doc/specification/draft-ietf-nfsv4-channel-bindings-04.txt,
+	doc/specification/draft-ietf-secsh-gsskeyex-09.txt,
+	doc/specification/draft-johansson-http-gss-00.txt,
+	doc/specification/draft-johansson-http-gss-01.txt,
+	doc/specification/draft-morris-java-gssapi-update-for-csharp-00.txt
+	, doc/specification/draft-raeburn-cat-gssapi-krb5-3des-00.txt,
+	doc/specification/draft-raeburn-krb-gssapi-krb5-3des-01.txt,
+	doc/specification/draft-williams-gssapi-channel-bindings-00.txt,
+	doc/specification/draft-williams-gssapi-cred-store-00.txt,
+	doc/specification/draft-williams-gssapi-domain-based-names-00.txt,
+	doc/specification/draft-williams-gssapi-prf-00.txt,
+	doc/specification/draft-williams-gssapi-stackable-pseudo-mechs-00.t
+	xt,
+	doc/specification/draft-williams-gssapi-store-deleg-creds-00.txt,
+	doc/specification/draft-williams-gssapi-store-deleg-creds-01.txt,
+	doc/specification/draft-williams-gssapi-v3-guide-to-00.txt,
+	doc/specification/draft-williams-krb5-gssapi-domain-based-names-00.
+	txt, doc/specification/draft-williams-krb5-gssapi-prf-00.txt,
+	doc/specification/draft-zhu-spnego-2478bis-00.txt,
+	doc/specification/draft-zhu-spnego-2478bis-01.txt,
+	doc/specification/gssapi-service-names,
+	doc/specification/rfc1508.txt, doc/specification/rfc1509.txt,
+	doc/specification/rfc1961.txt, doc/specification/rfc1964.txt,
+	doc/specification/rfc2025.txt, doc/specification/rfc2078.txt,
+	doc/specification/rfc2203.txt, doc/specification/rfc2478.txt,
+	doc/specification/rfc2479.txt, doc/specification/rfc2743.txt,
+	doc/specification/rfc2744.txt, doc/specification/rfc2853.txt,
+	doc/specification/rfc4121.txt, doc/specification/rfc4178.txt,
+	doc/specification/rfc4401.txt, doc/specification/rfc4402.txt,
+	doc/specification/rfc4768.txt: Remove.
+
+2008-09-10  Simon Josefsson <simon@josefsson.org>
+
+	* GNUmakefile, build-aux/config.rpath, gl/Makefile.am,
+	gl/m4/include_next.m4, gl/m4/lib-link.m4, gl/m4/lib-prefix.m4,
+	gl/string.in.h, gl/unistd.in.h, maint.mk: Update gnulib files.
+
+2008-08-21  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/m4/autobuild.m4, gl/m4/gnulib-comp.m4,
+	gl/m4/string_h.m4, gl/m4/strverscmp.m4, gl/string.in.h,
+	gl/strverscmp.h, lib/version.c: Update gnulib files.
+
+2008-08-20  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Don't copy archive to www directory.
+
+2008-08-20  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Uses autobuild from gnulib.
+
+2008-08-20  Simon Josefsson <simon@josefsson.org>
+
+	* GNUmakefile, build-aux/gnupload, doc/gendocs_template,
+	gl/Makefile.am, gl/m4/autobuild.m4, gl/m4/gnulib-cache.m4,
+	gl/m4/gnulib-comp.m4, gl/m4/gnulib-tool.m4, gl/xalloc.h,
+	m4/autobuild.m4, maint.mk: Update gnulib files.
+
+2008-08-20  Simon Josefsson <simon@josefsson.org>
+
+	* po/LINGUAS, po/id.po.in, po/zh_CN.po.in: Sync with TP.
+
+2008-08-20  Simon Josefsson <simon@josefsson.org>
+
+	* README: Fix URLs.
+
+2008-08-20  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix URLs.
+
+2008-05-20  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2008-05-20  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Fix copyright year.
+
+2008-05-20  Simon Josefsson <simon@josefsson.org>
+
+	* po/LINGUAS, po/ga.po.in, po/sk.po.in, po/sv.po.in, po/vi.po.in: 
+	Sync with TP.
+
+2008-05-20  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, NEWS, cfg.mk, po/Makevars, po/fr.po, po/fr.po.in,
+	po/pl.po, po/pl.po.in, po/ro.po, po/ro.po.in, po/rw.po,
+	po/rw.po.in, po/sv.po, po/sv.po.in, po/vi.po, po/vi.po.in: Don't use
+	gettext --no-location.
+
+2008-05-20  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2008-05-20  Simon Josefsson <simon@josefsson.org>
+
+	* .clcopying, .cvscopying, Makefile.am: Rename .cvscopying to
+	.clcopying.
+
+2008-05-20  Simon Josefsson <simon@josefsson.org>
+
+	* GNUmakefile, build-aux/gendocs.sh, build-aux/gnupload,
+	gl/m4/extensions.m4, gl/m4/getopt.m4, gl/m4/gnulib-common.m4,
+	gl/m4/gnulib-comp.m4, gl/m4/include_next.m4, gl/xalloc.h,
+	gl/xmalloc.c: Update gnulib files.
+
+2008-04-01  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am: Update gnulib files.
+
+2008-03-25  Simon Josefsson <simon@josefsson.org>
+
+	* GNUmakefile, build-aux/GNUmakefile, build-aux/gendocs.sh,
+	build-aux/maint.mk, cfg.mk, gl/Makefile.am, gl/getopt.c,
+	gl/m4/gnulib-cache.m4, gl/m4/gnulib-comp.m4, gl/m4/include_next.m4,
+	gl/m4/lib-link.m4, gl/m4/unistd_h.m4, gl/unistd.in.h, maint-cfg.mk,
+	maint.mk: Update gnulib files.
+
+2008-02-25  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-extended-mech-inquiry-03.txt,
+	doc/specification/draft-ietf-kitten-gssapi-channel-bindings-03.txt,
+	doc/specification/draft-ietf-kitten-gssapi-extensions-iana-02.txt: 
+	Add.
+
+2008-02-06  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump versions.
+
+2008-02-06  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2008-02-06  Simon Josefsson <simon@josefsson.org>
+
+	* GNUmakefile, maint-cfg.mk: Need config.rpath workaround.
+
+2008-02-06  Simon Josefsson <simon@josefsson.org>
+
+	* build-aux/config.rpath, build-aux/gendocs.sh, build-aux/gnupload,
+	gl/Makefile.am, gl/gethostname.c, gl/m4/unistd_h.m4,
+	gl/unistd.in.h, gl/xalloc.h: Update gnulib files.
+
+2008-02-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Brace expansion is not POSIX portable.
+
+2007-12-26  Simon Josefsson <simon@josefsson.org>
+
+	*
+	doc/specification/draft-ietf-kitten-gssapi-domain-based-names-05.tx
+	t: Add.
+
+2007-12-19  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: Generated.
+
+2007-12-19  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/Makefile.am: Sync with libidn.
+
+2007-12-19  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.23.
+
+2007-12-19  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix release target.
+
+2007-12-19  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2007-12-19  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gendocs_template: Fix gendocs_template file.
+
+2007-12-19  Simon Josefsson <simon@josefsson.org>
+
+	* gl/override/doc/gendocs_template: Fix gendocs_template file.
+
+2007-12-19  Simon Josefsson <simon@josefsson.org>
+
+	* gl/override/doc/gendocs_template.diff,
+	gl/override/doc/gpl.texi.diff: Fix gendocs_template file.
+
+2007-12-19  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Use gpl-3.0.texi instead of gpl.texi.
+
+2007-12-19  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix gpl/fdl includes.
+
+2007-12-19  Simon Josefsson <simon@josefsson.org>
+
+	* build-aux/GNUmakefile, build-aux/gendocs.sh, build-aux/gnupload,
+	build-aux/maint.mk, doc/fdl.texi, gl/Makefile.am, gl/gethostname.c,
+	gl/getopt.c, gl/getopt1.c, gl/getopt_int.h, gl/gettext.h,
+	gl/m4/gnulib-cache.m4, gl/m4/gnulib-common.m4,
+	gl/m4/gnulib-comp.m4, gl/m4/include_next.m4, gl/m4/lib-link.m4,
+	gl/m4/strverscmp.m4, gl/m4/unistd_h.m4, gl/strverscmp.c,
+	gl/strverscmp.h, gl/xalloc.h, gl/xgethostname.c, gl/xmalloc.c: 
+	Update gnulib files.
+
+2007-12-19  Simon Josefsson <simon@josefsson.org>
+
+	* gl/getopt.in.h, gl/m4/extensions.m4, gl/unistd.in.h: Update gnulib
+	files.
+
+2007-12-19  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gpl-3.0.texi, doc/gpl.texi, gl/getopt_.h, gl/unistd_.h: Update
+	gnulib files.
+
+2007-12-19  Simon Josefsson <simon@josefsson.org>
+
+	* GNUmakefile, maint-cfg.mk: Revert config.rpath hack.
+
+2007-12-19  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Use gettext 0.17.
+
+2007-12-19  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2007-08-31  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Drop gnits mode.
+
+2007-08-07  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-rfc2853bis-03.txt: Add.
+
+2007-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: Generated.
+
+2007-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.22.
+
+2007-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gpl.texi: Add GPLv3.
+
+2007-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* build-aux/config.rpath, build-aux/maint.mk, gl/Makefile.am,
+	gl/m4/absolute-header.m4, gl/m4/gnulib-comp.m4,
+	gl/m4/include_next.m4, gl/m4/unistd_h.m4, gl/unistd_.h: Update
+	gnulib files.
+
+2007-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* COPYING: Add GPLv3, since automake installs GPLv2.
+
+2007-06-27  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2007-06-27  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2007-06-27  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/Makefile.am, lib/krb5/checksum.c, lib/krb5/checksum.h,
+	lib/krb5/context.c, lib/krb5/cred.c, lib/krb5/error.c,
+	lib/krb5/k5internal.h, lib/krb5/krb5.h, lib/krb5/msg.c,
+	lib/krb5/name.c, lib/krb5/oid.c, lib/krb5/protos.h,
+	lib/krb5/utils.c: Use GPLv3 instead of GPLv2.
+
+2007-06-27  Simon Josefsson <simon@josefsson.org>
+
+	* .cvscopying, Makefile.am, configure.ac, doc/Makefile.am,
+	doc/Makefile.gdoci, lib/Makefile.am, lib/api.h, lib/asn1.c,
+	lib/context.c, lib/cred.c, lib/error.c, lib/ext.c, lib/ext.h,
+	lib/gss.h.in, lib/internal.h, lib/meta.c, lib/meta.h, lib/misc.c,
+	lib/msg.c, lib/name.c, lib/obsolete.c, lib/oid.c, lib/version.c,
+	maint-cfg.mk, src/Makefile.am, src/gss.c, src/gss.ggo,
+	tests/Makefile.am, tests/basic.c, tests/krb5context.c,
+	tests/threadsafety: Use GPLv3 instead of GPLv2.
+
+2007-06-14  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Move from cvs to git.
+
+2007-05-22  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2007-05-22  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix release target.
+
+2007-05-22  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2007-05-22  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/pl.po, po/ro.po, po/rw.po, po/sv.po, po/vi.po: Sync
+	with TP.
+
+2007-05-22  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.21.
+
+2007-05-22  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2007-05-22  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2007-05-22  Simon Josefsson <simon@josefsson.org>
+
+	* src/Makefile.am: Don't remove gss_cmd.c and gss_cmd.h on 'make
+	distclean'.  Reported by Bernd Zeimetz <bernd@bzed.de>, solution
+	suggested by Russ Allbery <rra@stanford.edu>.
+
+2007-05-22  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/m4/unistd_h.m4, gl/unistd_.h: Update,.
+
+2007-04-16  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2007-04-16  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Version 0.0.20.
+
+2007-04-16  Simon Josefsson <simon@josefsson.org>
+
+	* gl/m4/gnulib-common.m4: Update.
+
+2007-04-16  Simon Josefsson <simon@josefsson.org>
+
+	* build-aux/.cvsignore, gl/.cvsignore, gl/m4/.cvsignore: [no log
+	message]
+
+2007-04-16  Simon Josefsson <simon@josefsson.org>
+
+	* maint-cfg.mk: Fix.
+
+2007-04-16  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2007-04-16  Simon Josefsson <simon@josefsson.org>
+
+	* gendocs.sh, gnupload, maint.mk: UPdate.
+
+2007-04-16  Simon Josefsson <simon@josefsson.org>
+
+	* GNUmakefile: Rewrite.
+
+2007-04-16  Simon Josefsson <simon@josefsson.org>
+
+	* build-aux/GNUmakefile, build-aux/config.rpath,
+	build-aux/gendocs.sh, build-aux/gnupload, build-aux/link-warning.h,
+	build-aux/maint.mk, gl/.cvsignore, gl/Makefile.am, gl/getopt_.h,
+	gl/m4/.cvsignore, gl/m4/absolute-header.m4, gl/m4/gnulib-cache.m4,
+	gl/m4/gnulib-comp.m4, gl/m4/lib-link.m4, gl/m4/unistd_h.m4,
+	gl/unistd_.h, gl/xalloc.h: Update.
+
+2007-04-16  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Use build-aux/.
+
+2007-03-08  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-johansson-http-gss-01.txt: Add.
+
+2007-02-28  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-krb-wg-gss-cb-hash-agility-00.txt: 
+	Add.
+
+2007-01-08  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/pl.po, po/ro.po, po/rw.po, po/sv.po, po/vi.po: 
+	Generated.
+
+2007-01-08  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.19.
+
+2007-01-08  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog, m4/.cvsignore: [no log message]
+
+2007-01-08  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2007-01-08  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2007-01-08  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump autoconf/automake/gettext version.
+
+2007-01-08  Simon Josefsson <simon@josefsson.org>
+
+	* .cvscopying, Makefile.am, NEWS, README, README-alpha, THANKS,
+	configure.ac, doc/Makefile.am, doc/Makefile.gdoci, doc/gdoc,
+	doc/gss.texi, gss.pc.in, lib/Makefile.am, lib/api.h, lib/asn1.c,
+	lib/context.c, lib/cred.c, lib/error.c, lib/ext.c, lib/ext.h,
+	lib/gss.h.in, lib/internal.h, lib/krb5/Makefile.am,
+	lib/krb5/checksum.c, lib/krb5/checksum.h, lib/krb5/context.c,
+	lib/krb5/cred.c, lib/krb5/error.c, lib/krb5/k5internal.h,
+	lib/krb5/krb5.h, lib/krb5/msg.c, lib/krb5/name.c, lib/krb5/oid.c,
+	lib/krb5/protos.h, lib/krb5/utils.c, lib/meta.c, lib/meta.h,
+	lib/misc.c, lib/msg.c, lib/name.c, lib/obsolete.c, lib/oid.c,
+	lib/version.c, maint-cfg.mk, po/POTFILES.in, src/Makefile.am,
+	src/gss.c, src/gss.ggo, tests/Makefile.am, tests/basic.c,
+	tests/krb5context.c, tests/threadsafety: Bump copyright years.
+
+2007-01-08  Simon Josefsson <simon@josefsson.org>
+
+	* AUTHORS: Update PGP key.
+
+2007-01-08  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2007-01-08  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/gettext.h, gl/m4/gnulib-cache.m4,
+	gl/m4/gnulib-comp.m4, gl/m4/lib-link.m4: Update.
+
+2007-01-08  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c: (_gss_decapsulate_token): Use size_t for temporary variable, not
+	int.  For some reason, this broke 'make check' on amd64, see
+	<http://bugs.debian.org/404739> for details.  Reported by Kurt
+	Roeckx <kurt@roeckx.be>.
+
+2006-12-26  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/rfc4768.txt: Add.
+
+2006-11-16  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c: Remove (in internal.h).
+
+2006-11-16  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c: Need internal.h, for PACKAGE.
+
+2006-11-16  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump versions.
+
+2006-11-16  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2006-11-16  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Bump version.
+
+2006-11-16  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/gettext.h, gl/m4/gnulib-comp.m4,
+	gl/m4/inline.m4, gl/m4/lib-link.m4, gl/m4/xalloc.m4, gl/xalloc.h,
+	gl/xmalloc.c, gnupload: Update.
+
+2006-11-07  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/gss-docs.tmpl: Remove.
+
+2006-11-07  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/gss-docs.sgml: Add.
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.18.
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/pl.po, po/ro.po, po/rw.po, po/sv.po, po/vi.po: Sync
+	with TP.
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gpl.texi, doc/gss.texi, gl/Makefile.am,
+	gl/m4/gnulib-cache.m4, gl/m4/gnulib-comp.m4,
+	gl/override/doc/gpl.texi.diff, po/fr.po, po/pl.po, po/ro.po,
+	po/rw.po, po/sv.po, po/vi.po: Fix license in manual.
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* gl/m4/xalloc.m4, gl/xalloc.h, gl/xmalloc.c: Update.
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* tests/krb5context.tkt: Cosmetics.
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c: Fix 'invalid MIC' due to signed badness.
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* m4/.cvsignore: [no log message]
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c: (_gss_asn1_get_length_der): Sync with latest libtasn1.  Update
+	callers.
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* lib/version.c: Fix typo.
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, doc/gendocs.sh, doc/gendocs_template, gendocs.sh,
+	gl/Makefile.am, gl/m4/gnulib-cache.m4, gl/m4/gnulib-comp.m4,
+	gl/override/doc/gendocs_template, gnupload: Use gendocs and
+	gnupload.
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Require gettext 0.15.
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/cred.c: Don't require that credential is in default realm
+	when searching for hostkeys (broke self-tests with Shishi 0.0.30).
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/m4/gnulib-cache.m4, gl/m4/gnulib-comp.m4,
+	gl/m4/strverscmp.m4, gl/strverscmp.c, gl/strverscmp.h: Add
+	strverscmp.
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* lib/version.c: Use strverscmp.
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/getopt_.h, gl/gettext.h, gl/m4/gnulib-comp.m4,
+	gl/m4/lib-link.m4, gl/xalloc.h: Update.
+
+2006-11-06  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-gssapi-store-cred-02.txt,
+	doc/specification/draft-johansson-http-gss-00.txt: Add.
+
+2006-09-22  Simon Josefsson <simon@josefsson.org>
+
+	* doc/fdl.texi, gl/Makefile.am, gl/gethostname.c, gl/getopt.c,
+	gl/getopt1.c, gl/gettext.h, gl/m4/gnulib-cache.m4,
+	gl/m4/gnulib-comp.m4, gl/m4/lib-link.m4, gl/m4/xalloc.m4,
+	gl/xgethostname.c, gl/xmalloc.c: Update.
+
+2006-09-22  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump versions.
+
+2006-09-13  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-gss-naming-05.txt,
+	doc/specification/draft-ietf-kitten-gssapi-domain-based-names-03.tx
+	t,
+	doc/specification/draft-ietf-kitten-krb5-gssapi-domain-based-names-
+	03.txt: Add.
+
+2006-07-28  Simon Josefsson <simon@josefsson.org>
+
+	*
+	doc/specification/draft-ietf-kitten-gssapi-domain-based-names-02.tx
+	t: Add.
+
+2006-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/m4/gnulib-cache.m4, gl/m4/gnulib-comp.m4: 
+	Update.
+
+2006-07-10  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/getopt.c, gl/m4/getopt.m4,
+	gl/m4/gnulib-cache.m4, gl/m4/gnulib-comp.m4, gl/m4/onceonly_2_57.m4: 
+	Update.
+
+2006-06-30  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-extended-mech-inquiry-02.txt,
+	doc/specification/draft-ietf-kitten-gssapi-channel-bindings-02.txt,
+	doc/specification/draft-ietf-kitten-gssapi-naming-exts-02.txt,
+	doc/specification/draft-ietf-kitten-krb5-gssapi-domain-based-names-
+	02.txt,
+	doc/specification/draft-ietf-kitten-stackable-pseudo-mechs-02.txt,
+	doc/specification/draft-ietf-nfsv4-channel-bindings-04.txt: Add.
+
+2006-06-22  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Make portable to mingw.
+
+2006-05-04  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2006-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2006-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.17.
+
+2006-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix direntry.
+
+2006-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* debian/changelog, debian/compat, debian/control,
+	debian/copyright, debian/docs, debian/libgss0-dev.install,
+	debian/libgss0.install, debian/rules, debian/watch: Remove.
+
+2006-04-26  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am: Update.
+
+2006-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* po/Makevars: Use --no-location.
+
+2006-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/pl.po, po/ro.po, po/rw.po, po/sv.po, po/vi.po: 
+	Update.
+
+2006-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix.
+
+2006-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix update-po.
+
+2006-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2006-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix @direntry.
+
+2006-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Fix libgnu path.
+
+2006-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix license.
+
+2006-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2006-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, lib/Makefile.am, lib/krb5/Makefile.am,
+	src/Makefile.am, tests/Makefile.am: Remove indent.
+
+2006-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/pl.po, po/ro.po, po/sv.po, po/vi.po: Sync with TP.
+
+2006-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/m4/gnulib-comp.m4, gl/m4/unistd_h.m4, maint.mk: 
+	Update.
+
+2006-03-22  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/pl.po, po/ro.po, po/rw.po, po/sv.po, po/vi.po: Sync
+	with TP.
+
+2006-03-22  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Fix copyright years.
+
+2006-03-08  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-gss-naming-04.txt: Add.
+
+2006-03-07  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Add -no-undefined, required to produce DLLs on
+	mingw32.
+
+2006-02-16  Simon Josefsson <simon@josefsson.org>
+
+	* maint.mk: Update.
+
+2006-02-14  Simon Josefsson <simon@josefsson.org>
+
+	* GNUmakefile, Makefile.cfg, Makefile.maint, gl/m4/gnulib-comp.m4,
+	maint-cfg.mk, maint.mk: Rename.
+
+2006-02-14  Simon Josefsson <simon@josefsson.org>
+
+	* GNUmakefile, Makefile.maint, gl/Makefile.am, gl/getopt.c,
+	gl/m4/getopt.m4, gl/m4/gnulib-cache.m4, gl/m4/gnulib-comp.m4,
+	gl/m4/gnulib-tool.m4: Update.
+
+2006-02-14  Simon Josefsson <simon@josefsson.org>
+
+	* autogen.sh: Remove.
+
+2006-02-14  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.cfg: Add.
+
+2006-02-14  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/rfc4401.txt, doc/specification/rfc4402.txt: Add.
+
+2006-02-01  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-rfc2853bis-01.txt: Add.
+
+2006-01-18  Simon Josefsson <simon@josefsson.org>
+
+	* debian/control: Fix.
+
+2006-01-18  Simon Josefsson <simon@josefsson.org>
+
+	* debian/dirs: Remove.
+
+2006-01-18  Simon Josefsson <simon@josefsson.org>
+
+	* debian/rules: Comment out doc.
+
+2006-01-18  Simon Josefsson <simon@josefsson.org>
+
+	* debian/libgss0-dev.install: Add gss tool.
+
+2006-01-18  Simon Josefsson <simon@josefsson.org>
+
+	* debian/gss-doc.doc-base, debian/gss-doc.info,
+	debian/gss-doc.manpages, debian/libgss0-dev.install: Remove gss-doc.
+
+2006-01-18  Simon Josefsson <simon@josefsson.org>
+
+	* debian/control: Remove gss-doc package.
+
+2006-01-18  Simon Josefsson <simon@josefsson.org>
+
+	* debian/changelog, debian/copyright: Fix.
+
+2006-01-18  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/m4/gnulib-comp.m4, gl/m4/gnulib-tool.m4: 
+	Update.
+
+2005-12-22  Simon Josefsson <simon@josefsson.org>
+
+	* debian/changelog, debian/compat, debian/control,
+	debian/copyright, debian/dirs, debian/docs,
+	debian/gss-doc.doc-base, debian/gss-doc.info,
+	debian/gss-doc.manpages, debian/libgss0-dev.install,
+	debian/libgss0.install, debian/rules, debian/watch: Add.
+
+2005-12-15  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2005-12-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/Makefile.am: Link to Shishi.
+
+2005-12-15  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Fix.
+
+2005-11-29  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-gssapi-csharp-bindings-00.txt: 
+	Add.
+
+2005-10-27  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-gss-naming-03.txt: Add.
+
+2005-10-23  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, m4/check_headerlib.m4: Improve check for Shishi.
+
+2005-10-23  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/getopt_.h, gl/m4/gnulib-cache.m4,
+	gl/m4/gnulib-comp.m4, gl/m4/lib-ld.m4, gl/m4/lib-link.m4,
+	gl/m4/lib-prefix.m4, gl/xgethostname.c: Update.
+
+2005-10-23  Simon Josefsson <simon@josefsson.org>
+
+	* AUTHORS: Update PGP key.
+
+2005-10-20  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-extended-mech-inquiry-01.txt,
+	doc/specification/draft-ietf-kitten-gssapi-channel-bindings-01.txt,
+	doc/specification/draft-ietf-kitten-gssapi-domain-based-names-01.tx
+	t,
+	doc/specification/draft-ietf-kitten-gssapi-extensions-iana-01.txt,
+	doc/specification/draft-ietf-kitten-gssapi-store-cred-01.txt,
+	doc/specification/draft-ietf-kitten-gssapi-v3-guide-to-01.txt,
+	doc/specification/draft-ietf-kitten-stackable-pseudo-mechs-01.txt: 
+	Add
+
+2005-10-17  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-gssapi-naming-exts-01.txt: 
+	Add.
+
+2005-10-05  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/rfc4178.txt: Add.
+
+2005-09-20  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix call to wget.
+
+2005-09-20  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/pl.po, po/ro.po, po/rw.po, po/sv.po, po/vi.po: Sync
+	with TP.
+
+2005-09-20  Simon Josefsson <simon@josefsson.org>
+
+	* src/Makefile.am: Fix gnulib library name.
+
+2005-09-20  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/tmpl/.cvsignore: [no log message]
+
+2005-09-20  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/tmpl/gss-unused.sgml: Add.
+
+2005-09-20  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am: Update.
+
+2005-09-20  Simon Josefsson <simon@josefsson.org>
+
+	* gl/m4/gnulib-cache.m4: Fix.
+
+2005-09-20  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Update gnulib code.
+
+2005-09-20  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Change gnulib library name.
+
+2005-09-20  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/getopt1.c, gl/m4/getopt.m4,
+	gl/m4/gnulib-cache.m4, gl/m4/gnulib-comp.m4, gl/m4/gnulib-tool.m4,
+	gl/m4/gnulib.m4, gl/xmalloc.c: Update.
+
+2005-09-20  Simon Josefsson <simon@josefsson.org>
+
+	* gl/m4/gnulib-cache.m4: Update.
+
+2005-08-30  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-gssapi-prf-07.txt: Add.
+
+2005-08-27  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-gssapi-prf-06.txt: Add.
+
+2005-08-22  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/pl.po, po/ro.po, po/rw.po, po/sv.po, po/vi.po: Sync
+	with TP.
+
+2005-08-11  Simon Josefsson <simon@josefsson.org>
+
+	* gss.fms: Update.
+
+2005-08-11  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2005-08-11  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2005-08-11  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.16.
+
+2005-08-11  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/pl.po, po/ro.po, po/sv.po, po/vi.po: Sync with TP.
+
+2005-08-11  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump versions.
+
+2005-08-11  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/pl.po, po/ro.po, po/rw.po, po/sv.po, po/vi.po: Sync
+	with TP.
+
+2005-08-11  Simon Josefsson <simon@josefsson.org>
+
+	* gl/m4/gnulib.m4: Update.
+
+2005-08-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.c: Fix namespace.
+
+2005-08-11  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Avoid xalloc-die.
+
+2005-08-10  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/pl.po, po/ro.po, po/rw.po, po/sv.po: Sync with TP.
+
+2005-08-10  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2005-08-10  Simon Josefsson <simon@josefsson.org>
+
+	* AUTHORS: Update PGP key.
+
+2005-08-10  Simon Josefsson <simon@josefsson.org>
+
+	* gl/pack.c, gl/pack.h, tests/gettext.h: Remove.
+
+2005-08-10  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/gethostname.c, gl/getopt.c, gl/getopt1.c,
+	gl/getopt_.h, gl/getopt_int.h, gl/gettext.h, gl/m4/codeset.m4,
+	gl/m4/gethostname.m4, gl/m4/getopt.m4, gl/m4/gettext.m4,
+	gl/m4/glibc21.m4, gl/m4/gnulib.m4, gl/m4/iconv.m4,
+	gl/m4/intdiv0.m4, gl/m4/intmax.m4, gl/m4/inttypes-pri.m4,
+	gl/m4/inttypes.m4, gl/m4/inttypes_h.m4, gl/m4/isc-posix.m4,
+	gl/m4/lcmessage.m4, gl/m4/lib-ld.m4, gl/m4/lib-link.m4,
+	gl/m4/lib-prefix.m4, gl/m4/longdouble.m4, gl/m4/longlong.m4,
+	gl/m4/nls.m4, gl/m4/onceonly_2_57.m4, gl/m4/po.m4,
+	gl/m4/printf-posix.m4, gl/m4/progtest.m4, gl/m4/signed.m4,
+	gl/m4/size_max.m4, gl/m4/stdint_h.m4, gl/m4/uintmax_t.m4,
+	gl/m4/ulonglong.m4, gl/m4/wchar_t.m4, gl/m4/wint_t.m4,
+	gl/m4/xalloc.m4, gl/m4/xsize.m4, gl/xalloc.h, gl/xgethostname.c,
+	gl/xmalloc.c: Update.
+
+2005-08-10  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, doc/Makefile.am, doc/Makefile.gdoci, doc/fdl.texi,
+	doc/gendocs.sh, doc/gendocs_template, doc/gpl.texi,
+	lib/Makefile.am, lib/api.h, lib/asn1.c, lib/context.c, lib/cred.c,
+	lib/error.c, lib/ext.c, lib/ext.h, lib/gss.h.in, lib/internal.h,
+	lib/krb5/Makefile.am, lib/krb5/checksum.c, lib/krb5/checksum.h,
+	lib/krb5/context.c, lib/krb5/cred.c, lib/krb5/error.c,
+	lib/krb5/k5internal.h, lib/krb5/krb5.h, lib/krb5/msg.c,
+	lib/krb5/name.c, lib/krb5/oid.c, lib/krb5/protos.h,
+	lib/krb5/utils.c, lib/meta.c, lib/meta.h, lib/misc.c, lib/msg.c,
+	lib/name.c, lib/obsolete.c, lib/oid.c, lib/version.c,
+	m4/check_headerlib.m4, src/Makefile.am, src/gss.c, src/gss.ggo,
+	tests/Makefile.am, tests/basic.c, tests/gettext.h,
+	tests/krb5context.c, tests/threadsafety: Update license.
+
+2005-08-10  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Update license.
+
+2005-08-10  Simon Josefsson <simon@josefsson.org>
+
+	* COPYING.DOC, README: Remove.
+
+2005-07-16  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Simplify.
+
+2005-07-15  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/rfc4121.txt: Add.
+
+2005-06-14  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-gssapi-prf-04.txt,
+	doc/specification/draft-ietf-kitten-krb5-gssapi-prf-04.txt: Add.
+
+2005-06-08  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-secsh-gsskeyex-09.txt: Add.
+
+2005-06-03  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-gss-naming-02.txt: Add.
+
+2005-05-16  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-gssapi-naming-exts-00.txt,
+	doc/specification/draft-ietf-kitten-gssapi-prf-03.txt: Add.
+
+2005-05-13  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-krb5-gssapi-prf-03.txt: Add.
+
+2005-04-05  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2005-04-05  Simon Josefsson <simon@josefsson.org>
+
+	* po/LINGUAS, po/rw.po: Add.
+
+2005-03-14  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Typos, reported by Mike Castle <dalgoda@gmail.com>.
+
+2005-03-14  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Typo.
+
+2005-03-14  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Typo.
+
+2005-03-14  Simon Josefsson <simon@josefsson.org>
+
+	* THANKS: Add.
+
+2005-03-14  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Typo, tiny patch from Mike Castle
+	<dalgoda@ix.netcom.com>.
+
+2005-02-23  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-gss-naming-01.txt: Add.
+
+2005-02-16  Simon Josefsson <simon@josefsson.org>
+
+	*
+	doc/specification/draft-ietf-kitten-gssapi-channel-bindings-00.txt,
+	doc/specification/draft-ietf-kitten-gssapi-extensions-iana-00.txt,
+	doc/specification/draft-ietf-kitten-gssapi-store-cred-00.txt: Add.
+
+2005-02-16  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-krb5-gssapi-prf-02.txt: Add.
+
+2005-02-15  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-gssapi-prf-02.txt,
+	doc/specification/draft-ietf-kitten-gssapi-v3-guide-to-00.txt,
+	doc/specification/draft-ietf-kitten-stackable-pseudo-mechs-00.txt: 
+	Add.
+
+2005-02-15  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-extended-mech-inquiry-00.txt: 
+	Add.
+
+2005-02-02  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-rfc2853bis-00.txt: Add.
+
+2005-01-29  Simon Josefsson <simon@josefsson.org>
+
+	* THANKS: Fix.
+
+2005-01-29  Simon Josefsson <simon@josefsson.org>
+
+	* THANKS, po/LINGUAS, po/vi.po: Add.
+
+2005-01-24  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-2478bis-05.txt: Add.
+
+2004-12-27  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-gssapi-prf-01.txt,
+	doc/specification/draft-ietf-kitten-gssapi-rfc2853-update-for-cshar
+	p-00.txt,
+	doc/specification/draft-ietf-kitten-krb5-gssapi-prf-01.txt: Add.
+
+2004-12-17  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-2478bis-04.txt: Add.
+
+2004-12-16  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add.
+
+2004-12-16  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2004-12-16  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-12-16  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.c, lib/ext.h: (gss_release_oid): Remove.
+
+2004-12-16  Simon Josefsson <simon@josefsson.org>
+
+	* gl/getopt_.h, gl/m4/getopt.m4: Update.
+
+2004-12-15  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-2478bis-03.txt: Add.
+
+2004-12-06  Simon Josefsson <simon@josefsson.org>
+
+	*
+	doc/specification/draft-ietf-kitten-gssapi-domain-based-names-00.tx
+	t, doc/specification/draft-ietf-kitten-gssapi-prf-00.txt,
+	doc/specification/draft-ietf-kitten-krb5-gssapi-domain-based-names-
+	00.txt, doc/specification/draft-ietf-kitten-krb5-gssapi-prf-00.txt: 
+	Add.
+
+2004-12-03  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-2478bis-02.txt: Add.
+
+2004-12-02  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-gss-naming-00.txt: Add.
+
+2004-11-30  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-2478bis-01.txt: Add.
+
+2004-11-23  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-kitten-2478bis-00.txt: Add.
+
+2004-11-22  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-zhu-spnego-2478bis-01.txt: Add.
+
+2004-11-22  Simon Josefsson <simon@josefsson.org>
+
+	* gss.fms: Add.
+
+2004-11-22  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2004-11-22  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix make distcheck.
+
+2004-11-22  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/pl.po, po/ro.po, po/sv.po: Generated.
+
+2004-11-22  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.15.
+
+2004-11-22  Simon Josefsson <simon@josefsson.org>
+
+	* po/LINGUAS: Sync with TP.
+
+2004-11-21  Simon Josefsson <simon@josefsson.org>
+
+	* tests/krb5context.c: Don't use asprintf.
+
+2004-11-21  Simon Josefsson <simon@josefsson.org>
+
+	* po/LINGUAS: Sync with TP.
+
+2004-11-21  Simon Josefsson <simon@josefsson.org>
+
+	* src/Makefile.am, tests/Makefile.am: Need libgl.la.
+
+2004-11-21  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: Sync some fixes from libidn.
+
+2004-11-21  Simon Josefsson <simon@josefsson.org>
+
+	* gl/getopt_.h: Update.
+
+2004-11-19  Simon Josefsson <simon@josefsson.org>
+
+	* gl/getopt.c, gl/getopt1.c, gl/getopt_.h, gl/getopt_int.h,
+	gl/m4/getopt.m4: Update.
+
+2004-11-19  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix.
+
+2004-11-08  Simon Josefsson <simon@josefsson.org>
+
+	* : Add.
+
+2004-11-07  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gendocs.sh, doc/gendocs_template: Update.
+
+2004-11-07  Simon Josefsson <simon@josefsson.org>
+
+	* po/LINGUAS, po/fr.po, po/pl.po, po/ro.po, po/sv.po: Sync with TP.
+
+2004-11-07  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Typo.
+
+2004-11-07  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Update update-po target.
+
+2004-11-07  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix release target.
+
+2004-11-07  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-11-07  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/.cvsignore: Rewrite.
+
+2004-11-07  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-11-07  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Use Libtool -export-symbols-regex.
+
+2004-11-07  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/Makefile.am: Disable SGML mode, for now.
+
+2004-11-07  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/Makefile.am: Rewrite, use official GTK-DOC
+	Makefile.am template.
+
+2004-11-07  Simon Josefsson <simon@josefsson.org>
+
+	* autogen.sh: Use gtkdocize.
+
+2004-11-07  Simon Josefsson <simon@josefsson.org>
+
+	* AUTHORS: Add PGP key URL.
+
+2004-10-25  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-hartman-gss-naming-01.txt: Add.
+
+2004-10-24  Simon Josefsson <simon@josefsson.org>
+
+	*
+	doc/specification/draft-williams-gssapi-domain-based-names-00.txt,
+	doc/specification/draft-williams-gssapi-prf-00.txt,
+	doc/specification/draft-williams-gssapi-v3-guide-to-00.txt,
+	doc/specification/draft-williams-krb5-gssapi-domain-based-names-00.
+	txt, doc/specification/draft-williams-krb5-gssapi-prf-00.txt,
+	doc/specification/draft-zhu-spnego-2478bis-00.txt: Add.
+
+2004-10-15  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2004-10-15  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/m4/getopt.m4: Update.
+
+2004-10-15  Simon Josefsson <simon@josefsson.org>
+
+	* gss.fms: Add.
+
+2004-10-15  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2004-10-15  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/pl.po, po/ro.po, po/sv.po: Generated.
+
+2004-10-15  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.14.
+
+2004-10-15  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, tests/threadsafety: Fix.
+
+2004-10-15  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Dist threadsafety.
+
+2004-10-15  Simon Josefsson <simon@josefsson.org>
+
+	* AUTHORS: Update PGP key.
+
+2004-10-14  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c, lib/context.c, lib/ext.h, lib/krb5/checksum.c,
+	lib/krb5/checksum.h, lib/krb5/context.c, lib/krb5/msg.c,
+	lib/krb5/name.c, lib/meta.h, lib/name.c: Indent.
+
+2004-10-14  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-10-14  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: (gss_krb5_accept_sec_context): For src_name, don't duplicate type
+	OID, just set pointer.
+
+2004-10-14  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Fix mem leak.
+
+2004-10-14  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/cred.c: Fix mem leak.
+
+2004-10-14  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, doc/gss.texi: Add.
+
+2004-10-14  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: (gss_import_name, gss_duplicate_name): Don't clone OID.
+
+2004-10-14  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-10-14  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: (gss_krb5_accept_sec_context): Extract sequence numbers, for
+	gss_wrap and gss_unwrap.
+
+2004-10-14  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: (gss_krb5_accept_sec_context): Handle NULL ret_flags.
+
+2004-10-14  Simon Josefsson <simon@josefsson.org>
+
+	* tests/krb5context.c: Enable debug by default.  Remove --verbose.
+	Indent.
+
+2004-10-05  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/m4/gnulib.m4, gl/m4/xalloc.m4, gl/xalloc.h,
+	gl/xmalloc.c, gl/xstrdup.c, lib/name.c: Update Gnulib.  Fix callers.
+
+2004-09-17  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Use new API.
+
+2004-09-16  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Add threadsafety.
+
+2004-09-16  Simon Josefsson <simon@josefsson.org>
+
+	* tests/threadsafety: Add.
+
+2004-09-16  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.c: Fix gettext.
+
+2004-09-16  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.c: (xalloc_die): Don't use strerror, for thread safety.
+
+2004-09-13  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: (POURL): New URL.
+
+2004-09-13  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/pl.po, po/ro.po, po/sv.po: Sync with TP.
+
+2004-09-13  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/pl.po, po/ro.po, po/sv.po: Sync with TP.
+
+2004-09-13  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/Makefile.am: (clean-local): Add style.css.
+
+2004-09-13  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/.cvsignore: [no log message]
+
+2004-09-13  Simon Josefsson <simon@josefsson.org>
+
+	*
+	doc/specification/draft-morris-java-gssapi-update-for-csharp-00.txt: 
+	Add.
+
+2004-08-23  Simon Josefsson <simon@josefsson.org>
+
+	* m4/autobuild.m4: Update.
+
+2004-08-20  Simon Josefsson <simon@josefsson.org>
+
+	* m4/gtk-doc.m4: Add.
+
+2004-08-18  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump version.
+
+2004-08-18  Simon Josefsson <simon@josefsson.org>
+
+	* gl/m4/gnulib.m4: Update.
+
+2004-08-18  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix.
+
+2004-08-16  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, gl/Makefile.am, gl/m4/gnulib.m4: Update.
+
+2004-08-12  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-williams-gssapi-channel-bindings-00.txt: 
+	Add.
+
+2004-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Typo.
+
+2004-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Typo.
+
+2004-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Typo.
+
+2004-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Typo.
+
+2004-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Alloc fix.
+
+2004-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.c: Fix.
+
+2004-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.c: Fix.
+
+2004-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, gl/Makefile.am, gl/m4/gnulib.m4, gl/m4/xalloc.m4,
+	gl/xalloc.h, gl/xmalloc.c, gl/xstrdup.c, lib/ext.c, lib/ext.h: Use
+	new xmalloc interface.  Gnulib update.
+
+2004-08-08  Simon Josefsson <simon@josefsson.org>
+
+	* gss.fms: Fix.
+
+2004-08-08  Simon Josefsson <simon@josefsson.org>
+
+	* gss.fms: Add.
+
+2004-08-07  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2004-08-07  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/pl.po, po/ro.po, po/sv.po: Generated.
+
+2004-08-07  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.13.
+
+2004-08-07  Simon Josefsson <simon@josefsson.org>
+
+	* gl/xgethostname.c: Fix.
+
+2004-08-07  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-08-07  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am: Fix.
+
+2004-08-07  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, gl/Makefile.am, gl/m4/codeset.m4, gl/m4/gettext.m4,
+	gl/m4/glibc21.m4, gl/m4/gnulib.m4, gl/m4/iconv.m4,
+	gl/m4/intdiv0.m4, gl/m4/intmax.m4, gl/m4/inttypes-pri.m4,
+	gl/m4/inttypes.m4, gl/m4/inttypes_h.m4, gl/m4/isc-posix.m4,
+	gl/m4/lcmessage.m4, gl/m4/lib-ld.m4, gl/m4/lib-link.m4,
+	gl/m4/lib-prefix.m4, gl/m4/longdouble.m4, gl/m4/longlong.m4,
+	gl/m4/nls.m4, gl/m4/onceonly_2_57.m4, gl/m4/po.m4,
+	gl/m4/printf-posix.m4, gl/m4/progtest.m4, gl/m4/signed.m4,
+	gl/m4/size_max.m4, gl/m4/stdint_h.m4, gl/m4/uintmax_t.m4,
+	gl/m4/ulonglong.m4, gl/m4/wchar_t.m4, gl/m4/wint_t.m4,
+	gl/m4/xsize.m4: Use new gnulib-tool stuff.
+
+2004-08-07  Simon Josefsson <simon@josefsson.org>
+
+	* gl/xgethostname.c: Update.
+
+2004-08-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix.
+
+2004-08-06  Simon Josefsson <simon@josefsson.org>
+
+	* po/LINGUAS: Sync with TP.
+
+2004-08-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix.
+
+2004-08-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix.
+
+2004-08-06  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/ro.po: Sync with TP.
+
+2004-08-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix.
+
+2004-08-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: (update-po): Add.
+
+2004-08-06  Simon Josefsson <simon@josefsson.org>
+
+	* po/fr.po, po/ro.po, po/sv.po: Sync with TP.
+
+2004-08-05  Simon Josefsson <simon@josefsson.org>
+
+	* po/.cvsignore: [no log message]
+
+2004-08-05  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2004-08-05  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump versions.
+
+2004-08-05  Simon Josefsson <simon@josefsson.org>
+
+	* po/LINGUAS, po/pl.po: Update.
+
+2004-08-05  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, po/fr.po, po/ro.po: Add.
+
+2004-08-03  Simon Josefsson <simon@josefsson.org>
+
+	* : Add.
+
+2004-08-02  Simon Josefsson <simon@josefsson.org>
+
+	* : Add.
+
+2004-08-02  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add.
+
+2004-08-01  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2004-08-01  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Fix objdir != srcdir.
+
+2004-08-01  Simon Josefsson <simon@josefsson.org>
+
+	* po/pl.po, po/sv.po: Generated.
+
+2004-08-01  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.12.
+
+2004-08-01  Simon Josefsson <simon@josefsson.org>
+
+	* tests/krb5context.c: Fix i18n.
+
+2004-08-01  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Add -lintl.
+
+2004-08-01  Simon Josefsson <simon@josefsson.org>
+
+	* m4/autobuild.m4: Add.
+
+2004-08-01  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Use autobuild.
+
+2004-08-01  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/Makefile.am: Fix.
+
+2004-08-01  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Dist krb5context.key.
+
+2004-08-01  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Dist krb5context.tkt.
+
+2004-08-01  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-08-01  Simon Josefsson <simon@josefsson.org>
+
+	* tests/krb5context.tkt: Add.
+
+2004-08-01  Simon Josefsson <simon@josefsson.org>
+
+	* README: Fix.
+
+2004-08-01  Simon Josefsson <simon@josefsson.org>
+
+	* gl/getopt.c, gl/getopt1.c, gl/m4/getopt.m4: Sync.
+
+2004-07-27  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-nfsv4-channel-bindings-02.txt: Add.
+
+2004-07-13  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-hartman-gss-naming-00.txt: Add.
+
+2004-07-13  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-nfsv4-ccm-03.txt: Add.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/cred.c: Fix mem leak.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/krb5context.c: Fix mem leak.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/krb5context.c: Fix.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/krb5context.c: Remove.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/krb5context.c: I18n.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am, tests/krb5context.c: Fix.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, tests/Makefile.am, tests/krb5context.key: Add.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am, tests/krb5context.c: Fix.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am, tests/krb5context.c: Fix.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/krb5context.c: Cleanup.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/krb5context.c: Add.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: (gss_krb5_accept_sec_context): Support ret_flags of
+	GSS_C_PROT_READY_FLAG.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: (gss_krb5_delete_sec_context): Don't shishi_done for acceptor
+	contexts.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/krb5context.c: Add.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Fix env's.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c: Fix signedness bug.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Don't install, for libtool.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/.cvsignore: [no log message]
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/.cvsignore: [no log message]
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Add krb5context.
+
+2004-07-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/krb5context.c: Add.
+
+2004-07-02  Simon Josefsson <simon@josefsson.org>
+
+	* gl/.cvsignore: [no log message]
+
+2004-07-02  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, doc/gss.texi: Add.
+
+2004-07-02  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am: Fix.
+
+2004-07-02  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, gl/Makefile.am, gl/getopt.c, gl/getopt.h,
+	gl/getopt1.c, gl/getopt_.h, gl/m4/getopt.m4: Update getopt, mainly
+	to get uClibc targets working, which lack getopt_long.
+
+2004-06-02  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-williams-gssapi-cred-store-00.txt: Add.
+
+2004-05-21  Simon Josefsson <simon@josefsson.org>
+
+	*
+	doc/specification/draft-williams-gssapi-stackable-pseudo-mechs-00.t
+	xt,
+	doc/specification/draft-williams-gssapi-store-deleg-creds-01.txt: 
+	Add.
+
+2004-04-22  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix.
+
+2004-04-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Fix ret_flags.
+
+2004-04-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Permit absent sequence number in EncAPRepPart,
+	according to gssapi-cfx.
+
+2004-04-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Fix mem leak.
+
+2004-04-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/checksum.c, lib/krb5/checksum.h, lib/krb5/context.c: 
+	Cosmetic.
+
+2004-04-21  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add.
+
+2004-04-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c, lib/ext.h, lib/krb5/context.c, lib/krb5/msg.c: (gss_decapsulate_token): Don't allocate output.  Update callers.
+
+2004-04-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c, lib/ext.h, lib/krb5/context.c, lib/krb5/msg.c: (gss_decapsulate_token_check): Remove.  (gss_decapsulate_token): Modify.  Update callers.
+
+2004-04-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: (gss_krb5_init_sec_context): Fix ret_flags.
+
+2004-04-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Add.
+
+2004-04-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/checksum.c: Fix.
+
+2004-04-21  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add.
+
+2004-04-21  Simon Josefsson <simon@josefsson.org>
+
+	* AUTHORS: Update PGP key.
+
+2004-04-21  Simon Josefsson <simon@josefsson.org>
+
+	* tests/basic.c: Typo.
+
+2004-04-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Fix mem leak.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Fix warnings.  Fix mem leak.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.h: Use const.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c: Fix warnings.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/utils.c: Fix cast.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/cred.c: Fix.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/cred.c: Typo.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/cred.c: (acquire_cred1): Avoid cast.  Release memory.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: Robustness.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: Add comment.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: Cosmetics.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/msg.c: Robustness.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c: No need for internal.h.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/cred.c: Indent.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/cred.c: (gss_inquire_cred_by_mech): Simplify.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/cred.c: (gss_inquire_cred): Simplify.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Robustness.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/meta.h: Typo.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h, lib/meta.h: Move trampoline structs to meta.h.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c, lib/internal.h, lib/krb5/error.c: Move i18n to where
+	they belong.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/meta.c: Include meta.h.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c, lib/cred.c, lib/error.c, lib/internal.h,
+	lib/krb5/name.c, lib/misc.c, lib/msg.c, lib/name.c: Remove gss_warn.
+	Include meta.h when necessary.
+
+2004-04-19  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am, lib/internal.h, lib/meta.h: Move meta.c
+	prototypes from internal.h to meta.h.
+
+2004-04-18  Simon Josefsson <simon@josefsson.org>
+
+	* gss.pc.in: Drop -R libs flag.
+
+2004-04-18  Simon Josefsson <simon@josefsson.org>
+
+	* m4/.cvsignore: [no log message]
+
+2004-04-18  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Require modern autoconf/automake/gettext.
+
+2004-04-18  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2004-04-18  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2004-04-18  Simon Josefsson <simon@josefsson.org>
+
+	* po/pl.po, po/sv.po: Generated.
+
+2004-04-18  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.11.
+
+2004-04-18  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-04-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c, lib/error.c, lib/internal.h, lib/misc.c: Fix warnings.
+
+2004-04-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.h: Add.
+
+2004-04-18  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/getopt.c, gl/getopt.h, gl/getopt1.c,
+	gl/getopt_int.h, gl/xalloc.h: Sync with gnulib (and update my
+	changes).
+
+2004-04-18  Simon Josefsson <simon@josefsson.org>
+
+	* gl/xmalloc.c: Use strerror instead of perror, to avoid using errno
+	as right hand expression.
+
+2004-04-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/error.c, lib/krb5/k5internal.h, lib/krb5/msg.c: Fix
+	warnings.
+
+2004-04-17  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2004-04-17  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2004-04-17  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/msg.c: (gss_krb5_unwrap): Ditto for 3DES.
+
+2004-04-17  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2004-04-17  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-04-17  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: (gss_krb5_init_sec_context): Don't reset sequence numbers, msg.c now
+	handle them correctly.
+
+2004-04-17  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/msg.c: (gss_krb5_unwrap): Fix typo that broke sequence number logic for
+	DES-MD5.
+
+2004-03-30  Simon Josefsson <simon@josefsson.org>
+
+	* THANKS: Add.
+
+2004-03-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.c: (gss_release_oid): Doc fix, reported by Joe Orton
+	<joe@manyfish.co.uk>.
+
+2004-03-18  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-krb-wg-gssapi-cfx-07.txt: Add.
+
+2004-03-05  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/pack.c, gl/pack.h: Add (untested).
+
+2004-03-05  Simon Josefsson <simon@josefsson.org>
+
+	* doc/asciidoc: Sync with 5.0.5.
+
+2004-02-29  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-02-29  Simon Josefsson <simon@josefsson.org>
+
+	* po/.cvsignore: [no log message]
+
+2004-02-29  Simon Josefsson <simon@josefsson.org>
+
+	* THANKS, po/LINGUAS, po/pl.po: Add Polish translation, from Jakub
+	Bogusz <qboosh@pld-linux.org>.
+
+2004-02-16  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-krb-wg-gssapi-cfx-06.txt: Add.
+
+2004-02-13  Simon Josefsson <simon@josefsson.org>
+
+	* lib/api.h: Never use X/Open headers.  (Removes bogus CPP sizeof
+	tests.)
+
+2004-02-13  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add.
+
+2004-01-25  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Doc fix.
+
+2004-01-25  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Workaround seq.nr. bug.
+
+2004-01-25  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c, lib/krb5/msg.c: Seq.nr. fixes.
+
+2004-01-25  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Fix time_re?.
+
+2004-01-25  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Fix return codes.
+
+2004-01-25  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Cleanup.
+
+2004-01-25  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Typo.
+
+2004-01-25  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Dist more.
+
+2004-01-25  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: Use asciidoc in ./.
+
+2004-01-25  Simon Josefsson <simon@josefsson.org>
+
+	* doc/asciidoc, doc/asciidoc.conf: Add.
+
+2004-01-25  Simon Josefsson <simon@josefsson.org>
+
+	* doc/texinfo.conf: Use newline.
+
+2004-01-25  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix.
+
+2004-01-25  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add FDL.
+
+2004-01-23  Simon Josefsson <simon@josefsson.org>
+
+	* doc/fdl.texi, doc/gss.texi: Use FDL 1.2.
+
+2004-01-22  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2004-01-22  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gendocs_template: Fix.
+
+2004-01-22  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gendocs.sh: Upstream sync.
+
+2004-01-22  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix release target.
+
+2004-01-22  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2004-01-22  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.10.
+
+2004-01-22  Simon Josefsson <simon@josefsson.org>
+
+	* po/sv.po: Generated.
+
+2004-01-22  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-01-22  Simon Josefsson <simon@josefsson.org>
+
+	* src/gss.c: Fix #include.
+
+2004-01-22  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/Makefile.am: Add HIGNORE.
+
+2004-01-22  Simon Josefsson <simon@josefsson.org>
+
+	* po/sv.po: Update.
+
+2004-01-22  Simon Josefsson <simon@josefsson.org>
+
+	* po/sv.po: Update.
+
+2004-01-22  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Fix API.
+
+2004-01-22  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Use new Shishi API.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Docfix.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Fix flags.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/checksum.c: Fix.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/checksum.c: Clear unsupported req_flag's.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Fix errors.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Use new API.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c, lib/ext.h: Add.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Always offer sequencing checks.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Always offer integrity/privacy.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Cleanup.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Clear.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/Makefile.am, lib/krb5/k5internal.h: Add.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c, lib/internal.h: Remove.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Fix API.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/name.c: (gss_krb5_canonicalize_name): Zero terminate output_name string
+	(internal convention).
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: (gss_duplicate_name): Zero terminate dest_name string (internal
+	convention).
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Fix.  Doc fix.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Fix.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Use new API.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/checksum.c, lib/krb5/checksum.h: Add.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/Makefile.am: Add checksum.c.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Fix.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/gssapi-service-names: Add.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: Revert.
+
+2004-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: (gss_cred_id_struct) Add usage.
+
+2004-01-19  Simon Josefsson <simon@josefsson.org>
+
+	* : Add.
+
+2004-01-19  Simon Josefsson <simon@josefsson.org>
+
+	* : Add.
+
+2004-01-19  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-cat-gssv2-08.txt: Remove.
+
+2004-01-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Add.
+
+2004-01-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: (gss_init_sec_context): Clear output_token.
+
+2004-01-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: (gss_krb5_init_sec_context): Split up into three functions.
+
+2004-01-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/k5internal.h: Fix.
+
+2004-01-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Allow application to retry request if earlier
+	call failed.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* po/sv.po: Generated.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* po/sv.po: Fix.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* po/sv.po, src/gss.c: Typo.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* po/sv.po: Update.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* po/.cvsignore: [no log message]
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* src/gss.c: I18n.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* po/gss.pot: Remove.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c, lib/krb5/error.c: Revert.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* po/LINGUAS: Remove (for now).
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* lib/obsolete.c, po/POTFILES.in: Fix.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* lib/obsolete.c: Remove warnings, we should use compile time
+	warnings instead.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c, lib/krb5/error.c: I18n.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* po/LINGUAS: Add en@quot en@boldquot.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* src/Makefile.am, src/gss.c: I18n.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* src/Makefile.am: I18n.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* src/Makefile.am: I18n.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* po/POTFILES.in: Add.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/name.c, src/gss.c: Indent.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* po/gss.pot, po/sv.po: Generated.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* src/gss.c: Fix.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, doc/Makefile.am: Add man page for gss.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* src/gss.c: Nicer output.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* src/gss.ggo: Fix.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* src/gss.c: Use long type for error code.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* src/gss.ggo: Fix.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* src/gss.ggo: Fix.
+
+2004-01-16  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/name.c, lib/name.c: Fix warnings.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/cred.c, lib/error.c, lib/ext.c, lib/ext.h, lib/internal.h,
+	lib/krb5/context.c, lib/krb5/cred.c, lib/krb5/msg.c,
+	lib/krb5/protos.h, lib/meta.c, lib/misc.c, lib/name.c, src/gss.c,
+	tests/basic.c: Indent.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix indent.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* src/gss.ggo: Typo.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* src/.cvsignore: [no log message]
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, configure.ac, gl/Makefile.am, gl/getopt.c,
+	gl/getopt.h, gl/getopt1.c, src/Makefile.am, src/gss.c, src/gss.ggo: 
+	Add command line tool in src/.  Add getopt in gl/, for gengetopt
+	parser in src/.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c: (gss_display_status): Fail on unknown errors. Print info for
+	supplementary bits.  Use message context to continue errors.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/Makefile.am: Fix warnings.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Fix warning.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: (release): Use CSS.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.9.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* po/gss.pot, po/sv.po: Generated.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/meta.c: Typo.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/meta.c: Empty variables still have size, fix _gss_mech_apis
+	definition and usage.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: Cleanup.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/obsolete.c: Fix warnings.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Add -I for gnulib.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* po/gss.pot, po/sv.po: Generated.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.c: Doc fix.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.c: Typo.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.c: Typo.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.h: (gss_userok): Add.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi, lib/ext.c: Add gss_userok.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/.cvsignore: [no log message]
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/.cvsignore: [no log message]
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: Typo.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Add ext.c.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.c, lib/misc.c: (gss_oid_equal, gss_copy_oid, gss_duplicate_oid, gss_release_oid):
+	Move from misc.c to ext.c.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: (gss_warn): Add.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.h: (gss_warn): Remove.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/version.c: Doc fix.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-01-15  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: (gss_krb5_accept_sec_context): Support subkeys in AP-REQ.
+
+2004-01-14  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: (gss_krb5_accept_sec_context): Fix error code.
+
+2004-01-14  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: (gss_krb5_delete_sec_context): Don't delete key or tkt, they are
+	(should be) deallocate as part of the ticket set.
+
+2004-01-13  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: (gss_ctx_id_struct): Remove peer.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-krb-wg-gssapi-cfx-05.txt: Add.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: (gss_krb5_accept_sec_context): Cleanup.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Fix.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Doc fix.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Fix.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Cleanup.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: (gss_delete_sec_context): Propagate error code.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: (gss_krb5_init_sec_context): Cleanup.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: (gss_krb5_init_sec_context): Don't allocate context.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: (gss_init_sec_context): Allocate context.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Error handling.  Fix.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Error handling.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Error handling.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c: Deallocate.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c, lib/krb5/cred.c, lib/krb5/k5internal.h: Remove
+	ticket from credential structure.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/cred.c: Fix.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, lib/krb5/oid.c: Add.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/cred.c: (gss_krb5_inquire_cred_by_mech): Add.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/protos.h: (gss_krb5_inquire_cred_by_mech): Add.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: (_gss_mech_api_struct): Add inquire_cred_by_mech.  (_gss_find_mech): Use const for OID.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/meta.c: (_gss_mech_apis): Add gss_krb5_inquire_cred_by_mech.  (_gss_find_mech): Use const for OID.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/cred.c: (gss_inquire_cred_by_mech): Implement.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/cred.c: Fix.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/cred.c: Fix.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, lib/cred.c, lib/krb5/cred.c: Fix.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/cred.c: Fix.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/name.c: Support GSS_C_NT_EXPORT_NAME.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/meta.c: Fix name-types.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: (gss_export_name): Implement it.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/name.c: (gss_krb5_export_name): Use self-describing format.
+
+2004-01-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: Fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/meta.c: (_gss_mech_apis): Add gss_krb5_export_name.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: (gss_name_struct): Use size_t.  (_gss_mech_api_struct): Add export_name.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/name.c, lib/krb5/protos.h: (gss_krb5_export_name): Add.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/name.c: (gss_krb5_canonicalize_name): Support GSS_KRB5_NT_PRINCIPAL_NAME.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/cred.c: (gss_krb5_release_cred): Add.  (gss_krb5_inquire_cred): Support cred_handle == GSS_C_NO_CREDENTIAL.  (gss_krb5_acquire_cred): Don't allocate output_cred_handle (new
+	API).
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/cred.c: (gss_acquire_cred): Allocate output_cred_handle.  (gss_release_cred): Deallocate cred_handle.  Call backend.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/meta.c: (_gss_mech_apis): Add release_cred.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: (_gss_mech_api_struct): Add release_cred.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/protos.h: (gss_krb5_release_cred): Add.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: Fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: Fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: Fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/meta.c: Remove dummy stuff.  Add _gss_indicate_mechs1.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/msg.c, lib/krb5/protos.h: (gss_krb5_get_mic, gss_krb5_verify_mic): Add.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: (gss_indicate_mechs): Use new API.  Improve.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: (gss_inquire_mechs_for_name): Use new API.  Improve.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: Hide _gss_mech_apis.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/cred.c: (gss_acquire_cred, gss_inquire_cred): Cleanup.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am, tests/basic.c, tests/utils.c: Move utils.c into
+	basic.c.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Check for locale.h, for self tests.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.h: Typo.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c: (gss_warn): Fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c, lib/ext.h: Add gss_warn.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gss.h.in: Remove #include's.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.h: Include stddef.h.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/meta.c: Fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* gl/xmalloc.c: Typo.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* doc/reference/.cvsignore: [no log message]
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, doc/Makefile.am, doc/reference/Makefile.am,
+	doc/reference/gss-docs.tmpl: Add GTK-DOC API output.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c, lib/cred.c, lib/error.c, lib/misc.c, lib/msg.c,
+	lib/name.c: Doc fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/api.h: Full prototypes (mostly for GTK-DOC).  Indent.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/gettext.h, lib/Makefile.am, lib/gettext.h: Move
+	gettext from lib/ to gl/.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/msg.c: Doc fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/msg.c: Fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* po/gss.pot, po/sv.po: Generated.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Don't build tests unconditionally.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/basic.c, tests/utils.c: Fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* autogen.sh: Fix
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.8.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c, lib/krb5/context.c, lib/krb5/cred.c,
+	lib/krb5/k5internal.h, lib/krb5/msg.c, lib/misc.c, lib/name.c,
+	tests/basic.c, tests/utils.c: Fix warnings.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* .cvsignore: [no log message]
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* COPYING: Remove.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* po/gss.pot, po/sv.po: Generated.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Use gdoc.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: Add gss_release_oid.  Error fixes.  Doc fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: Doc fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: Fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Use gdoc.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/cred.c: Doc fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Use gdoc.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: Typo.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: Doc fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c: Doc fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Use gdoc.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: Doc fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: Fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix per-msg API.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: Fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Fix error codes.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: Typo.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: Doc fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: Fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5/context.c, lib/krb5/cred.c, lib/krb5/k5internal.h: Fix
+	gss_duplicate_name usage.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: (gss_duplicate_name): Allocate DEST_NAME.  Fix return value.  Doc
+	fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: Fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c, lib/context.c, lib/cred.c, lib/error.c, lib/ext.h,
+	lib/krb5/context.c, lib/krb5/cred.c, lib/krb5/error.c,
+	lib/krb5/k5internal.h, lib/krb5/msg.c, lib/krb5/name.c,
+	lib/krb5/protos.h, lib/meta.c, lib/misc.c, lib/msg.c, lib/name.c,
+	lib/obsolete.c, lib/version.c, po/gss.pot, po/sv.po, tests/basic.c: 
+	Indent.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Fix indent.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am, lib/krb5/Makefile.am: Distcheck fixes.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* po/POTFILES.in: Fix.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Add -I for lib/krb5/.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am, lib/krb5.h, lib/krb5/Makefile.am,
+	lib/krb5/krb5.h, lib/krb5/protos.h, lib/meta.c: Split krb5.h into
+	krb5/krb5.h (public) and krb5/protos.h (private).
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, lib/Makefile.am, lib/krb5.c, lib/krb5/.cvsignore,
+	lib/krb5/Makefile.am, lib/krb5/context.c, lib/krb5/cred.c,
+	lib/krb5/error.c, lib/krb5/k5internal.h, lib/krb5/msg.c,
+	lib/krb5/name.c, lib/krb5/oid.c, lib/krb5/utils.c: Split up
+	lib/krb5.c into lib/krb/*.c.
+
+2004-01-11  Simon Josefsson <simon@josefsson.org>
+
+	* lib/msg.c: Typo.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Typo.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* lib/msg.c: Doc fix.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Typo.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Cleanup ticket lifetime calculations.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c, lib/internal.h, lib/krb5.c, lib/krb5.h, lib/meta.c: 
+	Make context_time work.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Typo.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: (gss_delete_sec_context): Do mech specifics too.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: Doc fix.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c, lib/krb5.h, lib/meta.c: Add delete_sec_context.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: Add delete_sec_context.  Remove xstrdup.h.
+	Indent.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am, gl/xmalloc.c, gl/xstrdup.c, gl/xstrdup.h: Move
+	xstrdup into xmalloc.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Dist texinfo.css.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gendocs.sh, doc/gendocs_template: Sync with Texinfo.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix title.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am, doc/gss.css, doc/texinfo.css: Rename gss.css to
+	texinfo.css.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.css: Fix.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.css: Fix.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Use CSS for HTML.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.css: Fix.
+
+2004-01-10  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.css: Add.
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Fix.
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Gdoc fix.
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/texinfo.conf: Add simple asciidoc texinfo configuration.
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: fix
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: use asciidoc on parameter too
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Use @finalout.
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Header template fix.
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Use gdoc more.
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Doc fix.
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Check for perl, for gdoc.
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Fix.
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/.cvsignore: [no log message]
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.gdoci: Add.
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am, doc/gss.texi: Use gdoc.
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/.cvsignore: [no log message]
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* autogen.sh: Use gdoc.
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am, tests/Makefile.am: Replace INCLUDES with
+	AM_CPPFLAGS.
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Doc fix.
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: disable (most) section processing pipe data through
+	asciidoc don't skip leading whitespace
+
+2004-01-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: Sync with libidn.
+
+2004-01-01  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Work on autoconf 2.58 and libtool 1.5.
+
+2003-11-30  Simon Josefsson <simon@josefsson.org>
+
+	* README: Fix.
+
+2003-11-27  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix.
+
+2003-11-26  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2003-11-26  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2003-11-26  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.7.
+
+2003-11-26  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix release target.
+
+2003-11-26  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix.
+
+2003-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Disable fortran etc libtool tests.
+
+2003-11-24  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-krb-wg-gssapi-cfx-04.txt: Add.
+
+2003-11-24  Simon Josefsson <simon@josefsson.org>
+
+	* lib/meta.c: Fix warnings.
+
+2003-11-24  Simon Josefsson <simon@josefsson.org>
+
+	* gl/xmalloc.c: Fix.
+
+2003-11-24  Simon Josefsson <simon@josefsson.org>
+
+	* gl/xmalloc.c: Use perror().
+
+2003-11-24  Simon Josefsson <simon@josefsson.org>
+
+	* gl/xmalloc.c: Don't use inline keyword.
+
+2003-11-24  Simon Josefsson <simon@josefsson.org>
+
+	* m4/.cvsignore: [no log message]
+
+2003-11-24  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2003-11-24  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: (gss_krb5_unwrap): Fix typo to make 3DES work.
+
+2003-11-23  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gendocs.sh: Sync with texinfo.
+
+2003-11-23  Simon Josefsson <simon@josefsson.org>
+
+	* m4/codeset.m4, m4/gettext.m4, m4/glibc21.m4, m4/iconv.m4,
+	m4/intdiv0.m4, m4/inttypes-pri.m4, m4/inttypes.m4,
+	m4/inttypes_h.m4, m4/isc-posix.m4, m4/lcmessage.m4, m4/lib-ld.m4,
+	m4/lib-link.m4, m4/lib-prefix.m4, m4/nls.m4, m4/po.m4,
+	m4/progtest.m4, m4/stdint_h.m4, m4/uintmax_t.m4, m4/ulonglong.m4: 
+	Remove.
+
+2003-11-23  Simon Josefsson <simon@josefsson.org>
+
+	* po/gss.pot, po/sv.po: Generated.
+
+2003-11-23  Simon Josefsson <simon@josefsson.org>
+
+	* ANNOUNCE, Makefile.am, TODO: Remove ANNOUNCE and TODO.
+
+2003-11-23  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add "Planned Features".
+
+2003-11-23  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gendocs.sh: Fix.
+
+2003-11-23  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gendocs.sh: Fix URLs.
+
+2003-11-23  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Use gendocs in release target.
+
+2003-11-23  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gendocs.sh, doc/gendocs_template: Add (from texinfo).
+
+2003-11-23  Simon Josefsson <simon@josefsson.org>
+
+	* gl/xalloc.h: Remove unused stuff.
+
+2003-11-23  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c, lib/krb5.c, lib/meta.c: Use xstrdup.
+
+2003-11-23  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, gl/Makefile.am, gl/error.c, gl/error.h,
+	gl/gethostname.c, gl/gettext.h, gl/m4/error.m4, gl/m4/malloc.m4,
+	gl/m4/nls.m4, gl/m4/onceonly_2_57.m4, gl/m4/po.m4,
+	gl/m4/realloc.m4, gl/m4/strerror_r.m4, gl/m4/unlocked-io.m4,
+	gl/m4/xalloc.m4, gl/malloc.c, gl/realloc.c, gl/unlocked-io.h,
+	gl/xalloc.h, gl/xgethostname.c, gl/xgethostname.h, gl/xmalloc.c,
+	gl/xstrdup.c, gl/xstrdup.h, lib/Makefile.am, lib/internal.h,
+	lib/krb5.c: Cleanup gnulib situation.
+
+2003-11-23  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: Simplify #include mess.
+
+2003-11-23  Simon Josefsson <simon@josefsson.org>
+
+	* gl/.cvsignore: [no log message]
+
+2003-11-22  Simon Josefsson <simon@josefsson.org>
+
+	* TODO: Fix.
+
+2003-11-22  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix.
+
+2003-11-22  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2003-11-22  Simon Josefsson <simon@josefsson.org>
+
+	* ANNOUNCE, configure.ac, lib/gss.h.in: Typo.
+
+2003-11-22  Simon Josefsson <simon@josefsson.org>
+
+	* THANKS: Add.
+
+2003-11-22  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, configure.ac, gl/Makefile.am, gl/m4/Makefile.am,
+	m4/Makefile.am, m4/check_headerlib.m4, m4/pkg.m4: Simplify m4
+	situation (with help from automake 1.8 beta).
+
+2003-11-22  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gss.h.in: Don't include gss/krb5.h unconditionally because it
+	may not be installed.  Reported by Wojciech Polak <polak@gnu.org>.
+
+2003-11-22  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Fix bug e-mail.  Move libtool check.  Use
+	sj_CHECK_HEADERLIB for Shishi test.  Add '#include <gss/krb5.h>'
+	substitution, for gss.h.
+
+2003-11-22  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Fix LIBADD.
+
+2003-11-21  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Cleanup EXTRA_DIST.
+
+2003-11-21  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Remove.
+
+2003-11-21  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Cleanup.
+
+2003-11-21  Simon Josefsson <simon@josefsson.org>
+
+	* m4/.cvsignore: [no log message]
+
+2003-11-21  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Remove AC_GNU_SOURCE hack.
+
+2003-11-17  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Fix automake syntax.
+
+2003-11-17  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Autoupdate fixes.
+
+2003-11-02  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Fix for buggy libtool.
+
+2003-11-01  Simon Josefsson <simon@josefsson.org>
+
+	* AUTHORS: Update PGP key.
+
+2003-10-31  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: Use @strong instead of @header, better rendered almost
+	everywhere.
+
+2003-10-28  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-krb-wg-gssapi-cfx-03.txt: Add.
+
+2003-10-26  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: Revert texinfo highlighting (texinfo @ interpolated by
+	perl).  Rewrite interpolate handling to make it more debuggable.
+
+2003-10-26  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: Fix.
+
+2003-10-26  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: Workaround interpolate problem.
+
+2003-10-26  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: Fix function regexp (old version completely broken??).
+
+2003-10-26  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: Fix 'section' regexp to require initial upper case,
+	unless it start with [@&$%].  Before the following line was regarded
+	as a section heading.  following restrictions apply to the output
+	parameters:
+
+2003-10-26  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: Print section headers for texinfo.
+
+2003-10-26  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: Fix texinfo cleanup (accidently added @ last checkin).
+
+2003-10-26  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: Move texinfo cleanup into texinfo function.
+
+2003-10-26  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: Add -listfunc output mode.  Add -sourceversion,
+	-includefuncprefix, -bugsto, -seeinfo, -copyright, -verbatimcopying
+	for man pages.  Translate { into @{ and } into @} in texinfo mode.
+	White space fix for texinfo.  Man page output mode mostly rewritten.
+
+2003-10-26  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: Add, straight from GNUTLS.
+
+2003-10-11  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-krb-wg-gssapi-cfx-02.txt: Add.
+
+2003-10-10  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Fix so version comment (matches libtool manual).
+
+2003-10-07  Simon Josefsson <simon@josefsson.org>
+
+	* : Add.
+
+2003-09-27  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add.
+
+2003-09-22  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2003-09-22  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2003-09-22  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.6.
+
+2003-09-22  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2003-09-20  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Fix API.
+
+2003-09-08  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-williams-gssapi-store-deleg-creds-00.txt: 
+	Add.
+
+2003-08-31  Simon Josefsson <simon@josefsson.org>
+
+	* README-alpha: Fix.
+
+2003-08-31  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2003-08-31  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2003-08-31  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.5.
+
+2003-08-31  Simon Josefsson <simon@josefsson.org>
+
+	* po/gss.pot, po/sv.po: Update.
+
+2003-08-31  Simon Josefsson <simon@josefsson.org>
+
+	* tests/utils.c: Remove.
+
+2003-08-31  Simon Josefsson <simon@josefsson.org>
+
+	* tests/basic.c: Add program_name, for gnulib.
+
+2003-08-31  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, NEWS, configure.ac: Fix.
+
+2003-08-30  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-cat-gssv2-08.txt,
+	doc/specification/draft-ietf-cat-gssv2-cbind-04.txt,
+	doc/specification/draft-ietf-krb-wg-gss-crypto-00.txt: Add. (Moved
+	from Shishi.)
+
+2003-08-30  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-krb-wg-gssapi-cfx-00.txt: Official
+	version.
+
+2003-08-30  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-krb-wg-gssapi-cfx-00.txt,
+	doc/specification/draft-ietf-krb-wg-gssapi-cfx-01.txt: Add.
+
+2003-08-29  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Typo.
+
+2003-08-29  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2003-08-29  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2003-08-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Support AP subkeys.
+
+2003-08-12  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Simplify shishi test.
+
+2003-08-12  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2003-08-12  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump versions.
+
+2003-08-12  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Remove help2man, texipdf checks (not used).  Make
+	shishi test work without pkg-config.
+
+2003-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2003-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.4.
+
+2003-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Remove scp from release target.
+
+2003-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix release target.
+
+2003-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* po/gss.pot, po/sv.po: Generated.
+
+2003-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2003-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Don't hard code ad-hoc GSS Shishi checksum type.
+
+2003-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Link gnulib properly.
+
+2003-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: Fix title.
+
+2003-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Set oid in cred struct.  Add unfinished inquire_cred.
+
+2003-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.h, lib/meta.c: Add inquire_cred.
+
+2003-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: Add mech OID to cred struct.  Add inquire_cred to
+	meta structure.
+
+2003-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/cred.c: Add inquire_cred jump.
+
+2003-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am: Use libtool.
+
+2003-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* gl/.cvsignore: [no log message]
+
+2003-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* ANNOUNCE, README: Use gnu.org web site.
+
+2003-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Distribute files via gnuftp.
+
+2003-07-10  Simon Josefsson <simon@josefsson.org>
+
+	* po/Makevars: Use proper bug email address.
+
+2003-07-10  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2003-07-10  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump version.
+
+2003-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: (gss_krb5_unwrap): Decrypt properly.
+
+2003-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Use new Shishi crypto API.
+
+2003-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Fixes.
+
+2003-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* TODO: Add.
+
+2003-07-05  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: (gss_krb5_init_sec_context): Reuse shishi handle from credential, if
+	available.
+
+2003-07-02  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2003-07-02  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.3.
+
+2003-07-02  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix typo.
+
+2003-07-02  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2003-07-02  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Add legal information to ChangeLog.
+
+2003-07-02  Simon Josefsson <simon@josefsson.org>
+
+	* .cvscopying: Add.
+
+2003-07-01  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add.
+
+2003-06-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Fixes.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Cleanup.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/cred.c: (gss_release_cred): Fix minor_status.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/cred.c: Typo.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: (gss_release_oid_set): Handle NULL set.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: (gss_test_oid_set_member): Handle NULL member.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/cred.c: (gss_acquire_cred): Support desired_mechs.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* po/gss.pot, po/sv.po: Generated.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* m4/Makefile.am: Add.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* gl/Makefile.am: Add m4.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* po/.cvsignore: [no log message]
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, m4/Makefile.am, m4/pkg.m4: Add.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* po/.cvsignore: [no log message]
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* m4/gettext.m4, m4/inttypes_h.m4, m4/lib-ld.m4, m4/lib-link.m4,
+	m4/lib-prefix.m4, m4/nls.m4, m4/po.m4, m4/progtest.m4,
+	m4/stdint_h.m4, m4/uintmax_t.m4: Generated.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* po/Makevars: Update to gettext 12.1.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump versions.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* gl/m4/.cvsignore, m4/.cvsignore: [no log message]
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, configure.ac, gl/m4/Makefile.am, gl/m4/error.m4,
+	gl/m4/gethostname.m4, gl/m4/malloc.m4, gl/m4/nls.m4,
+	gl/m4/onceonly_2_57.m4, gl/m4/po.m4, gl/m4/realloc.m4,
+	gl/m4/strerror_r.m4, gl/m4/unlocked-io.m4, gl/m4/xalloc.m4,
+	m4/Makefile.am, m4/error.m4, m4/gethostname.m4, m4/malloc.m4,
+	m4/nls.m4, m4/onceonly_2_57.m4, m4/po.m4, m4/realloc.m4,
+	m4/strerror_r.m4, m4/unlocked-io.m4, m4/xalloc.m4: Move gnulib m4's
+	from m4/ to gl/m4/.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* COPYING.DOC: Add.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* README-alpha: Note for binary package builders.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h, lib/meta.c, lib/misc.c, lib/name.c: Move meta.c
+	functions to where they belong.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c, lib/cred.c: Add comment.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/cred.c, lib/krb5.c: Cleanup.
+
+2003-06-29  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, gl/Makefile.am, gl/gethostname.c, m4/Makefile.am,
+	m4/gethostname.m4: Add gethostname() from gnulib.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix release scp.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.2.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Don't abort if pkg-config isn't available.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* po/gss.pot, po/sv.po: Generated.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Fix -I.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump so version.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c, lib/cred.c, lib/krb5.c, lib/misc.c, lib/name.c: Use
+	xalloc.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Mention xalloc.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* gl/.cvsignore: [no log message]
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, configure.ac, gl/Makefile.am, gl/error.c,
+	gl/error.h, gl/gettext.h, gl/malloc.c, gl/realloc.c,
+	gl/unlocked-io.h, gl/xalloc.h, gl/xmalloc.c, gl/xstrdup.c,
+	lib/Makefile.am, lib/internal.h, m4/Makefile.am, m4/codeset.m4,
+	m4/error.m4, m4/gettext.m4, m4/glibc21.m4, m4/iconv.m4,
+	m4/intdiv0.m4, m4/inttypes-pri.m4, m4/inttypes.m4,
+	m4/inttypes_h.m4, m4/isc-posix.m4, m4/lcmessage.m4, m4/lib-ld.m4,
+	m4/lib-link.m4, m4/lib-prefix.m4, m4/malloc.m4, m4/nls.m4,
+	m4/onceonly_2_57.m4, m4/po.m4, m4/progtest.m4, m4/realloc.m4,
+	m4/stdint_h.m4, m4/strerror_r.m4, m4/uintmax_t.m4, m4/ulonglong.m4,
+	m4/unlocked-io.m4, m4/xalloc.m4: Add xalloc (with deps) from gnulib.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump version.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Clear output token for delete_sec_context.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Add accept_sec_context, acquire_cred.  Fixes.  (GSASL
+	via GSS can connect to Mailutils IMAP server via native GSS.)
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: Fix.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* lib/cred.c: Add acquire_cred.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h, lib/krb5.h, lib/meta.c: Add accept_sec_context,
+	acquire_cred.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Add accept_sec_context.
+
+2003-06-28  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c, lib/ext.h: Add prefix encapsulation.
+
+2003-06-27  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c: Fix.
+
+2003-06-27  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add.
+
+2003-06-27  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix.
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Translate errors.
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c, lib/krb5.c, po/gss.pot, po/sv.po: Translation fixes.
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* po/gss.pot: Fix.
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix release target.
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c, lib/krb5.c, lib/meta.c, lib/obsolete.c,
+	po/POTFILES.in, po/gss.pot, po/sv.po: Translation fixes.
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* po/sv.po: Add.
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* README-alpha: TeX required.
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.1.
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix.
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* doc/.cvsignore: [no log message]
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix.
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix.
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix.
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix.
+
+2003-06-12  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix.
+
+2003-06-10  Simon Josefsson <simon@josefsson.org>
+
+	* tests/utils.c: Fix.
+
+2003-06-10  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, tests/gettext.h: Add.
+
+2003-06-10  Simon Josefsson <simon@josefsson.org>
+
+	* tests/basic.c, tests/utils.c: Translation stuff.
+
+2003-06-10  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Fix.
+
+2003-06-10  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c: String checks.
+
+2003-06-10  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Check for locale.h.
+
+2003-06-10  Simon Josefsson <simon@josefsson.org>
+
+	* tests/basic.c: Setup translation (should be done in ../lib/?).
+
+2003-06-10  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Define LOCALEDIR.
+
+2003-06-10  Simon Josefsson <simon@josefsson.org>
+
+	* po/sv.po: Add.
+
+2003-06-10  Simon Josefsson <simon@josefsson.org>
+
+	* po/gss.pot: Fix.
+
+2003-06-10  Simon Josefsson <simon@josefsson.org>
+
+	* po/LINGUAS: Add sv.
+
+2003-06-10  Simon Josefsson <simon@josefsson.org>
+
+	* po/ggssapi.pot: Removed. (See gss.pot.)
+
+2003-06-10  Simon Josefsson <simon@josefsson.org>
+
+	* po/POTFILES.in: Fix.
+
+2003-06-10  Simon Josefsson <simon@josefsson.org>
+
+	* po/gss.pot: Add.
+
+2003-06-09  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump versions.
+
+2003-06-09  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix.
+
+2003-06-09  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Only generate ChangeLog for releases.  (Allows make
+	dist to work when savannah is down.)
+
+2003-06-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Add oids.  Add display_status.  Fixes.
+
+2003-06-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c, lib/krb5.h: Add.
+
+2003-06-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: Move display_status to error.c.
+
+2003-06-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h, lib/meta.c: Add display_status.
+
+2003-06-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/cred.c, lib/name.c: Fix.
+
+2003-06-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/oid.c: Move krb5 oids to krb5.c.
+
+2003-06-09  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Make krb5 conditional.  Remove old -I../intl.
+
+2003-06-09  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Add krb5 conditional.
+
+2003-06-05  Simon Josefsson <simon@josefsson.org>
+
+	* lib/meta.c, lib/misc.c: Clear minor_status.
+
+2003-06-02  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix release target.
+
+2003-06-02  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: [no log message]
+
+2003-06-02  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 0.0.0.
+
+2003-06-02  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: Add.  (Autogenerated by cvs2cl.)
+
+2003-06-02  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2003-06-02  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, argp/.cvsignore, argp/Makefile.am, argp/Versions,
+	argp/acinclude.m4, argp/argp-ba.c, argp/argp-eexst.c,
+	argp/argp-fmtstream.c, argp/argp-fmtstream.h, argp/argp-fs-xinl.c,
+	argp/argp-help.c, argp/argp-namefrob.h, argp/argp-parse.c,
+	argp/argp-pv.c, argp/argp-pvh.c, argp/argp-test.c,
+	argp/argp-xinl.c, argp/argp.h, argp/config.h.in, argp/configure.ac,
+	argp/libargp.m4, argp/mempcpy.c, argp/strchrnul.c, argp/strndup.c,
+	configure.ac: Remove argp.
+
+2003-06-02  Simon Josefsson <simon@josefsson.org>
+
+	* tests/utils.c: Remove gss/ prefix from includes.
+
+2003-06-02  Simon Josefsson <simon@josefsson.org>
+
+	* tests/utils.c: Use gss/*.h instead of gss.h.
+
+2003-06-02  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Dist gettext.h.
+
+2003-06-02  Simon Josefsson <simon@josefsson.org>
+
+	* lib/version.c: Fix copying conditions.
+
+2003-06-02  Simon Josefsson <simon@josefsson.org>
+
+	* ANNOUNCE, README-alpha, gss.pc.in: Fix.
+
+2003-06-02  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2003-06-02  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: DES works.
+
+2003-05-30  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-cat-gss-conv-00.txt,
+	doc/specification/draft-ietf-cat-gsseasy-01.txt: Add.
+
+2003-05-30  Simon Josefsson <simon@josefsson.org>
+
+	* doc/specification/draft-ietf-cat-krb5gss-mech2-00.txt,
+	doc/specification/draft-ietf-cat-krb5gss-mech2-01.txt,
+	doc/specification/draft-ietf-cat-krb5gss-mech2-02.txt,
+	doc/specification/draft-ietf-cat-krb5gss-mech2-03.txt,
+	doc/specification/draft-raeburn-cat-gssapi-krb5-3des-00.txt,
+	doc/specification/draft-raeburn-krb-gssapi-krb5-3des-01.txt: Add.
+
+2003-05-30  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add.
+
+2003-05-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/meta.c: Fix.  (RFC permitted our usage model.)
+
+2003-05-30  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add. Fix.
+
+2003-05-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.h: Add.
+
+2003-05-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: Fix.
+
+2003-05-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: Fix.
+
+2003-05-30  Simon Josefsson <simon@josefsson.org>
+
+	* tests/.cvsignore: [no log message]
+
+2003-05-30  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am, tests/krb5.c: Remove krb5.c for now.
+
+2003-05-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/meta.c, tests/basic.c: Add.
+
+2003-05-30  Simon Josefsson <simon@josefsson.org>
+
+	* tests/basic.c: Add.
+
+2003-05-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: Fix.
+
+2003-05-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: Add. Fix.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* tests/.cvsignore: [no log message]
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am, tests/basic.c, tests/name.c: Rename name.c to
+	basic.c.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: Fix.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Cleanup.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Cleanup.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: Remove.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.h, lib/krb5.h: Add.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c: Fix.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: Add.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/meta.c, lib/misc.c: Fix.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h, lib/meta.c, lib/misc.c: Add.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/.cvsignore: [no log message]
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Add meta.c.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Fix.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c, lib/msg.c, lib/name.c: Mech independent.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h, lib/meta.c: Add.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/meta.c: Add.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.h: Add.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Fix.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: Remove.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi, lib/ext.h: Add.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c, lib/misc.c: Fix.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: Fix.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c, lib/name.c: Fix.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h, lib/krb5.c, tests/utils.c: Fix includes.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gss.h.in: Move things to ext.h.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Add ext.h.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ext.h: Add.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* ANNOUNCE: Fix.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Install api.h (former gssapi.h) and krb5.h in
+	$(includedir)/gss/.  Fix indents.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/api.h: Support xom.h (conditionally).
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/api.h, lib/gssapi.h: Renamed gssapi.h to api.h.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.h: Add.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gss.h.in: Add.  Fix.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c, lib/internal.h, lib/krb5.c: Fix.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* lib/oid.c: Add krb5 OIDs (conditionally).
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Drop src/ for now.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* ANNOUNCE, README, THANKS: Fix.
+
+2003-05-29  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, configure.ac, doc/gss.texi, src/.cvsignore,
+	src/Makefile.am, src/gettext.h, src/gss.c, src/internal.h: Drop src/
+	for now.
+
+2003-05-27  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix pxref.
+
+2003-05-27  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Drop licenses.  Add criticism todos.
+
+2003-05-27  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix license.
+
+2003-05-27  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix email.
+
+2003-05-27  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix title.
+
+2003-05-26  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Support mutual authentication (and other flags).  Fix
+	sequence number handling.  Works as client via GSASL against Cyrus
+	IMAP/SASL server.
+
+2003-05-26  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Don't build krb5.
+
+2003-05-26  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix title.
+
+2003-05-25  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Add. (GSASL using GSS is now able to log on to GNU
+	Mailutils imap4d linked to MIT GSSAPI.)
+
+2003-05-25  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h, lib/krb5.c: Only krb5.c includes shishi.
+
+2003-05-25  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Add.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Dist TODO.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/msg.c: Remove debug info.  Call krb5.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c, lib/internal.h, lib/krb5.c: Add.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/obsolete.c: Typo fix.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c, lib/cred.c, lib/misc.c, lib/msg.c, lib/name.c: 
+	Remove documentation.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Fix man page name.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc, doc/gdoc-error: Removed (not needed anymore).
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Inline autogenerated API documentation.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Perl not needed.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Don't autogenerate API documentation.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* doc/.cvsignore: [no log message]
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gssapi.h: Fix implementation type names.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: Fix.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: Add.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: Add. Fix.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Cleanup.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Cleanup.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: Add.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c: Cleanup.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* AUTHORS: Fix.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* README, README-alpha: Fix.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/.cvsignore: [no log message]
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: AP-REQ works.
+
+2003-05-18  Simon Josefsson <simon@josefsson.org>
+
+	* lib/msg.c: Add doc.  Print debug info.
+
+2003-05-17  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c: Rewrite without libtasn1.
+
+2003-05-17  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: Fix.
+
+2003-05-17  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Remove asn.1 stuff.
+
+2003-05-17  Simon Josefsson <simon@josefsson.org>
+
+	* TODO, lib/gss.asn1: Remove.
+
+2003-05-17  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Libtasn1 no longer required.
+
+2003-05-10  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Fix last commit.
+
+2003-05-10  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Dist gss_asn1_tab.c.
+
+2003-05-10  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Use @ASN1PARSER@.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* tests/.cvsignore: [no log message]
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Build krb5.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* tests/krb5.c: Krb5 test.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* lib/krb5.c: Add.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: Add krb5 stuff.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Call krb5 for now.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* lib/asn1.c: Wrap tokens in ASN.1.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Build asn1.c.  Link with shishi.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* ANNOUNCE, doc/gss.texi: Fix.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gss.h.in: Fix.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* lib/.cvsignore: [no log message]
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* TODO: Fix.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* TODO: Add.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Look for asn1Parser.  Fix errors.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Always require libtasn1.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* README: Add prereq's.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* tests/name.c: Fix.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Add krb5.c.  Build gss_asn1_tab.c.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* lib/.cvsignore: [no log message]
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gss.asn1, lib/krb5.c: Add.
+
+2003-05-08  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: For kerberos 5 support, find libtasn1 too.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* tests/.cvsignore: [no log message]
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Build name.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* tests/name.c: Typo.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* tests/name.c, tests/utils.c: Add.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Test for Shishi.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Document non-standard functions.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/.cvsignore: [no log message]
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, lib/Makefile.am, lib/ggssapi.h.in, lib/gss.h.in,
+	lib/internal.h, lib/version.c: Rename ggssapi to gss.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/ggssapi.h.in: Add.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Fix.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/error.c: Indent.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, doc/Makefile.am, src/internal.h: Cleanup.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* src/Makefile.am: Fix.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* src/Makefile.am: Dist internal.h.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* src/gss.c: Argp support.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* src/internal.h: Include argp.h.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* src/gettext.h, src/internal.h: Add.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* .cvsignore: [no log message]
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* gss.pc.in: Rename ggssapi to gss.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* ANNOUNCE, Makefile.am, README, configure.ac, doc/Makefile.am,
+	doc/gss.texi, ggssapi.pc.in, gss.pc.in, src/Makefile.am,
+	src/ggssapi.c, src/gss.c: Rename ggssapi to gss.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* doc/.cvsignore, src/.cvsignore: [no log message]
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gss.texi: Add.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* doc/ggssapi.texi, doc/gss.texi: Rename to gss.texi.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* tests/Makefile.am: Fix library name.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* src/Makefile.am: Rename ggssapi to gss.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Rename library to libgss.*.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/.cvsignore: [no log message]
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Typo.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gdoc: Escape { and }.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* doc/.cvsignore, lib/.cvsignore: [no log message]
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Add deps.  Fix indent.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: Include inttypes/stdint.  Add hidden GSS
+	structures.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/cred.c: Credential functions.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/context.c: Context functions.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/misc.c: Miscellaneous functions.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/msg.c: Per-message functions.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/name.c: Name manipulating functions.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/oid.c: Static OID definitions.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/obsolete.c: GSSAPI v1 bindings.
+
+2003-05-01  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gssapi.h: Fix prototypes (RFC is buggy).  Indent.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/.cvsignore: [no log message]
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am, lib/error.c: Add.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* .cvsignore: Add.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* po/LINGUAS: Empty, until we have something to translate.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/internal.h: Include gssapi.h too.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gssapi.h: Replace cvs log with referral to ChangeLog.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gssapi.h: Add CVS log to comment.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gssapi.h: Add copying conditions.  Include limits.h.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gssapi.h: Never use xom.h.  Define gss_ctx_id_t,
+	gss_cred_id_t, gss_name_t, and gss_uint32.  Fix routine errors.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/gssapi.h: Verbatim from RFC.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/Makefile.am: Add ggssapi.h.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* doc/ggssapi.texi: Add. Fix links.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Add dep.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Build lib/ggssapi.h.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* lib/.cvsignore, lib/gettext.h, lib/ggssapi.h.in, lib/internal.h,
+	m4/.cvsignore, po/.cvsignore, po/LINGUAS, po/Makevars,
+	po/POTFILES.in, po/ggssapi.pot, po/sv.po, src/.cvsignore: Add.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Don't build doc/reference/Makefile.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* COPYING, m4/Makefile.am: Add.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Remove AC_REPLACE_FUNCS() until we know they are
+	required.
+
+2003-04-30  Simon Josefsson <simon@josefsson.org>
+
+	* Initial import, empty dummy project.
+
+	-----
+
+	Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008 Simon Josefsson
+
+	Copying and distribution of this file, with or without
+	modification, are permitted provided the copyright notice
+	and this notice are preserved.

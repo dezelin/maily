@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>gss</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="GNU Generic Security Service (GSS) API Reference Manual">
+<link rel="up" href="ch01.html" title="GNU Generic Security Service (GSS) API Reference Manual">
+<link rel="prev" href="ch01.html" title="GNU Generic Security Service (GSS) API Reference Manual">
+<link rel="next" href="gss-api.html" title="api">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch01.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GNU Generic Security Service (GSS) API Reference Manual</th>
+<td><a accesskey="n" href="gss-api.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gss-gss.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#gss-gss.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="gss">
+<a name="gss-gss"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gss-gss.top_of_page"></a>gss</span></h2>
+<p>gss</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="gss-gss.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">#define             <a class="link" href="gss-gss.html#GSS-VERSION:CAPS" title="GSS_VERSION">GSS_VERSION</a>
+#define             <a class="link" href="gss-gss.html#GSS-VERSION-MAJOR:CAPS" title="GSS_VERSION_MAJOR">GSS_VERSION_MAJOR</a>
+#define             <a class="link" href="gss-gss.html#GSS-VERSION-MINOR:CAPS" title="GSS_VERSION_MINOR">GSS_VERSION_MINOR</a>
+#define             <a class="link" href="gss-gss.html#GSS-VERSION-PATCH:CAPS" title="GSS_VERSION_PATCH">GSS_VERSION_PATCH</a>
+#define             <a class="link" href="gss-gss.html#GSS-VERSION-NUMBER:CAPS" title="GSS_VERSION_NUMBER">GSS_VERSION_NUMBER</a>
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="gss-gss.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="gss-gss.details"></a><h2>Details</h2>
+<div class="refsect2" title="GSS_VERSION">
+<a name="GSS-VERSION:CAPS"></a><h3>GSS_VERSION</h3>
+<pre class="programlisting"># define GSS_VERSION "0.1.5"
+</pre>
+<p>
+Pre-processor symbol with a string that describe the header file
+version number.  Used together with <a class="link" href="gss-ext.html#gss-check-version" title="gss_check_version ()"><code class="function">gss_check_version()</code></a> to verify
+header file and run-time library consistency.</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_VERSION_MAJOR">
+<a name="GSS-VERSION-MAJOR:CAPS"></a><h3>GSS_VERSION_MAJOR</h3>
+<pre class="programlisting"># define GSS_VERSION_MAJOR 0
+</pre>
+<p>
+Pre-processor symbol with a decimal value that describe the major
+level of the header file version number.  For example, when the
+header version is 1.2.3 this symbol will be 1.</p>
+<p class="since">Since 0.1.0</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_VERSION_MINOR">
+<a name="GSS-VERSION-MINOR:CAPS"></a><h3>GSS_VERSION_MINOR</h3>
+<pre class="programlisting"># define GSS_VERSION_MINOR 1
+</pre>
+<p>
+Pre-processor symbol with a decimal value that describe the minor
+level of the header file version number.  For example, when the
+header version is 1.2.3 this symbol will be 2.</p>
+<p class="since">Since 0.1.0</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_VERSION_PATCH">
+<a name="GSS-VERSION-PATCH:CAPS"></a><h3>GSS_VERSION_PATCH</h3>
+<pre class="programlisting"># define GSS_VERSION_PATCH 5
+</pre>
+<p>
+Pre-processor symbol with a decimal value that describe the patch
+level of the header file version number.  For example, when the
+header version is 1.2.3 this symbol will be 3.</p>
+<p class="since">Since 0.1.0</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_VERSION_NUMBER">
+<a name="GSS-VERSION-NUMBER:CAPS"></a><h3>GSS_VERSION_NUMBER</h3>
+<pre class="programlisting"># define GSS_VERSION_NUMBER 0x000105
+</pre>
+<p>
+Pre-processor symbol with a hexadecimal value describing the
+header file version number.  For example, when the header version
+is 1.2.3 this symbol will have the value 0x010203.</p>
+<p class="since">Since 0.1.0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.14</div>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="GNU Generic Security Service (GSS) API Reference Manual" link="index.html" author="" name="gss">
+  <chapters>
+    <sub name="GNU Generic Security Service (GSS) API Reference Manual" link="ch01.html">
+      <sub name="gss" link="gss-gss.html"/>
+      <sub name="api" link="gss-api.html"/>
+      <sub name="ext" link="gss-ext.html"/>
+      <sub name="krb5" link="gss-krb5.html"/>
+      <sub name="krb5-ext" link="gss-krb5-ext.html"/>
+    </sub>
+    <sub name="Index of all symbols" link="api-index-full.html"/>
+    <sub name="Index of new symbols in 0.1.0" link="api-index-0-1-0.html"/>
+    <sub name="Index of new symbols in 0.1.4" link="api-index-0-1-4.html"/>
+  </chapters>
+  <functions>
+    <function name="GSS_VERSION" link="gss-gss.html#GSS-VERSION:CAPS"/>
+    <function name="GSS_VERSION_MAJOR" link="gss-gss.html#GSS-VERSION-MAJOR:CAPS"/>
+    <function name="GSS_VERSION_MINOR" link="gss-gss.html#GSS-VERSION-MINOR:CAPS"/>
+    <function name="GSS_VERSION_PATCH" link="gss-gss.html#GSS-VERSION-PATCH:CAPS"/>
+    <function name="GSS_VERSION_NUMBER" link="gss-gss.html#GSS-VERSION-NUMBER:CAPS"/>
+    <function name="gss_ctx_id_t" link="gss-api.html#gss-ctx-id-t"/>
+    <function name="gss_cred_id_t" link="gss-api.html#gss-cred-id-t"/>
+    <function name="gss_name_t" link="gss-api.html#gss-name-t"/>
+    <function name="gss_uint32" link="gss-api.html#gss-uint32"/>
+    <function name="OM_uint32" link="gss-api.html#OM-uint32"/>
+    <function name="gss_qop_t" link="gss-api.html#gss-qop-t"/>
+    <function name="gss_cred_usage_t" link="gss-api.html#gss-cred-usage-t"/>
+    <function name="GSS_C_DELEG_FLAG" link="gss-api.html#GSS-C-DELEG-FLAG:CAPS"/>
+    <function name="GSS_C_MUTUAL_FLAG" link="gss-api.html#GSS-C-MUTUAL-FLAG:CAPS"/>
+    <function name="GSS_C_REPLAY_FLAG" link="gss-api.html#GSS-C-REPLAY-FLAG:CAPS"/>
+    <function name="GSS_C_SEQUENCE_FLAG" link="gss-api.html#GSS-C-SEQUENCE-FLAG:CAPS"/>
+    <function name="GSS_C_CONF_FLAG" link="gss-api.html#GSS-C-CONF-FLAG:CAPS"/>
+    <function name="GSS_C_INTEG_FLAG" link="gss-api.html#GSS-C-INTEG-FLAG:CAPS"/>
+    <function name="GSS_C_ANON_FLAG" link="gss-api.html#GSS-C-ANON-FLAG:CAPS"/>
+    <function name="GSS_C_PROT_READY_FLAG" link="gss-api.html#GSS-C-PROT-READY-FLAG:CAPS"/>
+    <function name="GSS_C_TRANS_FLAG" link="gss-api.html#GSS-C-TRANS-FLAG:CAPS"/>
+    <function name="GSS_C_BOTH" link="gss-api.html#GSS-C-BOTH:CAPS"/>
+    <function name="GSS_C_INITIATE" link="gss-api.html#GSS-C-INITIATE:CAPS"/>
+    <function name="GSS_C_ACCEPT" link="gss-api.html#GSS-C-ACCEPT:CAPS"/>
+    <function name="GSS_C_GSS_CODE" link="gss-api.html#GSS-C-GSS-CODE:CAPS"/>
+    <function name="GSS_C_MECH_CODE" link="gss-api.html#GSS-C-MECH-CODE:CAPS"/>
+    <function name="GSS_C_AF_UNSPEC" link="gss-api.html#GSS-C-AF-UNSPEC:CAPS"/>
+    <function name="GSS_C_AF_LOCAL" link="gss-api.html#GSS-C-AF-LOCAL:CAPS"/>
+    <function name="GSS_C_AF_INET" link="gss-api.html#GSS-C-AF-INET:CAPS"/>
+    <function name="GSS_C_AF_IMPLINK" link="gss-api.html#GSS-C-AF-IMPLINK:CAPS"/>
+    <function name="GSS_C_AF_PUP" link="gss-api.html#GSS-C-AF-PUP:CAPS"/>
+    <function name="GSS_C_AF_CHAOS" link="gss-api.html#GSS-C-AF-CHAOS:CAPS"/>
+    <function name="GSS_C_AF_NS" link="gss-api.html#GSS-C-AF-NS:CAPS"/>
+    <function name="GSS_C_AF_NBS" link="gss-api.html#GSS-C-AF-NBS:CAPS"/>
+    <function name="GSS_C_AF_ECMA" link="gss-api.html#GSS-C-AF-ECMA:CAPS"/>
+    <function name="GSS_C_AF_DATAKIT" link="gss-api.html#GSS-C-AF-DATAKIT:CAPS"/>
+    <function name="GSS_C_AF_CCITT" link="gss-api.html#GSS-C-AF-CCITT:CAPS"/>
+    <function name="GSS_C_AF_SNA" link="gss-api.html#GSS-C-AF-SNA:CAPS"/>
+    <function name="GSS_C_AF_DECnet" link="gss-api.html#GSS-C-AF-DECnet"/>
+    <function name="GSS_C_AF_DLI" link="gss-api.html#GSS-C-AF-DLI:CAPS"/>
+    <function name="GSS_C_AF_LAT" link="gss-api.html#GSS-C-AF-LAT:CAPS"/>
+    <function name="GSS_C_AF_HYLINK" link="gss-api.html#GSS-C-AF-HYLINK:CAPS"/>
+    <function name="GSS_C_AF_APPLETALK" link="gss-api.html#GSS-C-AF-APPLETALK:CAPS"/>
+    <function name="GSS_C_AF_BSC" link="gss-api.html#GSS-C-AF-BSC:CAPS"/>
+    <function name="GSS_C_AF_DSS" link="gss-api.html#GSS-C-AF-DSS:CAPS"/>
+    <function name="GSS_C_AF_OSI" link="gss-api.html#GSS-C-AF-OSI:CAPS"/>
+    <function name="GSS_C_AF_X25" link="gss-api.html#GSS-C-AF-X25:CAPS"/>
+    <function name="GSS_C_AF_NULLADDR" link="gss-api.html#GSS-C-AF-NULLADDR:CAPS"/>
+    <function name="GSS_C_NO_NAME" link="gss-api.html#GSS-C-NO-NAME:CAPS"/>
+    <function name="GSS_C_NO_BUFFER" link="gss-api.html#GSS-C-NO-BUFFER:CAPS"/>
+    <function name="GSS_C_NO_OID" link="gss-api.html#GSS-C-NO-OID:CAPS"/>
+    <function name="GSS_C_NO_OID_SET" link="gss-api.html#GSS-C-NO-OID-SET:CAPS"/>
+    <function name="GSS_C_NO_CONTEXT" link="gss-api.html#GSS-C-NO-CONTEXT:CAPS"/>
+    <function name="GSS_C_NO_CREDENTIAL" link="gss-api.html#GSS-C-NO-CREDENTIAL:CAPS"/>
+    <function name="GSS_C_NO_CHANNEL_BINDINGS" link="gss-api.html#GSS-C-NO-CHANNEL-BINDINGS:CAPS"/>
+    <function name="GSS_C_EMPTY_BUFFER" link="gss-api.html#GSS-C-EMPTY-BUFFER:CAPS"/>
+    <function name="GSS_C_NULL_OID" link="gss-api.html#GSS-C-NULL-OID:CAPS"/>
+    <function name="GSS_C_NULL_OID_SET" link="gss-api.html#GSS-C-NULL-OID-SET:CAPS"/>
+    <function name="GSS_C_QOP_DEFAULT" link="gss-api.html#GSS-C-QOP-DEFAULT:CAPS"/>
+    <function name="GSS_C_INDEFINITE" link="gss-api.html#GSS-C-INDEFINITE:CAPS"/>
+    <function name="GSS_C_NT_USER_NAME" link="gss-api.html#GSS-C-NT-USER-NAME:CAPS"/>
+    <function name="GSS_C_NT_MACHINE_UID_NAME" link="gss-api.html#GSS-C-NT-MACHINE-UID-NAME:CAPS"/>
+    <function name="GSS_C_NT_STRING_UID_NAME" link="gss-api.html#GSS-C-NT-STRING-UID-NAME:CAPS"/>
+    <function name="GSS_C_NT_HOSTBASED_SERVICE_X" link="gss-api.html#GSS-C-NT-HOSTBASED-SERVICE-X:CAPS"/>
+    <function name="GSS_C_NT_HOSTBASED_SERVICE" link="gss-api.html#GSS-C-NT-HOSTBASED-SERVICE:CAPS"/>
+    <function name="GSS_C_NT_ANONYMOUS" link="gss-api.html#GSS-C-NT-ANONYMOUS:CAPS"/>
+    <function name="GSS_C_NT_EXPORT_NAME" link="gss-api.html#GSS-C-NT-EXPORT-NAME:CAPS"/>
+    <function name="GSS_S_COMPLETE" link="gss-api.html#GSS-S-COMPLETE:CAPS"/>
+    <function name="GSS_C_CALLING_ERROR_OFFSET" link="gss-api.html#GSS-C-CALLING-ERROR-OFFSET:CAPS"/>
+    <function name="GSS_C_ROUTINE_ERROR_OFFSET" link="gss-api.html#GSS-C-ROUTINE-ERROR-OFFSET:CAPS"/>
+    <function name="GSS_C_SUPPLEMENTARY_OFFSET" link="gss-api.html#GSS-C-SUPPLEMENTARY-OFFSET:CAPS"/>
+    <function name="GSS_C_CALLING_ERROR_MASK" link="gss-api.html#GSS-C-CALLING-ERROR-MASK:CAPS"/>
+    <function name="GSS_C_ROUTINE_ERROR_MASK" link="gss-api.html#GSS-C-ROUTINE-ERROR-MASK:CAPS"/>
+    <function name="GSS_C_SUPPLEMENTARY_MASK" link="gss-api.html#GSS-C-SUPPLEMENTARY-MASK:CAPS"/>
+    <function name="GSS_CALLING_ERROR()" link="gss-api.html#GSS-CALLING-ERROR:CAPS"/>
+    <function name="GSS_ROUTINE_ERROR()" link="gss-api.html#GSS-ROUTINE-ERROR:CAPS"/>
+    <function name="GSS_SUPPLEMENTARY_INFO()" link="gss-api.html#GSS-SUPPLEMENTARY-INFO:CAPS"/>
+    <function name="GSS_ERROR()" link="gss-api.html#GSS-ERROR:CAPS"/>
+    <function name="GSS_S_CALL_INACCESSIBLE_READ" link="gss-api.html#GSS-S-CALL-INACCESSIBLE-READ:CAPS"/>
+    <function name="GSS_S_CALL_INACCESSIBLE_WRITE" link="gss-api.html#GSS-S-CALL-INACCESSIBLE-WRITE:CAPS"/>
+    <function name="GSS_S_CALL_BAD_STRUCTURE" link="gss-api.html#GSS-S-CALL-BAD-STRUCTURE:CAPS"/>
+    <function name="GSS_S_BAD_MECH" link="gss-api.html#GSS-S-BAD-MECH:CAPS"/>
+    <function name="GSS_S_BAD_NAME" link="gss-api.html#GSS-S-BAD-NAME:CAPS"/>
+    <function name="GSS_S_BAD_NAMETYPE" link="gss-api.html#GSS-S-BAD-NAMETYPE:CAPS"/>
+    <function name="GSS_S_BAD_BINDINGS" link="gss-api.html#GSS-S-BAD-BINDINGS:CAPS"/>
+    <function name="GSS_S_BAD_STATUS" link="gss-api.html#GSS-S-BAD-STATUS:CAPS"/>
+    <function name="GSS_S_BAD_SIG" link="gss-api.html#GSS-S-BAD-SIG:CAPS"/>
+    <function name="GSS_S_BAD_MIC" link="gss-api.html#GSS-S-BAD-MIC:CAPS"/>
+    <function name="GSS_S_NO_CRED" link="gss-api.html#GSS-S-NO-CRED:CAPS"/>
+    <function name="GSS_S_NO_CONTEXT" link="gss-api.html#GSS-S-NO-CONTEXT:CAPS"/>
+    <function name="GSS_S_DEFECTIVE_TOKEN" link="gss-api.html#GSS-S-DEFECTIVE-TOKEN:CAPS"/>
+    <function name="GSS_S_DEFECTIVE_CREDENTIAL" link="gss-api.html#GSS-S-DEFECTIVE-CREDENTIAL:CAPS"/>
+    <function name="GSS_S_CREDENTIALS_EXPIRED" link="gss-api.html#GSS-S-CREDENTIALS-EXPIRED:CAPS"/>
+    <function name="GSS_S_CONTEXT_EXPIRED" link="gss-api.html#GSS-S-CONTEXT-EXPIRED:CAPS"/>
+    <function name="GSS_S_FAILURE" link="gss-api.html#GSS-S-FAILURE:CAPS"/>
+    <function name="GSS_S_BAD_QOP" link="gss-api.html#GSS-S-BAD-QOP:CAPS"/>
+    <function name="GSS_S_UNAUTHORIZED" link="gss-api.html#GSS-S-UNAUTHORIZED:CAPS"/>
+    <function name="GSS_S_UNAVAILABLE" link="gss-api.html#GSS-S-UNAVAILABLE:CAPS"/>
+    <function name="GSS_S_DUPLICATE_ELEMENT" link="gss-api.html#GSS-S-DUPLICATE-ELEMENT:CAPS"/>
+    <function name="GSS_S_NAME_NOT_MN" link="gss-api.html#GSS-S-NAME-NOT-MN:CAPS"/>
+    <function name="GSS_S_CONTINUE_NEEDED" link="gss-api.html#GSS-S-CONTINUE-NEEDED:CAPS"/>
+    <function name="GSS_S_DUPLICATE_TOKEN" link="gss-api.html#GSS-S-DUPLICATE-TOKEN:CAPS"/>
+    <function name="GSS_S_OLD_TOKEN" link="gss-api.html#GSS-S-OLD-TOKEN:CAPS"/>
+    <function name="GSS_S_UNSEQ_TOKEN" link="gss-api.html#GSS-S-UNSEQ-TOKEN:CAPS"/>
+    <function name="GSS_S_GAP_TOKEN" link="gss-api.html#GSS-S-GAP-TOKEN:CAPS"/>
+    <function name="gss_acquire_cred ()" link="gss-api.html#gss-acquire-cred"/>
+    <function name="gss_release_cred ()" link="gss-api.html#gss-release-cred"/>
+    <function name="gss_init_sec_context ()" link="gss-api.html#gss-init-sec-context"/>
+    <function name="gss_accept_sec_context ()" link="gss-api.html#gss-accept-sec-context"/>
+    <function name="gss_process_context_token ()" link="gss-api.html#gss-process-context-token"/>
+    <function name="gss_delete_sec_context ()" link="gss-api.html#gss-delete-sec-context"/>
+    <function name="gss_context_time ()" link="gss-api.html#gss-context-time"/>
+    <function name="gss_get_mic ()" link="gss-api.html#gss-get-mic"/>
+    <function name="gss_verify_mic ()" link="gss-api.html#gss-verify-mic"/>
+    <function name="gss_wrap ()" link="gss-api.html#gss-wrap"/>
+    <function name="gss_unwrap ()" link="gss-api.html#gss-unwrap"/>
+    <function name="gss_display_status ()" link="gss-api.html#gss-display-status"/>
+    <function name="gss_indicate_mechs ()" link="gss-api.html#gss-indicate-mechs"/>
+    <function name="gss_compare_name ()" link="gss-api.html#gss-compare-name"/>
+    <function name="gss_display_name ()" link="gss-api.html#gss-display-name"/>
+    <function name="gss_import_name ()" link="gss-api.html#gss-import-name"/>
+    <function name="gss_export_name ()" link="gss-api.html#gss-export-name"/>
+    <function name="gss_release_name ()" link="gss-api.html#gss-release-name"/>
+    <function name="gss_release_buffer ()" link="gss-api.html#gss-release-buffer"/>
+    <function name="gss_release_oid_set ()" link="gss-api.html#gss-release-oid-set"/>
+    <function name="gss_inquire_cred ()" link="gss-api.html#gss-inquire-cred"/>
+    <function name="gss_inquire_context ()" link="gss-api.html#gss-inquire-context"/>
+    <function name="gss_wrap_size_limit ()" link="gss-api.html#gss-wrap-size-limit"/>
+    <function name="gss_add_cred ()" link="gss-api.html#gss-add-cred"/>
+    <function name="gss_inquire_cred_by_mech ()" link="gss-api.html#gss-inquire-cred-by-mech"/>
+    <function name="gss_export_sec_context ()" link="gss-api.html#gss-export-sec-context"/>
+    <function name="gss_import_sec_context ()" link="gss-api.html#gss-import-sec-context"/>
+    <function name="gss_create_empty_oid_set ()" link="gss-api.html#gss-create-empty-oid-set"/>
+    <function name="gss_add_oid_set_member ()" link="gss-api.html#gss-add-oid-set-member"/>
+    <function name="gss_test_oid_set_member ()" link="gss-api.html#gss-test-oid-set-member"/>
+    <function name="gss_inquire_names_for_mech ()" link="gss-api.html#gss-inquire-names-for-mech"/>
+    <function name="gss_inquire_mechs_for_name ()" link="gss-api.html#gss-inquire-mechs-for-name"/>
+    <function name="gss_canonicalize_name ()" link="gss-api.html#gss-canonicalize-name"/>
+    <function name="gss_duplicate_name ()" link="gss-api.html#gss-duplicate-name"/>
+    <function name="gss_sign ()" link="gss-api.html#gss-sign"/>
+    <function name="gss_verify ()" link="gss-api.html#gss-verify"/>
+    <function name="gss_seal ()" link="gss-api.html#gss-seal"/>
+    <function name="gss_unseal ()" link="gss-api.html#gss-unseal"/>
+    <function name="gss_inquire_saslname_for_mech ()" link="gss-api.html#gss-inquire-saslname-for-mech"/>
+    <function name="gss_inquire_mech_for_saslname ()" link="gss-api.html#gss-inquire-mech-for-saslname"/>
+    <function name="gss_check_version ()" link="gss-ext.html#gss-check-version"/>
+    <function name="gss_oid_equal ()" link="gss-ext.html#gss-oid-equal"/>
+    <function name="gss_copy_oid ()" link="gss-ext.html#gss-copy-oid"/>
+    <function name="gss_duplicate_oid ()" link="gss-ext.html#gss-duplicate-oid"/>
+    <function name="gss_userok ()" link="gss-ext.html#gss-userok"/>
+    <function name="gss_encapsulate_token ()" link="gss-ext.html#gss-encapsulate-token"/>
+    <function name="gss_encapsulate_token_prefix ()" link="gss-ext.html#gss-encapsulate-token-prefix"/>
+    <function name="gss_decapsulate_token ()" link="gss-ext.html#gss-decapsulate-token"/>
+    <function name="GSS_C_NT_USER_NAME_static" link="gss-ext.html#GSS-C-NT-USER-NAME-static"/>
+    <function name="GSS_C_NT_MACHINE_UID_NAME_static" link="gss-ext.html#GSS-C-NT-MACHINE-UID-NAME-static"/>
+    <function name="GSS_C_NT_STRING_UID_NAME_static" link="gss-ext.html#GSS-C-NT-STRING-UID-NAME-static"/>
+    <function name="GSS_C_NT_HOSTBASED_SERVICE_X_static" link="gss-ext.html#GSS-C-NT-HOSTBASED-SERVICE-X-static"/>
+    <function name="GSS_C_NT_HOSTBASED_SERVICE_static" link="gss-ext.html#GSS-C-NT-HOSTBASED-SERVICE-static"/>
+    <function name="GSS_C_NT_ANONYMOUS_static" link="gss-ext.html#GSS-C-NT-ANONYMOUS-static"/>
+    <function name="GSS_C_NT_EXPORT_NAME_static" link="gss-ext.html#GSS-C-NT-EXPORT-NAME-static"/>
+    <function name="GSS_KRB5_S_G_BAD_SERVICE_NAME" link="gss-krb5.html#GSS-KRB5-S-G-BAD-SERVICE-NAME:CAPS"/>
+    <function name="GSS_KRB5_S_G_BAD_STRING_UID" link="gss-krb5.html#GSS-KRB5-S-G-BAD-STRING-UID:CAPS"/>
+    <function name="GSS_KRB5_S_G_NOUSER" link="gss-krb5.html#GSS-KRB5-S-G-NOUSER:CAPS"/>
+    <function name="GSS_KRB5_S_G_VALIDATE_FAILED" link="gss-krb5.html#GSS-KRB5-S-G-VALIDATE-FAILED:CAPS"/>
+    <function name="GSS_KRB5_S_G_BUFFER_ALLOC" link="gss-krb5.html#GSS-KRB5-S-G-BUFFER-ALLOC:CAPS"/>
+    <function name="GSS_KRB5_S_G_BAD_MSG_CTX" link="gss-krb5.html#GSS-KRB5-S-G-BAD-MSG-CTX:CAPS"/>
+    <function name="GSS_KRB5_S_G_WRONG_SIZE" link="gss-krb5.html#GSS-KRB5-S-G-WRONG-SIZE:CAPS"/>
+    <function name="GSS_KRB5_S_G_BAD_USAGE" link="gss-krb5.html#GSS-KRB5-S-G-BAD-USAGE:CAPS"/>
+    <function name="GSS_KRB5_S_G_UNKNOWN_QOP" link="gss-krb5.html#GSS-KRB5-S-G-UNKNOWN-QOP:CAPS"/>
+    <function name="GSS_KRB5_S_KG_CCACHE_NOMATCH" link="gss-krb5.html#GSS-KRB5-S-KG-CCACHE-NOMATCH:CAPS"/>
+    <function name="GSS_KRB5_S_KG_KEYTAB_NOMATCH" link="gss-krb5.html#GSS-KRB5-S-KG-KEYTAB-NOMATCH:CAPS"/>
+    <function name="GSS_KRB5_S_KG_TGT_MISSING" link="gss-krb5.html#GSS-KRB5-S-KG-TGT-MISSING:CAPS"/>
+    <function name="GSS_KRB5_S_KG_NO_SUBKEY" link="gss-krb5.html#GSS-KRB5-S-KG-NO-SUBKEY:CAPS"/>
+    <function name="GSS_KRB5_S_KG_CONTEXT_ESTABLISHED" link="gss-krb5.html#GSS-KRB5-S-KG-CONTEXT-ESTABLISHED:CAPS"/>
+    <function name="GSS_KRB5_S_KG_BAD_SIGN_TYPE" link="gss-krb5.html#GSS-KRB5-S-KG-BAD-SIGN-TYPE:CAPS"/>
+    <function name="GSS_KRB5_S_KG_BAD_LENGTH" link="gss-krb5.html#GSS-KRB5-S-KG-BAD-LENGTH:CAPS"/>
+    <function name="GSS_KRB5_S_KG_CTX_INCOMPLETE" link="gss-krb5.html#GSS-KRB5-S-KG-CTX-INCOMPLETE:CAPS"/>
+    <function name="GSS_KRB5_NT_USER_NAME" link="gss-krb5.html#GSS-KRB5-NT-USER-NAME:CAPS"/>
+    <function name="GSS_KRB5_NT_HOSTBASED_SERVICE_NAME" link="gss-krb5.html#GSS-KRB5-NT-HOSTBASED-SERVICE-NAME:CAPS"/>
+    <function name="GSS_KRB5_NT_PRINCIPAL_NAME" link="gss-krb5.html#GSS-KRB5-NT-PRINCIPAL-NAME:CAPS"/>
+    <function name="GSS_KRB5_NT_MACHINE_UID_NAME" link="gss-krb5.html#GSS-KRB5-NT-MACHINE-UID-NAME:CAPS"/>
+    <function name="GSS_KRB5_NT_STRING_UID_NAME" link="gss-krb5.html#GSS-KRB5-NT-STRING-UID-NAME:CAPS"/>
+    <function name="GSS_KRB5" link="gss-krb5-ext.html#GSS-KRB5:CAPS"/>
+    <function name="GSS_KRB5_static" link="gss-krb5-ext.html#GSS-KRB5-static"/>
+    <function name="GSS_KRB5_NT_USER_NAME_static" link="gss-krb5-ext.html#GSS-KRB5-NT-USER-NAME-static"/>
+    <function name="GSS_KRB5_NT_HOSTBASED_SERVICE_NAME_static" link="gss-krb5-ext.html#GSS-KRB5-NT-HOSTBASED-SERVICE-NAME-static"/>
+    <function name="GSS_KRB5_NT_PRINCIPAL_NAME_static" link="gss-krb5-ext.html#GSS-KRB5-NT-PRINCIPAL-NAME-static"/>
+    <function name="GSS_KRB5_NT_MACHINE_UID_NAME_static" link="gss-krb5-ext.html#GSS-KRB5-NT-MACHINE-UID-NAME-static"/>
+    <function name="GSS_KRB5_NT_STRING_UID_NAME_static" link="gss-krb5-ext.html#GSS-KRB5-NT-STRING-UID-NAME-static"/>
+  </functions>
+</book>

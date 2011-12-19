@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>krb5</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="GNU Generic Security Service (GSS) API Reference Manual">
+<link rel="up" href="ch01.html" title="GNU Generic Security Service (GSS) API Reference Manual">
+<link rel="prev" href="gss-ext.html" title="ext">
+<link rel="next" href="gss-krb5-ext.html" title="krb5-ext">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gss-ext.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GNU Generic Security Service (GSS) API Reference Manual</th>
+<td><a accesskey="n" href="gss-krb5-ext.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gss-krb5.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#gss-krb5.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="krb5">
+<a name="gss-krb5"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gss-krb5.top_of_page"></a>krb5</span></h2>
+<p>krb5</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="gss-krb5.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">#define             <a class="link" href="gss-krb5.html#GSS-KRB5-S-G-BAD-SERVICE-NAME:CAPS" title="GSS_KRB5_S_G_BAD_SERVICE_NAME">GSS_KRB5_S_G_BAD_SERVICE_NAME</a>
+#define             <a class="link" href="gss-krb5.html#GSS-KRB5-S-G-BAD-STRING-UID:CAPS" title="GSS_KRB5_S_G_BAD_STRING_UID">GSS_KRB5_S_G_BAD_STRING_UID</a>
+#define             <a class="link" href="gss-krb5.html#GSS-KRB5-S-G-NOUSER:CAPS" title="GSS_KRB5_S_G_NOUSER">GSS_KRB5_S_G_NOUSER</a>
+#define             <a class="link" href="gss-krb5.html#GSS-KRB5-S-G-VALIDATE-FAILED:CAPS" title="GSS_KRB5_S_G_VALIDATE_FAILED">GSS_KRB5_S_G_VALIDATE_FAILED</a>
+#define             <a class="link" href="gss-krb5.html#GSS-KRB5-S-G-BUFFER-ALLOC:CAPS" title="GSS_KRB5_S_G_BUFFER_ALLOC">GSS_KRB5_S_G_BUFFER_ALLOC</a>
+#define             <a class="link" href="gss-krb5.html#GSS-KRB5-S-G-BAD-MSG-CTX:CAPS" title="GSS_KRB5_S_G_BAD_MSG_CTX">GSS_KRB5_S_G_BAD_MSG_CTX</a>
+#define             <a class="link" href="gss-krb5.html#GSS-KRB5-S-G-WRONG-SIZE:CAPS" title="GSS_KRB5_S_G_WRONG_SIZE">GSS_KRB5_S_G_WRONG_SIZE</a>
+#define             <a class="link" href="gss-krb5.html#GSS-KRB5-S-G-BAD-USAGE:CAPS" title="GSS_KRB5_S_G_BAD_USAGE">GSS_KRB5_S_G_BAD_USAGE</a>
+#define             <a class="link" href="gss-krb5.html#GSS-KRB5-S-G-UNKNOWN-QOP:CAPS" title="GSS_KRB5_S_G_UNKNOWN_QOP">GSS_KRB5_S_G_UNKNOWN_QOP</a>
+#define             <a class="link" href="gss-krb5.html#GSS-KRB5-S-KG-CCACHE-NOMATCH:CAPS" title="GSS_KRB5_S_KG_CCACHE_NOMATCH">GSS_KRB5_S_KG_CCACHE_NOMATCH</a>
+#define             <a class="link" href="gss-krb5.html#GSS-KRB5-S-KG-KEYTAB-NOMATCH:CAPS" title="GSS_KRB5_S_KG_KEYTAB_NOMATCH">GSS_KRB5_S_KG_KEYTAB_NOMATCH</a>
+#define             <a class="link" href="gss-krb5.html#GSS-KRB5-S-KG-TGT-MISSING:CAPS" title="GSS_KRB5_S_KG_TGT_MISSING">GSS_KRB5_S_KG_TGT_MISSING</a>
+#define             <a class="link" href="gss-krb5.html#GSS-KRB5-S-KG-NO-SUBKEY:CAPS" title="GSS_KRB5_S_KG_NO_SUBKEY">GSS_KRB5_S_KG_NO_SUBKEY</a>
+#define             <a class="link" href="gss-krb5.html#GSS-KRB5-S-KG-CONTEXT-ESTABLISHED:CAPS" title="GSS_KRB5_S_KG_CONTEXT_ESTABLISHED">GSS_KRB5_S_KG_CONTEXT_ESTABLISHED</a>
+#define             <a class="link" href="gss-krb5.html#GSS-KRB5-S-KG-BAD-SIGN-TYPE:CAPS" title="GSS_KRB5_S_KG_BAD_SIGN_TYPE">GSS_KRB5_S_KG_BAD_SIGN_TYPE</a>
+#define             <a class="link" href="gss-krb5.html#GSS-KRB5-S-KG-BAD-LENGTH:CAPS" title="GSS_KRB5_S_KG_BAD_LENGTH">GSS_KRB5_S_KG_BAD_LENGTH</a>
+#define             <a class="link" href="gss-krb5.html#GSS-KRB5-S-KG-CTX-INCOMPLETE:CAPS" title="GSS_KRB5_S_KG_CTX_INCOMPLETE">GSS_KRB5_S_KG_CTX_INCOMPLETE</a>
+extern              gss_OID <a class="link" href="gss-krb5.html#GSS-KRB5-NT-USER-NAME:CAPS" title="GSS_KRB5_NT_USER_NAME">GSS_KRB5_NT_USER_NAME</a>;
+extern              gss_OID <a class="link" href="gss-krb5.html#GSS-KRB5-NT-HOSTBASED-SERVICE-NAME:CAPS" title="GSS_KRB5_NT_HOSTBASED_SERVICE_NAME">GSS_KRB5_NT_HOSTBASED_SERVICE_NAME</a>;
+extern              gss_OID <a class="link" href="gss-krb5.html#GSS-KRB5-NT-PRINCIPAL-NAME:CAPS" title="GSS_KRB5_NT_PRINCIPAL_NAME">GSS_KRB5_NT_PRINCIPAL_NAME</a>;
+extern              gss_OID <a class="link" href="gss-krb5.html#GSS-KRB5-NT-MACHINE-UID-NAME:CAPS" title="GSS_KRB5_NT_MACHINE_UID_NAME">GSS_KRB5_NT_MACHINE_UID_NAME</a>;
+extern              gss_OID <a class="link" href="gss-krb5.html#GSS-KRB5-NT-STRING-UID-NAME:CAPS" title="GSS_KRB5_NT_STRING_UID_NAME">GSS_KRB5_NT_STRING_UID_NAME</a>;
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="gss-krb5.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="gss-krb5.details"></a><h2>Details</h2>
+<div class="refsect2" title="GSS_KRB5_S_G_BAD_SERVICE_NAME">
+<a name="GSS-KRB5-S-G-BAD-SERVICE-NAME:CAPS"></a><h3>GSS_KRB5_S_G_BAD_SERVICE_NAME</h3>
+<pre class="programlisting">#define GSS_KRB5_S_G_BAD_SERVICE_NAME 1
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_S_G_BAD_STRING_UID">
+<a name="GSS-KRB5-S-G-BAD-STRING-UID:CAPS"></a><h3>GSS_KRB5_S_G_BAD_STRING_UID</h3>
+<pre class="programlisting">#define GSS_KRB5_S_G_BAD_STRING_UID 2
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_S_G_NOUSER">
+<a name="GSS-KRB5-S-G-NOUSER:CAPS"></a><h3>GSS_KRB5_S_G_NOUSER</h3>
+<pre class="programlisting">#define GSS_KRB5_S_G_NOUSER 3
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_S_G_VALIDATE_FAILED">
+<a name="GSS-KRB5-S-G-VALIDATE-FAILED:CAPS"></a><h3>GSS_KRB5_S_G_VALIDATE_FAILED</h3>
+<pre class="programlisting">#define GSS_KRB5_S_G_VALIDATE_FAILED 4
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_S_G_BUFFER_ALLOC">
+<a name="GSS-KRB5-S-G-BUFFER-ALLOC:CAPS"></a><h3>GSS_KRB5_S_G_BUFFER_ALLOC</h3>
+<pre class="programlisting">#define GSS_KRB5_S_G_BUFFER_ALLOC 5
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_S_G_BAD_MSG_CTX">
+<a name="GSS-KRB5-S-G-BAD-MSG-CTX:CAPS"></a><h3>GSS_KRB5_S_G_BAD_MSG_CTX</h3>
+<pre class="programlisting">#define GSS_KRB5_S_G_BAD_MSG_CTX 6
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_S_G_WRONG_SIZE">
+<a name="GSS-KRB5-S-G-WRONG-SIZE:CAPS"></a><h3>GSS_KRB5_S_G_WRONG_SIZE</h3>
+<pre class="programlisting">#define GSS_KRB5_S_G_WRONG_SIZE 7
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_S_G_BAD_USAGE">
+<a name="GSS-KRB5-S-G-BAD-USAGE:CAPS"></a><h3>GSS_KRB5_S_G_BAD_USAGE</h3>
+<pre class="programlisting">#define GSS_KRB5_S_G_BAD_USAGE 8
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_S_G_UNKNOWN_QOP">
+<a name="GSS-KRB5-S-G-UNKNOWN-QOP:CAPS"></a><h3>GSS_KRB5_S_G_UNKNOWN_QOP</h3>
+<pre class="programlisting">#define GSS_KRB5_S_G_UNKNOWN_QOP 9
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_S_KG_CCACHE_NOMATCH">
+<a name="GSS-KRB5-S-KG-CCACHE-NOMATCH:CAPS"></a><h3>GSS_KRB5_S_KG_CCACHE_NOMATCH</h3>
+<pre class="programlisting">#define GSS_KRB5_S_KG_CCACHE_NOMATCH 10
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_S_KG_KEYTAB_NOMATCH">
+<a name="GSS-KRB5-S-KG-KEYTAB-NOMATCH:CAPS"></a><h3>GSS_KRB5_S_KG_KEYTAB_NOMATCH</h3>
+<pre class="programlisting">#define GSS_KRB5_S_KG_KEYTAB_NOMATCH 11
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_S_KG_TGT_MISSING">
+<a name="GSS-KRB5-S-KG-TGT-MISSING:CAPS"></a><h3>GSS_KRB5_S_KG_TGT_MISSING</h3>
+<pre class="programlisting">#define GSS_KRB5_S_KG_TGT_MISSING 12
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_S_KG_NO_SUBKEY">
+<a name="GSS-KRB5-S-KG-NO-SUBKEY:CAPS"></a><h3>GSS_KRB5_S_KG_NO_SUBKEY</h3>
+<pre class="programlisting">#define GSS_KRB5_S_KG_NO_SUBKEY 13
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_S_KG_CONTEXT_ESTABLISHED">
+<a name="GSS-KRB5-S-KG-CONTEXT-ESTABLISHED:CAPS"></a><h3>GSS_KRB5_S_KG_CONTEXT_ESTABLISHED</h3>
+<pre class="programlisting">#define GSS_KRB5_S_KG_CONTEXT_ESTABLISHED 14
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_S_KG_BAD_SIGN_TYPE">
+<a name="GSS-KRB5-S-KG-BAD-SIGN-TYPE:CAPS"></a><h3>GSS_KRB5_S_KG_BAD_SIGN_TYPE</h3>
+<pre class="programlisting">#define GSS_KRB5_S_KG_BAD_SIGN_TYPE 15
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_S_KG_BAD_LENGTH">
+<a name="GSS-KRB5-S-KG-BAD-LENGTH:CAPS"></a><h3>GSS_KRB5_S_KG_BAD_LENGTH</h3>
+<pre class="programlisting">#define GSS_KRB5_S_KG_BAD_LENGTH 16
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_S_KG_CTX_INCOMPLETE">
+<a name="GSS-KRB5-S-KG-CTX-INCOMPLETE:CAPS"></a><h3>GSS_KRB5_S_KG_CTX_INCOMPLETE</h3>
+<pre class="programlisting">#define GSS_KRB5_S_KG_CTX_INCOMPLETE 17
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_NT_USER_NAME">
+<a name="GSS-KRB5-NT-USER-NAME:CAPS"></a><h3>GSS_KRB5_NT_USER_NAME</h3>
+<pre class="programlisting">extern gss_OID GSS_KRB5_NT_USER_NAME;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_NT_HOSTBASED_SERVICE_NAME">
+<a name="GSS-KRB5-NT-HOSTBASED-SERVICE-NAME:CAPS"></a><h3>GSS_KRB5_NT_HOSTBASED_SERVICE_NAME</h3>
+<pre class="programlisting">extern gss_OID GSS_KRB5_NT_HOSTBASED_SERVICE_NAME;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_NT_PRINCIPAL_NAME">
+<a name="GSS-KRB5-NT-PRINCIPAL-NAME:CAPS"></a><h3>GSS_KRB5_NT_PRINCIPAL_NAME</h3>
+<pre class="programlisting">extern gss_OID GSS_KRB5_NT_PRINCIPAL_NAME;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_NT_MACHINE_UID_NAME">
+<a name="GSS-KRB5-NT-MACHINE-UID-NAME:CAPS"></a><h3>GSS_KRB5_NT_MACHINE_UID_NAME</h3>
+<pre class="programlisting">extern gss_OID GSS_KRB5_NT_MACHINE_UID_NAME;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GSS_KRB5_NT_STRING_UID_NAME">
+<a name="GSS-KRB5-NT-STRING-UID-NAME:CAPS"></a><h3>GSS_KRB5_NT_STRING_UID_NAME</h3>
+<pre class="programlisting">extern gss_OID GSS_KRB5_NT_STRING_UID_NAME;
+</pre>
+<p>
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.14</div>
+</body>
+</html>

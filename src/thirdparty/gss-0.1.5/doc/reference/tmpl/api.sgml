@@ -1,0 +1,1227 @@
+<!-- ##### SECTION Title ##### -->
+api
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### TYPEDEF gss_ctx_id_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF gss_cred_id_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF gss_name_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF gss_uint32 ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF OM_uint32 ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF gss_qop_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF gss_cred_usage_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO GSS_C_DELEG_FLAG ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_MUTUAL_FLAG ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_REPLAY_FLAG ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_SEQUENCE_FLAG ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_CONF_FLAG ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_INTEG_FLAG ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_ANON_FLAG ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_PROT_READY_FLAG ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_TRANS_FLAG ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_BOTH ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_INITIATE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_ACCEPT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_GSS_CODE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_MECH_CODE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_UNSPEC ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_LOCAL ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_INET ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_IMPLINK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_PUP ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_CHAOS ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_NS ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_NBS ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_ECMA ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_DATAKIT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_CCITT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_SNA ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_DECnet ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_DLI ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_LAT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_HYLINK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_APPLETALK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_BSC ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_DSS ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_OSI ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_X25 ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_AF_NULLADDR ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_NO_NAME ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_NO_BUFFER ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_NO_OID ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_NO_OID_SET ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_NO_CONTEXT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_NO_CREDENTIAL ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_NO_CHANNEL_BINDINGS ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_EMPTY_BUFFER ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_NULL_OID ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_NULL_OID_SET ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_QOP_DEFAULT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_INDEFINITE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### VARIABLE GSS_C_NT_USER_NAME ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_C_NT_MACHINE_UID_NAME ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_C_NT_STRING_UID_NAME ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_C_NT_HOSTBASED_SERVICE_X ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_C_NT_HOSTBASED_SERVICE ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_C_NT_ANONYMOUS ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_C_NT_EXPORT_NAME ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO GSS_S_COMPLETE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_CALLING_ERROR_OFFSET ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_ROUTINE_ERROR_OFFSET ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_SUPPLEMENTARY_OFFSET ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_CALLING_ERROR_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_ROUTINE_ERROR_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_C_SUPPLEMENTARY_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_CALLING_ERROR ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO GSS_ROUTINE_ERROR ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO GSS_SUPPLEMENTARY_INFO ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO GSS_ERROR ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO GSS_S_CALL_INACCESSIBLE_READ ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_CALL_INACCESSIBLE_WRITE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_CALL_BAD_STRUCTURE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_BAD_MECH ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_BAD_NAME ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_BAD_NAMETYPE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_BAD_BINDINGS ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_BAD_STATUS ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_BAD_SIG ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_BAD_MIC ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_NO_CRED ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_NO_CONTEXT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_DEFECTIVE_TOKEN ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_DEFECTIVE_CREDENTIAL ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_CREDENTIALS_EXPIRED ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_CONTEXT_EXPIRED ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_FAILURE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_BAD_QOP ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_UNAUTHORIZED ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_UNAVAILABLE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_DUPLICATE_ELEMENT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_NAME_NOT_MN ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_CONTINUE_NEEDED ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_DUPLICATE_TOKEN ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_OLD_TOKEN ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_UNSEQ_TOKEN ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GSS_S_GAP_TOKEN ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION gss_acquire_cred ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@desired_name: 
+@time_req: 
+@desired_mechs: 
+@cred_usage: 
+@output_cred_handle: 
+@actual_mechs: 
+@time_rec: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_release_cred ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@cred_handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_init_sec_context ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@initiator_cred_handle: 
+@context_handle: 
+@target_name: 
+@mech_type: 
+@req_flags: 
+@time_req: 
+@input_chan_bindings: 
+@input_token: 
+@actual_mech_type: 
+@output_token: 
+@ret_flags: 
+@time_rec: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_accept_sec_context ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@context_handle: 
+@acceptor_cred_handle: 
+@input_token_buffer: 
+@input_chan_bindings: 
+@src_name: 
+@mech_type: 
+@output_token: 
+@ret_flags: 
+@time_rec: 
+@delegated_cred_handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_process_context_token ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@context_handle: 
+@token_buffer: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_delete_sec_context ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@context_handle: 
+@output_token: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_context_time ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@context_handle: 
+@time_rec: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_get_mic ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@context_handle: 
+@qop_req: 
+@message_buffer: 
+@message_token: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_verify_mic ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@context_handle: 
+@message_buffer: 
+@token_buffer: 
+@qop_state: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_wrap ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@context_handle: 
+@conf_req_flag: 
+@qop_req: 
+@input_message_buffer: 
+@conf_state: 
+@output_message_buffer: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_unwrap ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@context_handle: 
+@input_message_buffer: 
+@output_message_buffer: 
+@conf_state: 
+@qop_state: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_display_status ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@status_value: 
+@status_type: 
+@mech_type: 
+@message_context: 
+@status_string: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_indicate_mechs ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@mech_set: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_compare_name ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@name1: 
+@name2: 
+@name_equal: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_display_name ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@input_name: 
+@output_name_buffer: 
+@output_name_type: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_import_name ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@input_name_buffer: 
+@input_name_type: 
+@output_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_export_name ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@input_name: 
+@exported_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_release_name ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_release_buffer ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@buffer: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_release_oid_set ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@set: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_inquire_cred ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@cred_handle: 
+@name: 
+@lifetime: 
+@cred_usage: 
+@mechanisms: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_inquire_context ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@context_handle: 
+@src_name: 
+@targ_name: 
+@lifetime_rec: 
+@mech_type: 
+@ctx_flags: 
+@locally_initiated: 
+@open: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_wrap_size_limit ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@context_handle: 
+@conf_req_flag: 
+@qop_req: 
+@req_output_size: 
+@max_input_size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_add_cred ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@input_cred_handle: 
+@desired_name: 
+@desired_mech: 
+@cred_usage: 
+@initiator_time_req: 
+@acceptor_time_req: 
+@output_cred_handle: 
+@actual_mechs: 
+@initiator_time_rec: 
+@acceptor_time_rec: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_inquire_cred_by_mech ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@cred_handle: 
+@mech_type: 
+@name: 
+@initiator_lifetime: 
+@acceptor_lifetime: 
+@cred_usage: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_export_sec_context ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@context_handle: 
+@interprocess_token: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_import_sec_context ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@interprocess_token: 
+@context_handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_create_empty_oid_set ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@oid_set: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_add_oid_set_member ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@member_oid: 
+@oid_set: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_test_oid_set_member ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@member: 
+@set: 
+@present: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_inquire_names_for_mech ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@mechanism: 
+@name_types: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_inquire_mechs_for_name ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@input_name: 
+@mech_types: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_canonicalize_name ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@input_name: 
+@mech_type: 
+@output_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_duplicate_name ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@src_name: 
+@dest_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_sign ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@context_handle: 
+@qop_req: 
+@message_buffer: 
+@message_token: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_verify ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@context_handle: 
+@message_buffer: 
+@token_buffer: 
+@qop_state: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_seal ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@context_handle: 
+@conf_req_flag: 
+@qop_req: 
+@input_message_buffer: 
+@conf_state: 
+@output_message_buffer: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_unseal ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@context_handle: 
+@input_message_buffer: 
+@output_message_buffer: 
+@conf_state: 
+@qop_state: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_inquire_saslname_for_mech ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@desired_mech: 
+@sasl_mech_name: 
+@mech_name: 
+@mech_description: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_inquire_mech_for_saslname ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@sasl_mech_name: 
+@mech_type: 
+@Returns: 
+
+

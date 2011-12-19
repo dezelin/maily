@@ -1,0 +1,305 @@
+# Translation of gss package to Slovak.
+# Copyright (C) 2007 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gss package.
+# Ivan Masár <helix84@centrum.sk>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gss 0.0.22\n"
+"Report-Msgid-Bugs-To: bug-gss@josefsson.org\n"
+"POT-Creation-Date: 2010-03-22 10:38+0100\n"
+"PO-Revision-Date: 2007-09-14 23:40+0100\n"
+"Last-Translator: Ivan Masár <helix84@centrum.sk>\n"
+"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lib/meta.c:43
+msgid "Kerberos V5 GSS-API mechanism"
+msgstr ""
+
+#: lib/error.c:43
+msgid "A required input parameter could not be read"
+msgstr "Požadovaný vstupný parameter nebolo možné načítať"
+
+#: lib/error.c:45
+msgid "A required output parameter could not be written"
+msgstr "Požadovaný výstupný parameter nebolo možné zapísať"
+
+#: lib/error.c:47
+msgid "A parameter was malformed"
+msgstr "Formát parametra bol chybný"
+
+#: lib/error.c:52
+msgid "An unsupported mechanism was requested"
+msgstr "Bol vyžiadaný nepodporovaný mechanizmus"
+
+#: lib/error.c:54
+msgid "An invalid name was supplied"
+msgstr "Bol dodaný neplatný názov"
+
+#: lib/error.c:56
+msgid "A supplied name was of an unsupported type"
+msgstr "Dodaný názov bol nepodporovaného typu"
+
+#: lib/error.c:58
+msgid "Incorrect channel bindings were supplied"
+msgstr "Boli dodané nesprávne väzby na kanál"
+
+#: lib/error.c:60
+msgid "An invalid status code was supplied"
+msgstr "Bol dodaný neplatný stavový kód"
+
+#: lib/error.c:62
+msgid "A token had an invalid MIC"
+msgstr "Token mal nesprávny MIC"
+
+#: lib/error.c:64
+msgid ""
+"No credentials were supplied, or the credentials were unavailable or "
+"inaccessible"
+msgstr "Poverenie nebolo dodané, dostupné alebo prístupné"
+
+#: lib/error.c:67
+msgid "No context has been established"
+msgstr "Nebol zavedený kontext"
+
+#: lib/error.c:69
+msgid "A token was invalid"
+msgstr "Token bol neplatný"
+
+#: lib/error.c:71
+msgid "A credential was invalid"
+msgstr "Poverenie bolo neplatné"
+
+#: lib/error.c:73
+msgid "The referenced credentials have expired"
+msgstr "Poverenie, na ktoré bolo odkazované, vypršalo"
+
+#: lib/error.c:75
+msgid "The context has expired"
+msgstr "Kontext vypršal"
+
+#: lib/error.c:77
+msgid "Unspecified error in underlying mechanism"
+msgstr "Nešpecifikovaná chyba v použitom mechanizme"
+
+#: lib/error.c:79
+msgid "The quality-of-protection requested could not be provided"
+msgstr ""
+"Nebolo možné poskytnúť požadovanú kvalitu-ochrany (quality-of-protection)"
+
+#: lib/error.c:81
+msgid "The operation is forbidden by local security policy"
+msgstr "Operáciu zakazuje lokálna bezpečnostná politika"
+
+#: lib/error.c:83
+msgid "The operation or option is unavailable"
+msgstr "Operácia alebo voľba nie je dostupná"
+
+#: lib/error.c:85
+msgid "The requested credential element already exists"
+msgstr "Požadovaný prvok poverenia už existuje"
+
+#: lib/error.c:87
+msgid "The provided name was not a mechanism name"
+msgstr "Poskytnutý názov nebol názvom mechanizmu"
+
+#: lib/error.c:92
+msgid ""
+"The gss_init_sec_context() or gss_accept_sec_context() function must be "
+"called again to complete its function"
+msgstr ""
+"Funkciu gss_init_sec_context() alebo gss_accept_sec_context() je potrebné "
+"zavolať znova, aby dokončila svoju úlohu"
+
+#: lib/error.c:95
+msgid "The token was a duplicate of an earlier token"
+msgstr "Token bol duplikátom skoršieho tokenu"
+
+#: lib/error.c:97
+msgid "The token's validity period has expired"
+msgstr "Platnosť tokenu vypršala"
+
+#: lib/error.c:99
+msgid "A later token has already been processed"
+msgstr "Už bol spracovaný neskorší token"
+
+#: lib/error.c:101
+msgid "An expected per-message token was not received"
+msgstr "Očakávaný token-na-správu nebol obdržaný"
+
+#: lib/error.c:318
+msgid "No error"
+msgstr "Žiadna chyba"
+
+#: lib/krb5/error.c:42
+msgid "No @ in SERVICE-NAME name string"
+msgstr "V reťazci SERVICE-NAME chýba @"
+
+#: lib/krb5/error.c:44
+msgid "STRING-UID-NAME contains nondigits"
+msgstr "STRING-UID-NAME obsahuje znaky, ktoré nie sú číslice"
+
+#: lib/krb5/error.c:46
+msgid "UID does not resolve to username"
+msgstr "UID nie je možné preložiť na používateľské meno"
+
+#: lib/krb5/error.c:48
+msgid "Validation error"
+msgstr "Chyba pri overovaní"
+
+#: lib/krb5/error.c:50
+msgid "Couldn't allocate gss_buffer_t data"
+msgstr "Nebolo možné alokovať údaje gss_buffer_t"
+
+#: lib/krb5/error.c:52
+msgid "Message context invalid"
+msgstr "Neplatný kontext správy"
+
+#: lib/krb5/error.c:54
+msgid "Buffer is the wrong size"
+msgstr "CHybná veľkosť bufera"
+
+#: lib/krb5/error.c:56
+msgid "Credential usage type is unknown"
+msgstr "Typ použitia oprávnenia je neznámy"
+
+#: lib/krb5/error.c:58
+msgid "Unknown quality of protection specified"
+msgstr "Bola zadaná neznáma kvalita ochrany"
+
+#: lib/krb5/error.c:61
+msgid "Principal in credential cache does not match desired name"
+msgstr ""
+"Zmocniteľ vo vyrovnávacej pamäti oprávnení sa nezhoduje s požadovaným menom"
+
+#: lib/krb5/error.c:63
+msgid "No principal in keytab matches desired name"
+msgstr "Zmocniteľ v keytab sa zhoduje s požadovaným menom"
+
+#: lib/krb5/error.c:65
+msgid "Credential cache has no TGT"
+msgstr "Vyrovnávacia pamäť oprávnení nemá TGT"
+
+#: lib/krb5/error.c:67
+msgid "Authenticator has no subkey"
+msgstr "Autentifikátor nemá podkľúč"
+
+#: lib/krb5/error.c:69
+msgid "Context is already fully established"
+msgstr "Kontext je už úplne zavedený"
+
+#: lib/krb5/error.c:71
+msgid "Unknown signature type in token"
+msgstr "Neplatný typ podpisu v tokene"
+
+#: lib/krb5/error.c:73
+msgid "Invalid field length in token"
+msgstr "Neplatná dĺžka poľa v tokene"
+
+#: lib/krb5/error.c:75
+msgid "Attempt to use incomplete security context"
+msgstr "Pokus o použitie neúplného bezpečnostného kontextu"
+
+#: lib/krb5/error.c:92
+msgid "No krb5 error"
+msgstr "Žiadna chyba krb5"
+
+#: lib/krb5/error.c:133
+msgid "Unknown krb5 error"
+msgstr "Neznáma chyba krb5"
+
+#: src/gss.c:64
+#, c-format
+msgid "Try `%s --help' for more information.\n"
+msgstr "Skúste viac informácií pomocou „%s --help“.\n"
+
+#: src/gss.c:68
+#, c-format
+msgid "Usage: %s OPTIONS...\n"
+msgstr ""
+
+#: src/gss.c:71
+msgid ""
+"Command line interface to GSS, used to explain error codes.\n"
+"\n"
+msgstr ""
+
+#: src/gss.c:75
+msgid ""
+"Mandatory arguments to long options are mandatory for short options too.\n"
+msgstr ""
+
+#: src/gss.c:78
+msgid ""
+"  -h, --help        Print help and exit\n"
+"  -V, --version     Print version and exit\n"
+"  -m, --major=LONG  Describe a `major status' error code vaue in plain "
+"text.\n"
+"  -q, --quiet       Silent operation  (default=off)\n"
+msgstr ""
+
+#: src/gss.c:119
+#, c-format
+msgid ""
+"GSS-API major status code %ld (0x%lx).\n"
+"\n"
+msgstr ""
+"GSS-API hlavné, stavový kód %ld (0x%lx).\n"
+"\n"
+
+#: src/gss.c:122
+#, c-format
+msgid ""
+"   MSB                                                                 LSB\n"
+"   +-----------------+-----------------+---------------------------------+\n"
+"   |  Calling Error  |  Routine Error  |       Supplementary Info        |\n"
+"   | "
+msgstr ""
+"   MSB                                                                 LSB\n"
+"   +-----------------+-----------------+---------------------------------+\n"
+"   |  Chyba volania  |  Chyba rutiny   |     Doplňujúce informácie       |\n"
+"   | "
+
+#: src/gss.c:136
+#, c-format
+msgid ""
+"|\n"
+"   +-----------------+-----------------+---------------------------------+\n"
+"Bit 31            24  23            16  15                             0\n"
+"\n"
+msgstr ""
+"|\n"
+"   +-----------------+-----------------+---------------------------------+\n"
+"Bit 31            24  23            16  15                             0\n"
+"\n"
+
+#: src/gss.c:146
+#, c-format
+msgid "Masked routine error %ld (0x%lx) shifted into %ld (0x%lx):\n"
+msgstr "Maskovaná chyba rutiny %ld (0x%lx) posunutá na %ld (0x%lx):\n"
+
+#: src/gss.c:163 src/gss.c:198 src/gss.c:236
+#, c-format
+msgid "%s: displaying status code failed\n"
+msgstr "%s: zobrazenie stavového kódu zlyhalo\n"
+
+#: src/gss.c:184
+#, c-format
+msgid "Masked calling error %ld (0x%lx) shifted into %ld (0x%lx):\n"
+msgstr "Maskovaná chyba volania %ld (0x%lx) posunutá na %ld (0x%lx):\n"
+
+#: src/gss.c:218
+#, c-format
+msgid "Masked supplementary info %ld (0x%lx) shifted into %ld (0x%lx):\n"
+msgstr "Maskované doplňujúce informácie %ld (0x%lx) posunuté na %ld (0x%lx):\n"
+
+#: src/gss.c:254
+#, c-format
+msgid "No error\n"
+msgstr "Žiadna chyba\n"
+
+#~ msgid "%s: missing parameter\n"
+#~ msgstr "%s: chýba parameter\n"

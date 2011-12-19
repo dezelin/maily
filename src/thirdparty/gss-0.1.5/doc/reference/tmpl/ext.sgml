@@ -1,0 +1,153 @@
+<!-- ##### SECTION Title ##### -->
+ext
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### FUNCTION gss_check_version ##### -->
+<para>
+
+</para>
+
+@req_version: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_oid_equal ##### -->
+<para>
+
+</para>
+
+@first_oid: 
+@second_oid: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_copy_oid ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@src_oid: 
+@dest_oid: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_duplicate_oid ##### -->
+<para>
+
+</para>
+
+@minor_status: 
+@src_oid: 
+@dest_oid: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_userok ##### -->
+<para>
+
+</para>
+
+@name: 
+@username: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_encapsulate_token ##### -->
+<para>
+
+</para>
+
+@input_message: 
+@token_oid: 
+@output_message: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_encapsulate_token_prefix ##### -->
+<para>
+
+</para>
+
+@input_message: 
+@prefix: 
+@prefixlen: 
+@token_oid: 
+@output_message: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gss_decapsulate_token ##### -->
+<para>
+
+</para>
+
+@input_message: 
+@token_oid: 
+@dataptr: 
+@datalen: 
+@Returns: 
+
+
+<!-- ##### VARIABLE GSS_C_NT_USER_NAME_static ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_C_NT_MACHINE_UID_NAME_static ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_C_NT_STRING_UID_NAME_static ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_C_NT_HOSTBASED_SERVICE_X_static ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_C_NT_HOSTBASED_SERVICE_static ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_C_NT_ANONYMOUS_static ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_C_NT_EXPORT_NAME_static ##### -->
+<para>
+
+</para>
+
+

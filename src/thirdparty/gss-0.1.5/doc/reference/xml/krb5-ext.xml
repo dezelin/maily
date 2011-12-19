@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gss-krb5-ext">
+<refmeta>
+<refentrytitle role="top_of_page" id="gss-krb5-ext.top_of_page">krb5-ext</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>
+  GSS Library
+</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>krb5-ext</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gss-krb5-ext.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>extern              gss_OID <link linkend="GSS-KRB5:CAPS">GSS_KRB5</link>;
+extern              gss_OID_desc <link linkend="GSS-KRB5-static">GSS_KRB5_static</link>;
+extern              gss_OID_desc <link linkend="GSS-KRB5-NT-USER-NAME-static">GSS_KRB5_NT_USER_NAME_static</link>;
+extern              gss_OID_desc <link linkend="GSS-KRB5-NT-HOSTBASED-SERVICE-NAME-static">GSS_KRB5_NT_HOSTBASED_SERVICE_NAME_static</link>;
+extern              gss_OID_desc <link linkend="GSS-KRB5-NT-PRINCIPAL-NAME-static">GSS_KRB5_NT_PRINCIPAL_NAME_static</link>;
+extern              gss_OID_desc <link linkend="GSS-KRB5-NT-MACHINE-UID-NAME-static">GSS_KRB5_NT_MACHINE_UID_NAME_static</link>;
+extern              gss_OID_desc <link linkend="GSS-KRB5-NT-STRING-UID-NAME-static">GSS_KRB5_NT_STRING_UID_NAME_static</link>;
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="gss-krb5-ext.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+<refsect1 id="gss-krb5-ext.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GSS-KRB5:CAPS" role="variable">
+<title>GSS_KRB5</title>
+<indexterm zone="GSS-KRB5:CAPS"><primary>GSS_KRB5</primary></indexterm>
+<programlisting>extern gss_OID GSS_KRB5;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-static" role="variable">
+<title>GSS_KRB5_static</title>
+<indexterm zone="GSS-KRB5-static"><primary>GSS_KRB5_static</primary></indexterm>
+<programlisting>extern gss_OID_desc GSS_KRB5_static;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-NT-USER-NAME-static" role="variable">
+<title>GSS_KRB5_NT_USER_NAME_static</title>
+<indexterm zone="GSS-KRB5-NT-USER-NAME-static"><primary>GSS_KRB5_NT_USER_NAME_static</primary></indexterm>
+<programlisting>extern gss_OID_desc GSS_KRB5_NT_USER_NAME_static;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-NT-HOSTBASED-SERVICE-NAME-static" role="variable">
+<title>GSS_KRB5_NT_HOSTBASED_SERVICE_NAME_static</title>
+<indexterm zone="GSS-KRB5-NT-HOSTBASED-SERVICE-NAME-static"><primary>GSS_KRB5_NT_HOSTBASED_SERVICE_NAME_static</primary></indexterm>
+<programlisting>extern gss_OID_desc GSS_KRB5_NT_HOSTBASED_SERVICE_NAME_static;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-NT-PRINCIPAL-NAME-static" role="variable">
+<title>GSS_KRB5_NT_PRINCIPAL_NAME_static</title>
+<indexterm zone="GSS-KRB5-NT-PRINCIPAL-NAME-static"><primary>GSS_KRB5_NT_PRINCIPAL_NAME_static</primary></indexterm>
+<programlisting>extern gss_OID_desc GSS_KRB5_NT_PRINCIPAL_NAME_static;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-NT-MACHINE-UID-NAME-static" role="variable">
+<title>GSS_KRB5_NT_MACHINE_UID_NAME_static</title>
+<indexterm zone="GSS-KRB5-NT-MACHINE-UID-NAME-static"><primary>GSS_KRB5_NT_MACHINE_UID_NAME_static</primary></indexterm>
+<programlisting>extern gss_OID_desc GSS_KRB5_NT_MACHINE_UID_NAME_static;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GSS-KRB5-NT-STRING-UID-NAME-static" role="variable">
+<title>GSS_KRB5_NT_STRING_UID_NAME_static</title>
+<indexterm zone="GSS-KRB5-NT-STRING-UID-NAME-static"><primary>GSS_KRB5_NT_STRING_UID_NAME_static</primary></indexterm>
+<programlisting>extern gss_OID_desc GSS_KRB5_NT_STRING_UID_NAME_static;
+</programlisting>
+<para>
+</para></refsect2>
+
+</refsect1>
+
+</refentry>

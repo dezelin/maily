@@ -1,0 +1,427 @@
+GSS NEWS -- History of user-visible changes.                    -*- outline -*-
+Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010 Simon Josefsson
+See the end for copying conditions.
+
+* Version 0.1.5 (released 2010-03-22)
+
+** Properly increment shared library version for newly added APIs in v0.1.4.
+Note that the API/ABI is still fully backwards compatible.
+
+** API and ABI modifications.
+No changes since last version.
+
+* Version 0.1.4 (released 2010-03-22)
+
+** Add new interfaces defined in RFC 5801.
+The APIs are gss_inquire_mech_for_saslname and
+gss_inquire_saslname_for_mech.
+
+** KRB5: Fix bug in channel binding computation.
+
+** Update gnulib files.
+
+** API and ABI modifications.
+gss_inquire_mech_for_saslname: ADDED.
+gss_inquire_saslname_for_mech: ADDED.
+
+* Version 0.1.3 (released 2010-03-15)
+
+** KRB5: Add support for channel bindings.
+
+** Build fixes and code cleanups.
+
+** i18n: Added Finnish translation, thanks to Jorma Karvonen.
+
+** i18n: Added Italian translation, thanks to Sergio Zanchetta.
+
+** API and ABI modifications.
+No changes since last version.
+
+* Version 0.1.2 (released 2010-01-19)
+
+** Build fixes and code cleanups.
+
+** i18n: Added Finnish translation, thanks to Jorma Karvonen.
+
+** API and ABI modifications.
+No changes since last version.
+
+* Version 0.1.1 (released 2009-04-03)
+
+** libgss: Fix memory leak in gss_release_oid_set.
+
+** libgss: Fix bug that prevented error messages from being translated.
+
+** libgss krb5: no longer supports service names without hostname.
+The function gss_canonicalize_name will return a
+GSS_KRB5_S_G_BAD_SERVICE_NAME minor status code if you pass it a
+service name without a @hostname part.  The reason is that there is no
+secure way to find a canonical name of the local host inside the
+library.  Instead, the application must provide one.
+
+** tests: Fix debug output and memory leaks.
+
+** Install a libgss-*.def file when building under MinGW.
+
+** Build fixes for MinGW.
+The krb5 mechanism now builds under MinGW as well.
+
+** API and ABI modifications.
+No changes since last version.
+
+* Version 0.1.0 (released 2009-03-30)
+
+** libgss: Shared library version is incremented.
+The library is backwards compatible on source code level if you don't
+use the gss_krb5* functions or the gss_alloc_fail_function variable.
+
+** libgss: Kerberos V5 function symbols gss_krb5* not exported.
+They were never intended to be exported and have never been part of
+any header file.
+
+** libgss: Obsolete gss_xalloc_die and gss_alloc_fail_function not exported.
+
+** libgss: Add GSS_KRB5_NT_MACHINE_UID_NAME{,_static}.
+Defined in RFC 1964.
+
+** libgss: New header file gss/krb5-ext.h used for GNU GSS specific extensions.
+Before gss/krb5.h was used for both offical and GNU GSS prototypes.
+
+** libgss: The version script version is now GSS_0.1.0 instead of GSS_1.0.
+The use of GSS_1.0 in the last release was a mistake.
+
+** libgss: Added version integer symbols to header file.
+The symbols are GSS_VERSION_MAJOR, GSS_VERSION_MINOR,
+GSS_VERSION_PATCH, and GSS_VERSION_NUMBER.
+
+** doc: The GTK-DOC manual is now built properly.
+
+** Fix compilation error with Sun Studio related to missing getopt.
+Reported by Dagobert Michelsen <dam@opencsw.org> in
+<http://permalink.gmane.org/gmane.comp.gnu.gss.general/142>.
+
+** API and ABI modifications.
+GSS_KRB5_NT_MACHINE_UID_NAME: ADDED
+GSS_KRB5_NT_MACHINE_UID_NAME_static: ADDED
+gss_alloc_fail_function: REMOVED
+gss_krb5*: REMOVED
+GSS_VERSION_MAJOR: ADDED
+GSS_VERSION_MINOR: ADDED
+GSS_VERSION_PATCH: ADDED
+GSS_VERSION_NUMBER: ADDED
+
+* Version 0.0.26 (released 2009-03-27)
+
+** libgss: The library will now return error codes when out of memory.
+The gss_alloc_fail_function variable is no longer declared, but is
+still available in the library for ABI compatibility.
+
+** libgss: Use a LD version script on platforms where it is supported.
+Currently only GNU LD and the Solaris linker supports it.  This helps
+Debian package tools to produce better dependencies.  Before we used
+Libtool -export-symbols-regex that created an anonymous version tag.
+We use -export-symbols-regex when the system does not support LD
+version scripts, but that only affect symbol visibility.
+
+** API and ABI modifications.
+gss_alloc_fail_function: No longer declared in header file.
+
+* Version 0.0.25 (released 2009-02-26)
+
+** gss: Improve --help and --version output.
+
+** doc: Change license on the manual to GFDLv1.3+.
+
+** More compiler warnings enabled, and many warnings fixed.
+
+** API and ABI modifications.
+No changes since last version.
+
+* Version 0.0.24 (released 2008-09-10)
+
+** Fix non-portable use of brace expansion in makefiles.
+
+** Update gnulib files.
+
+** Fix some warnings and make distcheck build the software with -Werror.
+
+** Translations files not stored directly in git to avoid merge conflicts.
+This allows us to avoid use of --no-location which makes the
+translation teams happier.
+
+** API and ABI modifications.
+No changes since last version.
+
+* Version 0.0.23 (released 2007-12-19)
+
+** Use gettext 0.17.
+
+** Update gnulib files.
+
+** API and ABI modifications.
+No changes since last version.
+
+* Version 0.0.22 (released 2007-06-29)
+
+** GSS is now licensed under the GPL version 3 or later.
+
+** GSS is now developed using Git instead of CVS.
+A public git mirror is available from <http://repo.or.cz/w/gss.git>.
+
+** API and ABI modifications.
+No changes since last version.
+
+* Version 0.0.21 (released 2007-05-22)
+
+** Fix 'make distclean'.
+Now src/gss_cmd.c and src/gss_cmd.h is only removed by 'make
+maintainer-clean'.  Thanks to Bernd Zeimetz <bernd@bzed.de> and Russ
+Allbery <rra@stanford.edu>.
+
+** Gnulib file update.
+
+** API and ABI modifications.
+No changes since last version.
+
+* Version 0.0.20 (released 2007-04-16)
+
+** Gnulib file update.
+
+** API and ABI modifications.
+No changes since last version.
+
+* Version 0.0.19 (released 2007-01-09)
+
+** Corrected years in copyright notices.
+
+** Fixed a 64-bit bug in asn1.c:gss_decapsulate_token().
+The bug resulted in 'make check' failures on AMD64 systems.  Reported
+by Kurt Roeckx <kurt@roeckx.be>.
+
+** Now autoconf 2.61, automake 1.10, and gettext 0.16 is required.
+
+** Gnulib file update.
+
+** API and ABI modifications.
+No changes since last version.
+
+* Version 0.0.18 (released 2006-11-06)
+
+** Kerberos V5 gss_acquire_cred doesn't use the default realm when looking
+** for hostkeys.
+This was the reason that 'make check' failed earlier.
+
+** Gnulib file update, including a rewrite of `gss_check_version'.
+
+** API and ABI modifications.
+No changes since last version.
+
+* Version 0.0.17 (released 2006-04-30)
+
+** Debian packages are available from http://josefsson.org/gss/debian/
+
+** The library is linked with -no-undefined, for mingw32 cross compiles.
+
+** The link test for Shishi was improved.
+
+** Gnulib files were updated.
+
+** API and ABI modifications.
+No changes since last version.
+
+* Version 0.0.16 (released 2005-08-11)
+
+** Kinyarwanda translation added, by Steve Murphy.
+
+** The help-gss@gnu.org mailing list is now mentioned in documentation.
+
+** The license template in files were updated with the new FSF address.
+
+** API and ABI modifications.
+gss_release_oid: REMOVED.  It seem it was the wrong thing to export
+   this API, although the underlaying question (who is responsible for
+   managing dynamically allocated OIDs?  How?) is still unanswered.
+
+* Version 0.0.15 (released 2004-11-22)
+
+** Documentation improvements.
+For example, you can now browse the GSS manual using DevHelp.
+
+** Libtool's -export-symbols-regex is now used to only export official APIs.
+Before, applications might accidentally access internal functions.
+Note that this is not supported on all platforms, so you must still
+make sure you are not using undocumented symbols in GSS.
+
+* Version 0.0.14 (released 2004-10-15)
+
+** gss_import_name and gss_duplicate_name no longer clone the OID.
+Instead, only the pointer to the OID is cloned.  It seem unclear where
+a cloned OID would be deallocated.
+
+** Fixed handling of sequence numbers in gss_accept_sec_context, for servers.
+
+** Fix crash in gss_accept_sec_context for NULL values of ret_flags.
+
+** Fix memory leaks.
+
+** Sync with new Shishi 0.0.18 API.
+
+* Version 0.0.13 (released 2004-08-08)
+
+** Revamp of gnulib compatibility files.
+
+** More translations.
+French (by Michel Robitaille) and Romanian (by Laurentiu Buzdugan).
+
+* Version 0.0.12 (released 2004-08-01)
+
+** Added rudimentary self tests of Kerberos 5 context init/accept.
+Tests client and server authentication, with and without mutual
+authentication, and that various aspects of the API like ret_flags
+work.
+
+** Various fixes, discovered while writing the Kerberos 5 self test.
+
+** Cross compile builds should work.
+It should work for any sane cross compile target, but the only tested
+platform is uClibc/uClinux on Motorola Coldfire.
+
+* Version 0.0.11 (released 2004-04-18)
+
+** Minor cleanups to the core header file.
+Using xom.h is no longer supported (the file doesn't exist on modern
+systems).
+
+** Kerberos 5 sequence number handling fixed.
+First, gss_init_sec_context set the sequence numbers correctly, before
+the incorrect sequence numbers prevented gss_(un)wrap from working
+correctly.  Secondly, gss_unwrap now check the sequence numbers
+correctly.  This was prompted by the addition of randomized sequence
+numbers by default in Shishi 0.0.15.
+
+** The compatibility files in gl/ where synced with Gnulib.
+
+** Various bugfixes and cleanups.
+
+** Polish translation added, by Jakub Bogusz.
+
+* Version 0.0.10 (released 2004-01-22)
+
+** A command line tool "gss" added in src/.
+The tool can be used to split up an GSS-API error code into the
+calling error, the routine error and the supplementary info bits, and
+to print text describing the error condition.
+
+** gss_display_status can return multiple description texts (using context).
+
+** The Swedish translation has been updated.
+
+** Various cleanups and improvements.
+
+* Version 0.0.9 (released 2004-01-15)
+
+** Implemented gss_export_name and gss_krb5_inquire_cred_by_mech.
+The Kerberos 5 backend also support them.
+
+** gss_inquire_cred support default credentials.
+
+** Kerberos 5 gss_canonicalize_name now support all mandatory name types.
+
+** Kerberos 5 gss_accept_sec_context now support sub-session keys in AP-REQ.
+
+** Added new extended function API: gss_userok.
+This is the same as invoking gss_export_name on a name, removing the
+OID, and then comparing the remaining material using memcmp.
+
+** API documentation in HTML format from GTK-DOC included in doc/reference/.
+
+* Version 0.0.8 (released 2004-01-11)
+
+** Moved all backend specific code into sub-directories of lib/.
+This means everything related to the Kerberos 5 backend is now located
+in lib/krb5/.  The backend is built into its own library
+(libgss-shishi.so), to facilitate future possible use of dlopen to
+dynamically load backends.
+
+** The gss_duplicate_name function now allocate the output result properly.
+
+** Man pages for all public functions are included.
+
+** Documentation fixes.  For example, all official APIs are now documented.
+
+* Version 0.0.7 (released 2003-11-26)
+
+** Fixed typo that broke gss_wrap for 3DES with Kerberos 5.
+
+** Improvements to build environment.
+The gss.h header file no longer include gss/krb5.h when the Kerberos 5
+mechanism is disabled.
+
+** Autoconf 2.59, Automake 1.8 beta, Libtool CVS used.
+
+* Version 0.0.6 (released 2003-09-22)
+
+** Update for Shishi 0.0.7 API.
+
+* Version 0.0.5 (released 2003-08-31)
+
+** Kerberos 5: Subkeys are supported. Shishi 0.0.4 required.
+
+** Bug fixes.
+
+* Version 0.0.4 (released 2003-08-10)
+
+** GSS is a GNU project.
+
+** Kerberos 5 crypto fixes.
+This release accompany Shishi 0.0.1.
+
+* Version 0.0.3 (released 2003-07-02)
+
+** Includes compatibility functionality from gnulib in gl/.
+
+** Documentation improvements.
+The file README-alpha contains some hints for binary packagers.
+Essentially, don't distribute shared libraries, as this package is too
+immature to bump the shared object version for every modification
+currently.
+
+** Bugfixes and cleanups.
+
+* Version 0.0.2 (released 2003-06-28)
+
+** Server mode works (a little).
+GNU MailUtils can use GSS for its native GSSAPI authentication in
+server mode, which then interoperate with (at least) the GNU SASL
+command line client using GSS.
+
+** Memory allocated via xalloc from gnulib.
+This takes care of out of memory errors, see the new section in the
+manual named "Out of Memory handling".
+
+* Version 0.0.1 (released 2003-06-12)
+
+** Error handling.
+
+** Swedish translation.
+
+** Improved manual.
+
+** Bug fixes.
+
+* Version 0.0.0 (released 2003-06-02)
+
+** Initial release.
+The source code framework is in place, an outline of the documentation
+is ready, and there are some simple self tests.  The Kerberos 5
+mechanism (RFC 1964) supports mutual authentication and the standard
+DES cipher.  The non-standard 3DES cipher is also implemented, but
+unfortunately there are no specifications for AES.  GNU SASL can use
+this version to connect to GNU Mailutils and Cyrus IMAP servers that
+use the GSS implementations from MIT Kerberos or Heimdal.  Server mode
+is not supported yet.
+
+----------------------------------------------------------------------
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.

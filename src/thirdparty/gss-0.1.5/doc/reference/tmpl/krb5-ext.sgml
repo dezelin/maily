@@ -1,0 +1,66 @@
+<!-- ##### SECTION Title ##### -->
+krb5-ext
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### VARIABLE GSS_KRB5 ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_KRB5_static ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_KRB5_NT_USER_NAME_static ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_KRB5_NT_HOSTBASED_SERVICE_NAME_static ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_KRB5_NT_PRINCIPAL_NAME_static ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_KRB5_NT_MACHINE_UID_NAME_static ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE GSS_KRB5_NT_STRING_UID_NAME_static ##### -->
+<para>
+
+</para>
+
+
