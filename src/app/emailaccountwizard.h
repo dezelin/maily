@@ -25,6 +25,7 @@
 #include <QWizardPage>
 
 #include "accountenumerator.h"
+#include "emailserviceproviderinfo.h"
 
 namespace Maily
 {
@@ -95,6 +96,7 @@ public slots:
 private slots:
     void incomingServerTypeIndexChanged(int index);
     void incomingSSLIndexChanged(int index);
+    void updateTestButtonColor(bool testPassed);
 
 private:
     Q_DISABLE_COPY(EmailAccountWizardIncomingServerPage)

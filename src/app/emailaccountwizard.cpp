@@ -23,17 +23,17 @@
 #include <QSpacerItem>
 #include <QVBoxLayout>
 #include <QWizardPage>
-#include <vmime/vmime.hpp>
 
 #include "accountmanagerfactory.h"
 #include "busyindicatorwidget.h"
 #include "customeditline.h"
-#include "dummycertverifier.h"
 #include "forgettablewatcher.h"
 #include "emailaccountwizard.h"
+#include "emailserviceprovider.h"
 #include "emailserviceproviderinfo.h"
 #include "emailvalidator.h"
 #include "mozillaaccountenumerator.h"
+#include "serviceproviderfactory.h"
 #include "tools.h"
 
 namespace Maily
@@ -480,6 +480,8 @@ void EmailAccountWizardIncomingServerPage::initializePage()
 {
     QWizardPage::initializePage();
 
+    updateTestButtonColor(false);
+
     QString username = field(kFieldEmailAddress).toString();
     QString password = field(kFieldPassword).toString();
 
@@ -566,6 +568,15 @@ void EmailAccountWizardIncomingServerPage::incomingSSLIndexChanged(int index)
     d->portEditLine->setDisabled(index == 0);
 }
 
+void EmailAccountWizardIncomingServerPage::updateTestButtonColor(bool testPassed)
+{
+    QAbstractButton* testButton = wizard()->button(QWizard::CustomButton1);
+    Q_ASSERT(testButton);
+    if (!testButton)
+        return;
+
+}
+
 void EmailAccountWizardIncomingServerPage::testButtonClicked(int which)
 {
     Q_ASSERT(which == QWizard::CustomButton1);
@@ -586,19 +597,11 @@ void EmailAccountWizardIncomingServerPage::testButtonClicked(int which)
     if (!info)
         return;
 
-    vmime::utility::url url(QString("pop3s").toStdString(), QString("mail.pstech.rs").toStdString());
-    vmime::ref<vmime::net::session> theSession = vmime::create<vmime::net::session>();
-    //theSession->getProperties()["store.pop3s.auth.username"] = "aleksandar.dezelin";
-    theSession->getProperties()["store.pop3s.auth.password"] = "gandalf";
-    vmime::ref<vmime::net::store> store = theSession->getStore(url);
-    store->setCertificateVerifier(vmime::create<Maily::Services::Security::DummyCertVerifier>());
-
-    try {
-        store->connect();
-        store->disconnect();
-    } catch (vmime::exception& e) {
-        qLog() << e.what();
-    }
+    QScopedPointer<EmailServiceProvider> provider(
+        ServiceProviderFactory::createProvider(*info));
+    provider->setDummyCertVerifier(true);
+    bool connected = provider->connect();
+    updateTestButtonColor(connected);
 }
 
 class EmailAccountWizardOutgoingServerPagePrivate

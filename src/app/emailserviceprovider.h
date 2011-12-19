@@ -15,30 +15,49 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DUMMYCERTVERIFIER_H
-#define DUMMYCERTVERIFIER_H
+#ifndef EMAILSERVICEPROVIDER_H
+#define EMAILSERVICEPROVIDER_H
 
-#include <QtGlobal>
-#include <vmime/vmime.hpp>
+#include <QObject>
+#include <QScopedPointer>
+
+#include "emailserviceproviderinfo.h"
 
 namespace Maily
 {
 namespace Services
 {
-namespace Security
-{
 
-class DummyCertVerifier : public vmime::security::cert::certificateVerifier
+class EmailServiceProviderPrivate;
+class EmailServiceProvider : public QObject
 {
+    Q_OBJECT
+
 public:
-    virtual void verify(vmime::ref<vmime::security::cert::certificateChain> certs)
-    {
-        Q_UNUSED(certs);
-    }
+    explicit EmailServiceProvider(QObject *parent = 0,
+        EmailServiceProviderInfo* providerInfo = 0);
+    virtual ~EmailServiceProvider();
+
+    bool connect();
+    bool disconnect();
+
+    void setDummyCertVerifier(bool dummy);
+
+signals:
+
+public slots:
+
+private:
+    bool createSession();
+    QString serviceTypeString() const;
+
+private:
+    Q_DISABLE_COPY(EmailServiceProvider)
+    Q_DECLARE_PRIVATE(EmailServiceProvider)
+    QScopedPointer<EmailServiceProviderPrivate> d_ptr;
 };
 
-} // namespace Security
 } // namespace Services
 } // namespace Maily
 
-#endif // DUMMYCERTVERIFIER_H
+#endif // EMAILSERVICEPROVIDER_H

@@ -15,30 +15,25 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DUMMYCERTVERIFIER_H
-#define DUMMYCERTVERIFIER_H
+#ifndef SERVICEPROVIDERFACTORY_H
+#define SERVICEPROVIDERFACTORY_H
 
-#include <QtGlobal>
-#include <vmime/vmime.hpp>
+#include "emailserviceprovider.h"
+#include "emailserviceproviderinfo.h"
 
 namespace Maily
 {
 namespace Services
 {
-namespace Security
-{
 
-class DummyCertVerifier : public vmime::security::cert::certificateVerifier
+class ServiceProviderFactory
 {
 public:
-    virtual void verify(vmime::ref<vmime::security::cert::certificateChain> certs)
-    {
-        Q_UNUSED(certs);
-    }
+    static EmailServiceProvider* createProvider(
+        const EmailServiceProviderInfo& providerInfo);
 };
 
-} // namespace Security
 } // namespace Services
 } // namespace Maily
 
-#endif // DUMMYCERTVERIFIER_H
+#endif // SERVICEPROVIDERFACTORY_H
