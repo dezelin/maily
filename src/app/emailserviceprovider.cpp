@@ -19,6 +19,7 @@
 
 #include "dummycertverifier.h"
 #include "emailserviceprovider.h"
+#include "emailserviceproviderinfo.h
 #include "tools.h"
 
 namespace Maily
@@ -230,6 +231,10 @@ bool EmailServiceProvider::connect()
     if (!d->providerInfo)
         return false;
 
+    Q_ASSERT(!d->session && !d->service);
+    if (d->session || d->service)
+        return false;
+
     QScopedPointer<QList<vmime::ref<vmime::net::session> > > sessions(
         createSessionList(*d->providerInfo));
     Q_ASSERT(sessions);
@@ -303,8 +308,8 @@ bool EmailServiceProvider::disconnect()
 {
     Q_D(EmailServiceProvider);
 
-    Q_ASSERT(d->service);
-    if (!d->service)
+    Q_ASSERT(d->session && d->service);
+    if (!d->session || !d->service)
         return false;
 
     bool disconnected = false;
@@ -312,6 +317,8 @@ bool EmailServiceProvider::disconnect()
     try {
         d->service->disconnect();
         disconnected = true;
+        d->session = 0;
+        d->service = 0;
     } catch (vmime::exception& e) {
         qLog() << e.what();
     }
