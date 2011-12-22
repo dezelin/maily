@@ -21,7 +21,7 @@ make -f win32/Makefile.gcc
 cp zlib.h /usr/local/include/
 cp zconf.h /usr/local/include/
 cp libz.a /usr/local/lib/
-cp libz.dll.a /usr/local/lib/
+cp libzdll.a /usr/local/lib/libz.dll.a
 make -f win32/Makefile.gcc clean
 cd ..
 
