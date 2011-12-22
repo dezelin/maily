@@ -40,10 +40,6 @@ configure --disable-guile --enable-threads=win32 --with-libgcrypt --without-p11-
 touch lib/libgnutls-26.def
 touch lib/libgnutls-extra-26.def
 touch lib/libgnutls-openssl-26.def
-make 
-#
-# the first call to make will stop with compilation errors so restart it
-#
 make && make install && make clean && make distclean
 cd ..
 
