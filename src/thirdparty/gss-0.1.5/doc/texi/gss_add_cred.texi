@@ -1,9 +1,11 @@
 @subheading gss_add_cred
 @anchor{gss_add_cred}
 @deftypefun {OM_uint32} {gss_add_cred} (OM_uint32 * @var{minor_status}, const gss_cred_id_t @var{input_cred_handle}, const gss_name_t @var{desired_name}, const gss_OID @var{desired_mech}, gss_cred_usage_t @var{cred_usage}, OM_uint32 @var{initiator_time_req}, OM_uint32 @var{acceptor_time_req}, gss_cred_id_t * @var{output_cred_handle}, gss_OID_set * @var{actual_mechs}, OM_uint32 * @var{initiator_time_rec}, OM_uint32 * @var{acceptor_time_rec})
-@var{minor_status}: (integer, modify) Mechanism specific status code.
+@var{minor_status}: 
+(integer, modify) Mechanism specific status code.
 
-@var{input_cred_handle}: (gss_cred_id_t, read, optional) The credential
+@var{input_cred_handle}: 
+(gss_cred_id_t, read, optional) The credential
 to which a credential-element will be added.  If
 GSS_C_NO_CREDENTIAL is specified, the routine will compose the
 new credential based on default behavior (see text).
@@ -11,33 +13,39 @@ Note that, while the credential-handle is not modified by
 gss_add_cred(), the underlying credential will be modified if
 output_credential_handle is NULL.
 
-@var{desired_name}: (gss_name_t, read.)  Name of principal whose
+@var{desired_name}: 
+(gss_name_t, read.)  Name of principal whose
 credential should be acquired.
 
-@var{desired_mech}: (Object ID, read) Underlying security mechanism with
+@var{desired_mech}: 
+(Object ID, read) Underlying security mechanism with
 which the credential may be used.
 
-@var{cred_usage}: (gss_cred_usage_t, read) GSS_C_BOTH - Credential may
+@var{cred_usage}: 
+(gss_cred_usage_t, read) GSS_C_BOTH - Credential may
 be used either to initiate or accept security contexts.
 GSS_C_INITIATE - Credential will only be used to initiate
 security contexts.  GSS_C_ACCEPT - Credential will only be used
 to accept security contexts.
 
-@var{initiator_time_req}: (Integer, read, optional) number of seconds
+@var{initiator_time_req}: 
+(Integer, read, optional) number of seconds
 that the credential should remain valid for initiating security
 contexts.  This argument is ignored if the composed credentials
 are of type GSS_C_ACCEPT.  Specify GSS_C_INDEFINITE to request
 that the credentials have the maximum permitted initiator
 lifetime.
 
-@var{acceptor_time_req}: (Integer, read, optional) number of seconds
+@var{acceptor_time_req}: 
+(Integer, read, optional) number of seconds
 that the credential should remain valid for accepting security
 contexts.  This argument is ignored if the composed credentials
 are of type GSS_C_INITIATE.  Specify GSS_C_INDEFINITE to request
 that the credentials have the maximum permitted initiator
 lifetime.
 
-@var{output_cred_handle}: (gss_cred_id_t, modify, optional) The returned
+@var{output_cred_handle}: 
+(gss_cred_id_t, modify, optional) The returned
 credential handle, containing the new credential-element and all
 the credential-elements from input_cred_handle.  If a valid
 pointer to a gss_cred_id_t is supplied for this parameter,
@@ -50,20 +58,23 @@ associated with any credential handle returned via this parameter
 must be released by the application after use with a call to
 gss_release_cred().
 
-@var{actual_mechs}: (Set of Object IDs, modify, optional) The complete
+@var{actual_mechs}: 
+(Set of Object IDs, modify, optional) The complete
 set of mechanisms for which the new credential is valid.  Storage
 for the returned OID-set must be freed by the application after
 use with a call to gss_release_oid_set(). Specify NULL if not
 required.
 
-@var{initiator_time_rec}: (Integer, modify, optional) Actual number of
+@var{initiator_time_rec}: 
+(Integer, modify, optional) Actual number of
 seconds for which the returned credentials will remain valid for
 initiating contexts using the specified mechanism.  If the
 implementation or mechanism does not support expiration of
 credentials, the value GSS_C_INDEFINITE will be returned. Specify
 NULL if not required
 
-@var{acceptor_time_rec}: (Integer, modify, optional) Actual number of
+@var{acceptor_time_rec}: 
+(Integer, modify, optional) Actual number of
 seconds for which the returned credentials will remain valid for
 accepting security contexts using the specified mechanism.  If
 the implementation or mechanism does not support expiration of
@@ -133,7 +144,7 @@ gss_release_cred() on the first credential handle.
 
 If GSS_C_NO_CREDENTIAL is specified as the input_cred_handle
 parameter, a non-NULL output_cred_handle must be supplied.
-
+
 Return value:
 
 
@@ -161,5 +172,5 @@ added because they have expired.
 
 
 @code{GSS_S_NO_CRED}: No credentials were found for the specified name.
-@end deftypefun
+@end deftypefun
 

@@ -1,47 +1,56 @@
 @subheading gss_accept_sec_context
 @anchor{gss_accept_sec_context}
 @deftypefun {OM_uint32} {gss_accept_sec_context} (OM_uint32 * @var{minor_status}, gss_ctx_id_t * @var{context_handle}, const gss_cred_id_t @var{acceptor_cred_handle}, const gss_buffer_t @var{input_token_buffer}, const gss_channel_bindings_t @var{input_chan_bindings}, gss_name_t * @var{src_name}, gss_OID * @var{mech_type}, gss_buffer_t @var{output_token}, OM_uint32 * @var{ret_flags}, OM_uint32 * @var{time_rec}, gss_cred_id_t * @var{delegated_cred_handle})
-@var{minor_status}: (Integer, modify) Mechanism specific status code.
+@var{minor_status}: 
+(Integer, modify) Mechanism specific status code.
 
-@var{context_handle}: (gss_ctx_id_t, read/modify) Context handle for new
+@var{context_handle}: 
+(gss_ctx_id_t, read/modify) Context handle for new
 context.  Supply GSS_C_NO_CONTEXT for first call; use value
 returned in subsequent calls.  Once gss_accept_sec_context() has
 returned a value via this parameter, resources have been assigned
 to the corresponding context, and must be freed by the
 application after use with a call to gss_delete_sec_context().
 
-@var{acceptor_cred_handle}: (gss_cred_id_t, read) Credential handle
+@var{acceptor_cred_handle}: 
+(gss_cred_id_t, read) Credential handle
 claimed by context acceptor. Specify GSS_C_NO_CREDENTIAL to
 accept the context as a default principal.  If
 GSS_C_NO_CREDENTIAL is specified, but no default acceptor
 principal is defined, GSS_S_NO_CRED will be returned.
 
-@var{input_token_buffer}: (buffer, opaque, read) Token obtained from
+@var{input_token_buffer}: 
+(buffer, opaque, read) Token obtained from
 remote application.
 
-@var{input_chan_bindings}: (channel bindings, read, optional)
+@var{input_chan_bindings}: 
+(channel bindings, read, optional)
 Application- specified bindings.  Allows application to securely
 bind channel identification information to the security context.
 If channel bindings are not used, specify
 GSS_C_NO_CHANNEL_BINDINGS.
 
-@var{src_name}: (gss_name_t, modify, optional) Authenticated name of
+@var{src_name}: 
+(gss_name_t, modify, optional) Authenticated name of
 context initiator.  After use, this name should be deallocated by
 passing it to gss_release_name().  If not required, specify NULL.
 
-@var{mech_type}: (Object ID, modify, optional) Security mechanism used.
+@var{mech_type}: 
+(Object ID, modify, optional) Security mechanism used.
 The returned OID value will be a pointer into static storage, and
 should be treated as read-only by the caller (in particular, it
 does not need to be freed).  If not required, specify NULL.
 
-@var{output_token}: (buffer, opaque, modify) Token to be passed to peer
+@var{output_token}: 
+(buffer, opaque, modify) Token to be passed to peer
 application.  If the length field of the returned token buffer is
 0, then no token need be passed to the peer application.  If a
 non- zero length field is returned, the associated storage must
 be freed after use by the application with a call to
 gss_release_buffer().
 
-@var{ret_flags}: (bit-mask, modify, optional) Contains various
+@var{ret_flags}: 
+(bit-mask, modify, optional) Contains various
 independent flags, each of which indicates that the context
 supports a specific service option.  If not needed, specify NULL.
 Symbolic names are provided for each flag, and the symbolic names
@@ -49,10 +58,12 @@ corresponding to the required flags should be logically-ANDed
 with the ret_flags value to test whether a given option is
 supported by the context.  See below for the flags.
 
-@var{time_rec}: (Integer, modify, optional) Number of seconds for which
+@var{time_rec}: 
+(Integer, modify, optional) Number of seconds for which
 the context will remain valid. Specify NULL if not required.
 
-@var{delegated_cred_handle}: (gss_cred_id_t, modify, optional
+@var{delegated_cred_handle}: 
+(gss_cred_id_t, modify, optional
 credential) Handle for credentials received from context
 initiator.  Only valid if deleg_flag in ret_flags is true, in
 which case an explicit credential handle (i.e. not
@@ -316,7 +327,7 @@ False - The security context is not transferable.
 @end table
 
 All other bits should be set to zero.
-
+
 Return value:
 
 
@@ -364,5 +375,5 @@ during context establishment.
 
 @code{GSS_S_BAD_MECH}: The received token specified a mechanism that is
 not supported by the implementation or the provided credential.
-@end deftypefun
+@end deftypefun
 

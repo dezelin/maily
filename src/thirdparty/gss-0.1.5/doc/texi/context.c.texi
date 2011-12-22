@@ -1,59 +1,71 @@
 @subheading gss_init_sec_context
 @anchor{gss_init_sec_context}
 @deftypefun {OM_uint32} {gss_init_sec_context} (OM_uint32 * @var{minor_status}, const gss_cred_id_t @var{initiator_cred_handle}, gss_ctx_id_t * @var{context_handle}, const gss_name_t @var{target_name}, const gss_OID @var{mech_type}, OM_uint32 @var{req_flags}, OM_uint32 @var{time_req}, const gss_channel_bindings_t @var{input_chan_bindings}, const gss_buffer_t @var{input_token}, gss_OID * @var{actual_mech_type}, gss_buffer_t @var{output_token}, OM_uint32 * @var{ret_flags}, OM_uint32 * @var{time_rec})
-@var{minor_status}: (integer, modify) Mechanism specific status code.
+@var{minor_status}: 
+(integer, modify) Mechanism specific status code.
 
-@var{initiator_cred_handle}: (gss_cred_id_t, read, optional) Handle for
+@var{initiator_cred_handle}: 
+(gss_cred_id_t, read, optional) Handle for
 credentials claimed.  Supply GSS_C_NO_CREDENTIAL to act as a
 default initiator principal.  If no default initiator is defined,
 the function will return GSS_S_NO_CRED.
 
-@var{context_handle}: (gss_ctx_id_t, read/modify) Context handle for new
+@var{context_handle}: 
+(gss_ctx_id_t, read/modify) Context handle for new
 context.  Supply GSS_C_NO_CONTEXT for first call; use value
 returned by first call in continuation calls.  Resources
 associated with this context-handle must be released by the
 application after use with a call to gss_delete_sec_context().
 
-@var{target_name}: (gss_name_t, read) Name of target.
+@var{target_name}: 
+(gss_name_t, read) Name of target.
 
-@var{mech_type}: (OID, read, optional) Object ID of desired
+@var{mech_type}: 
+(OID, read, optional) Object ID of desired
 mechanism. Supply GSS_C_NO_OID to obtain an implementation
 specific default.
 
-@var{req_flags}: (bit-mask, read) Contains various independent flags,
+@var{req_flags}: 
+(bit-mask, read) Contains various independent flags,
 each of which requests that the context support a specific
 service option.  Symbolic names are provided for each flag, and
 the symbolic names corresponding to the required flags should be
 logically-ORed together to form the bit-mask value.  See below
 for the flags.
 
-@var{time_req}: (Integer, read, optional) Desired number of seconds for
+@var{time_req}: 
+(Integer, read, optional) Desired number of seconds for
 which context should remain valid.  Supply 0 to request a default
 validity period.
 
-@var{input_chan_bindings}: (channel bindings, read, optional)
+@var{input_chan_bindings}: 
+(channel bindings, read, optional)
 Application-specified bindings.  Allows application to securely
 bind channel identification information to the security context.
 Specify GSS_C_NO_CHANNEL_BINDINGS if channel bindings are not
 used.
 
-@var{input_token}: (buffer, opaque, read, optional) Token received from
+@var{input_token}: 
+(buffer, opaque, read, optional) Token received from
 peer application.  Supply GSS_C_NO_BUFFER, or a pointer to a
 buffer containing the value GSS_C_EMPTY_BUFFER on initial call.
 
-@var{actual_mech_type}: (OID, modify, optional) Actual mechanism used.
+@var{actual_mech_type}: 
+(OID, modify, optional) Actual mechanism used.
 The OID returned via this parameter will be a pointer to static
 storage that should be treated as read-only; In particular the
 application should not attempt to free it.  Specify NULL if not
 required.
 
-@var{output_token}: (buffer, opaque, modify) Token to be sent to peer
+@var{output_token}: 
+(buffer, opaque, modify) Token to be sent to peer
 application.  If the length field of the returned buffer is zero,
 no token need be sent to the peer application.  Storage
 associated with this buffer must be freed by the application
 after use with a call to gss_release_buffer().
 
-@var{ret_flags}: (bit-mask, modify, optional) Contains various
+@var{ret_flags}: 
+(bit-mask, modify, optional) Contains various
 independent flags, each of which indicates that the context
 supports a specific service option.  Specify NULL if not
 required.  Symbolic names are provided for each flag, and the
@@ -61,7 +73,8 @@ symbolic names corresponding to the required flags should be
 logically-ANDed with the ret_flags value to test whether a given
 option is supported by the context.  See below for the flags.
 
-@var{time_rec}: (Integer, modify, optional) Number of seconds for which
+@var{time_rec}: 
+(Integer, modify, optional) Number of seconds for which
 the context will remain valid. If the implementation does not
 support context expiration, the value GSS_C_INDEFINITE will be
 returned.  Specify NULL if not required.
@@ -441,7 +454,7 @@ False - The security context is not transferable.
 @end table
 
 All other bits should be set to zero.
-
+
 Return value:
 
 
@@ -501,52 +514,61 @@ ill-formed.
 
 @code{GSS_S_BAD_MECH}: The specified mechanism is not supported by the
 provided credential, or is unrecognized by the implementation.
-@end deftypefun
+@end deftypefun
 
 @subheading gss_accept_sec_context
 @anchor{gss_accept_sec_context}
 @deftypefun {OM_uint32} {gss_accept_sec_context} (OM_uint32 * @var{minor_status}, gss_ctx_id_t * @var{context_handle}, const gss_cred_id_t @var{acceptor_cred_handle}, const gss_buffer_t @var{input_token_buffer}, const gss_channel_bindings_t @var{input_chan_bindings}, gss_name_t * @var{src_name}, gss_OID * @var{mech_type}, gss_buffer_t @var{output_token}, OM_uint32 * @var{ret_flags}, OM_uint32 * @var{time_rec}, gss_cred_id_t * @var{delegated_cred_handle})
-@var{minor_status}: (Integer, modify) Mechanism specific status code.
+@var{minor_status}: 
+(Integer, modify) Mechanism specific status code.
 
-@var{context_handle}: (gss_ctx_id_t, read/modify) Context handle for new
+@var{context_handle}: 
+(gss_ctx_id_t, read/modify) Context handle for new
 context.  Supply GSS_C_NO_CONTEXT for first call; use value
 returned in subsequent calls.  Once gss_accept_sec_context() has
 returned a value via this parameter, resources have been assigned
 to the corresponding context, and must be freed by the
 application after use with a call to gss_delete_sec_context().
 
-@var{acceptor_cred_handle}: (gss_cred_id_t, read) Credential handle
+@var{acceptor_cred_handle}: 
+(gss_cred_id_t, read) Credential handle
 claimed by context acceptor. Specify GSS_C_NO_CREDENTIAL to
 accept the context as a default principal.  If
 GSS_C_NO_CREDENTIAL is specified, but no default acceptor
 principal is defined, GSS_S_NO_CRED will be returned.
 
-@var{input_token_buffer}: (buffer, opaque, read) Token obtained from
+@var{input_token_buffer}: 
+(buffer, opaque, read) Token obtained from
 remote application.
 
-@var{input_chan_bindings}: (channel bindings, read, optional)
+@var{input_chan_bindings}: 
+(channel bindings, read, optional)
 Application- specified bindings.  Allows application to securely
 bind channel identification information to the security context.
 If channel bindings are not used, specify
 GSS_C_NO_CHANNEL_BINDINGS.
 
-@var{src_name}: (gss_name_t, modify, optional) Authenticated name of
+@var{src_name}: 
+(gss_name_t, modify, optional) Authenticated name of
 context initiator.  After use, this name should be deallocated by
 passing it to gss_release_name().  If not required, specify NULL.
 
-@var{mech_type}: (Object ID, modify, optional) Security mechanism used.
+@var{mech_type}: 
+(Object ID, modify, optional) Security mechanism used.
 The returned OID value will be a pointer into static storage, and
 should be treated as read-only by the caller (in particular, it
 does not need to be freed).  If not required, specify NULL.
 
-@var{output_token}: (buffer, opaque, modify) Token to be passed to peer
+@var{output_token}: 
+(buffer, opaque, modify) Token to be passed to peer
 application.  If the length field of the returned token buffer is
 0, then no token need be passed to the peer application.  If a
 non- zero length field is returned, the associated storage must
 be freed after use by the application with a call to
 gss_release_buffer().
 
-@var{ret_flags}: (bit-mask, modify, optional) Contains various
+@var{ret_flags}: 
+(bit-mask, modify, optional) Contains various
 independent flags, each of which indicates that the context
 supports a specific service option.  If not needed, specify NULL.
 Symbolic names are provided for each flag, and the symbolic names
@@ -554,10 +576,12 @@ corresponding to the required flags should be logically-ANDed
 with the ret_flags value to test whether a given option is
 supported by the context.  See below for the flags.
 
-@var{time_rec}: (Integer, modify, optional) Number of seconds for which
+@var{time_rec}: 
+(Integer, modify, optional) Number of seconds for which
 the context will remain valid. Specify NULL if not required.
 
-@var{delegated_cred_handle}: (gss_cred_id_t, modify, optional
+@var{delegated_cred_handle}: 
+(gss_cred_id_t, modify, optional
 credential) Handle for credentials received from context
 initiator.  Only valid if deleg_flag in ret_flags is true, in
 which case an explicit credential handle (i.e. not
@@ -821,7 +845,7 @@ False - The security context is not transferable.
 @end table
 
 All other bits should be set to zero.
-
+
 Return value:
 
 
@@ -869,18 +893,21 @@ during context establishment.
 
 @code{GSS_S_BAD_MECH}: The received token specified a mechanism that is
 not supported by the implementation or the provided credential.
-@end deftypefun
+@end deftypefun
 
 @subheading gss_delete_sec_context
 @anchor{gss_delete_sec_context}
 @deftypefun {OM_uint32} {gss_delete_sec_context} (OM_uint32 * @var{minor_status}, gss_ctx_id_t * @var{context_handle}, gss_buffer_t @var{output_token})
-@var{minor_status}: (Integer, modify) Mechanism specific status code.
+@var{minor_status}: 
+(Integer, modify) Mechanism specific status code.
 
-@var{context_handle}: (gss_ctx_id_t, modify) Context handle identifying
+@var{context_handle}: 
+(gss_ctx_id_t, modify) Context handle identifying
 context to delete.  After deleting the context, the GSS-API will
 set this context handle to GSS_C_NO_CONTEXT.
 
-@var{output_token}: (buffer, opaque, modify, optional) Token to be sent
+@var{output_token}: 
+(buffer, opaque, modify, optional) Token to be sent
 to remote application to instruct it to also delete the context.
 It is recommended that applications specify GSS_C_NO_BUFFER for
 this parameter, requesting local deletion only.  If a buffer
@@ -917,7 +944,7 @@ a valid buffer to gss_delete_sec_context, mechanisms are encouraged
 to return a zero-length token, indicating that no peer action is
 necessary, and that no token should be transferred by the
 application.
-
+
 Return value:
 
 
@@ -925,17 +952,20 @@ Return value:
 
 
 @code{GSS_S_NO_CONTEXT}: No valid context was supplied.
-@end deftypefun
+@end deftypefun
 
 @subheading gss_process_context_token
 @anchor{gss_process_context_token}
 @deftypefun {OM_uint32} {gss_process_context_token} (OM_uint32 * @var{minor_status}, const gss_ctx_id_t @var{context_handle}, const gss_buffer_t @var{token_buffer})
-@var{minor_status}: (Integer, modify) Implementation specific status code.
+@var{minor_status}: 
+(Integer, modify) Implementation specific status code.
 
-@var{context_handle}: (gss_ctx_id_t, read) Context handle of context on
+@var{context_handle}: 
+(gss_ctx_id_t, read) Context handle of context on
 which token is to be processed
 
-@var{token_buffer}: (buffer, opaque, read) Token to process.
+@var{token_buffer}: 
+(buffer, opaque, read) Token to process.
 
 
 Provides a way to pass an asynchronous token to the security
@@ -953,7 +983,7 @@ to the initiator, but the initiator is not expecting a token at
 this point, believing that the context is fully established.
 Gss_process_context_token provides a way to pass such a token to
 the mechanism at any time.
-
+
 Return value:
 
 
@@ -966,25 +996,28 @@ performed on the token failed.
 
 @code{GSS_S_NO_CONTEXT}: The context_handle did not refer to a valid
 context.
-@end deftypefun
+@end deftypefun
 
 @subheading gss_context_time
 @anchor{gss_context_time}
 @deftypefun {OM_uint32} {gss_context_time} (OM_uint32 * @var{minor_status}, const gss_ctx_id_t @var{context_handle}, OM_uint32 * @var{time_rec})
-@var{minor_status}: (Integer, modify) Implementation specific status
+@var{minor_status}: 
+(Integer, modify) Implementation specific status
 code.
 
-@var{context_handle}: (gss_ctx_id_t, read) Identifies the context to be
+@var{context_handle}: 
+(gss_ctx_id_t, read) Identifies the context to be
 interrogated.
 
-@var{time_rec}: (Integer, modify) Number of seconds that the context
+@var{time_rec}: 
+(Integer, modify) Number of seconds that the context
 will remain valid.  If the context has already expired, zero will
 be returned.
 
 
 Determines the number of seconds for which the specified context
 will remain valid.
-
+
 Return value:
 
 
@@ -996,17 +1029,20 @@ Return value:
 
 @code{GSS_S_NO_CONTEXT}: The context_handle parameter did not identify a
 valid context
-@end deftypefun
+@end deftypefun
 
 @subheading gss_inquire_context
 @anchor{gss_inquire_context}
 @deftypefun {OM_uint32} {gss_inquire_context} (OM_uint32 * @var{minor_status}, const gss_ctx_id_t @var{context_handle}, gss_name_t * @var{src_name}, gss_name_t * @var{targ_name}, OM_uint32 * @var{lifetime_rec}, gss_OID * @var{mech_type}, OM_uint32 * @var{ctx_flags}, int * @var{locally_initiated}, int * @var{open})
-@var{minor_status}: (Integer, modify) Mechanism specific status code.
+@var{minor_status}: 
+(Integer, modify) Mechanism specific status code.
 
-@var{context_handle}: (gss_ctx_id_t, read) A handle that refers to the
+@var{context_handle}: 
+(gss_ctx_id_t, read) A handle that refers to the
 security context.
 
-@var{src_name}: (gss_name_t, modify, optional) The name of the context
+@var{src_name}: 
+(gss_name_t, modify, optional) The name of the context
 initiator.  If the context was established using anonymous
 authentication, and if the application invoking
 gss_inquire_context is the context acceptor, an anonymous name
@@ -1014,7 +1050,8 @@ will be returned.  Storage associated with this name must be
 freed by the application after use with a call to
 gss_release_name().  Specify NULL if not required.
 
-@var{targ_name}: (gss_name_t, modify, optional) The name of the context
+@var{targ_name}: 
+(gss_name_t, modify, optional) The name of the context
 acceptor.  Storage associated with this name must be freed by the
 application after use with a call to gss_release_name().  If the
 context acceptor did not authenticate itself, and if the
@@ -1022,19 +1059,22 @@ initiator did not specify a target name in its call to
 gss_init_sec_context(), the value GSS_C_NO_NAME will be returned.
 Specify NULL if not required.
 
-@var{lifetime_rec}: (Integer, modify, optional) The number of seconds
+@var{lifetime_rec}: 
+(Integer, modify, optional) The number of seconds
 for which the context will remain valid.  If the context has
 expired, this parameter will be set to zero.  If the
 implementation does not support context expiration, the value
 GSS_C_INDEFINITE will be returned.  Specify NULL if not required.
 
-@var{mech_type}: (gss_OID, modify, optional) The security mechanism
+@var{mech_type}: 
+(gss_OID, modify, optional) The security mechanism
 providing the context.  The returned OID will be a pointer to
 static storage that should be treated as read-only by the
 application; in particular the application should not attempt to
 free it.  Specify NULL if not required.
 
-@var{ctx_flags}: (bit-mask, modify, optional) Contains various
+@var{ctx_flags}: 
+(bit-mask, modify, optional) Contains various
 independent flags, each of which indicates that the context
 supports (or is expected to support, if ctx_open is false) a
 specific service option.  If not needed, specify NULL.  Symbolic
@@ -1043,11 +1083,13 @@ corresponding to the required flags should be logically-ANDed
 with the ret_flags value to test whether a given option is
 supported by the context.  See below for the flags.
 
-@var{locally_initiated}: (Boolean, modify) Non-zero if the invoking
+@var{locally_initiated}: 
+(Boolean, modify) Non-zero if the invoking
 application is the context initiator.  Specify NULL if not
 required.
 
-@var{open}: (Boolean, modify) Non-zero if the context is fully
+@var{open}: 
+(Boolean, modify) Non-zero if the context is fully
 established; Zero if a context-establishment token is expected
 from the peer application.  Specify NULL if not required.
 
@@ -1189,7 +1231,7 @@ processes via a call to gss_export_sec_context().
 False - The security context is not transferable.
 
 @end itemize
-@end table
+@end table
 Return value:
 
 
@@ -1197,29 +1239,35 @@ Return value:
 
 
 @code{GSS_S_NO_CONTEXT}: The referenced context could not be accessed.
-@end deftypefun
+@end deftypefun
 
 @subheading gss_wrap_size_limit
 @anchor{gss_wrap_size_limit}
 @deftypefun {OM_uint32} {gss_wrap_size_limit} (OM_uint32 * @var{minor_status}, const gss_ctx_id_t @var{context_handle}, int @var{conf_req_flag}, gss_qop_t @var{qop_req}, OM_uint32 @var{req_output_size}, OM_uint32 * @var{max_input_size})
-@var{minor_status}: (Integer, modify) Mechanism specific status code.
+@var{minor_status}: 
+(Integer, modify) Mechanism specific status code.
 
-@var{context_handle}: (gss_ctx_id_t, read) A handle that refers to the
+@var{context_handle}: 
+(gss_ctx_id_t, read) A handle that refers to the
 security over which the messages will be sent.
 
-@var{conf_req_flag}: (Boolean, read) Indicates whether gss_wrap will be
+@var{conf_req_flag}: 
+(Boolean, read) Indicates whether gss_wrap will be
 asked to apply confidentiality protection in addition to
 integrity protection.  See the routine description for gss_wrap
 for more details.
 
-@var{qop_req}: (gss_qop_t, read) Indicates the level of protection that
+@var{qop_req}: 
+(gss_qop_t, read) Indicates the level of protection that
 gss_wrap will be asked to provide.  See the routine description
 for gss_wrap for more details.
 
-@var{req_output_size}: (Integer, read) The desired maximum size for
+@var{req_output_size}: 
+(Integer, read) The desired maximum size for
 tokens emitted by gss_wrap.
 
-@var{max_input_size}: (Integer, modify) The maximum input message size
+@var{max_input_size}: 
+(Integer, modify) The maximum input message size
 that may be presented to gss_wrap in order to guarantee that the
 emitted token shall be no larger than req_output_size bytes.
 
@@ -1249,7 +1297,7 @@ implementation itself imposes an upper limit on the length of
 messages that may be processed by gss_wrap, the implementation
 should not return a value via max_input_bytes that is greater than
 this length.
-
+
 Return value:
 
 
@@ -1264,17 +1312,20 @@ Return value:
 
 @code{GSS_S_BAD_QOP}: The specified QOP is not supported by the
 mechanism.
-@end deftypefun
+@end deftypefun
 
 @subheading gss_export_sec_context
 @anchor{gss_export_sec_context}
 @deftypefun {OM_uint32} {gss_export_sec_context} (OM_uint32 * @var{minor_status}, gss_ctx_id_t * @var{context_handle}, gss_buffer_t @var{interprocess_token})
-@var{minor_status}: (Integer, modify) Mechanism specific status code.
+@var{minor_status}: 
+(Integer, modify) Mechanism specific status code.
 
-@var{context_handle}: (gss_ctx_id_t, modify) Context handle identifying
+@var{context_handle}: 
+(gss_ctx_id_t, modify) Context handle identifying
 the context to transfer.
 
-@var{interprocess_token}: (buffer, opaque, modify) Token to be
+@var{interprocess_token}: 
+(buffer, opaque, modify) Token to be
 transferred to target process.  Storage associated with this
 token must be freed by the application after use with a call to
 gss_release_buffer().
@@ -1323,7 +1374,7 @@ context_handle parameter untouched.  If this is impossible, it is
 permissible for the implementation to delete the security context,
 providing it also sets the context_handle parameter to
 GSS_C_NO_CONTEXT.
-
+
 Return value:
 
 
@@ -1337,17 +1388,20 @@ Return value:
 
 
 @code{GSS_S_UNAVAILABLE}: The operation is not supported.
-@end deftypefun
+@end deftypefun
 
 @subheading gss_import_sec_context
 @anchor{gss_import_sec_context}
 @deftypefun {OM_uint32} {gss_import_sec_context} (OM_uint32 * @var{minor_status}, const gss_buffer_t @var{interprocess_token}, gss_ctx_id_t * @var{context_handle})
-@var{minor_status}: (Integer, modify) Mechanism specific status code.
+@var{minor_status}: 
+(Integer, modify) Mechanism specific status code.
 
-@var{interprocess_token}: (buffer, opaque, modify) Token received from
+@var{interprocess_token}: 
+(buffer, opaque, modify) Token received from
 exporting process
 
-@var{context_handle}: (gss_ctx_id_t, modify) Context handle of newly
+@var{context_handle}: 
+(gss_ctx_id_t, modify) Context handle of newly
 reactivated context.  Resources associated with this context
 handle must be released by the application after use with a call
 to gss_delete_sec_context().
@@ -1356,7 +1410,7 @@ to gss_delete_sec_context().
 Allows a process to import a security context established by
 another process.  A given interprocess token may be imported only
 once.  See gss_export_sec_context.
-
+
 Return value:
 
 
@@ -1375,5 +1429,5 @@ reference.
 
 @code{GSS_S_UNAUTHORIZED}: Local policy prevents the import of this
  context by the current process.
-@end deftypefun
+@end deftypefun
 

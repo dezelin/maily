@@ -1,12 +1,15 @@
 @subheading gss_add_oid_set_member
 @anchor{gss_add_oid_set_member}
 @deftypefun {OM_uint32} {gss_add_oid_set_member} (OM_uint32 * @var{minor_status}, const gss_OID @var{member_oid}, gss_OID_set * @var{oid_set})
-@var{minor_status}: (integer, modify) Mechanism specific status code.
+@var{minor_status}: 
+(integer, modify) Mechanism specific status code.
 
-@var{member_oid}: (Object ID, read) The object identifier to copied into
+@var{member_oid}: 
+(Object ID, read) The object identifier to copied into
 the set.
 
-@var{oid_set}: (Set of Object ID, modify) The set in which the object
+@var{oid_set}: 
+(Set of Object ID, modify) The set in which the object
 identifier should be inserted.
 
 
@@ -22,10 +25,10 @@ The routine may add the new member OID anywhere within the elements
 array, and implementations should verify that the new member_oid is
 not already contained within the elements array; if the member_oid
 is already present, the oid_set should remain unchanged.
-
+
 Return value:
 
 
 @code{GSS_S_COMPLETE}: Successful completion.
-@end deftypefun
+@end deftypefun
 

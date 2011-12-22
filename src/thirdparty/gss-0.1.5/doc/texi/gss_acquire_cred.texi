@@ -1,38 +1,46 @@
 @subheading gss_acquire_cred
 @anchor{gss_acquire_cred}
 @deftypefun {OM_uint32} {gss_acquire_cred} (OM_uint32 * @var{minor_status}, const gss_name_t @var{desired_name}, OM_uint32 @var{time_req}, const gss_OID_set @var{desired_mechs}, gss_cred_usage_t @var{cred_usage}, gss_cred_id_t * @var{output_cred_handle}, gss_OID_set * @var{actual_mechs}, OM_uint32 * @var{time_rec})
-@var{minor_status}: (integer, modify) Mechanism specific status code.
+@var{minor_status}: 
+(integer, modify) Mechanism specific status code.
 
-@var{desired_name}: (gss_name_t, read) Name of principal whose
+@var{desired_name}: 
+(gss_name_t, read) Name of principal whose
 credential should be acquired.
 
-@var{time_req}: (Integer, read, optional) Number of seconds that
+@var{time_req}: 
+(Integer, read, optional) Number of seconds that
 credentials should remain valid. Specify GSS_C_INDEFINITE to
 request that the credentials have the maximum permitted lifetime.
 
-@var{desired_mechs}: (Set of Object IDs, read, optional) Set of
+@var{desired_mechs}: 
+(Set of Object IDs, read, optional) Set of
 underlying security mechanisms that may be used.
 GSS_C_NO_OID_SET may be used to obtain an implementation-specific
 default.
 
-@var{cred_usage}: (gss_cred_usage_t, read) GSS_C_BOTH - Credentials may
+@var{cred_usage}: 
+(gss_cred_usage_t, read) GSS_C_BOTH - Credentials may
 be used either to initiate or accept security contexts.
 GSS_C_INITIATE - Credentials will only be used to initiate
 security contexts.  GSS_C_ACCEPT - Credentials will only be used
 to accept security contexts.
 
-@var{output_cred_handle}: (gss_cred_id_t, modify) The returned
+@var{output_cred_handle}: 
+(gss_cred_id_t, modify) The returned
 credential handle.  Resources associated with this credential
 handle must be released by the application after use with a call
 to gss_release_cred().
 
-@var{actual_mechs}: (Set of Object IDs, modify, optional) The set of
+@var{actual_mechs}: 
+(Set of Object IDs, modify, optional) The set of
 mechanisms for which the credential is valid.  Storage associated
 with the returned OID-set must be released by the application
 after use with a call to gss_release_oid_set().  Specify NULL if
 not required.
 
-@var{time_rec}: (Integer, modify, optional) Actual number of seconds for
+@var{time_rec}: 
+(Integer, modify, optional) Actual number of seconds for
 which the returned credentials will remain valid.  If the
 implementation does not support expiration of credentials, the
 value GSS_C_INDEFINITE will be returned. Specify NULL if not
@@ -84,7 +92,7 @@ decisions should be invisible to the calling application; thus a
 call of gss_inquire_cred immediately following the call of
 gss_acquire_cred must return valid credential data, and may
 therefore incur the overhead of a deferred credential acquisition.
-
+
 Return value:
 
 
@@ -107,5 +115,5 @@ Because they have expired.
 
 
 @code{GSS_S_NO_CRED}: No credentials were found for the specified name.
-@end deftypefun
+@end deftypefun
 

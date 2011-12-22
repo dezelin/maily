@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE indexdiv PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
-<indexdiv>
-<indexdiv><title>I</title>
-<indexentry><primaryie linkends="gss-inquire-mech-for-saslname"><link linkend="gss-inquire-mech-for-saslname">gss_inquire_mech_for_saslname</link>, function in <link linkend="gss-api">api</link></primaryie></indexentry>
-<indexentry><primaryie linkends="gss-inquire-saslname-for-mech"><link linkend="gss-inquire-saslname-for-mech">gss_inquire_saslname_for_mech</link>, function in <link linkend="gss-api">api</link></primaryie></indexentry>
-</indexdiv>
-</indexdiv>

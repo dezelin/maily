@@ -1,12 +1,15 @@
 @subheading gss_export_sec_context
 @anchor{gss_export_sec_context}
 @deftypefun {OM_uint32} {gss_export_sec_context} (OM_uint32 * @var{minor_status}, gss_ctx_id_t * @var{context_handle}, gss_buffer_t @var{interprocess_token})
-@var{minor_status}: (Integer, modify) Mechanism specific status code.
+@var{minor_status}: 
+(Integer, modify) Mechanism specific status code.
 
-@var{context_handle}: (gss_ctx_id_t, modify) Context handle identifying
+@var{context_handle}: 
+(gss_ctx_id_t, modify) Context handle identifying
 the context to transfer.
 
-@var{interprocess_token}: (buffer, opaque, modify) Token to be
+@var{interprocess_token}: 
+(buffer, opaque, modify) Token to be
 transferred to target process.  Storage associated with this
 token must be freed by the application after use with a call to
 gss_release_buffer().
@@ -55,7 +58,7 @@ context_handle parameter untouched.  If this is impossible, it is
 permissible for the implementation to delete the security context,
 providing it also sets the context_handle parameter to
 GSS_C_NO_CONTEXT.
-
+
 Return value:
 
 
@@ -69,5 +72,5 @@ Return value:
 
 
 @code{GSS_S_UNAVAILABLE}: The operation is not supported.
-@end deftypefun
+@end deftypefun
 

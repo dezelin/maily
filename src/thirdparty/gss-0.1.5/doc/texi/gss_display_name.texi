@@ -1,16 +1,20 @@
 @subheading gss_display_name
 @anchor{gss_display_name}
 @deftypefun {OM_uint32} {gss_display_name} (OM_uint32 * @var{minor_status}, const gss_name_t @var{input_name}, gss_buffer_t @var{output_name_buffer}, gss_OID * @var{output_name_type})
-@var{minor_status}: (Integer, modify) Mechanism specific status code.
+@var{minor_status}: 
+(Integer, modify) Mechanism specific status code.
 
-@var{input_name}: (gss_name_t, read) Name to be displayed.
+@var{input_name}: 
+(gss_name_t, read) Name to be displayed.
 
-@var{output_name_buffer}: (buffer, character-string, modify) Buffer to
+@var{output_name_buffer}: 
+(buffer, character-string, modify) Buffer to
 receive textual name string.  The application must free storage
 associated with this name after use with a call to
 gss_release_buffer().
 
-@var{output_name_type}: (Object ID, modify, optional) The type of the
+@var{output_name_type}: 
+(Object ID, modify, optional) The type of the
 returned name.  The returned gss_OID will be a pointer into
 static storage, and should be treated as read-only by the caller
 (in particular, the application should not attempt to free
@@ -32,7 +36,7 @@ If input_name was created by a call to gss_import_name, specifying
 GSS_C_NO_OID as the name-type, implementations that employ lazy
 conversion between name types may return GSS_C_NO_OID via the
 output_name_type parameter.
-
+
 Return value:
 
 
@@ -40,5 +44,5 @@ Return value:
 
 
 @code{GSS_S_BAD_NAME}: @@input_name was ill-formed.
-@end deftypefun
+@end deftypefun
 

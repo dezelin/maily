@@ -1,6 +1,6 @@
 This is libidn.info, produced by makeinfo version 4.13 from libidn.texi.
 
-This manual is last updated 25 November 2011 for version 1.23 of GNU
+This manual is last updated 22 December 2011 for version 1.23 of GNU
 Libidn.
 
    Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
@@ -34,7 +34,7 @@ File: libidn.info,  Node: Top,  Next: Introduction,  Up: (dir)
 GNU Libidn
 **********
 
-This manual is last updated 25 November 2011 for version 1.23 of GNU
+This manual is last updated 22 December 2011 for version 1.23 of GNU
 Libidn.
 
    Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
@@ -5528,7 +5528,7 @@ Concept Index
 * LGPL, GNU Lesser General Public License: GNU LGPL.          (line   6)
 * License, GNU GPL:                      GNU GPL.             (line   6)
 * License, GNU LGPL:                     GNU LGPL.            (line   6)
-* MacOS X:                               Supported Platforms. (line 116)
+* MacOS X:                               Supported Platforms. (line 120)
 * Mandrake:                              Supported Platforms. (line  66)
 * Memory handling:                       Memory handling under Windows.
                                                               (line   6)
@@ -5544,7 +5544,7 @@ Concept Index
 * RedHat:                                Supported Platforms. (line  49)
 * RedHat Advanced Server:                Supported Platforms. (line  58)
 * Reporting Bugs:                        Bug Reports.         (line   6)
-* Solaris:                               Supported Platforms. (line  87)
+* Solaris:                               Supported Platforms. (line  91)
 * Stringprep Functions:                  Stringprep Functions.
                                                               (line   6)
 * SuSE:                                  Supported Platforms. (line  31)
