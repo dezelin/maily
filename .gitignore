@@ -9,3 +9,6 @@
 *.*~
 *.*#
 
+#
+# Third party dependencies
+src/thirdparty/
