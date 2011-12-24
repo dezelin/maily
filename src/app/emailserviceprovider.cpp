@@ -19,7 +19,7 @@
 
 #include "dummycertverifier.h"
 #include "emailserviceprovider.h"
-#include "emailserviceproviderinfo.h
+#include "emailserviceproviderinfo.h"
 #include "tools.h"
 
 namespace Maily
