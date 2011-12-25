@@ -369,11 +369,13 @@ class EmailAccountWizardIncomingServerPagePrivate
 {
 public:
     EmailAccountWizardIncomingServerPagePrivate() :
-        usernameEditLine(0), passwordEditLine(0), typeComboBox(0),
-        hostnameEditLine(0), sslComboBox(0), portEditLine(0), authComboBox(0)
+        changedDuringTest(false), usernameEditLine(0), passwordEditLine(0),
+        typeComboBox(0), hostnameEditLine(0), sslComboBox(0), portEditLine(0),
+        authComboBox(0)
     {
     }
 
+    bool changedDuringTest;
     CustomEditLine* usernameEditLine;
     CustomEditLine* passwordEditLine;
     QComboBox* typeComboBox;
@@ -465,6 +467,16 @@ EmailAccountWizardIncomingServerPage::EmailAccountWizardIncomingServerPage(
     d->passwordEditLine = passwordEditLine;
     d->usernameEditLine = usernameEditLine;
 
+    connect(usernameEditLine, SIGNAL(textChanged(QString)), this, SLOT(changed()));
+    connect(passwordEditLine, SIGNAL(textChanged(QString)), this, SLOT(changed()));
+    connect(typeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changed()));
+    connect(sslComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changed()));
+    connect(authComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changed()));
+    connect(hostnameEditLine, SIGNAL(textChanged(QString)), this, SLOT(changed()));
+    connect(portEditLine, SIGNAL(textChanged(QString)), this, SLOT(changed()));
+
+    connect(this, SIGNAL(completeChanged()), this, SLOT(completeChanged()));
+
     connect(typeComboBox, SIGNAL(currentIndexChanged(int)), this,
         SLOT(incomingServerTypeIndexChanged(int)));
 
@@ -480,8 +492,6 @@ void EmailAccountWizardIncomingServerPage::initializePage()
 {
     QWizardPage::initializePage();
 
-    updateTestButtonColor(false);
-
     QString username = field(kFieldEmailAddress).toString();
     QString password = field(kFieldPassword).toString();
 
@@ -491,6 +501,46 @@ void EmailAccountWizardIncomingServerPage::initializePage()
 
     setField(kFieldIncomingServerUsername, username);
     setField(kFieldIncomingServerPassword, password);
+}
+
+void EmailAccountWizardIncomingServerPage::testButtonClicked(int which)
+{
+    Q_D(EmailAccountWizardIncomingServerPage);
+
+    Q_ASSERT(which == QWizard::CustomButton1);
+    if (which != QWizard::CustomButton1)
+        return;
+
+    if (wizard()->currentId() != EmailAccountWizard::PageEmailIncomingServer)
+        return;
+
+    QAbstractButton* testButton = wizard()->button(QWizard::CustomButton1);
+    Q_ASSERT(testButton);
+    if (!testButton)
+        return;
+
+    testButton->setText(tr("Testing..."));
+
+    d->changedDuringTest = false;
+
+    QFuture<bool> future = QtConcurrent::run(this,
+        &EmailAccountWizardIncomingServerPage::test);
+    ForgettableWatcher<bool>* futureWatcher = new ForgettableWatcher<bool>();
+    connect(futureWatcher, SIGNAL(finished()), this, SLOT(testFinished()));
+    futureWatcher->setFuture(future);
+}
+
+void EmailAccountWizardIncomingServerPage::changed()
+{
+    Q_D(EmailAccountWizardIncomingServerPage);
+
+    d->changedDuringTest = true;
+    completeChanged();
+}
+
+void EmailAccountWizardIncomingServerPage::completeChanged()
+{
+    updateTestButton(isComplete() ? TestButtonRed :TestButtonDisabled);
 }
 
 void EmailAccountWizardIncomingServerPage::incomingServerTypeIndexChanged(int index)
@@ -568,40 +618,138 @@ void EmailAccountWizardIncomingServerPage::incomingSSLIndexChanged(int index)
     d->portEditLine->setDisabled(index == 0);
 }
 
-void EmailAccountWizardIncomingServerPage::updateTestButtonColor(bool testPassed)
+void EmailAccountWizardIncomingServerPage::testFinished()
+{
+    Q_D(const EmailAccountWizardIncomingServerPage);
+
+    ForgettableWatcher<bool>* futureWatcher =
+        dynamic_cast<ForgettableWatcher<bool>*>(sender());
+    Q_ASSERT(futureWatcher);
+    if (!futureWatcher)
+        return;
+
+    bool result = futureWatcher->result();
+    updateTestButton(!d->changedDuringTest && result ? TestButtonBlue : TestButtonRed);
+}
+
+bool EmailAccountWizardIncomingServerPage::test()
+{
+    EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
+    Q_ASSERT(w);
+    if (!w)
+        return false;
+
+    QScopedPointer<EmailServiceProviderInfo> info(
+        static_cast<EmailServiceProviderInfo*>(w->getResultFromIncomingPage()));
+    Q_ASSERT(info);
+    if (!info)
+        return false;
+
+    QScopedPointer<EmailServiceProvider> provider(
+        ServiceProviderFactory::createProvider(*info));
+    provider->setDummyCertVerifier(true);
+    return provider->connect();
+}
+
+const QString kTestButtonStylesheetTemplate =
+    "QPushButton {"
+    "   color: white;"
+    "   border: 1px solid %1;"
+    "   border-radius: 1px;"
+    "   background: %2;"
+    "   width: %3;"
+    "   height: %4;"
+    "}"
+    "QPushButton:hover {"
+    "   border: 1px solid %5;"
+    "   background: %6;"
+    "}"
+    "QPushButton:pressed {"
+    "   background: %7;"
+    "}";
+
+const QString kDisabledTestButtonBorderColor = "#2d2d2d";
+const QString kDisabledTestButtonBackgroundColor = "#2d2d2d";
+const QString kDisabledTestButtonHoverBorderColor = "#2d2d2d";
+const QString kDisabledTestButtonHoverBackgroundColor = "#2d2d2d";
+const QString kDisabledTestButtonPressedBackgroundColor = "#2d2d2d";
+
+const QString kRedTestButtonBorderColor = "#d94b38";
+const QString kRedTestButtonBackgroundColor = "#d94b38";
+const QString kRedTestButtonHoverBorderColor = "#7f2b20";
+const QString kRedTestButtonHoverBackgroundColor = "#c54433";
+const QString kRedTestButtonPressedBackgroundColor = "#d64937";
+
+const QString kBlueTestButtonBorderColor = "#4a8bf4";
+const QString kBlueTestButtonBackgroundColor = "#4a8bf4";
+const QString kBlueTestButtonHoverBorderColor = "#305ba0";
+const QString kBlueTestButtonHoverBackgroundColor = "#4480e0";
+const QString kBlueTestButtonPressedBackgroundColor = "#4a8bf4";
+
+void EmailAccountWizardIncomingServerPage::updateTestButton(TestButtonStyles style)
 {
     QAbstractButton* testButton = wizard()->button(QWizard::CustomButton1);
     Q_ASSERT(testButton);
     if (!testButton)
         return;
 
-}
-
-void EmailAccountWizardIncomingServerPage::testButtonClicked(int which)
-{
-    Q_ASSERT(which == QWizard::CustomButton1);
-    if (which != QWizard::CustomButton1)
+    QAbstractButton* nextButton = wizard()->button(QWizard::NextButton);
+    Q_ASSERT(nextButton);
+    if (!nextButton)
         return;
 
-    if (wizard()->currentId() != EmailAccountWizard::PageEmailIncomingServer)
-        return;
+    int width = nextButton->geometry().width() - 2;
+    int height = nextButton->geometry().height() - 2;
 
-    EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
-    Q_ASSERT(w);
-    if (!w)
-        return;
+    QString styleSheet;
+    switch (style) {
+        case TestButtonDisabled: {
+            QString backgroundColor = palette().background().color().name();
+            styleSheet = kTestButtonStylesheetTemplate
+                .arg(backgroundColor)
+                .arg(backgroundColor)
+                .arg(QString::number(width) + "px")
+                .arg(QString::number(height) + "px")
+                .arg(backgroundColor)
+                .arg(backgroundColor)
+                .arg(backgroundColor);
+            testButton->setText("");
+            testButton->setEnabled(false);
+            break;
+        }
+        case TestButtonRed: {
+            styleSheet = kTestButtonStylesheetTemplate
+                .arg(kRedTestButtonBorderColor)
+                .arg(kRedTestButtonBackgroundColor)
+                .arg(QString::number(width) + "px")
+                .arg(QString::number(height) + "px")
+                .arg(kRedTestButtonHoverBorderColor)
+                .arg(kRedTestButtonHoverBackgroundColor)
+                .arg(kRedTestButtonPressedBackgroundColor);
+            testButton->setText(tr("Test"));
+            testButton->setEnabled(true);
+            break;
+        }
+        case TestButtonBlue: {
+            styleSheet = kTestButtonStylesheetTemplate
+                .arg(kBlueTestButtonBorderColor)
+                .arg(kBlueTestButtonBackgroundColor)
+                .arg(QString::number(width) + "px")
+                .arg(QString::number(height) + "px")
+                .arg(kBlueTestButtonHoverBorderColor)
+                .arg(kBlueTestButtonHoverBackgroundColor)
+                .arg(kBlueTestButtonPressedBackgroundColor);
+            testButton->setText(tr("Passed"));
+            testButton->setEnabled(true);
+            break;
+        }
+        default: {
+            qFatalAssert(!"Unknown test button style.");
+        }
+    }
 
-    QScopedPointer<EmailServiceProviderInfo> info(
-        static_cast<EmailServiceProviderInfo*>(w->getResultFromIncomingPage()));
-    Q_ASSERT(info);
-    if (!info)
-        return;
-
-    QScopedPointer<EmailServiceProvider> provider(
-        ServiceProviderFactory::createProvider(*info));
-    provider->setDummyCertVerifier(true);
-    bool connected = provider->connect();
-    updateTestButtonColor(connected);
+    testButton->setStyleSheet(styleSheet);
+    testButton->setFocusPolicy(Qt::NoFocus);
 }
 
 class EmailAccountWizardOutgoingServerPagePrivate
@@ -1122,7 +1270,7 @@ void EmailAccountWizard::currentIdChanged(int id)
         case PageEmailIncomingServer:
         case PageEmailOutgoingServer: {
             setOption(HaveCustomButton1, true);
-            setButtonText(CustomButton1, tr("Test"));
+            setButtonText(CustomButton1, "");
             layout << QWizard::CustomButton1 << QWizard::Stretch
                 << QWizard::BackButton << QWizard::NextButton
                 << QWizard::FinishButton << QWizard::CancelButton;

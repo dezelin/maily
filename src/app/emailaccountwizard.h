@@ -94,9 +94,16 @@ public slots:
     void testButtonClicked(int which);
 
 private slots:
+    void changed();
+    void completeChanged();
     void incomingServerTypeIndexChanged(int index);
     void incomingSSLIndexChanged(int index);
-    void updateTestButtonColor(bool testPassed);
+    void testFinished();
+
+private:
+    bool test();
+    enum TestButtonStyles { TestButtonDisabled, TestButtonRed, TestButtonBlue };
+    void updateTestButton(TestButtonStyles style);
 
 private:
     Q_DISABLE_COPY(EmailAccountWizardIncomingServerPage)
