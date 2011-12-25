@@ -514,7 +514,7 @@ void EmailAccountWizardIncomingServerPage::testButtonClicked(int which)
     EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
     Q_ASSERT(w);
     if (!w)
-        return false;
+        return;
 
     if (w->currentId() != EmailAccountWizard::PageEmailIncomingServer)
         return;
@@ -631,7 +631,7 @@ void EmailAccountWizardIncomingServerPage::testFinished()
     EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
     Q_ASSERT(w);
     if (!w)
-        return false;
+        return;
 
     if (w->currentId() != EmailAccountWizard::PageEmailIncomingServer)
         return;
@@ -705,7 +705,7 @@ void EmailAccountWizardIncomingServerPage::updateTestButton(TestButtonStyles sty
     EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
     Q_ASSERT(w);
     if (!w)
-        return false;
+        return;
 
     QAbstractButton* testButton = w->button(QWizard::CustomButton1);
     Q_ASSERT(testButton);
@@ -972,7 +972,7 @@ void EmailAccountWizardOutgoingServerPage::testButtonClicked(int which)
     EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
     Q_ASSERT(w);
     if (!w)
-        return false;
+        return;
 
     if (w->currentId() != EmailAccountWizard::PageEmailOutgoingServer)
         return;
