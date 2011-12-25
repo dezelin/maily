@@ -40,6 +40,7 @@ public:
 
     bool connect();
     bool disconnect();
+    bool isConnected() const;
 
     void setDummyCertVerifier(bool dummy);
 
