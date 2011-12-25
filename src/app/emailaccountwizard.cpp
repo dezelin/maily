@@ -519,6 +519,7 @@ void EmailAccountWizardIncomingServerPage::testButtonClicked(int which)
     if (!testButton)
         return;
 
+    updateTestButton(TestButtonRed);
     testButton->setText(tr("Testing..."));
 
     d->changedDuringTest = false;
