@@ -332,7 +332,6 @@ bool EmailServiceProvider::isConnected() const
 {
     Q_D(const EmailServiceProvider);
 
-    Q_ASSERT(d->session && d->service);
     if (!d->session || !d->service)
         return false;
 
