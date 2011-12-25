@@ -20,6 +20,7 @@
 #include "dummycertverifier.h"
 #include "emailserviceprovider.h"
 #include "emailserviceproviderinfo.h"
+#include "emailservicetimeouthandlerfactory.h"
 #include "tools.h"
 
 namespace Maily
@@ -262,6 +263,9 @@ bool EmailServiceProvider::connect()
             try {
                 vmime::ref<vmime::net::transport> transport =
                     currentSession->getTransport();
+                transport->setTimeoutHandlerFactory(
+                    vmime::create<EmailServiceTimeoutHandlerFactory>());
+
                 if (d->dummyCert)
                     transport->setCertificateVerifier(
                         vmime::create<Security::DummyCertVerifier>());
@@ -281,6 +285,9 @@ bool EmailServiceProvider::connect()
             try {
                 vmime::ref<vmime::net::store> store =
                     currentSession->getStore();
+                store->setTimeoutHandlerFactory(
+                    vmime::create<EmailServiceTimeoutHandlerFactory>());
+
                 if (d->dummyCert)
                     store->setCertificateVerifier(
                         vmime::create<Security::DummyCertVerifier>());

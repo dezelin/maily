@@ -32,7 +32,9 @@ SOURCES += main.cpp\
     forgettablewatcher.cpp \
     tools.cpp \
     emailserviceprovider.cpp \
-    serviceproviderfactory.cpp
+    serviceproviderfactory.cpp \
+    emailservicetimeouthandler.cpp \
+    emailservicetimeouthandlerfactory.cpp
 
 HEADERS  += mainwindow.h \
     servicestoolbox.h \
@@ -58,7 +60,9 @@ HEADERS  += mainwindow.h \
     platform.h \
     dummycertverifier.h \
     emailserviceprovider.h \
-    serviceproviderfactory.h
+    serviceproviderfactory.h \
+    emailservicetimeouthandler.h \
+    emailservicetimeouthandlerfactory.h
 
 FORMS    += mainwindow.ui
 
