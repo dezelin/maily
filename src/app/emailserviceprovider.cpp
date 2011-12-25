@@ -221,6 +221,10 @@ EmailServiceProvider::EmailServiceProvider(QObject *parent,
 
 EmailServiceProvider::~EmailServiceProvider()
 {
+    if (!isConnected())
+        return;
+
+    disconnect();
 }
 
 bool EmailServiceProvider::connect()
