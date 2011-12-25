@@ -210,7 +210,7 @@ bool EmailAccountWizardAccountPage::validatePage()
 
 void EmailAccountWizardAccountPage::disableButtons()
 {
-    QWizard* w = wizard();
+    EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
     Q_ASSERT(w);
     if (!w)
         return;
@@ -225,7 +225,7 @@ void EmailAccountWizardAccountPage::disableButtons()
 
 void EmailAccountWizardAccountPage::enableButtons()
 {
-    QWizard* w = wizard();
+    EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
     Q_ASSERT(w);
     if (!w)
         return;
@@ -240,7 +240,7 @@ void EmailAccountWizardAccountPage::enableButtons()
 
 void EmailAccountWizardAccountPage::next()
 {
-    QWizard* w = wizard();
+    EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
     Q_ASSERT(w);
     if (!w)
         return;
@@ -342,7 +342,7 @@ void EmailAccountWizardAccountPage::enumerationFinished()
     }
 
     // Get the result
-    EmailAccountWizard* w = dynamic_cast<EmailAccountWizard*>(wizard());
+    EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
     Q_ASSERT(w);
     if (w)
         w->adoptResult(result);
@@ -511,10 +511,15 @@ void EmailAccountWizardIncomingServerPage::testButtonClicked(int which)
     if (which != QWizard::CustomButton1)
         return;
 
-    if (wizard()->currentId() != EmailAccountWizard::PageEmailIncomingServer)
+    EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
+    Q_ASSERT(w);
+    if (!w)
+        return false;
+
+    if (w->currentId() != EmailAccountWizard::PageEmailIncomingServer)
         return;
 
-    QAbstractButton* testButton = wizard()->button(QWizard::CustomButton1);
+    QAbstractButton* testButton = w->button(QWizard::CustomButton1);
     Q_ASSERT(testButton);
     if (!testButton)
         return;
@@ -623,6 +628,14 @@ void EmailAccountWizardIncomingServerPage::testFinished()
 {
     Q_D(const EmailAccountWizardIncomingServerPage);
 
+    EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
+    Q_ASSERT(w);
+    if (!w)
+        return false;
+
+    if (w->currentId() != EmailAccountWizard::PageEmailIncomingServer)
+        return;
+
     ForgettableWatcher<bool>* futureWatcher =
         dynamic_cast<ForgettableWatcher<bool>*>(sender());
     Q_ASSERT(futureWatcher);
@@ -689,12 +702,17 @@ const QString kBlueTestButtonPressedBackgroundColor = "#4a8bf4";
 
 void EmailAccountWizardIncomingServerPage::updateTestButton(TestButtonStyles style)
 {
-    QAbstractButton* testButton = wizard()->button(QWizard::CustomButton1);
+    EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
+    Q_ASSERT(w);
+    if (!w)
+        return false;
+
+    QAbstractButton* testButton = w->button(QWizard::CustomButton1);
     Q_ASSERT(testButton);
     if (!testButton)
         return;
 
-    QAbstractButton* nextButton = wizard()->button(QWizard::NextButton);
+    QAbstractButton* nextButton = w->button(QWizard::NextButton);
     Q_ASSERT(nextButton);
     if (!nextButton)
         return;
@@ -951,7 +969,12 @@ void EmailAccountWizardOutgoingServerPage::testButtonClicked(int which)
     if (which != QWizard::CustomButton1)
         return;
 
-    if (wizard()->currentId() != EmailAccountWizard::PageEmailOutgoingServer)
+    EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
+    Q_ASSERT(w);
+    if (!w)
+        return false;
+
+    if (w->currentId() != EmailAccountWizard::PageEmailOutgoingServer)
         return;
 
 }
