@@ -263,7 +263,6 @@ bool EmailServiceProvider::connect()
                         vmime::create<Security::DummyCertVerifier>());
 
                 transport->connect();
-                transport->disconnect();
                 session = currentSession;
                 service = transport;
 
@@ -283,7 +282,6 @@ bool EmailServiceProvider::connect()
                         vmime::create<Security::DummyCertVerifier>());
 
                 store->connect();
-                store->disconnect();
                 session = currentSession;
                 service = store;
 
