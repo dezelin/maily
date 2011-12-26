@@ -1186,6 +1186,7 @@ ServiceProviderInfo* EmailAccountWizard::getResultFromIncomingPage()
         }
         case 2: { // Maildir
             info->setServiceType(EmailServiceProviderInfo::MAILDIR);
+            break;
         }
         default: {
             qFatalAssert(!"Unknown server type.")
@@ -1269,6 +1270,7 @@ ServiceProviderInfo* EmailAccountWizard::getResultFromOutgoingPage()
         }
         case 2: { // Sendmail
             info->setServiceType(EmailServiceProviderInfo::SENDMAIL);
+            break;
         }
         default: {
             qFatalAssert(!"Unknown server type.")
