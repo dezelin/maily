@@ -66,7 +66,13 @@ static vmime::ref<vmime::net::session> createSingleSession(
         vmime::create<vmime::net::session>();
     vmime::propertySet& p = session->getProperties();
 
-    p["store.protocol"] = protocol.toStdString();
+    if (serviceType == EmailServiceProviderInfo::SMTP
+        || serviceType == EmailServiceProviderInfo::SMTPS
+        || serviceType == EmailServiceProviderInfo::SENDMAIL)
+    {
+        p["transport.protocol"] = protocol.toStdString();
+    } else
+        p["store.protocol"] = protocol.toStdString();
 
     if (serviceType == EmailServiceProviderInfo::POP3
         || serviceType == EmailServiceProviderInfo::POP3S
@@ -255,9 +261,9 @@ bool EmailServiceProvider::connect()
 
         dumpToLog(currentSession);
 
-        if (serviceType == EmailServiceProviderInfo::SMTP
-            || serviceType == EmailServiceProviderInfo::SMTPS
-            || serviceType == EmailServiceProviderInfo::SENDMAIL)
+        if (serviceType & EmailServiceProviderInfo::SMTP
+            || serviceType & EmailServiceProviderInfo::SMTPS
+            || serviceType & EmailServiceProviderInfo::SENDMAIL)
         {
             // transports
             try {
