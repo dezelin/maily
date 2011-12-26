@@ -76,6 +76,41 @@ const int kPortImaps = 585;
 const int kPortSmtp = 25;
 const int kPortSmtps = 465;
 
+const QString kTestButtonStylesheetTemplate =
+    "QPushButton {"
+    "   color: white;"
+    "   border: 1px solid %1;"
+    "   border-radius: 1px;"
+    "   background: %2;"
+    "   width: %3;"
+    "   height: %4;"
+    "}"
+    "QPushButton:hover {"
+    "   border: 1px solid %5;"
+    "   background: %6;"
+    "}"
+    "QPushButton:pressed {"
+    "   background: %7;"
+    "}";
+
+const QString kDisabledTestButtonBorderColor = "#2d2d2d";
+const QString kDisabledTestButtonBackgroundColor = "#2d2d2d";
+const QString kDisabledTestButtonHoverBorderColor = "#2d2d2d";
+const QString kDisabledTestButtonHoverBackgroundColor = "#2d2d2d";
+const QString kDisabledTestButtonPressedBackgroundColor = "#2d2d2d";
+
+const QString kRedTestButtonBorderColor = "#d94b38";
+const QString kRedTestButtonBackgroundColor = "#d94b38";
+const QString kRedTestButtonHoverBorderColor = "#7f2b20";
+const QString kRedTestButtonHoverBackgroundColor = "#c54433";
+const QString kRedTestButtonPressedBackgroundColor = "#d64937";
+
+const QString kBlueTestButtonBorderColor = "#4a8bf4";
+const QString kBlueTestButtonBackgroundColor = "#4a8bf4";
+const QString kBlueTestButtonHoverBorderColor = "#305ba0";
+const QString kBlueTestButtonHoverBackgroundColor = "#4480e0";
+const QString kBlueTestButtonPressedBackgroundColor = "#4a8bf4";
+
 
 namespace Pages
 {
@@ -527,7 +562,7 @@ void EmailAccountWizardIncomingServerPage::testButtonClicked(int which)
     if (!testButton)
         return;
 
-    updateTestButton(TestButtonRed);
+    w->updateTestButton(EmailAccountWizard::TestButtonRed);
     testButton->setText(tr("Testing..."));
 
     d->changedDuringTest = false;
@@ -549,7 +584,13 @@ void EmailAccountWizardIncomingServerPage::changed()
 
 void EmailAccountWizardIncomingServerPage::completeChanged()
 {
-    updateTestButton(isComplete() ? TestButtonRed :TestButtonDisabled);
+    EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
+    Q_ASSERT(w);
+    if (!w)
+        return;
+
+    w->updateTestButton(isComplete() ? EmailAccountWizard::TestButtonRed
+        : EmailAccountWizard::TestButtonDisabled);
 }
 
 void EmailAccountWizardIncomingServerPage::incomingServerTypeIndexChanged(int index)
@@ -646,7 +687,8 @@ void EmailAccountWizardIncomingServerPage::testFinished()
         return;
 
     bool result = futureWatcher->result();
-    updateTestButton(!d->changedDuringTest && result ? TestButtonBlue : TestButtonRed);
+    w->updateTestButton(!d->changedDuringTest && result
+        ? EmailAccountWizard::TestButtonBlue : EmailAccountWizard::TestButtonRed);
 }
 
 bool EmailAccountWizardIncomingServerPage::test()
@@ -668,121 +710,17 @@ bool EmailAccountWizardIncomingServerPage::test()
     return provider->connect();
 }
 
-const QString kTestButtonStylesheetTemplate =
-    "QPushButton {"
-    "   color: white;"
-    "   border: 1px solid %1;"
-    "   border-radius: 1px;"
-    "   background: %2;"
-    "   width: %3;"
-    "   height: %4;"
-    "}"
-    "QPushButton:hover {"
-    "   border: 1px solid %5;"
-    "   background: %6;"
-    "}"
-    "QPushButton:pressed {"
-    "   background: %7;"
-    "}";
-
-const QString kDisabledTestButtonBorderColor = "#2d2d2d";
-const QString kDisabledTestButtonBackgroundColor = "#2d2d2d";
-const QString kDisabledTestButtonHoverBorderColor = "#2d2d2d";
-const QString kDisabledTestButtonHoverBackgroundColor = "#2d2d2d";
-const QString kDisabledTestButtonPressedBackgroundColor = "#2d2d2d";
-
-const QString kRedTestButtonBorderColor = "#d94b38";
-const QString kRedTestButtonBackgroundColor = "#d94b38";
-const QString kRedTestButtonHoverBorderColor = "#7f2b20";
-const QString kRedTestButtonHoverBackgroundColor = "#c54433";
-const QString kRedTestButtonPressedBackgroundColor = "#d64937";
-
-const QString kBlueTestButtonBorderColor = "#4a8bf4";
-const QString kBlueTestButtonBackgroundColor = "#4a8bf4";
-const QString kBlueTestButtonHoverBorderColor = "#305ba0";
-const QString kBlueTestButtonHoverBackgroundColor = "#4480e0";
-const QString kBlueTestButtonPressedBackgroundColor = "#4a8bf4";
-
-void EmailAccountWizardIncomingServerPage::updateTestButton(TestButtonStyles style)
-{
-    EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
-    Q_ASSERT(w);
-    if (!w)
-        return;
-
-    QAbstractButton* testButton = w->button(QWizard::CustomButton1);
-    Q_ASSERT(testButton);
-    if (!testButton)
-        return;
-
-    QAbstractButton* nextButton = w->button(QWizard::NextButton);
-    Q_ASSERT(nextButton);
-    if (!nextButton)
-        return;
-
-    int width = nextButton->geometry().width() - 2;
-    int height = nextButton->geometry().height() - 2;
-
-    QString styleSheet;
-    switch (style) {
-        case TestButtonDisabled: {
-            QString backgroundColor = palette().background().color().name();
-            styleSheet = kTestButtonStylesheetTemplate
-                .arg(backgroundColor)
-                .arg(backgroundColor)
-                .arg(QString::number(width) + "px")
-                .arg(QString::number(height) + "px")
-                .arg(backgroundColor)
-                .arg(backgroundColor)
-                .arg(backgroundColor);
-            testButton->setText("");
-            testButton->setEnabled(false);
-            break;
-        }
-        case TestButtonRed: {
-            styleSheet = kTestButtonStylesheetTemplate
-                .arg(kRedTestButtonBorderColor)
-                .arg(kRedTestButtonBackgroundColor)
-                .arg(QString::number(width) + "px")
-                .arg(QString::number(height) + "px")
-                .arg(kRedTestButtonHoverBorderColor)
-                .arg(kRedTestButtonHoverBackgroundColor)
-                .arg(kRedTestButtonPressedBackgroundColor);
-            testButton->setText(tr("Test"));
-            testButton->setEnabled(true);
-            break;
-        }
-        case TestButtonBlue: {
-            styleSheet = kTestButtonStylesheetTemplate
-                .arg(kBlueTestButtonBorderColor)
-                .arg(kBlueTestButtonBackgroundColor)
-                .arg(QString::number(width) + "px")
-                .arg(QString::number(height) + "px")
-                .arg(kBlueTestButtonHoverBorderColor)
-                .arg(kBlueTestButtonHoverBackgroundColor)
-                .arg(kBlueTestButtonPressedBackgroundColor);
-            testButton->setText(tr("Passed"));
-            testButton->setEnabled(true);
-            break;
-        }
-        default: {
-            qFatalAssert(!"Unknown test button style.");
-        }
-    }
-
-    testButton->setStyleSheet(styleSheet);
-    testButton->setFocusPolicy(Qt::NoFocus);
-}
-
 class EmailAccountWizardOutgoingServerPagePrivate
 {
 public:
     EmailAccountWizardOutgoingServerPagePrivate() :
-        usernameEditLine(0), passwordEditLine(0), typeComboBox(0),
-        hostnameEditLine(0), sslComboBox(0), portEditLine(0), authComboBox(0)
+        changedDuringTest(false), usernameEditLine(0), passwordEditLine(0),
+        typeComboBox(0), hostnameEditLine(0), sslComboBox(0), portEditLine(0),
+        authComboBox(0)
     {
     }
 
+    bool changedDuringTest;
     CustomEditLine* usernameEditLine;
     CustomEditLine* passwordEditLine;
     QComboBox* typeComboBox;
@@ -875,6 +813,16 @@ EmailAccountWizardOutgoingServerPage::EmailAccountWizardOutgoingServerPage(
     d->passwordEditLine = passwordEditLine;
     d->usernameEditLine = usernameEditLine;
 
+    connect(usernameEditLine, SIGNAL(textChanged(QString)), this, SLOT(changed()));
+    connect(passwordEditLine, SIGNAL(textChanged(QString)), this, SLOT(changed()));
+    connect(typeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changed()));
+    connect(sslComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changed()));
+    connect(authComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changed()));
+    connect(hostnameEditLine, SIGNAL(textChanged(QString)), this, SLOT(changed()));
+    connect(portEditLine, SIGNAL(textChanged(QString)), this, SLOT(changed()));
+
+    connect(this, SIGNAL(completeChanged()), this, SLOT(completeChanged()));
+
     connect(typeComboBox, SIGNAL(currentIndexChanged(int)), this,
         SLOT(incomingServerTypeIndexChanged(int)));
 
@@ -899,6 +847,58 @@ void EmailAccountWizardOutgoingServerPage::initializePage()
     setField(kFieldOutgoingServerUsername, username);
     setField(kFieldOutgoingServerPassword, password);
     setField(kFieldOutgoingServerHostname, hostname);
+}
+
+void EmailAccountWizardOutgoingServerPage::testButtonClicked(int which)
+{
+    Q_D(EmailAccountWizardOutgoingServerPage);
+
+    Q_ASSERT(which == QWizard::CustomButton1);
+    if (which != QWizard::CustomButton1)
+        return;
+
+    EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
+    Q_ASSERT(w);
+    if (!w)
+        return;
+
+    if (w->currentId() != EmailAccountWizard::PageEmailOutgoingServer)
+        return;
+
+    QAbstractButton* testButton = w->button(QWizard::CustomButton1);
+    Q_ASSERT(testButton);
+    if (!testButton)
+        return;
+
+    w->updateTestButton(EmailAccountWizard::TestButtonRed);
+    testButton->setText(tr("Testing..."));
+
+    d->changedDuringTest = false;
+
+    QFuture<bool> future = QtConcurrent::run(this,
+        &EmailAccountWizardOutgoingServerPage::test);
+    ForgettableWatcher<bool>* futureWatcher = new ForgettableWatcher<bool>();
+    connect(futureWatcher, SIGNAL(finished()), this, SLOT(testFinished()));
+    futureWatcher->setFuture(future);
+}
+
+void EmailAccountWizardOutgoingServerPage::changed()
+{
+    Q_D(EmailAccountWizardOutgoingServerPage);
+
+    d->changedDuringTest = true;
+    completeChanged();
+}
+
+void EmailAccountWizardOutgoingServerPage::completeChanged()
+{
+    EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
+    Q_ASSERT(w);
+    if (!w)
+        return;
+
+    w->updateTestButton(isComplete() ? EmailAccountWizard::TestButtonRed
+        : EmailAccountWizard::TestButtonDisabled);
 }
 
 void EmailAccountWizardOutgoingServerPage::incomingServerTypeIndexChanged(int index)
@@ -966,11 +966,9 @@ void EmailAccountWizardOutgoingServerPage::incomingAuthIndexChanged(int index)
     d->usernameEditLine->setDisabled(index == 1);
 }
 
-void EmailAccountWizardOutgoingServerPage::testButtonClicked(int which)
+void EmailAccountWizardOutgoingServerPage::testFinished()
 {
-    Q_ASSERT(which == QWizard::CustomButton1);
-    if (which != QWizard::CustomButton1)
-        return;
+    Q_D(const EmailAccountWizardOutgoingServerPage);
 
     EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
     Q_ASSERT(w);
@@ -980,6 +978,34 @@ void EmailAccountWizardOutgoingServerPage::testButtonClicked(int which)
     if (w->currentId() != EmailAccountWizard::PageEmailOutgoingServer)
         return;
 
+    ForgettableWatcher<bool>* futureWatcher =
+        dynamic_cast<ForgettableWatcher<bool>*>(sender());
+    Q_ASSERT(futureWatcher);
+    if (!futureWatcher)
+        return;
+
+    bool result = futureWatcher->result();
+    w->updateTestButton(!d->changedDuringTest && result
+        ? EmailAccountWizard::TestButtonBlue : EmailAccountWizard::TestButtonRed);
+}
+
+bool EmailAccountWizardOutgoingServerPage::test()
+{
+    EmailAccountWizard* w = static_cast<EmailAccountWizard*>(wizard());
+    Q_ASSERT(w);
+    if (!w)
+        return false;
+
+    QScopedPointer<EmailServiceProviderInfo> info(
+        static_cast<EmailServiceProviderInfo*>(w->getResultFromOutgoingPage()));
+    Q_ASSERT(info);
+    if (!info)
+        return false;
+
+    QScopedPointer<EmailServiceProvider> provider(
+        ServiceProviderFactory::createProvider(*info));
+    provider->setDummyCertVerifier(true);
+    return provider->connect();
 }
 
 EmailAccountWizardFinishedPage::EmailAccountWizardFinishedPage(QWidget* parent) :
@@ -1284,6 +1310,11 @@ void EmailAccountWizard::currentIdChanged(int id)
     QList<QWizard::WizardButton> layout;
     Pages pageId = static_cast<Pages>(id);
 
+    QWizardPage* page = currentPage();
+    Q_ASSERT(page);
+    if (!page)
+        return;
+
     switch(pageId) {
         case PageIntro:
         case PageEmailAccount:
@@ -1298,6 +1329,8 @@ void EmailAccountWizard::currentIdChanged(int id)
         case PageEmailOutgoingServer: {
             setOption(HaveCustomButton1, true);
             setButtonText(CustomButton1, "");
+            updateTestButton(page->isComplete() ? TestButtonRed
+                : TestButtonDisabled);
             layout << QWizard::CustomButton1 << QWizard::Stretch
                 << QWizard::BackButton << QWizard::NextButton
                 << QWizard::FinishButton << QWizard::CancelButton;
@@ -1310,6 +1343,72 @@ void EmailAccountWizard::currentIdChanged(int id)
     }
 
     setButtonLayout(layout);
+}
+
+void EmailAccountWizard::updateTestButton(TestButtonStyles style)
+{
+    QAbstractButton* testButton = button(QWizard::CustomButton1);
+    Q_ASSERT(testButton);
+    if (!testButton)
+        return;
+
+    QAbstractButton* nextButton = button(QWizard::NextButton);
+    Q_ASSERT(nextButton);
+    if (!nextButton)
+        return;
+
+    int width = nextButton->geometry().width() - 2;
+    int height = nextButton->geometry().height() - 2;
+
+    QString styleSheet;
+    switch (style) {
+        case TestButtonDisabled: {
+            QString backgroundColor = palette().background().color().name();
+            styleSheet = kTestButtonStylesheetTemplate
+                .arg(backgroundColor)
+                .arg(backgroundColor)
+                .arg(QString::number(width) + "px")
+                .arg(QString::number(height) + "px")
+                .arg(backgroundColor)
+                .arg(backgroundColor)
+                .arg(backgroundColor);
+            testButton->setText("");
+            testButton->setEnabled(false);
+            break;
+        }
+        case TestButtonRed: {
+            styleSheet = kTestButtonStylesheetTemplate
+                .arg(kRedTestButtonBorderColor)
+                .arg(kRedTestButtonBackgroundColor)
+                .arg(QString::number(width) + "px")
+                .arg(QString::number(height) + "px")
+                .arg(kRedTestButtonHoverBorderColor)
+                .arg(kRedTestButtonHoverBackgroundColor)
+                .arg(kRedTestButtonPressedBackgroundColor);
+            testButton->setText(tr("Test"));
+            testButton->setEnabled(true);
+            break;
+        }
+        case TestButtonBlue: {
+            styleSheet = kTestButtonStylesheetTemplate
+                .arg(kBlueTestButtonBorderColor)
+                .arg(kBlueTestButtonBackgroundColor)
+                .arg(QString::number(width) + "px")
+                .arg(QString::number(height) + "px")
+                .arg(kBlueTestButtonHoverBorderColor)
+                .arg(kBlueTestButtonHoverBackgroundColor)
+                .arg(kBlueTestButtonPressedBackgroundColor);
+            testButton->setText(tr("Passed"));
+            testButton->setEnabled(true);
+            break;
+        }
+        default: {
+            qFatalAssert(!"Unknown test button style.");
+        }
+    }
+
+    testButton->setStyleSheet(styleSheet);
+    testButton->setFocusPolicy(Qt::NoFocus);
 }
 
 } // namespace Wizards
