@@ -47,6 +47,8 @@ using namespace Maily::Widgets;
 using namespace Maily::Widgets::Validators;
 
 const QString kBusyLayoutObjectName = "busyLayoutObject";
+const QString kBusyLabelObjectName = "busyLabelObject";
+const QString kBusyIndicatorObjectName = "busyIndicatorObject";
 
 const QString kFieldFullName = "fullName";
 const QString kFieldEmailAddress = "emailAddress";
@@ -176,7 +178,6 @@ int EmailAccountWizardAccountPage::nextId() const
 
     d->m_futureStarted = false; // we will proceed to the next page
 
-    Q_ASSERT(d->m_futureWatcher);
     if (!d->m_futureWatcher)
         return EmailAccountWizard::PageEmailIncomingServer;
 
@@ -197,7 +198,7 @@ bool EmailAccountWizardAccountPage::validatePage()
 
     bool started = d->m_futureStarted;
     bool finished = (d->m_futureWatcher) ? d->m_futureWatcher->isFinished()
-        : false;
+        : true;
     if (started && finished)
         return true;
 
@@ -256,7 +257,9 @@ void EmailAccountWizardAccountPage::startBusyIndicator()
         return;
 
     QLabel* busyLabel = new QLabel(tr("<b>Checking the online database...</b>"));
+    busyLabel->setObjectName(kBusyLabelObjectName);
     BusyIndicatorWidget* busyIndicator = new BusyIndicatorWidget();
+    busyIndicator->setObjectName(kBusyIndicatorObjectName);
 
     QHBoxLayout* busyLayout = new QHBoxLayout();
     busyLayout->setObjectName(kBusyLayoutObjectName);
@@ -269,20 +272,17 @@ void EmailAccountWizardAccountPage::startBusyIndicator()
 
 void EmailAccountWizardAccountPage::stopBusyIndicator()
 {
-    QGridLayout* l = dynamic_cast<QGridLayout*>(layout());
-    Q_ASSERT(l);
-    if (!l)
-        return;
+    BusyIndicatorWidget* busyIndicator =
+        findChild<BusyIndicatorWidget*>(kBusyIndicatorObjectName);
+    Q_ASSERT(busyIndicator);
+    delete busyIndicator;
 
-    QHBoxLayout* busyLayout = l->findChild<QHBoxLayout*>(kBusyLayoutObjectName);
+    QLabel* busyLabel = findChild<QLabel*>(kBusyLabelObjectName);
+    Q_ASSERT(busyLabel);
+    delete busyLabel;
+
+    QHBoxLayout* busyLayout = findChild<QHBoxLayout*>(kBusyLayoutObjectName);
     Q_ASSERT(busyLayout);
-    if (!busyLayout)
-        return;
-
-    QObjectList::const_iterator it = busyLayout->children().begin();
-    while(*it++)
-        delete *it;
-
     delete busyLayout;
 }
 
@@ -346,6 +346,9 @@ void EmailAccountWizardAccountPage::enumerationFinished()
     Q_ASSERT(w);
     if (w)
         w->adoptResult(result);
+
+    d->m_futureWatcher = 0;
+    //d->m_futureStarted = false;
 
     stopBusyIndicator();
     enableButtons();
