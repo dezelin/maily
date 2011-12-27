@@ -603,7 +603,8 @@ void EmailAccountWizardIncomingServerPage::incomingServerTypeIndexChanged(int in
             if (ssl == 0)
                 setField(kFieldIncomingServerPort, "");
             else {
-                int port = (ssl == 1) ? kPortPop3 : kPortPop3s;
+                // None and STARTTLS are using default port
+                int port = (ssl == 1 || ssl == 2) ? kPortPop3 : kPortPop3s;
                 setField(kFieldIncomingServerPort, port);
             }
             break;
@@ -612,7 +613,8 @@ void EmailAccountWizardIncomingServerPage::incomingServerTypeIndexChanged(int in
             if (ssl == 0)
                 setField(kFieldIncomingServerPort, "");
             else {
-                int port = (ssl == 1) ? kPortImap : kPortImaps;
+                // None or STARTTLS are using default port
+                int port = (ssl == 1 || ssl == 2) ? kPortImap : kPortImaps;
                 setField(kFieldIncomingServerPort, port);
             }
             break;
@@ -642,7 +644,8 @@ void EmailAccountWizardIncomingServerPage::incomingSSLIndexChanged(int index)
             if (index == 0)
                 setField(kFieldIncomingServerPort, "");
             else {
-                int port = (index == 1) ? kPortPop3 : kPortPop3s;
+                // None and STARTTLS are using default port
+                int port = (index == 1 || index == 2) ? kPortPop3 : kPortPop3s;
                 setField(kFieldIncomingServerPort, port);
             }
             break;
@@ -651,7 +654,8 @@ void EmailAccountWizardIncomingServerPage::incomingSSLIndexChanged(int index)
             if (index == 0)
                 setField(kFieldIncomingServerPort, "");
             else {
-                int port = (index == 1) ? kPortImap : kPortImaps;
+                // None and STARTTLS are using default port
+                int port = (index == 1 || index == 2) ? kPortImap : kPortImaps;
                 setField(kFieldIncomingServerPort, port);
             }
             break;
