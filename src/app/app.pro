@@ -67,7 +67,8 @@ HEADERS  += mainwindow.h \
     emailservicetimeouthandlerfactory.h \
     settings.h \
     serviceproviderstorage.h \
-    emailserviceproviderstorage.h
+    emailserviceproviderstorage.h \
+    smartlist.h
 
 FORMS    += mainwindow.ui
 

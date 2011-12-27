@@ -129,7 +129,7 @@ EmailAccountWizardIntroPage::EmailAccountWizardIntroPage(QWidget* parent) :
     setLayout(layout);
 }
 
-typedef ForgettableWatcher<QList<ServiceProviderInfo*>*>
+typedef ForgettableWatcher<SmartList<ServiceProviderInfo*>*>
     ForgettableWatcherType;
 
 class EmailAccountWizardAccountPagePrivate
@@ -216,7 +216,7 @@ int EmailAccountWizardAccountPage::nextId() const
     if (!d->m_futureWatcher)
         return EmailAccountWizard::PageEmailIncomingServer;
 
-    QList<ServiceProviderInfo*>* result = d->m_futureWatcher->result();
+    SmartList<ServiceProviderInfo*>* result = d->m_futureWatcher->result();
     bool foundProvider = (result) ? !d->m_futureWatcher->result()->isEmpty()
         : false;
     if (foundProvider) {
@@ -343,7 +343,7 @@ void EmailAccountWizardAccountPage::startFutureWatcher()
     startBusyIndicator();
     disableButtons();
 
-    QFuture<QList<ServiceProviderInfo*>*> future = QtConcurrent::run(
+    QFuture<SmartList<ServiceProviderInfo*>*> future = QtConcurrent::run(
         this, &EmailAccountWizardAccountPage::enumerateServiceProviders,
             QString(domain));
 
@@ -365,13 +365,11 @@ void EmailAccountWizardAccountPage::enumerationFinished()
     if (!watcher)
         return;
 
-    QList<ServiceProviderInfo*>* result = watcher->result();
+    SmartList<ServiceProviderInfo*>* result = watcher->result();
     if (!d->m_futureStarted || d->m_futureWatcher != watcher) {
         // Delete QFuture results from the forgotten watchers
-        if (result) {
-            qDeleteAll(*result);
+        if (result)
             delete result;
-        }
 
         return;
     }
@@ -390,8 +388,7 @@ void EmailAccountWizardAccountPage::enumerationFinished()
     next();
 }
 
-QList<ServiceProviderInfo*>*
-EmailAccountWizardAccountPage::enumerateServiceProviders(
+SmartList<ServiceProviderInfo*>* EmailAccountWizardAccountPage::enumerateServiceProviders(
     const QString& domainName) const
 {
     QScopedPointer<AccountEnumerator> enumerator(
@@ -1032,15 +1029,13 @@ EmailAccountWizardFinishedPage::EmailAccountWizardFinishedPage(QWidget* parent) 
 class EmailAccountWizardPrivate
 {
 public:
-    EmailAccountWizardPrivate(QList<ServiceProviderInfo*>* result = 0) :
+    EmailAccountWizardPrivate(SmartList<ServiceProviderInfo*>* result = 0) :
         m_result(result)
     {
     }
 
     ~EmailAccountWizardPrivate()
     {
-        if (m_result)
-            qDeleteAll(*m_result);
     }
 
     void swap(EmailAccountWizardPrivate& wizardPrivate)
@@ -1048,7 +1043,7 @@ public:
         m_result.swap(wizardPrivate.m_result);
     }
 
-    QScopedPointer<QList<ServiceProviderInfo*> > m_result;
+    QScopedPointer<SmartList<ServiceProviderInfo*> > m_result;
 };
 
 EmailAccountWizard::EmailAccountWizard(QWidget *parent) :
@@ -1082,16 +1077,16 @@ EmailAccountWizard::~EmailAccountWizard()
 {
 }
 
-QList<ServiceProviderInfo*>* EmailAccountWizard::getResult()
+SmartList<ServiceProviderInfo *> *EmailAccountWizard::getResult()
 {
     Q_D(EmailAccountWizard);
     return d->m_result.take();
 }
 
-QList<ServiceProviderInfo*>* EmailAccountWizard::getResultFromFields()
+SmartList<ServiceProviderInfo *> *EmailAccountWizard::getResultFromFields()
 {
-    QScopedPointer<QList<ServiceProviderInfo*> > providers(
-        new QList<ServiceProviderInfo*>());
+    QScopedPointer<SmartList<ServiceProviderInfo*> > providers(
+        new SmartList<ServiceProviderInfo*>());
 
     ServiceProviderInfo* incoming = getResultFromIncomingPage();
     if (incoming)
@@ -1285,7 +1280,7 @@ ServiceProviderInfo* EmailAccountWizard::getResultFromOutgoingPage()
     return info.take();
 }
 
-void EmailAccountWizard::adoptResult(QList<ServiceProviderInfo*>* result)
+void EmailAccountWizard::adoptResult(SmartList<ServiceProviderInfo *> *result)
 {
     //Q_ASSERT(result);
     QScopedPointer<EmailAccountWizardPrivate> tmp(
@@ -1298,14 +1293,11 @@ void EmailAccountWizard::done(int result)
     if (result != QWizard::Accepted)
         QWizard::done(result);
 
-    QList<ServiceProviderInfo*>* providers = getResult();
+    QScopedPointer<SmartList<ServiceProviderInfo*> > providers(getResult());
     if (!providers)
-        providers = getResultFromFields();
+        providers.reset(getResultFromFields());
 
-    storeProviders(providers);
-
-    qDeleteAll(*providers);
-    delete providers;
+    storeProviders(providers.data());
 
     QWizard::done(result);
 }
@@ -1315,7 +1307,7 @@ void EmailAccountWizard::currentIdChanged(int id)
     if (id == -1)
         return;
 
-    QList<QWizard::WizardButton> layout;
+    SmartList<QWizard::WizardButton> layout;
     Pages pageId = static_cast<Pages>(id);
 
     QWizardPage* page = currentPage();
@@ -1419,7 +1411,7 @@ void EmailAccountWizard::updateTestButton(TestButtonStyles style)
     testButton->setFocusPolicy(Qt::NoFocus);
 }
 
-void EmailAccountWizard::storeProviders(QList<ServiceProviderInfo*>* providers)
+void EmailAccountWizard::storeProviders(SmartList<ServiceProviderInfo*>* providers)
 {
     Q_ASSERT(providers);
     if (!providers)

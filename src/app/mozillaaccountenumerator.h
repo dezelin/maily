@@ -22,11 +22,14 @@
 #include <QScopedPointer>
 
 #include "accountenumerator.h"
+#include "smartlist.h"
 
 namespace Maily
 {
 namespace Services
 {
+
+using namespace Containers;
 
 class MozillaAccountEnumeratorPrivate;
 class MozillaAccountEnumerator : public AccountEnumerator
@@ -38,7 +41,7 @@ public:
         const QString& domain = "");
     virtual ~MozillaAccountEnumerator();
 
-    virtual QList<ServiceProviderInfo*>* enumerateAccounts();
+    virtual SmartList<ServiceProviderInfo*>* enumerateAccounts();
 
 private:
     Q_DISABLE_COPY(MozillaAccountEnumerator)

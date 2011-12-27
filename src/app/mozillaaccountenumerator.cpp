@@ -70,7 +70,7 @@ public:
     }
 
     QString m_domain;
-    QScopedPointer<QList<ServiceProviderInfo*> > m_accounts;
+    QScopedPointer<SmartList<ServiceProviderInfo*> > m_accounts;
 };
 
 MozillaAccountEnumerator::MozillaAccountEnumerator(QObject* parent,
@@ -83,11 +83,11 @@ MozillaAccountEnumerator::~MozillaAccountEnumerator()
 {
 }
 
-QList<ServiceProviderInfo*>* MozillaAccountEnumerator::enumerateAccounts()
+SmartList<ServiceProviderInfo*>* MozillaAccountEnumerator::enumerateAccounts()
 {
     Q_D(MozillaAccountEnumerator);
 
-    d->m_accounts.reset(new QList<ServiceProviderInfo*>());
+    d->m_accounts.reset(new SmartList<ServiceProviderInfo*>());
 
     QEventLoop loop;
     QScopedPointer<QNetworkAccessManager> networkManager(new QNetworkAccessManager);

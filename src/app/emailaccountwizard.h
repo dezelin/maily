@@ -26,6 +26,7 @@
 
 #include "accountenumerator.h"
 #include "emailserviceproviderinfo.h"
+#include "smartlist.h"
 
 namespace Maily
 {
@@ -33,6 +34,7 @@ namespace Wizards
 {
 
 using namespace Services;
+using namespace Containers;
 
 namespace Pages
 {
@@ -69,7 +71,7 @@ private:
     void stopBusyIndicator();
     void startFutureWatcher();
 
-    QList<ServiceProviderInfo*>* enumerateServiceProviders(
+    SmartList<ServiceProviderInfo*>* enumerateServiceProviders(
         const QString& domainName) const;
 
 private:
@@ -175,16 +177,16 @@ private:
     Q_DECLARE_PRIVATE(EmailAccountWizard)
     QScopedPointer<EmailAccountWizardPrivate> d_ptr;
 
-    QList<ServiceProviderInfo*>* getResult();
-    QList<ServiceProviderInfo*>* getResultFromFields();
+    SmartList<ServiceProviderInfo*>* getResult();
+    SmartList<ServiceProviderInfo*>* getResultFromFields();
     ServiceProviderInfo* getResultFromIncomingPage();
     ServiceProviderInfo* getResultFromOutgoingPage();
-    void adoptResult(QList<ServiceProviderInfo*>* result);
+    void adoptResult(SmartList<ServiceProviderInfo*>* result);
 
     enum TestButtonStyles { TestButtonDisabled, TestButtonRed, TestButtonBlue };
     void updateTestButton(TestButtonStyles style);
 
-    void storeProviders(QList<ServiceProviderInfo*>* providers);
+    void storeProviders(SmartList<ServiceProviderInfo*>* providers);
 
     friend class Pages::EmailAccountWizardAccountPage;
     friend class Pages::EmailAccountWizardIncomingServerPage;

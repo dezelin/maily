@@ -15,28 +15,44 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ACCOUNTENUMERATOR_H
-#define ACCOUNTENUMERATOR_H
+#ifndef SMARTLIST_H
+#define SMARTLIST_H
 
-#include "serviceproviderinfo.h"
-#include "smartlist.h"
+#include "tools.h"
+
+#include <QList>
 
 namespace Maily
 {
-namespace Services
+namespace Containers
 {
 
-class AccountEnumerator : public QObject
+template <typename T>
+class SmartList : public QList<T>
 {
-    Q_OBJECT
+    typedef char PointerType;
+    typedef char ScalarType[2];
+
+    template<typename H>
+    struct is_pointer { typedef ScalarType type; };
+
+    template<typename H>
+    struct is_pointer<H*> { typedef PointerType type; };
+
+    void deleteAll(ScalarType&) {}
+    void deleteAll(PointerType&) { qDeleteAll(*this); }
 
 public:
-    explicit AccountEnumerator(QObject* parent = 0);
+    ~SmartList()
+    {
+        typename is_pointer<T>::type r;
+        deleteAll(r);
+    }
 
-    virtual Containers::SmartList<ServiceProviderInfo*>* enumerateAccounts() = 0;
+private:
 };
 
-} // namespace Services
+} // namespace Containers
 } // namespace Maily
 
-#endif // ACCOUNTENUMERATOR_H
+#endif // SMARTLIST_H
