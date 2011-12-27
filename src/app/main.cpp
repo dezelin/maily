@@ -41,6 +41,10 @@ int main(int argc, char *argv[])
 #endif
 
     QApplication app(argc, argv);
+    app.setOrganizationName("maily.org");
+    app.setOrganizationDomain("maily.org");
+    app.setApplicationName("Maily");
+    app.setApplicationVersion("0.0.1");
 
     QTranslator qtTranslator;
     qtTranslator.load("qt_" + QLocale::system().name(),
