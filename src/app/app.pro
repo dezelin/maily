@@ -62,7 +62,8 @@ HEADERS  += mainwindow.h \
     emailserviceprovider.h \
     serviceproviderfactory.h \
     emailservicetimeouthandler.h \
-    emailservicetimeouthandlerfactory.h
+    emailservicetimeouthandlerfactory.h \
+    settings.h
 
 FORMS    += mainwindow.ui
 

@@ -15,31 +15,19 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "emailservicetimeouthandlerfactory.h"
-#include "settings.h"
+#ifndef SETTINGS_H
+#define SETTINGS_H
 
-#include <QSettings>
+#include <QString>
 
 namespace Maily
 {
-namespace Services
+namespace Settings
 {
 
-const int kDefaultTimeout = 30;
+const QString kEmailServiceProviderTimeout = "emailserviceprovider/timeout";
 
-EmailServiceTimeoutHandlerFactory::EmailServiceTimeoutHandlerFactory() :
-    vmime::net::timeoutHandlerFactory()
-{
-}
-
-vmime::ref<vmime::net::timeoutHandler> EmailServiceTimeoutHandlerFactory::create()
-{
-    QSettings settings;
-    int timeout = settings.value(Settings::kEmailServiceProviderTimeout,
-        kDefaultTimeout).value<int>();
-    return vmime::create<EmailServiceTimeoutHandler>(timeout);
-}
-
-} // namespace Services
+} // namespace Settings
 } // namespace Maily
 
+#endif // SETTINGS_H
