@@ -184,6 +184,8 @@ private:
     enum TestButtonStyles { TestButtonDisabled, TestButtonRed, TestButtonBlue };
     void updateTestButton(TestButtonStyles style);
 
+    void storeProviders(QList<ServiceProviderInfo*>* providers);
+
     friend class Pages::EmailAccountWizardAccountPage;
     friend class Pages::EmailAccountWizardIncomingServerPage;
     friend class Pages::EmailAccountWizardOutgoingServerPage;

@@ -1302,6 +1302,8 @@ void EmailAccountWizard::done(int result)
     if (!providers)
         providers = getResultFromFields();
 
+    storeProviders(providers);
+
     qDeleteAll(*providers);
     delete providers;
 
@@ -1415,6 +1417,14 @@ void EmailAccountWizard::updateTestButton(TestButtonStyles style)
 
     testButton->setStyleSheet(styleSheet);
     testButton->setFocusPolicy(Qt::NoFocus);
+}
+
+void EmailAccountWizard::storeProviders(QList<ServiceProviderInfo*>* providers)
+{
+    Q_ASSERT(providers);
+    if (!providers)
+        return;
+
 }
 
 } // namespace Wizards
