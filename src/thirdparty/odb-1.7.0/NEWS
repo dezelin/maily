@@ -1,0 +1,342 @@
+Version 1.7.0
+
+  * Support for the Oracle database. The provided connection factories
+    include 'new' (a new connection is created every time one is requested)
+    and 'pool' (a pool of connections is maintained). The Boost and Qt
+    profiles have been updated to support this database. For more information,
+    refer to Chapter 16, "Oracle Database" in the ODB manual.
+
+  * Support for optimistic concurrency. For more information refer to Chapter
+    11, "Optimistic Concurrency" in the ODB manual as well as the 'optimistic'
+    example in the odb-examples package.
+
+  * Support for read-only objects, composite value types, and data members.
+    The new readonly pragma can be used to declare one of these entities as
+    read-only. Constant data members are automatically treated as read-only.
+    For more information, refer to Section 12.1.4 "readonly (object)",
+    Section 12.3.6 "readonly (composite value)", and Section 12.4.10
+    "readonly (data member)" in the ODB manual.
+
+  * Support for persistent classes without object identifiers. Such classes
+    have to be explicitly declared as not having an object id and they have
+    limited functionality. For more information, refer to Section 12.1.5
+    "id" in the ODB manual.
+
+  * Support for SQL statement execution tracing. For more information, refer
+    to Section 3.12 "Tracing SQL Statement Execution" in the ODB manual.
+
+  * Support for mapping char[N], unsigned char[N], and std::vector<unsigned
+    char> to the BLOB (or equivalent) types. For more information, refer to
+    Chapters 13 (for MySQL), 14 (for SQLite), 15 (for PostgreSQL), and 16
+    (for Oracle) in the ODB manual.
+
+  * Query result iterator now provides the id() function which allows one
+    to get the object id without loading the object. For more information,
+    refer to Section 4.4 "Query Result" in the ODB manual.
+
+  * Support for microsecond precision in Boost and Qt date-time types
+    mapping to PostgreSQL date-time data types. Additionally, Qt QDateTime
+    values stored in a PostgreSQL database can now be earlier than the UNIX
+    epoch.
+
+Version 1.6.0
+
+  * New concept, view, is a C++ class that embodies a light-weight, read-
+    only projection of one or more persistent objects or database tables
+    or the result of a native SQL query execution. Some of the common
+    applications of views include loading a subset of data members from
+    objects or columns from database tables, executing and handling
+    results of arbitrary SQL queries, including aggregate queries, as
+    well as joining multiple objects and/or database tables using object
+    relationships or custom join conditions. For more information refer
+    to Chapter 9, "Views" in the ODB manual as well as the 'view' example
+    in the odb-examples package.
+
+  * New function, database::erase_query(), allows the deletion of the
+    database state of multiple objects matching certain criteria. It uses
+    the same query expression as the database::query() function. For more
+    information, refer to Section 3.10, "Deleting Persistent Objects" in
+    the ODB manual.
+
+  * Support for value wrappers. An ODB value wrapper is a class template
+    that wraps a value type or a container. Common examples of wrappers
+    are smart pointers, holders, and "optional value" containers such as
+    boost::optional. A wrapper can be transparent or it can handle the
+    NULL semantics. To allow the easy conversion of value types that do
+    not support the NULL semantics into the ones that do, the odb::nullable
+    class template has been added. ODB now also includes built-in support for
+    std::auto_ptr and std::tr1::shared_ptr smart pointers as value wrappers
+    as well as for boost::shared_ptr and QSharedPointer via the Boost and Qt
+    profiles. Currently, the NULL semantics is only supported for simple
+    values but smart pointers can still be used with composite values and
+    containers. For more information, refer to Section 7.3, "NULL Value
+    Semantics" in the ODB manual.
+
+  * Support for the boost::optional container in the Boost profile. A data
+    member of the boost::optional type is mapped to a column that can have
+    a NULL value. For more information, refer to Section 15.3 "Optional
+    Library" in the ODB manual.
+
+  * Support for mapping std::vector<char> to the BLOB (or equivalent) types.
+    For more information, refer to Chapters 11 (for MySQL), 12 (for SQLite)
+    and 13 (for PostgreSQL) in the ODB manual.
+
+  * New option, --table-prefix, allows the specification of a prefix that
+    is added to table and index names. For more information, refer to the
+    ODB compiler command line interface documentation (man pages).
+
+  * New ODB runtime library interface, odb::connection, represents a
+    connection to the database. The primary use case for a connection is to
+    execute native statements outside of a transaction. For more information,
+    refer to Section 3.5, "Connections" in the ODB manual.
+
+  * Support for multiplexing several transactions on the same thread. For
+    more information, refer to Section 3.4, "Transactions" in the ODB
+    manual.
+
+  * All the concrete connection classes now have a second constructor which
+    allows the creation of a connection instance from an already established
+    underlying connection handle. The connection_pool_factory and, in case of
+    SQLite, single_connection_factory now have a virtual create() function
+    that can be overridden to implement custom connection establishment and
+    configuration.
+
+  * The query expression syntax for object pointers and composite values has
+    changed. Now, instead of using the scope resolution operator ('::'), the
+    member access via a pointer operator (->) is used for object pointers and
+    the member access operator (.) is used for composite values. Examples of
+    old and new syntax for pointers, old: query<employee>::employer::name,
+    new: query<employee>::employer->name. For composites values, old:
+    query<employee>::name::first, new: query<employee>::name.first.
+
+  * SQLite ODB runtime now enables foreign key constraints checking by
+    default. While this should not affect correct applications, due to
+    bugs in SQLite DDL foreign keys support, you may need to temporarily
+    disable foreign key constraints checking when re-creating the database
+    schema (the sign that you may need to do so is the "foreign key
+    constraint failed" exception thrown by the commit() function after the
+    call to schema_catalog::create_schema()). For more information, refer
+    to Section 12.5.3, "Foreign Key Constraints" in the ODB manual.
+
+  * Support for specifying the client character set for the MySQL database.
+    For more information, refer to Section 11.2, "MySQL Database Class" in
+    the ODB manual.
+
+  * Object cache maintained by a session no longer distinguishes between
+    const and non-const objects. Instead, const objects are treated as
+    non-const by casting away constness. For more information on this new
+    behavior, refer to Section 9.1, "Object Cache" in the ODB manual.
+
+Version 1.5.0
+
+  * Support for the PostgreSQL database. The provided connection factories
+    include 'new' (a new connection is created every time one is requested)
+    and 'pool' (a pool of connections is maintained). The Boost and Qt
+    profiles have been updated to support this database. For more information,
+    refer to Chapter 13, "PostgreSQL Database" in the ODB manual.
+
+  * New handling of the NULL semantics. Now, instead of being specified as
+    part of the SQL type with the type pragma, there are separate null and
+    not_null pragmas. The not_null pragma was used to control the NULL
+    semantics of object pointers. Now the two pragmas are used consistently
+    for object pointers and simple values (and, in the future, they will work
+    for composite values and containers). To control the NULL semantics of
+    the container's element values, the value_null and value_not_null pragmas
+    have been added, similar to the value_type, value_column, etc., pragmas.
+    For more information about the new mechanism, refer to Sections 10.2.3,
+    10.2.8, 10.3.4, and 10.3.13 in the ODB manual.
+
+    This is a backwards-incompatible change. Existing use cases that will
+    require manual changes are listed below.
+
+    For pragmas that apply to simple value types and data members of
+    such types:
+
+    #pragma db type("TEXT NOT NULL") => #pragma db type("TEXT")
+    #pragma db type("TEXT NULL")     => #pragma db type("TEXT") null
+    #pragma db type("TEXT")          => #pragma db type("TEXT") null
+
+    For pragmas that apply to containers of pointers and data members of
+    such types:
+
+    #pragma db not_null              => #pragma db value_not_null
+
+  * New pragma, default, allows the specification of the database default
+    value. For more information, refer to Section 10.3.5, "default" in the
+    ODB manual.
+
+  * New pragmas, options, id_options, index_options, key_options, and
+    value_options, allow the specification of additional column definition
+    options. For more information, refer to Section 10.3.6, "options" in
+    the ODB manual.
+
+  * Support for database operations callbacks. Now a persistent class can
+    register a callback function that will be called before and after every
+    database operation (such as persist, load, update, or erase) is performed
+    on an object of this class. A database operations callback can be used to
+    implement object-specific pre and post initializations, registrations,
+    and cleanups. For more information and an example, refer to Section
+    10.1.4, "callback" in the ODB manual.
+
+  * New option, --include-regex, allows the modification of the #include
+    directive paths generated by the ODB compiler. This is primarily useful
+    when placing the generated code into subdirectories and the #include
+    directives have to be adjusted accordingly. The --include-regex-trace
+    option is useful for debugging the expressions specified with
+    --include-regex.
+
+Version 1.4.0
+
+  * New profile, qt, provides persistence support for the Qt framework. This
+    version covers the most commonly used basic types, date-time types, smart
+    pointers, and containers. The qt profile implementation is provided by the
+    libodb-qt library. For more information refer to Chapter 13, "Profiles
+    Introduction" and Chapter 15, "Qt Profile" in the ODB manual as well as
+    the 'qt' example in the odb-examples package.
+
+  * Support for non-polymorphic object inheritance, including the new abstract
+    pragma. For more information refer to Chapter 8, "Inheritance" in the ODB
+    manual as well as the 'inheritance' example in the odb-examples package.
+
+  * Automatic mapping of C++ enumerations to suitable database types. In
+    database systems that support enumeration types (such as MySQL), a C++
+    enum is mapped to such a type (for example, ENUM('red', 'green', 'blue')
+    in MySQL). Otherwise, it is mapped to a suitable integer type. Refer to
+    Part II, "Database Systems" in the ODB manual for more details on the
+    provided mappings.
+
+  * New pragma, id_type, allows the specification of the native database type
+    that should be used for data members designated as object identifiers. In
+    combination with the type pragma, id_type allows you to map a C++ type
+    differently depending on whether it is used in an ordinary member or an
+    object id.
+
+  * New options, --odb-prologue-file and --odb-epilogue-file, allow the
+    inclusion of file contents into the ODB compilation.
+
+  * Default mapping of the size_t and std::size_t types to a 64-bit integer
+    database type irrespective of the platform width. This can be overridden
+    with the type pragma.
+
+Version 1.3.0
+
+  * Support for the SQLite database. The provided connection factories include
+    'new' (a new connection is created every time one is requested), 'single'
+    (single connection is shared among all the callers), and 'pool' (a pool
+    of connections is maintained). In multi-threaded applications the runtime
+    uses the SQLite shared cache and unlock notification features to aid
+    concurrency. For more information, refer to Chapter 11, "SQLite Database"
+    in the ODB manual.
+
+  * Support for database-specific profiles. Now the ODB compiler first looks
+    for the <profile>-<database>.options file and only if this file is not
+    found, does it fall back to <profile>.options.
+
+  * Support for the GCC 4.6 plugin interface changes.
+
+Version 1.2.0
+
+  * New profile, boost, provides persistence support for the Boost libraries.
+    This version covers the most commonly used types from the smart_ptr,
+    unordered, and date_time libraries. The boost profile implementation is
+    provided by the libodb-boost library. For more information refer to
+    Chapter 11, "Profiles Introduction" and Chapter 12, "Boost Profile" in
+    the ODB manual as well as the 'boost' example in the odb-examples package.
+
+  * Support for embedded database schemas. The new option, --schema-format,
+    allows the selection of the schema format. The valid values for this
+    option are 'sql' for a standalone SQL file and 'embedded' for a schema
+    embedded into the generated C++ code. The new odb::schema_catalog class
+    provides support for accessing embedded schemas from within the
+    application. For details refer to Section 3.3, "Database" in the ODB
+    manual as well as the 'schema/embedded' example in the odb-examples
+    package.
+
+  * New exceptions: odb::recoverable, odb::connection_lost, and odb::timeout.
+    The odb::recoverable exception is a common base class for all recoverable
+    ODB exceptions. The other two exceptions plus odb::deadlock now inherit
+    from this base. Refer to Section 3.5, "Error Handling and Recovery" for
+    details.
+
+  * Support for connection validation (ping) in MySQL connection_pool_factory.
+    This transparently deals with the MySQL server closing connections after
+    a certain period of inactivity.
+
+  * New namespace, odb::core, contains using-declarations for the core ODB
+    constructs, such as the database, transaction, etc. The primary use of
+    this namespace is in the using-directives:
+
+    using namespace odb::core;
+
+    The above form should be preferred over the old variant:
+
+    using namespace odb;
+
+    The new approach brings all the essential ODB names into the current
+    namespace without any of the auxiliary objects such as traits, etc., which
+    minimizes the likelihood of conflicts with other libraries.  Note that you
+    should still use the odb namespace when qualifying individual names, for
+    example, odb::database.
+
+  * New option aliases: -q for --generate-query and -s for --generate-schema.
+
+  * Support for the default options file. Now, if configured, the ODB compiler
+    loads the default options file (by default ../etc/odb/default.options,
+    relative to the ODB compiler binary). This file can be used for
+    installation-wide customization, such as adding extra include search
+    paths.
+
+Version 1.1.0
+
+  * Support for storing containers in the database. For more information refer
+    to Chapter 5, "Containers" in the ODB manual as well as the 'container'
+    example in the odb-examples package.
+
+  * Support for unidirectional and bidirectional object relationships,
+    including lazy loading. For more information refer to Chapter 6,
+    "Relationships" in the ODB manual as well as the 'relationship' and
+    'inverse' examples in the odb-examples package.
+
+  * Support for composite value types. For more information refer to Chapter
+    7, "Composite Value Types" in the ODB manual as well as the 'composite'
+    example in the odb-examples package.
+
+  * Support for sessions. A session is an application's unit of work that
+    may encompass several database transactions. In this version of ODB a
+    session is just an object cache. For more information refer to Chapter
+    8, "Session" in the ODB manual.
+
+  * Support for custom object pointers that allows you to use smart pointers
+    to return, pass, and cache persistent objects. See Section 3.2, "Object
+    Pointers" in the ODB manual for details.
+
+  * Support for native SQL statement execution. See Section 3.9, "Executing
+    Native SQL Statements" in the ODB manual for details.
+
+  * New option, --profile/-p, instructs the ODB compiler to use the specified
+    profile library. See the ODB compiler command line manual for details.
+
+  * Support for literal names (template-id, derived type declarator such as
+    pointers, etc) in data member declarations. Now, for example, you can use
+    std::vector<std::string> directly instead of having to create a typedef
+    alias for it.
+
+  * Support for inheritance from transient base types for object types and
+    composite value types.
+
+  * New example, 'schema/custom', shows how to map persistent C++ classes to
+    a custom database schema.
+
+  * New options, --odb-prologue, --odb-epilogue, allow inclusion of extra code
+    into the ODB compilation process. This can be useful for making additional
+    traits specializations or ODB pragmas known to the ODB compiler.
+
+  * Support for persistent classes without default constructors. For objects
+    of such classes only the load() and find() database functions that
+    populate an existing instance can be used. Similarly, only the load()
+    query result iterator function which populates an existing instance can
+    be used.
+
+Version 1.0.0
+
+  * Initial release.
