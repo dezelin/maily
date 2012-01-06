@@ -37,7 +37,8 @@ SOURCES += main.cpp\
     emailservicetimeouthandlerfactory.cpp \
     serviceproviderstorage.cpp \
     emailserviceproviderstorage.cpp \
-    store.cpp
+    store.cpp \
+    serviceproviderstoragefactory.cpp
 
 HEADERS  += mainwindow.h \
     servicestoolbox.h \
@@ -70,7 +71,8 @@ HEADERS  += mainwindow.h \
     serviceproviderstorage.h \
     emailserviceproviderstorage.h \
     smartlist.h \
-    store.h
+    store.h \
+    serviceproviderstoragefactory.h
 
 FORMS    += mainwindow.ui
 
