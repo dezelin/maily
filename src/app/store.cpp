@@ -45,6 +45,12 @@ Store::~Store()
 
 }
 
+int Store::version() const
+{
+    Q_D(const Store);
+    return d->version;
+}
+
 } // namespace Storage
 } // namespace Services
 } // namespace Maily
