@@ -42,7 +42,6 @@ Store::Store(QObject *parent, int version) :
 
 Store::~Store()
 {
-
 }
 
 int Store::version() const
