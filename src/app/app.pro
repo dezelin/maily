@@ -39,7 +39,10 @@ SOURCES += main.cpp\
     emailserviceproviderstorage.cpp \
     store.cpp \
     serviceproviderstoragefactory.cpp \
-    serviceproviderstoragetransaction.cpp
+    serviceproviderstoragetransaction.cpp \
+    serviceprovidermetastore.cpp \
+    serviceprovideraccountstore.cpp \
+    emailserviceprovideraccountstore.cpp
 
 HEADERS  += mainwindow.h \
     servicestoolbox.h \
@@ -74,7 +77,10 @@ HEADERS  += mainwindow.h \
     smartlist.h \
     store.h \
     serviceproviderstoragefactory.h \
-    serviceproviderstoragetransaction.h
+    serviceproviderstoragetransaction.h \
+    serviceprovidermetastore.h \
+    serviceprovideraccountstore.h \
+    emailserviceprovideraccountstore.h
 
 FORMS    += mainwindow.ui
 
