@@ -43,7 +43,9 @@ public:
     virtual bool remove() = 0;
     virtual bool upgrade(int fromVersion) = 0;
 
-    int version() const;
+    virtual int version() const;
+
+    virtual bool isOpened() const;
     
 signals:
     

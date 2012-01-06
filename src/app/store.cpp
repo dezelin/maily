@@ -28,10 +28,11 @@ class StorePrivate
 {
 public:
     StorePrivate(int ver) :
-        version(ver)
+        version(ver), opened(false)
     {
     }
 
+    bool opened;
     int version;
 };
 
@@ -48,6 +49,12 @@ int Store::version() const
 {
     Q_D(const Store);
     return d->version;
+}
+
+bool Store::isOpened() const
+{
+    Q_D(const Store);
+    return d->opened;
 }
 
 } // namespace Storage
