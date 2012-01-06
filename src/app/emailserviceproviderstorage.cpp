@@ -16,6 +16,9 @@
  */
 
 #include "emailserviceproviderstorage.h"
+#include "store.h"
+
+#include <QScopedPointer>
 
 namespace Maily
 {
@@ -24,8 +27,25 @@ namespace Services
 namespace Storage
 {
 
-EmailServiceProviderStorage::EmailServiceProviderStorage(QObject *parent) :
-    ServiceProviderStorage(parent)
+class EmailServiceProviderStoragePrivate
+{
+public:
+    EmailServiceProviderStoragePrivate(Store *d) :
+        data(d)
+    {
+    }
+
+    QScopedPointer<Store> data;
+};
+
+EmailServiceProviderStorage::EmailServiceProviderStorage(QObject *parent,
+    Store *meta, Store *account, Store *data) :
+    ServiceProviderStorage(parent, meta, account),
+    d_ptr(new EmailServiceProviderStoragePrivate(data))
+{
+}
+
+EmailServiceProviderStorage::~EmailServiceProviderStorage()
 {
 }
 

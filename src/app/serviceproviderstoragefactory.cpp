@@ -31,7 +31,7 @@ ServiceProviderStorageFactory::ServiceProviderStorageFactory()
 
 ServiceProviderStorage *ServiceProviderStorageFactory::createEmailStorage()
 {
-    return new EmailServiceProviderStorage();
+    return new EmailServiceProviderStorage(0, 0, 0, 0);
 }
 
 } // namespace Storage

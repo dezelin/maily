@@ -16,6 +16,7 @@
  */
 
 #include "serviceproviderstorage.h"
+#include "store.h"
 
 namespace Maily
 {
@@ -24,9 +25,59 @@ namespace Services
 namespace Storage
 {
 
-ServiceProviderStorage::ServiceProviderStorage(QObject *parent) :
-    QObject(parent)
+class ServiceProviderStoragePrivate
 {
+public:
+    ServiceProviderStoragePrivate(Store *m, Store *a) :
+        meta(m), account(a)
+    {
+    }
+
+    QScopedPointer<Store> meta;
+    QScopedPointer<Store> account;
+};
+
+ServiceProviderStorage::ServiceProviderStorage(QObject *parent, Store *meta,
+    Store *account) :
+    QObject(parent),
+    d_ptr(new ServiceProviderStoragePrivate(meta, account))
+{
+}
+
+ServiceProviderStorage::~ServiceProviderStorage()
+{
+}
+
+bool ServiceProviderStorage::close()
+{
+}
+
+bool ServiceProviderStorage::open()
+{
+}
+
+bool ServiceProviderStorage::remove()
+{
+}
+
+bool ServiceProviderStorage::upgrade()
+{
+}
+
+int ServiceProviderStorage::version() const
+{
+    Q_D(const ServiceProviderStorage);
+    return d->meta->version();
+}
+
+ServiceProviderInfo *ServiceProviderStorage::getProviderInfo() const
+{
+}
+
+bool ServiceProviderStorage::isOpened() const
+{
+    Q_D(const ServiceProviderStorage);
+    return d->meta->isOpened() && d->account->isOpened();
 }
 
 } // namespace Storage

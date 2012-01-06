@@ -18,7 +18,11 @@
 #ifndef SERVICEPROVIDERSTORAGE_H
 #define SERVICEPROVIDERSTORAGE_H
 
+#include "serviceproviderinfo.h"
+#include "store.h"
+
 #include <QObject>
+#include <QScopedPointer>
 
 namespace Maily
 {
@@ -27,16 +31,32 @@ namespace Services
 namespace Storage
 {
 
+class ServiceProviderStoragePrivate;
 class ServiceProviderStorage : public QObject
 {
     Q_OBJECT
+
 public:
-    explicit ServiceProviderStorage(QObject *parent = 0);
+    explicit ServiceProviderStorage(QObject *parent, Store *meta, Store *account);
+    virtual ~ServiceProviderStorage();
+
+    virtual bool close();
+    virtual bool open();
+    virtual bool remove();
+    virtual bool upgrade();
+    virtual int version() const;
+
+    virtual ServiceProviderInfo* getProviderInfo() const;
     
+    virtual bool isOpened() const;
 signals:
     
 public slots:
-    
+
+private:
+    Q_DISABLE_COPY(ServiceProviderStorage)
+    Q_DECLARE_PRIVATE(ServiceProviderStorage)
+    QScopedPointer<ServiceProviderStoragePrivate> d_ptr;
 };
 
 } // namespace Storage
