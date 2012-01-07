@@ -37,11 +37,11 @@ public:
     explicit Store(QObject *parent = 0, int version = 1);
     virtual ~Store();
 
-    virtual bool close() = 0;
-    virtual bool create() = 0;
-    virtual bool open() = 0;
-    virtual bool remove() = 0;
-    virtual bool upgrade(int fromVersion) = 0;
+    virtual void close() = 0;
+    virtual void create() = 0;
+    virtual void open() = 0;
+    virtual void remove() = 0;
+    virtual void upgrade(int fromVersion) = 0;
 
     virtual int version() const;
 

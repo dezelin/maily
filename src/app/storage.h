@@ -19,6 +19,7 @@
 #define STORAGE_H
 
 #include "storagetransaction.h"
+#include "store.h"
 
 #include <QObject>
 #include <QScopedPointer>
@@ -30,18 +31,18 @@ namespace Services
 namespace Storage
 {
 
-class StoragePrivate;
 class Storage : public QObject
 {
     Q_OBJECT
+
 public:
     explicit Storage(QObject *parent = 0);
     virtual ~Storage();
     
-    virtual bool close() = 0;
-    virtual bool open() = 0;
-    virtual bool remove() = 0;
-    virtual bool upgrade(int fromVersion) = 0;
+    virtual void close() = 0;
+    virtual void open() = 0;
+    virtual void remove() = 0;
+    virtual void upgrade(int fromVersion) = 0;
     virtual int version() const = 0;
     virtual bool isOpened() const = 0;
 
@@ -51,11 +52,14 @@ public:
 signals:
     
 public slots:
-    
+
+protected:
+    Store *store(const QString &storeName);
+    void addStore(const QString &storeName, Store *store);
+    void removeStore(const QString &storeName);
+
 private:
     Q_DISABLE_COPY(Storage)
-    Q_DECLARE_PRIVATE(Storage)
-    QScopedPointer<StoragePrivate> d_ptr;
 };
 
 } // namespace Storage

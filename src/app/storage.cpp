@@ -16,6 +16,10 @@
  */
 
 #include "storage.h"
+#include "store.h"
+
+#include <QMap>
+#include <QSharedPointer>
 
 namespace Maily
 {
@@ -24,14 +28,6 @@ namespace Services
 namespace Storage
 {
 
-class StoragePrivate
-{
-public:
-    StoragePrivate()
-    {
-    }
-};
-
 Storage::Storage(QObject *parent) :
     QObject(parent)
 {
@@ -39,6 +35,24 @@ Storage::Storage(QObject *parent) :
 
 Storage::~Storage()
 {
+}
+
+Store *Storage::store(const QString &storeName)
+{
+    return findChild<Store*>(storeName);
+}
+
+void Storage::addStore(const QString &storeName, Store *store)
+{
+    store->setParent(this);
+    store->setObjectName(storeName);
+}
+
+void Storage::removeStore(const QString &storeName)
+{
+    Store *store = findChild<Store*>(storeName);
+    Q_ASSERT(store);
+    delete store;
 }
 
 } // namespace Storage

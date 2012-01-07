@@ -35,6 +35,9 @@ namespace Services
 namespace Storage
 {
 
+const QString kServiceProviderMetaStore = "ServiceProviderMetaStore";
+const QString kServiceProviderAccountStore = "ServiceProviderAccountStore";
+
 class ServiceProviderStoragePrivate;
 class ServiceProviderStorage : public Storage
 {
@@ -42,25 +45,29 @@ class ServiceProviderStorage : public Storage
 
 public:
     explicit ServiceProviderStorage(QObject *parent,
-        ServiceProviderMetaStore *meta, ServiceProviderAccountStore *account);
+        ServiceProviderMetaStore *metaStore,
+        ServiceProviderAccountStore *accountStore);
     virtual ~ServiceProviderStorage();
 
-    virtual bool close();
-    virtual bool open();
-    virtual bool remove();
-    virtual bool upgrade(int fromVersion);
+    virtual void close();
+    virtual void open();
+    virtual void remove();
+    virtual void upgrade(int fromVersion);
     virtual int version() const;
-
-    virtual ServiceProviderInfo* getProviderInfo() const;
-    
     virtual bool isOpened() const;
 
-    virtual StorageTransaction* beginTransaction(
+    virtual ServiceProviderInfo *getProviderInfo() const;
+
+    virtual StorageTransaction *beginTransaction(
         StorageTransaction *parentTransaction = 0);
 
 signals:
     
 public slots:
+
+protected:
+    ServiceProviderMetaStore *metaStore();
+    ServiceProviderAccountStore *accountStore();
 
 private:
     Q_DISABLE_COPY(ServiceProviderStorage)
