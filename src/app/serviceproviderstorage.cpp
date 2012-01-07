@@ -137,17 +137,26 @@ void ServiceProviderStorage::upgrade(int fromVersion)
 
 int ServiceProviderStorage::version() const
 {
-    Q_D(const ServiceProviderStorage);
+    const ServiceProviderMetaStore *meta =
+        static_cast<const ServiceProviderMetaStore*>(metaStore());
+    Q_ASSERT(meta);
+    return meta->getServiceStorageVersion();
 }
 
 ServiceProviderInfo *ServiceProviderStorage::getProviderInfo() const
 {
-    Q_D(const ServiceProviderStorage);
+    return 0;
 }
 
 bool ServiceProviderStorage::isOpened() const
 {
-    Q_D(const ServiceProviderStorage);
+    const Store *meta = metaStore();
+    const Store *account = accountStore();
+    Q_ASSERT(meta && account);
+    if (!meta || !account)
+        return false;
+
+    return meta->isOpened() && account->isOpened();
 }
 
 StorageTransaction *ServiceProviderStorage::beginTransaction(
@@ -156,16 +165,26 @@ StorageTransaction *ServiceProviderStorage::beginTransaction(
     return 0;
 }
 
-ServiceProviderMetaStore *ServiceProviderStorage::metaStore()
+inline ServiceProviderMetaStore *ServiceProviderStorage::metaStore()
 {
     return static_cast<ServiceProviderMetaStore*>(
-        store(kServiceProviderMetaStore));
+                store(kServiceProviderMetaStore));
 }
 
-ServiceProviderAccountStore *ServiceProviderStorage::accountStore()
+inline const ServiceProviderMetaStore *ServiceProviderStorage::metaStore() const
+{
+    return metaStore();
+}
+
+inline ServiceProviderAccountStore *ServiceProviderStorage::accountStore()
 {
     return static_cast<ServiceProviderAccountStore*>(
-        store(kServiceProviderAccountStore));
+                store(kServiceProviderAccountStore));
+}
+
+inline const ServiceProviderAccountStore *ServiceProviderStorage::accountStore() const
+{
+    return accountStore();
 }
 
 } // namespace Storage

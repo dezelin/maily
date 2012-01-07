@@ -41,6 +41,8 @@ public:
     explicit ServiceProviderMetaStore(QObject *parent,
         const QString& storeName = kServiceProviderMetaStore, int version = 1);
     virtual ~ServiceProviderMetaStore();
+
+    unsigned int getServiceStorageVersion() const;
     
 signals:
     

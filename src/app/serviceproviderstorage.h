@@ -64,7 +64,10 @@ public slots:
 
 protected:
     ServiceProviderMetaStore *metaStore();
+    const ServiceProviderMetaStore *metaStore() const;
+
     ServiceProviderAccountStore *accountStore();
+    const ServiceProviderAccountStore *accountStore() const;
 
 private:
     Q_DISABLE_COPY(ServiceProviderStorage)

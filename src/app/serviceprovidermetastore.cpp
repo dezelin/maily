@@ -43,6 +43,11 @@ ServiceProviderMetaStore::~ServiceProviderMetaStore()
 {
 }
 
+unsigned int ServiceProviderMetaStore::getServiceStorageVersion() const
+{
+    return 0;
+}
+
 } // namespace Storage
 } // namespace Services
 } // namespace Maily
