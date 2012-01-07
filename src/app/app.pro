@@ -84,7 +84,14 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-unix|win32: LIBS += -lvmime
+unix|win32: LIBS += -lvmime -lodb -lodb-sqlite -lodb-qt
+
+ODBSOURCES += serviceprovidermetastore.odb
+
+include(odb.pri)
+SOURCES += $$ODBGENERATEDSOURCES
+
+OTHER_FILES += $$ODBSOURCES
 
 
 
