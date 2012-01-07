@@ -30,19 +30,17 @@ namespace Storage
 class EmailServiceProviderStoragePrivate
 {
 public:
-    EmailServiceProviderStoragePrivate(Store *d) :
-        data(d)
+    EmailServiceProviderStoragePrivate()
     {
     }
 
-    QScopedPointer<Store> data;
 };
 
 EmailServiceProviderStorage::EmailServiceProviderStorage(QObject *parent,
-    ServiceProviderMetaStore *meta, ServiceProviderAccountStore *account,
-    Store *data) :
-    ServiceProviderStorage(parent, meta, account),
-    d_ptr(new EmailServiceProviderStoragePrivate(data))
+    const QString &storageName, ServiceProviderMetaStore *meta,
+    ServiceProviderAccountStore *account, Store *data, int version) :
+    ServiceProviderStorage(parent, storageName, version, meta, account),
+    d_ptr(new EmailServiceProviderStoragePrivate())
 {
 }
 

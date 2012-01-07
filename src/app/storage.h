@@ -31,12 +31,13 @@ namespace Services
 namespace Storage
 {
 
+class StoragePrivate;
 class Storage : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit Storage(QObject *parent = 0);
+    explicit Storage(QObject *parent, const QString& storageName, int version = 1);
     virtual ~Storage();
     
     virtual void close() = 0;
@@ -45,6 +46,7 @@ public:
     virtual void upgrade(int fromVersion) = 0;
     virtual int version() const = 0;
     virtual bool isOpened() const = 0;
+    virtual const QString name() const;
 
     virtual StorageTransaction* beginTransaction(
         StorageTransaction *parentTransaction = 0) = 0;
@@ -60,6 +62,8 @@ protected:
 
 private:
     Q_DISABLE_COPY(Storage)
+    Q_DECLARE_PRIVATE(Storage)
+    QScopedPointer<StoragePrivate> d_ptr;
 };
 
 } // namespace Storage

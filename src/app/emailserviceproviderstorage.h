@@ -37,9 +37,10 @@ class EmailServiceProviderStorage : public ServiceProviderStorage
 {
     Q_OBJECT
 public:
-    explicit EmailServiceProviderStorage(QObject *parent,
+    explicit EmailServiceProviderStorage(QObject *parent, const QString& storageName,
         ServiceProviderMetaStore *meta, ServiceProviderAccountStore *account,
-        Store *data);
+        Store *data, int version = 1);
+
     virtual ~EmailServiceProviderStorage();
 
 

@@ -28,13 +28,30 @@ namespace Services
 namespace Storage
 {
 
-Storage::Storage(QObject *parent) :
-    QObject(parent)
+class StoragePrivate
 {
+public:
+    StoragePrivate(int version) :
+        version_(version)
+    {
+    }
+
+    int version_;
+};
+
+Storage::Storage(QObject *parent, const QString &storageName, int version) :
+    QObject(parent), d_ptr(new StoragePrivate(version))
+{
+    setObjectName(storageName);
 }
 
 Storage::~Storage()
 {
+}
+
+const QString Storage::name() const
+{
+    return objectName();
 }
 
 Store *Storage::store(const QString &storeName)

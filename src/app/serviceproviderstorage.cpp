@@ -19,6 +19,10 @@
 #include "storageexception.h"
 #include "tools.h"
 
+#include <odb/database.hxx>
+#include <odb/transaction.hxx>
+#include <odb/sqlite/database.hxx>
+
 #include <QScopedPointer>
 
 namespace Maily
@@ -31,16 +35,24 @@ namespace Storage
 class ServiceProviderStoragePrivate
 {
 public:
-    ServiceProviderStoragePrivate()
+    ServiceProviderStoragePrivate(const QString& fileName) :
+        database_(new odb::sqlite::database(fileName.toStdString(),
+            SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE))
     {
     }
+
+    QScopedPointer<odb::database> database_;
 };
 
 ServiceProviderStorage::ServiceProviderStorage(QObject *parent,
-    ServiceProviderMetaStore *metaStore,
+    const QString &storageName, int version, ServiceProviderMetaStore *metaStore,
     ServiceProviderAccountStore *accountStore) :
-    Storage(parent), d_ptr(new ServiceProviderStoragePrivate())
+    Storage(parent, storageName, version),
+    d_ptr(new ServiceProviderStoragePrivate(storageName))
 {
+    Q_D(ServiceProviderStorage);
+
+
     Q_ASSERT(metaStore);
     if (metaStore)
         addStore(metaStore->name(), metaStore);

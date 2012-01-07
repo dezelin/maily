@@ -41,9 +41,10 @@ class ServiceProviderStorage : public Storage
     Q_OBJECT
 
 public:
-    explicit ServiceProviderStorage(QObject *parent,
-        ServiceProviderMetaStore *metaStore,
+    explicit ServiceProviderStorage(QObject *parent, const QString &storageName,
+        int version, ServiceProviderMetaStore *metaStore,
         ServiceProviderAccountStore *accountStore);
+
     virtual ~ServiceProviderStorage();
 
     virtual void close();
