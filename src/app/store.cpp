@@ -27,17 +27,18 @@ namespace Storage
 class StorePrivate
 {
 public:
-    StorePrivate(int ver) :
-        version(ver), opened(false)
+    StorePrivate(const QString &storeName, int version) :
+        opened_(false), version_(version), storeName_(storeName)
     {
     }
 
-    bool opened;
-    int version;
+    bool opened_;
+    int version_;
+    QString storeName_;
 };
 
-Store::Store(QObject *parent, int version) :
-    QObject(parent), d_ptr(new StorePrivate(version))
+Store::Store(QObject *parent, const QString &storeName, int version) :
+    QObject(parent), d_ptr(new StorePrivate(storeName, version))
 {
 }
 
@@ -45,16 +46,41 @@ Store::~Store()
 {
 }
 
+void Store::close()
+{
+    Q_D(Store);
+    d->opened_ = false;
+}
+
+void Store::create()
+{
+}
+
+void Store::open()
+{
+    Q_D(Store);
+    d->opened_ = true;
+}
+
+void Store::remove()
+{
+}
+
+void Store::upgrade(int fromVersion)
+{
+    Q_UNUSED(fromVersion);
+}
+
 int Store::version() const
 {
     Q_D(const Store);
-    return d->version;
+    return d->version_;
 }
 
 bool Store::isOpened() const
 {
     Q_D(const Store);
-    return d->opened;
+    return d->opened_;
 }
 
 } // namespace Storage

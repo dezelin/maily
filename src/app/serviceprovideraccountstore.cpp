@@ -24,8 +24,9 @@ namespace Services
 namespace Storage
 {
 
-ServiceProviderAccountStore::ServiceProviderAccountStore(QObject *parent) :
-    Store(parent)
+ServiceProviderAccountStore::ServiceProviderAccountStore(QObject *parent,
+    const QString &storeName, int version) :
+    Store(parent, storeName, version)
 {
 }
 
@@ -35,6 +36,7 @@ ServiceProviderAccountStore::~ServiceProviderAccountStore()
 
 ServiceProviderInfo *ServiceProviderAccountStore::getProviderInfo() const
 {
+    return 0;
 }
 
 } // namespace Storage

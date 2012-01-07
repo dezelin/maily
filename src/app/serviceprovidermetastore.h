@@ -31,12 +31,15 @@ namespace Services
 namespace Storage
 {
 
+const QString kServiceProviderMetaStore = "ServiceProviderMetaStore";
+
 class ServiceProviderMetaStorePrivate;
 class ServiceProviderMetaStore : public Store
 {
     Q_OBJECT
 public:
-    explicit ServiceProviderMetaStore(QObject *parent = 0, int version = 1);
+    explicit ServiceProviderMetaStore(QObject *parent,
+        const QString& storeName = kServiceProviderMetaStore, int version = 1);
     virtual ~ServiceProviderMetaStore();
     
 signals:

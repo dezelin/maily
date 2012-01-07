@@ -33,8 +33,9 @@ public:
     }
 };
 
-ServiceProviderMetaStore::ServiceProviderMetaStore(QObject *parent, int version) :
-    Store(parent, version), d_ptr(new ServiceProviderMetaStorePrivate())
+ServiceProviderMetaStore::ServiceProviderMetaStore(QObject *parent,
+    const QString &storeName, int version) :
+    Store(parent, storeName, version), d_ptr(new ServiceProviderMetaStorePrivate())
 {
 }
 

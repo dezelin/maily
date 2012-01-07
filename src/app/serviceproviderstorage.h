@@ -35,9 +35,6 @@ namespace Services
 namespace Storage
 {
 
-const QString kServiceProviderMetaStore = "ServiceProviderMetaStore";
-const QString kServiceProviderAccountStore = "ServiceProviderAccountStore";
-
 class ServiceProviderStoragePrivate;
 class ServiceProviderStorage : public Storage
 {

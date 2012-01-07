@@ -30,12 +30,15 @@ namespace Services
 namespace Storage
 {
 
+const QString kServiceProviderAccountStore = "ServiceProviderAccountStore";
+
 class ServiceProviderAccountStore : public Store
 {
     Q_OBJECT
 
 public:
-    explicit ServiceProviderAccountStore(QObject *parent = 0);
+    explicit ServiceProviderAccountStore(QObject *parent,
+        const QString &storeName = kServiceProviderAccountStore, int version = 1);
     virtual ~ServiceProviderAccountStore();
     
     ServiceProviderInfo* getProviderInfo() const;
