@@ -41,8 +41,13 @@ ServiceProviderStorage::ServiceProviderStorage(QObject *parent,
     ServiceProviderAccountStore *accountStore) :
     Storage(parent), d_ptr(new ServiceProviderStoragePrivate())
 {
-    addStore(kServiceProviderMetaStore, metaStore);
-    addStore(kServiceProviderAccountStore, accountStore);
+    Q_ASSERT(metaStore);
+    if (metaStore)
+        addStore(metaStore->name(), metaStore);
+
+    Q_ASSERT(accountStore);
+    if (accountStore)
+        addStore(accountStore->name(), accountStore);
 }
 
 ServiceProviderStorage::~ServiceProviderStorage()
