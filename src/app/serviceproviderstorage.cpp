@@ -50,9 +50,6 @@ ServiceProviderStorage::ServiceProviderStorage(QObject *parent,
     Storage(parent, storageName, version),
     d_ptr(new ServiceProviderStoragePrivate(storageName))
 {
-    Q_D(ServiceProviderStorage);
-
-
     Q_ASSERT(metaStore);
     if (metaStore)
         addStore(metaStore->name(), metaStore);
