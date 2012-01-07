@@ -44,7 +44,8 @@ SOURCES += main.cpp\
     serviceprovideraccountstore.cpp \
     emailserviceprovideraccountstore.cpp \
     storage.cpp \
-    storagetransaction.cpp
+    storagetransaction.cpp \
+    storageexception.cpp
 
 HEADERS  += mainwindow.h \
     servicestoolbox.h \
@@ -84,7 +85,8 @@ HEADERS  += mainwindow.h \
     serviceprovideraccountstore.h \
     emailserviceprovideraccountstore.h \
     storage.h \
-    storagetransaction.h
+    storagetransaction.h \
+    storageexception.h
 
 FORMS    += mainwindow.ui
 
