@@ -58,37 +58,51 @@ ServiceProviderStorage::~ServiceProviderStorage()
 
 void ServiceProviderStorage::close()
 {
-    Store* store = metaStore();
-    Q_ASSERT(store);
-    if (store)
-        store->close();
+    Store *meta = metaStore();
+    Store *account = accountStore();
+    Q_ASSERT(meta && account);
+    if (!meta || !account)
+        return;
 
-    store = accountStore();
-    Q_ASSERT(store);
-    if (store)
-        store->close();
+    QScopedPointer<StorageTransaction> trans(beginTransaction());
+
+    try {
+        meta->close();
+        account->close();
+        trans->commit();
+    } catch (Exceptions::StorageException &e) {
+        qLog() << e.what();
+    }
 }
 
 void ServiceProviderStorage::open()
 {
-    Store* store = metaStore();
-    Q_ASSERT(store);
-    if (store)
-        store->open();
+    Store *meta = metaStore();
+    Store *account = accountStore();
+    Q_ASSERT(meta && account);
+    if (!meta || !account)
+        return;
 
-    store = accountStore();
-    Q_ASSERT(store);
-    if (store)
-        store->open();
+    QScopedPointer<StorageTransaction> trans(beginTransaction());
+
+    try {
+        meta->open();
+        account->open();
+        trans->commit();
+    } catch (Exceptions::StorageException &e) {
+        qLog() << e.what();
+    }
 }
 
 void ServiceProviderStorage::remove()
 {
-    QScopedPointer<StorageTransaction> trans(beginTransaction());
-
     Store *meta = metaStore();
     Store *account = accountStore();
     Q_ASSERT(meta && account);
+    if (!meta || !account)
+        return;
+
+    QScopedPointer<StorageTransaction> trans(beginTransaction());
 
     try {
         meta->remove();
@@ -102,11 +116,14 @@ void ServiceProviderStorage::remove()
 
 void ServiceProviderStorage::upgrade(int fromVersion)
 {
-    QScopedPointer<StorageTransaction> trans(beginTransaction());
 
     Store *meta = metaStore();
     Store *account = accountStore();
     Q_ASSERT(meta && account);
+    if (!meta || !account)
+        return;
+
+    QScopedPointer<StorageTransaction> trans(beginTransaction());
 
     try {
         meta->upgrade(fromVersion);
