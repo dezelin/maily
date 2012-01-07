@@ -18,6 +18,8 @@
 #ifndef SERVICEPROVIDERSTORAGETRANSACTION_H
 #define SERVICEPROVIDERSTORAGETRANSACTION_H
 
+#include "storagetransaction.h"
+
 #include <QObject>
 #include <QScopedPointer>
 
@@ -29,7 +31,7 @@ namespace Storage
 {
 
 class ServiceProviderStorageTransactionPrivate;
-class ServiceProviderStorageTransaction : public QObject
+class ServiceProviderStorageTransaction : public StorageTransaction
 {
     Q_OBJECT
 

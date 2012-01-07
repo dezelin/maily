@@ -16,7 +16,9 @@
  */
 
 #include "serviceproviderstorage.h"
-#include "store.h"
+#include "tools.h"
+
+#include <QScopedPointer>
 
 namespace Maily
 {
@@ -28,40 +30,117 @@ namespace Storage
 class ServiceProviderStoragePrivate
 {
 public:
-    ServiceProviderStoragePrivate(Store *m, Store *a) :
+    ServiceProviderStoragePrivate(ServiceProviderMetaStore *m,
+        ServiceProviderAccountStore *a) :
         meta(m), account(a)
     {
     }
 
-    QScopedPointer<Store> meta;
-    QScopedPointer<Store> account;
+    QScopedPointer<ServiceProviderMetaStore> meta;
+    QScopedPointer<ServiceProviderAccountStore> account;
 };
 
-ServiceProviderStorage::ServiceProviderStorage(QObject *parent, Store *meta,
-    Store *account) :
-    QObject(parent),
+ServiceProviderStorage::ServiceProviderStorage(QObject *parent,
+    ServiceProviderMetaStore *meta, ServiceProviderAccountStore *account) :
+    Storage(parent),
     d_ptr(new ServiceProviderStoragePrivate(meta, account))
 {
 }
 
 ServiceProviderStorage::~ServiceProviderStorage()
 {
+    if (!isOpened())
+        return;
+
+    close();
 }
 
 bool ServiceProviderStorage::close()
 {
+    Q_D(ServiceProviderStorage);
+
+    bool alreadyOpened = isOpened();
+    Q_ASSERT(alreadyOpened);
+    if (!alreadyOpened)
+        return false;
+
+    bool closed = d->meta->close();
+    Q_ASSERT(closed);
+    if (closed) {
+        closed &= d->account->close();
+        Q_ASSERT(closed);
+    }
+
+    return closed;
 }
 
 bool ServiceProviderStorage::open()
 {
+    Q_D(ServiceProviderStorage);
+
+    bool alreadyOpened = isOpened();
+    Q_ASSERT(!alreadyOpened);
+    if (alreadyOpened)
+        return false;
+
+    bool opened = d->meta->open();
+    Q_ASSERT(opened);
+    if (opened) {
+        opened &= d->account->open();
+        Q_ASSERT(opened);
+    }
+
+    return opened;
 }
 
 bool ServiceProviderStorage::remove()
 {
-}
+    Q_D(ServiceProviderStorage);
 
-bool ServiceProviderStorage::upgrade()
+    if (isOpened())
+        if (!close())
+            return false;
+
+    QScopedPointer<StorageTransaction> transaction(
+        beginTransaction());
+
+    bool removed = false;
+
+    try {
+        d->meta->remove();
+        d->account->remove();
+        transaction->commit();
+        removed = true;
+    } catch (std::exception& e) {
+        qLog() << e.what();
+    }
+
+    return removed;
+ }
+
+bool ServiceProviderStorage::upgrade(int fromVersion)
 {
+    Q_D(ServiceProviderStorage);
+
+    if (isOpened())
+        if (!close())
+            return false;
+
+    QScopedPointer<StorageTransaction> transaction(
+        beginTransaction());
+
+    bool upgraded = false;
+
+    try {
+        d->meta->upgrade(fromVersion);
+        d->account->upgrade(fromVersion);
+        transaction->commit();
+        upgraded = true;
+    } catch (std::exception& e) {
+        qLog() << e.what();
+    }
+
+    return upgraded;
 }
 
 int ServiceProviderStorage::version() const
@@ -72,12 +151,20 @@ int ServiceProviderStorage::version() const
 
 ServiceProviderInfo *ServiceProviderStorage::getProviderInfo() const
 {
+    Q_D(const ServiceProviderStorage);
+    return d->account->getProviderInfo();
 }
 
 bool ServiceProviderStorage::isOpened() const
 {
     Q_D(const ServiceProviderStorage);
     return d->meta->isOpened() && d->account->isOpened();
+}
+
+StorageTransaction *ServiceProviderStorage::beginTransaction(
+    StorageTransaction *parentTransaction)
+{
+    return 0;
 }
 
 } // namespace Storage

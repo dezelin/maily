@@ -19,6 +19,10 @@
 #define SERVICEPROVIDERSTORAGE_H
 
 #include "serviceproviderinfo.h"
+#include "serviceprovidermetastore.h"
+#include "serviceprovideraccountstore.h"
+#include "storage.h"
+#include "storagetransaction.h"
 #include "store.h"
 
 #include <QObject>
@@ -32,23 +36,28 @@ namespace Storage
 {
 
 class ServiceProviderStoragePrivate;
-class ServiceProviderStorage : public QObject
+class ServiceProviderStorage : public Storage
 {
     Q_OBJECT
 
 public:
-    explicit ServiceProviderStorage(QObject *parent, Store *meta, Store *account);
+    explicit ServiceProviderStorage(QObject *parent,
+        ServiceProviderMetaStore *meta, ServiceProviderAccountStore *account);
     virtual ~ServiceProviderStorage();
 
     virtual bool close();
     virtual bool open();
     virtual bool remove();
-    virtual bool upgrade();
+    virtual bool upgrade(int fromVersion);
     virtual int version() const;
 
     virtual ServiceProviderInfo* getProviderInfo() const;
     
     virtual bool isOpened() const;
+
+    virtual StorageTransaction* beginTransaction(
+        StorageTransaction *parentTransaction = 0);
+
 signals:
     
 public slots:

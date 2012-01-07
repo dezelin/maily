@@ -34,7 +34,7 @@ public:
 
 ServiceProviderStorageTransaction::ServiceProviderStorageTransaction(
     ServiceProviderStorageTransaction *parent) :
-    QObject(parent), d_ptr(new ServiceProviderStorageTransactionPrivate())
+    StorageTransaction(parent), d_ptr(new ServiceProviderStorageTransactionPrivate())
 {
 }
 

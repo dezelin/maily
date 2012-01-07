@@ -42,7 +42,9 @@ SOURCES += main.cpp\
     serviceproviderstoragetransaction.cpp \
     serviceprovidermetastore.cpp \
     serviceprovideraccountstore.cpp \
-    emailserviceprovideraccountstore.cpp
+    emailserviceprovideraccountstore.cpp \
+    storage.cpp \
+    storagetransaction.cpp
 
 HEADERS  += mainwindow.h \
     servicestoolbox.h \
@@ -80,7 +82,9 @@ HEADERS  += mainwindow.h \
     serviceproviderstoragetransaction.h \
     serviceprovidermetastore.h \
     serviceprovideraccountstore.h \
-    emailserviceprovideraccountstore.h
+    emailserviceprovideraccountstore.h \
+    storage.h \
+    storagetransaction.h
 
 FORMS    += mainwindow.ui
 

@@ -15,9 +15,12 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "emailserviceproviderstorage.h"
-#include "store.h"
+#ifndef STORAGE_H
+#define STORAGE_H
 
+#include "storagetransaction.h"
+
+#include <QObject>
 #include <QScopedPointer>
 
 namespace Maily
@@ -27,30 +30,36 @@ namespace Services
 namespace Storage
 {
 
-class EmailServiceProviderStoragePrivate
+class StoragePrivate;
+class Storage : public QObject
 {
+    Q_OBJECT
 public:
-    EmailServiceProviderStoragePrivate(Store *d) :
-        data(d)
-    {
-    }
+    explicit Storage(QObject *parent = 0);
+    virtual ~Storage();
+    
+    virtual bool close() = 0;
+    virtual bool open() = 0;
+    virtual bool remove() = 0;
+    virtual bool upgrade(int fromVersion) = 0;
+    virtual int version() const = 0;
+    virtual bool isOpened() const = 0;
 
-    QScopedPointer<Store> data;
+    virtual StorageTransaction* beginTransaction(
+        StorageTransaction *parentTransaction = 0) = 0;
+
+signals:
+    
+public slots:
+    
+private:
+    Q_DISABLE_COPY(Storage)
+    Q_DECLARE_PRIVATE(Storage)
+    QScopedPointer<StoragePrivate> d_ptr;
 };
-
-EmailServiceProviderStorage::EmailServiceProviderStorage(QObject *parent,
-    ServiceProviderMetaStore *meta, ServiceProviderAccountStore *account,
-    Store *data) :
-    ServiceProviderStorage(parent, meta, account),
-    d_ptr(new EmailServiceProviderStoragePrivate(data))
-{
-}
-
-EmailServiceProviderStorage::~EmailServiceProviderStorage()
-{
-}
 
 } // namespace Storage
 } // namespace Services
 } // namespace Maily
 
+#endif // STORAGE_H

@@ -18,6 +18,8 @@
 #ifndef EMAILSERVICEPROVIDERSTORAGE_H
 #define EMAILSERVICEPROVIDERSTORAGE_H
 
+#include "serviceprovidermetastore.h"
+#include "serviceprovideraccountstore.h"
 #include "serviceproviderstorage.h"
 #include "store.h"
 
@@ -35,10 +37,12 @@ class EmailServiceProviderStorage : public ServiceProviderStorage
 {
     Q_OBJECT
 public:
-    explicit EmailServiceProviderStorage(QObject *parent, Store *meta,
-        Store *account, Store *data);
+    explicit EmailServiceProviderStorage(QObject *parent,
+        ServiceProviderMetaStore *meta, ServiceProviderAccountStore *account,
+        Store *data);
     virtual ~EmailServiceProviderStorage();
-    
+
+
 signals:
     
 public slots:
