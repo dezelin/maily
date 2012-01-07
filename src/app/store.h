@@ -44,6 +44,7 @@ public:
     virtual void upgrade(int fromVersion);
     virtual int version() const;
     virtual bool isOpened() const;
+    virtual const QString &name() const;
     
 signals:
     

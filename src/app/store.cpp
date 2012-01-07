@@ -15,6 +15,9 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "storage.h"
+#include "storageexception.h"
+#include "storagetransaction.h"
 #include "store.h"
 
 namespace Maily
@@ -81,6 +84,12 @@ bool Store::isOpened() const
 {
     Q_D(const Store);
     return d->opened_;
+}
+
+const QString &Store::name() const
+{
+    Q_D(const Store);
+    return d->storeName_;
 }
 
 } // namespace Storage
