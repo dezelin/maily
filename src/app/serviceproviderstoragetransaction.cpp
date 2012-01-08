@@ -16,6 +16,7 @@
  */
 
 #include "serviceproviderstoragetransaction.h"
+#include "serviceproviderstoragetransactionprivate.h"
 
 namespace Maily
 {
@@ -23,14 +24,6 @@ namespace Services
 {
 namespace Storage
 {
-
-class ServiceProviderStorageTransactionPrivate
-{
-public:
-    ServiceProviderStorageTransactionPrivate()
-    {
-    }
-};
 
 ServiceProviderStorageTransaction::ServiceProviderStorageTransaction(
     ServiceProviderStorageTransaction *parent) :
@@ -44,10 +37,22 @@ ServiceProviderStorageTransaction::~ServiceProviderStorageTransaction()
 
 void ServiceProviderStorageTransaction::commit()
 {
+    Q_D(ServiceProviderStorageTransaction);
+    Q_ASSERT(d->t_);
+    if (!d->t_)
+        return;
+
+    d->t_->commit();
 }
 
 void ServiceProviderStorageTransaction::rollback()
 {
+    Q_D(ServiceProviderStorageTransaction);
+    Q_ASSERT(d->t_);
+    if (!d->t_)
+        return;
+
+    d->t_->rollback();
 }
 
 } // namespace Storage

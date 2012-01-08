@@ -15,7 +15,11 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <odb/core.hxx>
+#ifndef SERVICEPROVIDERSTORAGETRANSACTIONPRIVATE_H
+#define SERVICEPROVIDERSTORAGETRANSACTIONPRIVATE_H
+
+#include <odb/transaction.hxx>
+#include <QScopedPointer>
 
 namespace Maily
 {
@@ -23,30 +27,21 @@ namespace Services
 {
 namespace Storage
 {
-namespace Odb
-{
 
-#pragma db object
-class ServiceProviderMetaStore
+class ServiceProviderStorageTransactionPrivate
 {
 public:
+    ServiceProviderStorageTransactionPrivate(odb::transaction *t = 0) :
+        t_(t)
+    {
+    }
 
-    //unsigned id() const { return id_; }
-    unsigned version() const { return version_; }
-    void setVersion(unsigned int version) { version_ = version; }
-
-private:
-    ServiceProviderMetaStore() {}
-
-    friend class odb::access;
-
-    #pragma db id auto
-    unsigned long id_;
-
-    unsigned int version_;
+    QScopedPointer<odb::transaction> t_;
 };
 
-}
-}
-}
-}
+} // namespace Storage
+} // namespace Services
+} // namespace Maily
+
+
+#endif // SERVICEPROVIDERSTORAGETRANSACTIONPRIVATE_H

@@ -9,8 +9,8 @@ QT       += core declarative gui network sql webkit xml
 TARGET = maily
 TEMPLATE = app
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
+SOURCES += main.cpp \
+    mainwindow.cpp \
     servicestoolbox.cpp \
     emailaccountstreeview.cpp \
     calendaraccountstreeview.cpp \
@@ -47,7 +47,7 @@ SOURCES += main.cpp\
     storagetransaction.cpp \
     storageexception.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS += mainwindow.h \
     servicestoolbox.h \
     emailaccountstreeview.h \
     calendaraccountstreeview.h \
@@ -86,7 +86,8 @@ HEADERS  += mainwindow.h \
     emailserviceprovideraccountstore.h \
     storage.h \
     storagetransaction.h \
-    storageexception.h
+    storageexception.h \
+    serviceproviderstoragetransactionprivate.h
 
 FORMS    += mainwindow.ui
 
@@ -95,11 +96,7 @@ unix|win32: LIBS += -lvmime -lodb -lodb-sqlite -lodb-qt
 ODBSOURCES += serviceprovidermetastore.odb
 
 include(odb.pri)
-SOURCES += $$ODBGENERATEDSOURCES
 
 OTHER_FILES += $$ODBSOURCES
 
-
-
-
-
+QMAKE_CXXFLAGS += -Wno-unknown-pragmas

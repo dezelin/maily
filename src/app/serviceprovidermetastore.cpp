@@ -16,6 +16,10 @@
  */
 
 #include "serviceprovidermetastore.h"
+#include "serviceproviderstorage.h"
+
+#include "serviceprovidermetastore-odb.hxx"
+#include <odb/database.hxx>
 
 namespace Maily
 {
@@ -23,6 +27,8 @@ namespace Services
 {
 namespace Storage
 {
+
+using namespace odb::core;
 
 class ServiceProviderMetaStorePrivate
 {
@@ -45,6 +51,21 @@ ServiceProviderMetaStore::~ServiceProviderMetaStore()
 
 unsigned int ServiceProviderMetaStore::getServiceStorageVersion() const
 {
+    ServiceProviderStorage *storage = dynamic_cast<ServiceProviderStorage*>(parent());
+    Q_ASSERT(storage);
+    if (!storage)
+        return 0;
+
+    odb::database *db = storage->database();
+    Q_ASSERT(db);
+    if (!db)
+        return 0;
+
+    typedef odb::query<Odb::ServiceProviderMetaStore> query;
+    typedef odb::result<Odb::ServiceProviderMetaStore> result;
+
+    result r(db->query<Odb::ServiceProviderMetaStore>(query::id > 30));
+
     return 0;
 }
 

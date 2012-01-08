@@ -31,7 +31,6 @@ class StorageTransaction : public QObject
 {
     Q_OBJECT
 public:
-    explicit StorageTransaction(StorageTransaction *parent = 0);
     virtual ~StorageTransaction();
 
     virtual void commit() = 0;
@@ -40,7 +39,12 @@ public:
 signals:
     
 public slots:
-    
+
+protected:
+    explicit StorageTransaction(StorageTransaction *parent = 0);
+
+private:
+    Q_DISABLE_COPY(StorageTransaction)
 };
 
 } // namespace Storage

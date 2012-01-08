@@ -19,6 +19,7 @@
 #define SERVICEPROVIDERSTORAGETRANSACTION_H
 
 #include "storagetransaction.h"
+#include "serviceproviderstorage.h"
 
 #include <QObject>
 #include <QScopedPointer>
@@ -36,8 +37,6 @@ class ServiceProviderStorageTransaction : public StorageTransaction
     Q_OBJECT
 
 public:
-    explicit ServiceProviderStorageTransaction(
-        ServiceProviderStorageTransaction *parent = 0);
     virtual ~ServiceProviderStorageTransaction();
     
     virtual void commit();
@@ -47,10 +46,16 @@ signals:
     
 public slots:
 
+protected:
+    explicit ServiceProviderStorageTransaction(
+        ServiceProviderStorageTransaction *parent = 0);
+
 private:
     Q_DISABLE_COPY(ServiceProviderStorageTransaction)
     Q_DECLARE_PRIVATE(ServiceProviderStorageTransaction)
     QScopedPointer<ServiceProviderStorageTransactionPrivate> d_ptr;
+
+    friend class ServiceProviderStorage;
 };
 
 } // namespace Storage

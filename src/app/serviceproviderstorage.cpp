@@ -16,6 +16,8 @@
  */
 
 #include "serviceproviderstorage.h"
+#include "serviceproviderstoragetransaction.h"
+#include "serviceproviderstoragetransactionprivate.h"
 #include "storageexception.h"
 #include "tools.h"
 
@@ -24,6 +26,7 @@
 #include <odb/sqlite/database.hxx>
 
 #include <QScopedPointer>
+#include <QSharedPointer>
 
 namespace Maily
 {
@@ -41,7 +44,7 @@ public:
     {
     }
 
-    QScopedPointer<odb::database> database_;
+    QSharedPointer<odb::database> database_;
 };
 
 ServiceProviderStorage::ServiceProviderStorage(QObject *parent,
@@ -171,29 +174,47 @@ bool ServiceProviderStorage::isOpened() const
 StorageTransaction *ServiceProviderStorage::beginTransaction(
     StorageTransaction *parentTransaction)
 {
-    return 0;
+    Q_UNUSED(parentTransaction);
+    Q_D(ServiceProviderStorage);
+
+    QScopedPointer<ServiceProviderStorageTransaction> trans(
+        new ServiceProviderStorageTransaction);
+    QScopedPointer<odb::transaction> t(new odb::transaction(d->database_->begin()));
+    trans->d_ptr->t_.reset(t.take());
+    return trans.take();
 }
 
-inline ServiceProviderMetaStore *ServiceProviderStorage::metaStore()
+ServiceProviderMetaStore *ServiceProviderStorage::metaStore()
 {
     return static_cast<ServiceProviderMetaStore*>(
                 store(kServiceProviderMetaStore));
 }
 
-inline const ServiceProviderMetaStore *ServiceProviderStorage::metaStore() const
+const ServiceProviderMetaStore *ServiceProviderStorage::metaStore() const
 {
     return metaStore();
 }
 
-inline ServiceProviderAccountStore *ServiceProviderStorage::accountStore()
+ServiceProviderAccountStore *ServiceProviderStorage::accountStore()
 {
     return static_cast<ServiceProviderAccountStore*>(
                 store(kServiceProviderAccountStore));
 }
 
-inline const ServiceProviderAccountStore *ServiceProviderStorage::accountStore() const
+const ServiceProviderAccountStore *ServiceProviderStorage::accountStore() const
 {
     return accountStore();
+}
+
+odb::database *ServiceProviderStorage::database()
+{
+    Q_D(ServiceProviderStorage);
+    return d->database_.data();
+}
+
+const odb::database *ServiceProviderStorage::database() const
+{
+    return database();
 }
 
 } // namespace Storage

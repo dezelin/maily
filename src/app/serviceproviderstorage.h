@@ -28,6 +28,10 @@
 #include <QObject>
 #include <QScopedPointer>
 
+namespace odb {
+    class database;
+}
+
 namespace Maily
 {
 namespace Services
@@ -70,10 +74,16 @@ protected:
     ServiceProviderAccountStore *accountStore();
     const ServiceProviderAccountStore *accountStore() const;
 
+    odb::database *database();
+    const odb::database *database() const;
+
 private:
     Q_DISABLE_COPY(ServiceProviderStorage)
     Q_DECLARE_PRIVATE(ServiceProviderStorage)
     QScopedPointer<ServiceProviderStoragePrivate> d_ptr;
+
+    friend class ServiceProviderMetaStore;
+    friend class ServiceProviderAccountStore;
 };
 
 } // namespace Storage
