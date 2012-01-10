@@ -15,11 +15,15 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "tools.h"
 #include "serviceprovidermetastore.h"
 #include "serviceproviderstorage.h"
-
+#include "storageexception.h"
 #include "serviceprovidermetastore-odb.hxx"
+
 #include <odb/database.hxx>
+#include <odb/schema-catalog.hxx>
+#include <exception>
 
 namespace Maily
 {
@@ -35,13 +39,13 @@ class ServiceProviderMetaStorePrivate
 public:
     ServiceProviderMetaStorePrivate()
     {
-
     }
 };
 
 ServiceProviderMetaStore::ServiceProviderMetaStore(QObject *parent,
-    const QString &storeName, int version) :
-    Store(parent, storeName, version), d_ptr(new ServiceProviderMetaStorePrivate())
+    const QString &storeName, unsigned int version) :
+    Store(parent, storeName, version),
+    d_ptr(new ServiceProviderMetaStorePrivate())
 {
 }
 
@@ -49,24 +53,73 @@ ServiceProviderMetaStore::~ServiceProviderMetaStore()
 {
 }
 
-unsigned int ServiceProviderMetaStore::getServiceStorageVersion() const
+bool ServiceProviderMetaStore::create()
+{
+}
+
+bool ServiceProviderMetaStore::open()
 {
     ServiceProviderStorage *storage = dynamic_cast<ServiceProviderStorage*>(parent());
     Q_ASSERT(storage);
     if (!storage)
-        return 0;
+        return false;
 
     odb::database *db = storage->database();
     Q_ASSERT(db);
     if (!db)
-        return 0;
+        return false;
 
-    typedef odb::query<Odb::ServiceProviderMetaStore> query;
-    typedef odb::result<Odb::ServiceProviderMetaStore> result;
+    try {
+        odb::transaction t(db->begin());
 
-    result r(db->query<Odb::ServiceProviderMetaStore>(query::id > 30));
+        typedef odb::query<Odb::ServiceProviderMetaStore> query;
+        typedef odb::result<Odb::ServiceProviderMetaStore> result;
 
-    return 0;
+        result r(db->query<Odb::ServiceProviderMetaStore>());
+        result::iterator it(r.begin());
+        if (it == r.end())
+            return false;
+
+        setVersion(it->version());
+        t.commit();
+
+    } catch (std::exception &e) {
+        qLog() << e.what();
+    }
+
+    return true;
+}
+
+bool ServiceProviderMetaStore::remove()
+{
+    ServiceProviderStorage *storage = dynamic_cast<ServiceProviderStorage*>(parent());
+    Q_ASSERT(storage);
+    if (!storage)
+        return false;
+
+    odb::database *db = storage->database();
+    Q_ASSERT(db);
+    if (!db)
+        return false;
+
+    try {
+        odb::transaction t(db->begin());
+        db->erase_query<Odb::ServiceProviderMetaStore>();
+        t.commit();
+    } catch (std::exception &e) {
+        qLog() << e.what();
+    }
+
+    return true;
+}
+
+unsigned int ServiceProviderMetaStore::getServiceStorageVersion() const
+{
+    Q_ASSERT(isOpened());
+    if (!isOpened())
+        return -1;
+
+    return version();
 }
 
 } // namespace Storage

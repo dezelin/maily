@@ -39,8 +39,12 @@ class ServiceProviderMetaStore : public Store
     Q_OBJECT
 public:
     explicit ServiceProviderMetaStore(QObject *parent,
-        const QString& storeName = kServiceProviderMetaStore, int version = 1);
+        const QString& storeName = kServiceProviderMetaStore, unsigned int version = 1);
     virtual ~ServiceProviderMetaStore();
+
+    virtual bool create();
+    virtual bool open();
+    virtual bool remove();
 
     unsigned int getServiceStorageVersion() const;
     

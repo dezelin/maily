@@ -30,19 +30,20 @@ namespace Odb
 class ServiceProviderMetaStore
 {
 public:
+    ServiceProviderMetaStore(unsigned int version = 0) :
+        id_(0), version_(version)
+    {
+    }
 
-    //unsigned id() const { return id_; }
-    unsigned version() const { return version_; }
+    unsigned long id() const { return id_; }
+    unsigned int version() const { return version_; }
     void setVersion(unsigned int version) { version_ = version; }
 
 private:
-    ServiceProviderMetaStore() {}
-
     friend class odb::access;
 
     #pragma db id auto
     unsigned long id_;
-
     unsigned int version_;
 };
 

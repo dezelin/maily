@@ -34,17 +34,20 @@ class Store : public QObject
     Q_OBJECT
 
 public:
-    explicit Store(QObject *parent, const QString &storeName, int version = 1);
+    explicit Store(QObject *parent, const QString &storeName,
+        unsigned int version = 1);
     virtual ~Store();
 
     virtual void close();
-    virtual void create();
-    virtual void open();
-    virtual void remove();
-    virtual void upgrade(int fromVersion);
-    virtual int version() const;
-    virtual bool isOpened() const;
-    virtual const QString &name() const;
+    virtual bool create();
+    virtual bool open();
+    virtual bool remove();
+    virtual bool upgrade(int fromVersion);
+
+    unsigned int version() const;
+    void setVersion(unsigned int version);
+    bool isOpened() const;
+    const QString &name() const;
     
 signals:
     
