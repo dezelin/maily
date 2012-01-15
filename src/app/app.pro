@@ -95,7 +95,9 @@ FORMS    += mainwindow.ui
 
 unix|win32: LIBS += -lvmime -lodb -lodb-sqlite -lodb-qt
 
-ODBSOURCES += serviceprovidermetastore.odb serviceprovideraccountstore.odb
+ODBSOURCES += serviceprovidermetastore.odb \
+    serviceprovideraccountstore.odb \
+    emailserviceprovideraccountstore.odb
 
 include(odb.pri)
 

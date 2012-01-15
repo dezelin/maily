@@ -60,11 +60,9 @@ signals:
 public slots:
 
 protected:
-    void setProviderInfo(ServiceProviderInfo *providerInfo);
-
-private:
     odb::database* database();
     const odb::database *database() const;
+    void setProviderInfo(ServiceProviderInfo *providerInfo);
 
 private:
     Q_DISABLE_COPY(ServiceProviderAccountStore)

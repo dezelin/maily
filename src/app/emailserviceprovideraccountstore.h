@@ -29,18 +29,29 @@ namespace Services
 namespace Storage
 {
 
+const QString kEmailServiceProviderAccountStore = "EmailServiceProviderAccountStore";
+
 class EmailServiceProviderAccountStore : public ServiceProviderAccountStore
 {
     Q_OBJECT
 
 public:
-    explicit EmailServiceProviderAccountStore(QObject *parent = 0);
+    explicit EmailServiceProviderAccountStore(QObject *parent = 0,
+        const QString &storeName = kEmailServiceProviderAccountStore, int version = 1);
     virtual ~EmailServiceProviderAccountStore();
     
+    virtual bool close();
+    virtual bool create();
+    virtual bool open();
+    virtual bool remove();
+    virtual bool update();
+
 signals:
     
 public slots:
     
+private:
+    Q_DISABLE_COPY(EmailServiceProviderAccountStore);
 };
 
 } // namespace Storage

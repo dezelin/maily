@@ -15,6 +15,9 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef SERVICEPROVIDERMETASTORE_ODB
+#define SERVICEPROVIDERMETASTORE_ODB
+
 #include <odb/core.hxx>
 
 namespace Maily
@@ -51,3 +54,5 @@ private:
 } // namespace Storage
 } // namespace Services
 } // namespace Maily
+
+#endif // SERVICEPROVIDERMETASTORE_ODB

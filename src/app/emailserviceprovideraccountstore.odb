@@ -1,0 +1,74 @@
+/*
+ *   This file is part of Maily.
+ *
+ *   Maily is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Maily is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef EMAILSERVICEPROVIDERACCOUNTSTORE_ODB
+#define EMAILSERVICEPROVIDERACCOUNTSTORE_ODB
+
+#include "serviceprovideraccountstore.odb"
+
+#include <odb/core.hxx>
+#include <QtCore/QString>
+
+namespace Maily
+{
+namespace Services
+{
+namespace Storage
+{
+namespace Odb
+{
+
+#pragma db object
+class EmailServiceProviderAccountStore : public ServiceProviderAccountStore
+{
+public:
+    EmailServiceProviderAccountStore() :
+        ServiceProviderAccountStore(), serviceType_(0), tls_(false),
+        tlsRequired_(false), authenticationType_(0)
+    {
+    }
+
+    unsigned int serviceType() const { return serviceType_; }
+    void setServiceType(unsigned int serviceType) { serviceType_ = serviceType; }
+    bool tls() const { return tls_; }
+    void setTls(bool tls) { tls_ = tls; }
+    bool tlsRequired() const { return tlsRequired_; }
+    void setTlsRequired(bool tlsRequired) { tlsRequired_ = tlsRequired; }
+    const QString &rootPath() const { return rootPath_; }
+    void setRootPath(const QString &rootPath) { rootPath_ = rootPath; }
+    const QString &sendmailBinPath() const { return sendmailBinPath_; }
+    void setSendmailBinPath(const QString& sendmailBinPath) { sendmailBinPath_ = sendmailBinPath; }
+    unsigned int authenticationType() const { return authenticationType_; }
+    void setAuthenticationType(unsigned int authenticationType) { authenticationType_ = authenticationType; }
+
+private:
+    friend class odb::access;
+
+    unsigned int serviceType_;
+    bool tls_;
+    bool tlsRequired_;
+    QString rootPath_;
+    QString sendmailBinPath_;
+    unsigned int authenticationType_;
+};
+
+} // namespace Odb
+} // namespace Storage
+} // namespace Services
+} // namespace Maily
+
+#endif // EMAILSERVICEPROVIDERACCOUNTSTORE_ODB

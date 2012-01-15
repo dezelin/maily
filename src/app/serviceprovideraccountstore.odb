@@ -15,6 +15,9 @@
  *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef SERVICEPROVIDERACCOUNTSTORE_ODB
+#define SERVICEPROVIDERACCOUNTSTORE_ODB
+
 #include <odb/core.hxx>
 #include <QtCore/QString>
 
@@ -27,20 +30,12 @@ namespace Storage
 namespace Odb
 {
 
-#pragma db object
+#pragma db object abstract
 class ServiceProviderAccountStore
 {
 public:
     ServiceProviderAccountStore() :
         id_(0), port_(0)
-    {
-    }
-
-    ServiceProviderAccountStore(const QString &username, const QString &password,
-        const QString &address, unsigned int port, const QString &displayName,
-        const QString &displayShortName) :
-        id_(0), username_(username), password_(password), address_(address),
-        port_(0), displayName_(displayName), displayShortName_(displayShortName)
     {
     }
 
@@ -75,3 +70,5 @@ private:
 } // namespace Storage
 } // namespace Services
 } // namespace Maily
+
+#endif // SERVICEPROVIDERACCOUNTSTORE_ODB
