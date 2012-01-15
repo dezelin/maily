@@ -53,11 +53,14 @@ public:
     virtual bool remove();
     virtual bool update();
 
-    ServiceProviderInfo *getProviderInfo();
+    virtual ServiceProviderInfo *getProviderInfo();
 
 signals:
     
 public slots:
+
+protected:
+    void setProviderInfo(ServiceProviderInfo *providerInfo);
 
 private:
     odb::database* database();

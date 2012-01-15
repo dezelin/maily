@@ -213,6 +213,12 @@ ServiceProviderInfo *ServiceProviderAccountStore::getProviderInfo()
     return d->providerInfo_.data();
 }
 
+void ServiceProviderAccountStore::setProviderInfo(ServiceProviderInfo *providerInfo)
+{
+    Q_D(ServiceProviderAccountStore);
+    d->providerInfo_.reset(providerInfo);
+}
+
 odb::database *ServiceProviderAccountStore::database()
 {
     ServiceProviderStorage *storage = dynamic_cast<ServiceProviderStorage*>(parent());
