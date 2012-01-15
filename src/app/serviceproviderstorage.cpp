@@ -18,6 +18,7 @@
 #include "serviceproviderstorage.h"
 #include "serviceproviderstoragetransaction.h"
 #include "serviceproviderstoragetransactionprivate.h"
+#include "sqlitedbtracer.h"
 #include "storageexception.h"
 #include "tools.h"
 
@@ -38,10 +39,13 @@ namespace Storage
 class ServiceProviderStoragePrivate
 {
 public:
-    ServiceProviderStoragePrivate(const QString& fileName) :
-        database_(new odb::sqlite::database(fileName.toStdString(),
-            SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE))
+    ServiceProviderStoragePrivate(const QString& fileName)
     {
+        QScopedPointer<odb::sqlite::database> db(
+            new odb::sqlite::database(fileName.toStdString(),
+                SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE));
+        db->tracer(new SqliteDbTracer());
+        database_ = QSharedPointer<odb::database>(db.take());
     }
 
     QSharedPointer<odb::database> database_;

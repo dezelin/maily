@@ -45,7 +45,8 @@ SOURCES += main.cpp \
     emailserviceprovideraccountstore.cpp \
     storage.cpp \
     storagetransaction.cpp \
-    storageexception.cpp
+    storageexception.cpp \
+    sqlitedbtracer.cpp
 
 HEADERS += mainwindow.h \
     servicestoolbox.h \
@@ -87,7 +88,8 @@ HEADERS += mainwindow.h \
     storage.h \
     storagetransaction.h \
     storageexception.h \
-    serviceproviderstoragetransactionprivate.h
+    serviceproviderstoragetransactionprivate.h \
+    sqlitedbtracer.h
 
 FORMS    += mainwindow.ui
 
