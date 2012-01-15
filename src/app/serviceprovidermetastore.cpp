@@ -55,6 +55,9 @@ ServiceProviderMetaStore::~ServiceProviderMetaStore()
 
 bool ServiceProviderMetaStore::create()
 {
+    if (!Store::create())
+        return false;
+
     odb::database *db = database();
     Q_ASSERT(db);
     if (!db)
@@ -78,6 +81,9 @@ bool ServiceProviderMetaStore::create()
 
 bool ServiceProviderMetaStore::open()
 {
+    if (!Store::open())
+        return false;
+
     odb::database *db = database();
     Q_ASSERT(db);
     if (!db)
@@ -109,6 +115,9 @@ bool ServiceProviderMetaStore::open()
 
 bool ServiceProviderMetaStore::remove()
 {
+    if (!Store::remove())
+        return false;
+
     odb::database *db = database();
     Q_ASSERT(db);
     if (!db)
