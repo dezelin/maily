@@ -150,6 +150,11 @@ odb::database *ServiceProviderMetaStore::database()
     return storage->database();
 }
 
+const odb::database *ServiceProviderMetaStore::database() const
+{
+    return database();
+}
+
 } // namespace Storage
 } // namespace Services
 } // namespace Maily

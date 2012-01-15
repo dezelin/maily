@@ -59,6 +59,7 @@ public slots:
 
 private:
     odb::database* database();
+    const odb::database *database() const;
 
 private:
     Q_DISABLE_COPY(ServiceProviderMetaStore)
