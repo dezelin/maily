@@ -47,7 +47,7 @@ private:
     unsigned int version_;
 };
 
-}
-}
-}
-}
+} // namespace Odb
+} // namespace Storage
+} // namespace Services
+} // namespace Maily
