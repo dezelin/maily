@@ -55,19 +55,35 @@ ServiceProviderMetaStore::~ServiceProviderMetaStore()
 
 bool ServiceProviderMetaStore::create()
 {
+    odb::database *db = database();
+    Q_ASSERT(db);
+    if (!db)
+        return false;
+
+    bool created = false;
+
+    try {
+        odb::transaction t(db->begin());
+        odb::schema_catalog::create_schema(*db,
+            kServiceProviderMetaStore.toLower().toStdString());
+        t.commit();
+        created = true;
+
+    } catch (std::exception &e) {
+        qLog() << e.what();
+    }
+
+    return created;
 }
 
 bool ServiceProviderMetaStore::open()
 {
-    ServiceProviderStorage *storage = dynamic_cast<ServiceProviderStorage*>(parent());
-    Q_ASSERT(storage);
-    if (!storage)
-        return false;
-
-    odb::database *db = storage->database();
+    odb::database *db = database();
     Q_ASSERT(db);
     if (!db)
         return false;
+
+    bool opened = false;
 
     try {
         odb::transaction t(db->begin());
@@ -82,35 +98,37 @@ bool ServiceProviderMetaStore::open()
 
         setVersion(it->version());
         t.commit();
+        opened = true;
 
     } catch (std::exception &e) {
         qLog() << e.what();
     }
 
-    return true;
+    return opened;
 }
 
 bool ServiceProviderMetaStore::remove()
 {
-    ServiceProviderStorage *storage = dynamic_cast<ServiceProviderStorage*>(parent());
-    Q_ASSERT(storage);
-    if (!storage)
-        return false;
-
-    odb::database *db = storage->database();
+    odb::database *db = database();
     Q_ASSERT(db);
     if (!db)
         return false;
 
+    bool removed = false;
+
     try {
         odb::transaction t(db->begin());
         db->erase_query<Odb::ServiceProviderMetaStore>();
+        db->execute(QString("DROP TABLE IF EXISTS \"%1\"").
+            arg(kServiceProviderMetaStore).toStdString());
         t.commit();
+        removed = true;
+
     } catch (std::exception &e) {
         qLog() << e.what();
     }
 
-    return true;
+    return removed;
 }
 
 unsigned int ServiceProviderMetaStore::getServiceStorageVersion() const
@@ -120,6 +138,16 @@ unsigned int ServiceProviderMetaStore::getServiceStorageVersion() const
         return -1;
 
     return version();
+}
+
+odb::database *ServiceProviderMetaStore::database()
+{
+    ServiceProviderStorage *storage = dynamic_cast<ServiceProviderStorage*>(parent());
+    Q_ASSERT(storage);
+    if (!storage)
+        return 0;
+
+    return storage->database();
 }
 
 } // namespace Storage

@@ -24,6 +24,11 @@
 #include <QObject>
 #include <QScopedPointer>
 
+namespace odb
+{
+    class database;
+}
+
 namespace Maily
 {
 namespace Services
@@ -51,6 +56,9 @@ public:
 signals:
     
 public slots:
+
+private:
+    odb::database* database();
 
 private:
     Q_DISABLE_COPY(ServiceProviderMetaStore)
