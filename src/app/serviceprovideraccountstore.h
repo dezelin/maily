@@ -23,6 +23,11 @@
 
 #include <QObject>
 
+namespace odb
+{
+    class database;
+}
+
 namespace Maily
 {
 namespace Services
@@ -32,6 +37,7 @@ namespace Storage
 
 const QString kServiceProviderAccountStore = "ServiceProviderAccountStore";
 
+class ServiceProviderAccountStorePrivate;
 class ServiceProviderAccountStore : public Store
 {
     Q_OBJECT
@@ -41,12 +47,26 @@ public:
         const QString &storeName = kServiceProviderAccountStore, int version = 1);
     virtual ~ServiceProviderAccountStore();
     
-    ServiceProviderInfo* getProviderInfo() const;
+    virtual bool close();
+    virtual bool create();
+    virtual bool open();
+    virtual bool remove();
+    virtual bool update();
+
+    ServiceProviderInfo *getProviderInfo();
 
 signals:
     
 public slots:
-    
+
+private:
+    odb::database* database();
+    const odb::database *database() const;
+
+private:
+    Q_DISABLE_COPY(ServiceProviderAccountStore)
+    Q_DECLARE_PRIVATE(ServiceProviderAccountStore)
+    QScopedPointer<ServiceProviderAccountStorePrivate> d_ptr;
 };
 
 } // namespace Storage

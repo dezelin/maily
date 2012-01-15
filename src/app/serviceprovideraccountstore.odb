@@ -1,0 +1,77 @@
+/*
+ *   This file is part of Maily.
+ *
+ *   Maily is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Maily is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Maily. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include <odb/core.hxx>
+#include <QtCore/QString>
+
+namespace Maily
+{
+namespace Services
+{
+namespace Storage
+{
+namespace Odb
+{
+
+#pragma db object
+class ServiceProviderAccountStore
+{
+public:
+    ServiceProviderAccountStore() :
+        id_(0), port_(0)
+    {
+    }
+
+    ServiceProviderAccountStore(const QString &username, const QString &password,
+        const QString &address, unsigned int port, const QString &displayName,
+        const QString &displayShortName) :
+        id_(0), username_(username), password_(password), address_(address),
+        port_(0), displayName_(displayName), displayShortName_(displayShortName)
+    {
+    }
+
+    unsigned long id() const { return id_; }
+    const QString &username() const { return username_; }
+    void setUsername(const QString &username) { username_ = username; }
+    const QString &password() const { return password_; }
+    void setPassword(const QString &password) { password_ = password; }
+    const QString &address() const { return address_; }
+    void setAddress(const QString &address) { address_ = address; }
+    unsigned int port() const { return port_; }
+    void setPort(unsigned int port) { port_ = port; }
+    const QString &displayName() const { return displayName_; }
+    void setDisplayName(const QString &displayName) { displayName_ = displayName; }
+    const QString &displayShortName() const { return displayShortName_; }
+    void setDisplayShortName(const QString &displayShortName) { displayShortName_ = displayShortName; }
+
+private:
+    friend class odb::access;
+
+    #pragma db id auto
+    unsigned long id_;
+    QString username_;
+    QString password_;
+    QString address_;
+    unsigned int port_;
+    QString displayName_;
+    QString displayShortName_;
+};
+
+} // namespace Odb
+} // namespace Storage
+} // namespace Services
+} // namespace Maily
