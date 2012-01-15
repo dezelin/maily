@@ -42,6 +42,7 @@ public:
     virtual bool create();
     virtual bool open();
     virtual bool remove();
+    virtual bool update();
     virtual bool upgrade(int fromVersion);
 
     unsigned int version() const;

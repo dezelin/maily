@@ -73,6 +73,11 @@ bool Store::remove()
     return true;
 }
 
+bool Store::update()
+{
+    return true;
+}
+
 bool Store::upgrade(int fromVersion)
 {
     Q_UNUSED(fromVersion);
