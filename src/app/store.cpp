@@ -49,10 +49,11 @@ Store::~Store()
 {
 }
 
-void Store::close()
+bool Store::close()
 {
     Q_D(Store);
     d->opened_ = false;
+    return true;
 }
 
 bool Store::create()

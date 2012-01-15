@@ -38,7 +38,7 @@ public:
         unsigned int version = 1);
     virtual ~Store();
 
-    virtual void close();
+    virtual bool close();
     virtual bool create();
     virtual bool open();
     virtual bool remove();
